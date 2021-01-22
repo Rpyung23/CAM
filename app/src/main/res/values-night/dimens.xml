@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ancho_recovery_button">280dp</dimen>
+    <dimen name="textsize_25">25sp</dimen>
+    <dimen name="cardview_alto_sedes_details">100dp</dimen>
+    <dimen name="textsize_noticia">22sp</dimen>
+    <dimen name="margin_bottom_titulo_noticia_cntenido">100dp</dimen>
+    <dimen name="alto_card_evento">270dp</dimen>
+    <dimen name="textsize_num_fecha">33sp</dimen>
+    <dimen name="margin_bottom_titulo_evento_cntenido">70dp</dimen>
+    <dimen name="margin_textinput_num_socio">15dp</dimen>
+</resources>

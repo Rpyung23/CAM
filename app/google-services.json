@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "657518111120",
+    "firebase_url": "https://sicam-movil.firebaseio.com",
+    "project_id": "sicam-movil",
+    "storage_bucket": "sicam-movil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657518111120:android:cc826250914123af1aab15",
+        "android_client_info": {
+          "package_name": "com.virtualcode7ecuadorvigitrack.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657518111120-tqbg3igkfcrq5po9b6g64653k5slj2m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsyspO83DAOSRQ_EdImhf_7rO03iS0ACs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657518111120-tqbg3igkfcrq5po9b6g64653k5slj2m9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "657518111120-b48sech4vkslkqevp4fpojj15vgv09po.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cam.centroasturiano"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

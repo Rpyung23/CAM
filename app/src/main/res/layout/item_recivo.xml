@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+
+
+    <TextView
+        android:id="@+id/textView_nro_receipt"
+        android:textColor="@color/ClubColorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recibo: 20204566 "
+        android:textSize="@dimen/font_normal"
+        app:layout_constraintBottom_toTopOf="@+id/textView_main"
+        app:layout_constraintStart_toStartOf="@+id/textView_main"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_top_line"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+
+    <TextView
+        android:textColor="@color/ClubColorPrimary"
+        android:id="@+id/textView_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2020/01/04"
+        android:textSize="@dimen/font_normal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_nro_receipt"
+        app:layout_constraintEnd_toEndOf="@+id/textView_amount" />
+
+    <TextView
+        android:id="@+id/textView_main"
+        android:textColor="@color/ClubColorPrimary"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cuota anual 2021"
+        android:textSize="@dimen/font_big"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/textView_nro_receipt" />
+
+
+    <TextView
+        android:textSize="@dimen/textsize_17sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/textView_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:text="$10,230.00"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_main"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_arrow" />
+
+    <ImageView
+        android:id="@+id/imageView_top_line"
+        android:layout_width="@dimen/spacing_empty"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/line_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_receipt_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_check_box" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <ImageView
+        android:id="@+id/imageView_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_xxlarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_rigth" />
+</androidx.constraintlayout.widget.ConstraintLayout>

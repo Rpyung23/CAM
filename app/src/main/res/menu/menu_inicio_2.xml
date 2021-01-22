@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/opc_perfil_drawer2"
+            android:title="Mi perfil"
+            android:icon="@drawable/ic_profile"
+            >
+        </item>
+        <item
+            android:id="@+id/opc_status_drawer2"
+            android:title="Estado de cuenta"
+            android:icon="@drawable/ic_state_account_white"
+            android:iconTint="@color/gray"
+            >
+        </item>
+        <item
+            android:id="@+id/opc_recibos_drawer2"
+            android:title="Recibos"
+            android:icon="@drawable/ic_receipt_white"
+            android:iconTint="@color/gray"
+            >
+        </item>
+        <item
+            android:id="@+id/opc_noti_drawer2"
+            android:title="Notificaciones"
+            android:icon="@drawable/ic_email_close"
+            >
+        </item>
+        <item
+            android:id="@+id/opc_contacto_drawer2"
+            android:title="Contacto"
+            android:icon="@drawable/ic_phone"
+            >
+        </item>
+        <item
+            android:id="@+id/opc_cerrar_drawer2"
+            android:title="Cerrar sesión"
+            android:icon="@drawable/ic_login"
+            >
+        </item>
+    </group>
+</menu>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.bottomnavigation.BottomNavigationView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:menu="http://schemas.android.com/tools"
+
+    android:id="@+id/navigationView_2"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ClubColorPrimary"
+    app:menu="@menu/menu_nav_bottom_2"
+    app:labelVisibilityMode="labeled"
+    style="@style/bottomnavigationview"
+    >
+</com.google.android.material.bottomnavigation.BottomNavigationView>

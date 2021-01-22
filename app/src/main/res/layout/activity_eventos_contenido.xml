@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.EventosContenidoActivity"
+    android:weightSum="1"
+    >
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2.1in"
+
+        >
+        <ImageView
+            android:id="@+id/id_img_principal_evento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_event"
+            android:scaleType="centerCrop"
+            >
+        </ImageView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fondo_black_20"
+
+            >
+        </View>
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="@dimen/margin_bottom_titulo_evento_cntenido"
+            android:id="@+id/id_titulo_evento"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/textsize_22sp"
+            android:text="@string/test_titulo_largo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+        </TextView>
+
+    </FrameLayout>
+
+
+
+
+
+    <include
+        layout="@layout/toolbar"
+        >
+    </include>
+
+    <include
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        layout="@layout/details_eventos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1.8in"></include>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

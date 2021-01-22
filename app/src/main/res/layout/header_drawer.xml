@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/id_textview_name"
+            android:textStyle="bold"
+            android:textSize="@dimen/textsize_30"
+            android:text="qwqw"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <TextView
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/id_textview_num"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_how_to_reg"
+            android:drawableTint="@color/white"
+            android:text=" No. socio 123456789"
+            android:textSize="@dimen/textsize_17sp"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

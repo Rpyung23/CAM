@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardElevation="7dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/linear_round"
+        android:backgroundTint="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="0.5">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="@dimen/ancho_view_fechas_event"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:orientation="vertical"
+
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Del"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/id_textview_fecha_inicio_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="25"
+                android:textColor="@color/ClubColorPrimary"
+                android:textSize="@dimen/textsize_num_fecha"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/id_textview_fecha_fin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Octubre"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_22sp"
+                >
+            </TextView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:id="@+id/id_linear_layout_fecha_fin"
+            android:layout_width="@dimen/ancho_view_fechas_event"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Al"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"></TextView>
+
+            <TextView
+                android:id="@+id/id_textview_fecha_fin_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/ClubColorPrimary"
+                android:textSize="@dimen/textsize_num_fecha"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/id_textview_fecha_inicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Noviembre"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_22sp"></TextView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>

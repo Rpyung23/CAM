@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/backgrount_shape_text_details"
+        android:scrollbars="vertical"
+        >
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/id_textview_fecha_noticia_details"
+            android:layout_margin="@dimen/margin"
+            android:drawableStart="@drawable/ic_access_time_black"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_fecha_publicacion"
+            android:textSize="@dimen/textsize_17sp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/id_textview_contenido"
+            android:layout_margin="@dimen/margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loren_xxipsum"
+            >
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/id_recyclerViewNoticiasFotosDetails"
+            android:layout_margin="@dimen/margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:listitem="@layout/card_noticias_details_imagen"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:visibility="gone"
+            android:layout_margin="@dimen/margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loren_xxipsum"
+            >
+        </TextView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>
+

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views_contacto.SedesActivity"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/toolbar_color"
+        >
+    </include>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="?actionBarSize"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_fondo_profile"
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contacta a una de nuestras sedes"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textsize_17sp"
+                    >
+                </TextView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mCardViewParque"
+                    app:cardElevation="15dp"
+                    android:layout_margin="@dimen/margin_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:textSize="@dimen/textsize_17sp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:drawableStart="@drawable/ic_apartment_white"
+                            android:drawableTint="@color/ClubColorPrimary"
+                            android:text="  Parque Asturias"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:drawableEnd="@drawable/ic_arrow_rigth"
+                            android:textAlignment="textEnd"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat">
+                        </TextView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mCardViewSocio"
+                    app:cardElevation="15dp"
+                    android:layout_marginRight="@dimen/margin_15"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:textSize="@dimen/textsize_17sp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:drawableStart="@drawable/ic_apartment_white"
+                            android:drawableTint="@color/ClubColorPrimary"
+                            android:text="  Edificio Sociocultural"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:drawableEnd="@drawable/ic_arrow_rigth"
+                            android:textAlignment="textEnd"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat">
+                        </TextView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mCardViewEco"
+                    app:cardElevation="15dp"
+                    android:layout_margin="@dimen/margin_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:textSize="@dimen/textsize_17sp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:drawableStart="@drawable/ic_apartment_white"
+                            android:drawableTint="@color/ClubColorPrimary"
+                            android:text="  Club Campestre Ecológico"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:drawableEnd="@drawable/ic_arrow_rigth"
+                            android:textAlignment="textEnd"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat">
+                        </TextView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

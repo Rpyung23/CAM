@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/opc_profile"
+        android:title="@string/profile_copy"
+        android:icon="@drawable/ic_profile"
+        >
+    </item>
+
+    <item
+        android:id="@+id/opc_notification"
+        android:title="@string/notifications_copy"
+        android:icon="@drawable/ic_email_close"
+        >
+    </item>
+
+    <item
+        android:id="@+id/opc_close"
+        android:title="@string/log_out_copy"
+        android:icon="@drawable/ic_login"
+        >
+    </item>
+
+    <item
+        android:id="@+id/opc_menu_1"
+        android:title="@string/menu_menu"
+        android:icon="@drawable/ic_menu"
+        >
+    </item>
+
+</menu>

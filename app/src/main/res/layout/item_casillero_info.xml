@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_xxmedium"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView_amount"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/ClubColorPrimary"
+            android:id="@+id/textView_nro_receipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cas. serie A-HGA-971"
+            android:textSize="@dimen/textsize_17sp"
+             />
+
+
+        <TextView
+            android:id="@+id/textView_sub_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loren_ipsum"
+            android:textSize="@dimen/font_small"
+            android:lines="3"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:textSize="@dimen/textsize_22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/textView_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:text="$10,230.00"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
+    <ImageView
+        android:layout_width="@dimen/spacing_empty"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/line_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="@dimen/spacing_xxxxlarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_time_primary_color"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

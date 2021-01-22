@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:gravity="center_vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradiente"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@android:color/transparent"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white"
+        android:paddingLeft="15dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_icon_news"
+        android:text="@string/menu_news"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@android:color/transparent"
+        android:paddingLeft="15dp"
+        android:layout_width="120dp"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_calendar"
+        android:text="@string/menu_events"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@android:color/transparent"
+        android:paddingLeft="15dp"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_soccer"
+        android:text="@string/menu_soccer"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@android:color/transparent"
+        android:paddingLeft="15dp"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_phone"
+        android:text="@string/menu_contact"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@android:color/transparent"
+        android:paddingLeft="15dp"
+        android:drawableTint="@color/white"
+        android:layout_width="180dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_login"
+        android:text="@string/menu_partner"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+</LinearLayout>

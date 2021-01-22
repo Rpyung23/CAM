@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views_socios.ReciboDetalleActivity"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/toolbar_color">
+    </include>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="?actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drawable_fondo_profile"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/margin_25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="15dp"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/line_view"
+                    android:scaleType="centerCrop"
+                    >
+                </ImageView>
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:gravity="center"
+                            android:text="@string/nro_operation_copy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_textview_num_ope"
+                            android:textStyle="bold"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:gravity="center"
+                            android:text="615687"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:gravity="center"
+                            android:text="@string/date_pay_copy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_textview_fecha_pago"
+                            android:textStyle="bold"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:gravity="center"
+                            android:text="12/05/2020"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:gravity="center"
+                            android:text="@string/concept_copy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_textview_concepto"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/textsize_22sp"
+                            android:gravity="center"
+                            android:text="Casillero serie A-HGA-971"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:gravity="center"
+                            android:text="@string/pay_amount_copy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_textview_monto"
+                            android:textStyle="bold"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_30"
+                            android:gravity="center"
+                            android:text="$ 3.695.00"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/line_view"
+                    android:scaleType="centerCrop"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check_box"
+                    >
+                </ImageView>
+
+            </FrameLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </FrameLayout>
+
+
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/id_views_card_pdf"
+            layout="@layout/card_ver_pdf">
+        </include>
+
+        <include
+            android:id="@+id/id_views_card_soli_factura"
+            layout="@layout/card_soli_factura">
+        </include>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@color/white"
+    >
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2.2in">
+        <ImageView
+            android:id="@+id/id_image_noticia_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/item_back"
+            android:scaleType="centerCrop"
+            >
+        </ImageView>
+        <View
+            android:background="@color/fondo_black_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </View>
+
+        <TextView
+            android:id="@+id/id_titulo"
+            android:text="titulo noticia"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/textsize_noticia"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/margin_bottom_titulo_noticia_cntenido"
+            >
+        </TextView>
+
+    </FrameLayout>
+
+
+
+    <include
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="1.8in"
+        layout="@layout/details_noticias"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    </include>
+
+    <include
+        layout="@layout/toolbar"
+        >
+    </include>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon_alert"
+        android:scaleType="centerCrop"
+        >
+    </ImageView>
+    <TextView
+        android:layout_marginTop="@dimen/margin"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_17sp"
+        android:textColor="@color/ClubColorPrimary"
+        android:textStyle="bold"
+        android:text="@string/recovery_pass_title_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:layout_marginTop="@dimen/margin"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_17sp"
+        android:text="@string/recovery_pass_body_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:layout_marginTop="@dimen/margin"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_17sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="@string/recovery_pass_footer_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+    <Button
+        android:id="@+id/id_button_accep"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+        android:text="ACEPTAR"
+        android:textColor="@color/ClubColorPrimary"
+        >
+    </Button>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

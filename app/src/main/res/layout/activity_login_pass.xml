@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradiente"
+    tools:context=".views.LoginPassActivity"
+    >
+
+    <include
+        layout="@layout/toolbar"
+        >
+    </include>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:gravity="center_horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_main_logo"
+            >
+        </ImageView>
+
+        <TextView
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/partner_number_copy"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/id_textview_num_membre"
+            android:textAlignment="center"
+            android:textSize="@dimen/textsize_22sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="7894561230"
+            >
+        </TextView>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/welcome_copy"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/id_name_titulo_1"
+            android:textAlignment="center"
+            android:textSize="@dimen/textsize_22sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="F***** G*****"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/id_name_titulo_2"
+            android:textAlignment="center"
+            android:textSize="@dimen/textsize_22sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="M***** M*****">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginLeft="@dimen/margin_textinput_num_socio"
+            android:layout_marginRight="@dimen/margin_textinput_num_socio"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_lock_white"
+            android:hint="@string/password"
+            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/white"
+            app:boxBackgroundColor="#8c2E3286"
+            app:startIconTint="@color/white"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_edittextpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/id_button_login_socios"
+            android:layout_width="210dp"
+            android:layout_height="55dp"
+            android:text="@string/ingresar_copy"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/ClubColorPrimary"
+            android:textStyle="bold"
+            >
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <TextView
+            android:id="@+id/id_no_soy_yo"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="@string/not_i_am"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </TextView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

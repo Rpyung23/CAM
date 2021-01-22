@@ -1,0 +1,119 @@
+<resources>
+    <string name="app_name">CAM</string>
+
+    <!--menus-->
+    <string name="menu_home">Inicio</string>
+    <string name="menu_events">Eventos</string>
+    <string name="menu_partner">Acceso a socios</string>
+    <string name="menu_login">Iniciar sesion</string>
+    <string name="menu_soccer">Futbol</string>
+    <string name="menu_contact">Contacto</string>
+    <string name="menu_invited">Invitados</string>
+    <string name="menu_news">Noticias</string>
+    <string name="menu_menu">Menu</string>
+    <string name="menu_profile">Mi perfil</string>
+
+
+    <!--test-->
+    <string name="loren_ipsum">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+        no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+        Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr,
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum.
+        Stet clita kasd gubergren,
+        no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr,
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+    </string>
+
+    <string name="loren_xxipsum">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+        no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+    </string>
+    <string name="test_fecha_publicacion">  fecha de la publicacion</string>
+    <string name="test_titulo_largo">Titulo de la noticia de doble fila de longitud</string>
+    <string name="button_charge_more">Cargar mas Noticias</string>
+    <string name="test_direction_event">direcion de evento</string>
+    <string name="test_title_event">Título del evento</string>
+
+    <string name="event_title">EVENTOS</string>
+    <string name="news_title">NOTICIAS</string>
+    <string name="profile_title">MI PERFIl</string>
+    <string name="state_account_title">ESTADO DE CUENTA</string>
+    <string name="receipt_copy">RECIBOS 2020</string>
+
+
+    <string name="profile_hi_copy">Hola</string>
+    <string name="partner_number_copy">No de socio:</string>
+    <string name="profile_type_membership_copy">Tipo de membresía:</string>
+    <string name="profile_membre_since_copy">Socio desde:</string>
+    <string name="state_account_copy">Estado de cuenta</string>
+    <string name="profile_invited_copy">Invitados</string>
+    <string name="reservations_copy">Reservaciones</string>
+    <string name="welcome_copy">Bienvenido</string>
+
+    <string name="notifications_copy">Notificaciones</string>
+    <string name="notifications_title">NOTIFICACIONES</string>
+    <string name="log_out_copy">Cerrar sesion</string>
+    <string name="profile_copy">Mi perfil</string>
+    <string name="your_balance_copy">Tu saldo es de:</string>
+    <string name="receipt_title_copy">Detalle del recibo</string>
+    <string name="nro_operation_copy">Número de operación:</string>
+    <string name="date_pay_copy">Fecha de pago:</string>
+    <string name="concept_copy">Concepto:</string>
+    <string name="pay_amount_copy">Monto pagado:</string>
+    <string name="see_pdf_copy">Ver PDF</string>
+    <string name="request_fact_copy">Solicitar factura</string>
+    <string name="begin_date_copy">del</string>
+    <string name="end_date_copy">al</string>
+    <string name="about_event_copy">Acerca del evento</string>
+    <string name="ingresar_copy">Ingresar</string>
+    <string name="details_title">DETALLE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="session_expired">La sesión ha caducado</string>
+    <string name="try_again_login">Iniciar sesión nuevamente</string>
+    <string name="accept_button">Aceptar</string>
+    <string name="continue_">Continuar</string>
+    <string name="not_i_am">No soy yo</string>
+    <string name="password">Contraseña</string>
+    <string name="date_events">Fecha del evento</string>
+    <string name="dir_events">Dirección del evento</string>
+    <string name="olvidates_password">¿Olvidaste tu contraseña?</string>
+    <string name="recovery_pass"><u>Recupérala aqui</u></string>
+    <string name="recovery_pass_botton">Recuperar contraseña</string>
+    <string name="new_pass">Nueva contraseña</string>
+    <string name="repet_pass">Confirmar nueva contraseña</string>
+    <string name="update_pass">ACTUALIZAR CONTRASEÑA</string>
+    <string name="recovery_pass_title_alert">Recuperar tu contraseña</string>
+    <string name="recovery_pass_body_alert">Te hemos enviado una liga para que puedas reestablecer tu contraseña</string>
+    <string name="recovery_pass_footer_alert">Encuentra el email en tu bandeja de entrada o correo no deseado</string>
+
+    <!--- API REST -->
+    <string name="api_rest_noticias_all">https://www.centroasturianodemexico.mx/api/v1/noticias</string>
+    <string name="api_rest_noticias_id">https://www.centroasturianodemexico.mx/api/v1/noticias/</string>
+    <string name="api_rest_eventos_all">https://www.centroasturianodemexico.mx/api/v1/eventos</string>
+    <string name="api_rest_eventos_id">https://www.centroasturianodemexico.mx/api/v1/eventos/</string>
+    <string name="api_rest_login_num_socio">https://www.centroasturianodemexico.mx/api/v1/usuarios/login/user</string>
+    <string name="api_rest_login_pass">https://www.centroasturianodemexico.mx/api/v1/usuarios/login/password</string>
+    <string name="api_rest_membresia">https://www.centroasturianodemexico.mx/api/v1/membresias/</string>
+    <string name="api_rest_membresias_movimientos">https://www.centroasturianodemexico.mx/api/v1/membresias/</string>
+    <string name="api_rest_notificaciones">https://centroasturianodemexico.mx/api/v1/membresias/</string>
+    <string name="api_rest_recibos">https://centroasturianodemexico.mx/api/v1/membresias/</string>
+    <string name="vacio" />
+    <string name="default_notification_channel_id">com.virtualcode7ecuadorvigitrack.myapplication.notificaciones</string>
+    <string name="acceso_socios_menu_drawer"><em>Acesso a socios</em></string>
+</resources>

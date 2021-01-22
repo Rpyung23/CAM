@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views_contacto.AcercaAppActivity"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/toolbar_color"
+        >
+    </include>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="?actionBarSize"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contacta a una de nuestras sedes"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textsize_17sp"
+                    >
+                </TextView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mCardViewParque"
+                    app:cardElevation="1dp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    >
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/version_app"
+                            >
+                        </ImageView>
+
+
+                        <TextView
+                            android:textSize="@dimen/textsize_17sp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:text="Versión de la app\n1.0"
+                            android:layout_margin="@dimen/margin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    >
+                </View>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mCardViewSocio"
+                    app:cardElevation="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    >
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <ImageView
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/copyright"
+                            >
+                        </ImageView>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:textSize="@dimen/textsize_17sp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/ClubColorPrimary"
+                                android:text=" Desarrollado por"
+                                android:layout_margin="@dimen/margin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+                            <TextView
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize_17sp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/ClubColorPrimary"
+                                android:drawableStart="@drawable/logo_wt"
+                                android:text=" Foursides SA de CV"
+                                android:layout_marginLeft="@dimen/margin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    >
+                </View>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginTop="@dimen/margin_15"
+                    >
+                    <TextView
+                        android:id="@+id/id_terminos"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="Términos y Condiciones de Uso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/id_aviso"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="Aviso de Privacidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </TextView>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

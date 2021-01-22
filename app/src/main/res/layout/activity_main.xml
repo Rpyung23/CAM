@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.MainActivity"
+    app:content="@layout/card_noticias"
+    >
+
+    <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/menu"
+        android:tag="menu"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content" />
+
+</nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>

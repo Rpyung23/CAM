@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views_contacto.ContactoInicioActivity">
+    <include
+        layout="@layout/toolbar_color"
+        >
+    </include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="Contacto Directo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"
+                android:textStyle="bold"></TextView>
+
+            <include
+                android:id="@+id/mCardViewLlamada"
+                layout="@layout/llamar_centro_astu"></include>
+
+            <include
+                android:id="@+id/mCardViewArquimides"
+                layout="@layout/llamar_arquimedes"></include>
+
+            <include
+                android:id="@+id/mCardViewCCEcologico"
+                layout="@layout/llamar_ccecologico"></include>
+
+            <include
+                android:id="@+id/mCardViewHotelVillas"
+                layout="@layout/llamar_hotle_villas"></include>
+
+            <include
+                android:id="@+id/mCardViewClubGolf"
+                layout="@layout/llamar_golf"></include>
+
+
+            <include
+
+                android:id="@+id/mCardViewEmail"
+                layout="@layout/send_email_centro_asturiano"></include>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="Contacta a una de nuestras sedes"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"
+                android:textStyle="bold"></TextView>
+
+            <include
+                android:id="@+id/mCardViewSedes"
+                layout="@layout/sedes_"></include>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="Síganos en Facebook"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"
+                android:textStyle="bold"></TextView>
+
+            <include
+                android:id="@+id/mCardViewFacebook"
+                layout="@layout/facebook_"></include>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="Contacte a Soporte"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"
+                android:textStyle="bold"></TextView>
+
+            <include
+                android:id="@+id/mCardViewSoporte"
+                layout="@layout/soporte"></include>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="Información de la Aplicación"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"
+                android:textStyle="bold"></TextView>
+
+            <include
+                android:id="@+id/mCardViewAcerca_de"
+                layout="@layout/acerca_app"></include>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
