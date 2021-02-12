@@ -1,70 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/alto_item_notification"
+    android:background="@drawable/duo_shape_rectangled_red"
+    >
 
-    <ImageView
-        android:id="@+id/imageView_item_notification_icon"
-        android:layout_width="@dimen/size_notification_icon"
-        android:layout_height="@dimen/size_notification_icon"
-        android:layout_marginStart="@dimen/spacing_large"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:layout_marginBottom="@dimen/spacing_xxxxlarge"
-        android:background="@drawable/bg_img_notification_open"
-        android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_mark_email_read" />
+    <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/id_img_delete"
+    android:layout_width="?actionBarSize"
+    android:layout_height="wrap_content"
+    android:src="@drawable/delete"
+    android:layout_gravity="center_vertical|right"
+    android:layout_marginRight="20dp"
+    >
+</androidx.appcompat.widget.AppCompatImageView>
 
-    <TextView
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:id="@+id/textView__item_notification_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_large"
-        android:text="Aviso"
-        android:textSize="@dimen/font_big"
-        app:layout_constraintBottom_toTopOf="@+id/textViewitem_notification_sub_text"
-        app:layout_constraintStart_toStartOf="@+id/textViewitem_notification_sub_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textViewitem_notification_sub_text"
-        android:layout_width="@dimen/spacing_empty"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_xxlarge"
-        android:lines="1"
-        android:text="Estimado Adrian Chávez, ahora puede pagar su cuota anual a través de..."
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewitem_notification_date"
-        app:layout_constraintStart_toEndOf="@+id/imageView_item_notification_icon"
-        app:layout_constraintTop_toBottomOf="@+id/textView__item_notification_title" />
-
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/textViewitem_notification_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_large"
-        android:text="23 oct."
-        android:textSize="@dimen/font_small"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView__item_notification_title"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <View
-        android:background="@color/fondo_black_40"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/id_container_notification"
+        android:background="@color/white"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988"
-        tools:layout_editor_absoluteX="0dp"></View>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="@dimen/alto_item_notification">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/alto_item_notification"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.90"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imageView_item_notification_icon"
+                android:layout_width="@dimen/size_notification_icon"
+                android:layout_height="@dimen/size_notification_icon"
+                android:background="@drawable/bg_img_notification_open"
+                android:src="@drawable/ic_mark_email_read"
+                android:scaleType="center"
+                />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.10"
+            android:orientation="vertical"
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.15"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:paddingLeft="5dp"
+                        android:paddingRight="3dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:id="@+id/textView__item_notification_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aviso"
+                        android:textSize="@dimen/font_big" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.40"
+                    android:textColor="@color/black"
+                    android:id="@+id/textViewitem_notification_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="20/20/2020"
+                    android:textSize="@dimen/font_small" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:id="@+id/textViewitem_notification_sub_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:text="Estimado Adrian Chávez, ahora puede pagar su cuota anual a través de..."
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+<View
+    android:layout_gravity="bottom"
+    android:background="@color/fondo_black_40"
+    android:layout_width="match_parent"
+    android:layout_height="2dp">
+</View>
+
+
+</FrameLayout>

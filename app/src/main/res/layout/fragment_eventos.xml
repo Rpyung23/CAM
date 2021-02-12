@@ -1,29 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.EventosFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="?actionBarSize"
+    >
 
-    <include
-        layout="@layout/card_eventos"
-        >
-    </include>
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/id_recyclerViewEventos"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/card_eventos"
-        android:layout_marginBottom="?actionBarSize"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        >
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
+            <include
+                layout="@layout/card_evento2"
+                >
+            </include>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/id_recyclerViewEventos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/card_evento2"
+            android:backgroundTint="@color/white"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/id_cargar_mas"
+            android:layout_width="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Cargar más Eventos"
+            app:backgroundTint="@color/ClubColorPrimary"
+            app:icon="@drawable/plus_not_eve"
+            app:iconTint="@color/white"
+            android:textAllCaps="false"
+            >
+        </com.google.android.material.button.MaterialButton>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

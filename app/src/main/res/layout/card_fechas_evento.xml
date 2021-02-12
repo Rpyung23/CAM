@@ -4,36 +4,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardElevation="7dp"
-    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="10dp"
     >
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/linear_round"
-        android:backgroundTint="@color/white"
         android:orientation="horizontal"
         android:weightSum="0.5">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
             android:layout_width="@dimen/ancho_view_fechas_event"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="0.25"
+            android:gravity="center"
             android:orientation="vertical"
 
             >
 
             <TextView
+                android:id="@+id/id_textview_desde_texto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Del"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize_17sp">
-            </TextView>
+                android:textSize="@dimen/textsize_17sp"></TextView>
 
             <TextView
                 android:id="@+id/id_textview_fecha_inicio_num"
@@ -52,18 +50,16 @@
                 android:gravity="center"
                 android:text="Octubre"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize_22sp"
-                >
-            </TextView>
+                android:textSize="@dimen/texto_fecha_destino_inicio"></TextView>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
             android:id="@+id/id_linear_layout_fecha_fin"
             android:layout_width="@dimen/ancho_view_fechas_event"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="0.25"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -88,10 +84,13 @@
                 android:id="@+id/id_textview_fecha_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:gravity="center"
                 android:text="Noviembre"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize_22sp"></TextView>
+                android:textSize="@dimen/texto_fecha_destino_inicio"></TextView>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

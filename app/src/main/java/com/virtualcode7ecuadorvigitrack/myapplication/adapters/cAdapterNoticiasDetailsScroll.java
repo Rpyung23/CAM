@@ -1,14 +1,18 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -49,7 +53,14 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
                     .placeholder(R.drawable.img_load)
                     .into(holder.mImageView);
 
-            holder.mTextViewContenido.setText(Html.fromHtml(mNoticiasArrayList.get(position).getTextoNoticia()));
+        holder.mTextViewContenido
+                .setText(Html.fromHtml(mNoticiasArrayList.get(position)
+                .getTextoNoticia()));
+
+
+        Log.e("HTML",mNoticiasArrayList
+                .get(position).getTextoNoticia());
+
     }
 
 

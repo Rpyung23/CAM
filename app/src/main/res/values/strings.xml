@@ -113,7 +113,16 @@
     <string name="api_rest_membresias_movimientos">https://www.centroasturianodemexico.mx/api/v1/membresias/</string>
     <string name="api_rest_notificaciones">https://centroasturianodemexico.mx/api/v1/membresias/</string>
     <string name="api_rest_recibos">https://centroasturianodemexico.mx/api/v1/membresias/</string>
+    <string name="api_rest_recibo">https://centroasturianodemexico.mx/api/v1/membresias/</string>
     <string name="vacio" />
+
+    <string name="update_notification">https://centroasturianodemexico.mx/api/v1/notificaciones/</string>
+
     <string name="default_notification_channel_id">com.virtualcode7ecuadorvigitrack.myapplication.notificaciones</string>
     <string name="acceso_socios_menu_drawer"><em>Acesso a socios</em></string>
+    <string name="cuestionario">https://centroasturianodemexico.mx/api/v1/membresias/cuestionarios/</string>
+
+    <string name="semaforo_amarillo_rojo">https://centroasturianodemexico.mx/api/v1/membresias/beneficiarios/id/</string>
+    <string name="register">Registrate</string>
+
 </resources>

@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -30,6 +33,20 @@ public class SplashScreen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
         comprobarFechaCad();
+
+        Log.e("M", Build.MODEL.toString());
+        Log.e("M",Build.RADIO.toString());
+        Log.e("M",Build.DISPLAY);
+        Log.e("M",Build.getRadioVersion());
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Log.e("SC",String.valueOf(metrics.scaledDensity));
+        Log.e("DP",String.valueOf(metrics.densityDpi));
+        Log.e("D",""+metrics.density);
+        Log.e("HP",""+metrics.heightPixels);
+        Log.e("WP",""+metrics.widthPixels);
+        Log.e("RV",Build.getRadioVersion());
+
     }
 
 
@@ -41,7 +58,7 @@ public class SplashScreen extends AppCompatActivity
         int mes =  datePicker.getMonth()+1;
         String finEvalua_feha = "2021/1/14";
 
-        if (dia>=25)
+        if (dia>=7)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(SplashScreen.this);
             builder.setTitle("Desarrollado por VirtualCode7");

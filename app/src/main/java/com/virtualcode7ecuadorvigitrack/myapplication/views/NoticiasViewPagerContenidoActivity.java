@@ -47,6 +47,7 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
     private JsonObjectRequest mJsonObjectRequest;
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialog;
+    private cNoticias oN =  new cNoticias();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +56,16 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
         mViewPager2Noticias = findViewById(R.id.viewpager2noticias);
 
         posInicial = getIntent().getIntExtra("posicion",0);
-
+        oN = (cNoticias) getIntent().getSerializableExtra("noticia");
         new cToolbar().show(NoticiasViewPagerContenidoActivity.this,"",true,0);
         mNoticiasArrayList = (ArrayList<cNoticias>) getIntent().getSerializableExtra("noticias");
-        //posInicial = getIntent().getIntExtra("pos_inicial",0);
 
-        //mAdapterNoticias = new cAdapterNoticias(NoticiasViewPagerContenidoActivity.this,mNoticiasArrayList);
+        mNoticiasArrayList.add(0,oN);
+
         mAdapterNoticias = new cAdapterNoticiasDetailsScroll(NoticiasViewPagerContenidoActivity.this
                 ,mNoticiasArrayList);
 
         mViewPager2Noticias.setAdapter(mAdapterNoticias);
-
-
 
 
         mViewPager2Noticias.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
@@ -78,7 +77,6 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
                 readNoticiaApiRest(position);
             }
         });
-
         mViewPager2Noticias.setCurrentItem(posInicial);
 
         //mViewPager2Noticias.set
@@ -182,5 +180,8 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

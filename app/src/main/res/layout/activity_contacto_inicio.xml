@@ -23,6 +23,7 @@
             android:scrollbars="vertical">
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_15"
@@ -54,17 +55,18 @@
 
 
             <include
-
+                android:visibility="gone"
                 android:id="@+id/mCardViewEmail"
                 layout="@layout/send_email_centro_asturiano"></include>
 
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_15"
                 android:layout_marginTop="@dimen/margin_15"
-                android:text="Contacta a una de nuestras sedes"
+                android:text="Sedes"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_17sp"
                 android:textStyle="bold"></TextView>
@@ -74,6 +76,7 @@
                 layout="@layout/sedes_"></include>
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_15"
@@ -88,6 +91,7 @@
                 layout="@layout/facebook_"></include>
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_15"
@@ -103,6 +107,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_15"
@@ -110,7 +115,8 @@
                 android:text="Información de la Aplicación"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_17sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold">
+            </TextView>
 
             <include
                 android:id="@+id/mCardViewAcerca_de"

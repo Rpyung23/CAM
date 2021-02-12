@@ -29,7 +29,9 @@ import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFrag
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.EventosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.NoticiasFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.framents_socios.ProfileSocioFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views_contacto.ContactoInicioActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
 
 import java.util.List;
 
@@ -62,6 +64,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         toolbar = findViewById(R.id.toolbar);
         mNavigationView = findViewById(R.id.navigation_view);
         mDrawerLayout = findViewById(R.id.id_drawer_layout);
+
+
 
         //MaterialShapeDrawable materialShapeDrawable = (MaterialShapeDrawable) mBottomNavigationView.getBackground();
 
@@ -141,14 +145,26 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                         break;
                     case  R.id.opc_acceso_socios_1:
                         goneViewToolbarTop();
-                        /*getSupportFragmentManager().beginTransaction()
+
+                        if (new cSharedTokenValidation(InicioActivity.this).readTokenValitation())
+                        {
+                            Intent mIntent = new Intent(InicioActivity.this,
+                                    InicioSociosActivity.class);
+                            startActivity(mIntent);
+                        }else
+                            {
+                                                        /*getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container_1,mAccesoSociosFragment)
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                                 .commit();*/
-                        llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
-                        mTextViewToolbar.setText("LOGIN");
-                        //Toast.makeText(InicioActivity.this, "opc_acceso_socios_1", Toast.LENGTH_SHORT).show();
-                        mNavigationView.setCheckedItem(R.id.opc_acceso_drawer);
+                                llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
+                                mTextViewToolbar.setText("LOGIN");
+                                //Toast.makeText(InicioActivity.this, "opc_acceso_socios_1", Toast.LENGTH_SHORT).show();
+                                mNavigationView.setCheckedItem(R.id.opc_acceso_drawer);
+                            }
+
+
+
 
                         break;
                 }

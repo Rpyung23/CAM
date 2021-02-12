@@ -44,7 +44,7 @@ public class cAdapterRecivos extends RecyclerView.Adapter<cAdapterRecivos.cViewH
         holder.mTextViewPrice.setText("$ "+mReciverArrayList.get(position).getDinero_total());
         holder.mTextViewDate.setText(mReciverArrayList.get(position).getFecha());
         holder.mTextViewTextMain.setText(mReciverArrayList.get(position).getTexto_main());
-        holder.mTextViewRecivoNum.setText(mReciverArrayList.get(position).getNum_recivo());
+        holder.mTextViewRecivoNum.setText("Recibo "+mReciverArrayList.get(position).getNum_recivo());
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -46,9 +48,10 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
                 holder.mTextViewFechaPubli.setText("Sin Fecha");
             }
 
+
         if (mEventosArrayList.get(position).getDireccion()!=null)
         {
-            holder.mTextViewDirec.setText(mEventosArrayList.get(position).getFecha());
+            holder.mTextViewDirec.setText(mEventosArrayList.get(position).getDireccion());
         }else
         {
             holder.mTextViewDirec.setText("Sin Dirección");
@@ -56,9 +59,9 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
 
         holder.mTextViewTitle.setText(mEventosArrayList.get(position).getTitulo());
-        holder.mTextViewAcerca.setText(mEventosArrayList.get(position).getAcerca_de());
+        //holder.mTextViewAcerca.setText(mEventosArrayList.get(position).getAcerca_de());
 
-
+        holder.mTextViewAcerca.setText(Html.fromHtml(mEventosArrayList.get(position).getAcerca_de()));
 
         Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
                 .error(R.drawable.img_error)
@@ -88,6 +91,7 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
             mTextViewDirec = itemView.findViewById(R.id.textView2);
             mTextViewTitle = itemView.findViewById(R.id.id_titulo_evento);
             mTextViewAcerca = itemView.findViewById(R.id.textView_about_event);
+
         }
     }
 }

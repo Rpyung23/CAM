@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    app:cardElevation="10dp"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/color_prmary_fondo"
+            android:weightSum="1"
+            >
+            <TextView
+                android:paddingLeft="10dp"
+                android:textColor="@color/ClubColorPrimary"
+                android:textSize="@dimen/textsize_17sp"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirmación"
+                android:textStyle="bold"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/id_cerrar_alert_check"
+                android:gravity="right"
+                android:paddingRight="10dp"
+                android:textColor="@color/ClubColorPrimary"
+                android:textSize="@dimen/textsize_17sp"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cerrar"
+                >
+            </TextView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/id_checkbox_renovar"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Afirma usted estar en condiciones óptimas de salud para utilizar las instalaxiones y equipo del Centro Asturiano de México A.C?"
+            >
+        </com.google.android.material.checkbox.MaterialCheckBox>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/id_afirmo_alert_covid"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:text="Enviar"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textsize_17sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/ClubColorPrimary"
+            android:padding="@dimen/margin"
+            >
+        </com.google.android.material.button.MaterialButton>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.cardview.widget.CardView>

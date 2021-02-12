@@ -15,4 +15,9 @@
     <color name="fondo_black_20">#80000000</color>
     <color name="fondo_black_40">#26000000</color>
     <color name="trnsparente">@android:color/transparent</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#008000</color>
+    <color name="red">#FF0000</color>
+    <color name="semaforo_inactive">#262E3286</color>
+    <color name="color_prmary_fondo">#d9d5e3</color>
 </resources>

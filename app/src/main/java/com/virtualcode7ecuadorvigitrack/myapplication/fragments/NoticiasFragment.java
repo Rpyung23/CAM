@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -62,7 +66,11 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialog;
     private MaterialButton materialButton;
-    private int cont = 0;
+    private int page_cont = 1;
+
+    private StaggeredGridLayoutManager mLayoutManager;
+
+    private boolean primer_item = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,16 +85,16 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
         materialButton = mView.findViewById(R.id.id_cargar_mas);
         mViewCardPrincipal.setOnClickListener(this);
         materialButton.setOnClickListener(this);
-        mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
-                "CONSULTANDO...",false);
-        mAlertDialog.show();
 
-
+        mLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerViewNoticias.setLayoutManager(mLayoutManager);
+        mRecyclerViewNoticias.setHasFixedSize(true);
 
         llenarArraysListNoticias();
 
         return  mView;
     }
+
 
     private void abrirActivityNoticia(cNoticias oNoticias)
     {
@@ -99,7 +107,11 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
     private void llenarArraysListNoticias()
     {
 
-        mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all), new Response.Listener<String>() {
+        mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
+                "CONSULTANDO...",false);
+        mAlertDialog.show();
+
+        mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)+"?page="+page_cont, new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
             {
@@ -123,7 +135,18 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                                 mNoticiasArrayList.add(oN);
                             }
                         }
-                        cargar_datosRecyclerView();
+
+
+                        if(page_cont<=1)
+                        {
+                            cargar_datosRecyclerView();
+                        }else
+                        {
+                            mAdapterNoticias.notifyDataSetChanged();
+                            page_cont++;
+                        }
+
+
                     }else
                     {
                         Toasty.warning(getContext(),"No se puede mostrar los datos"
@@ -254,7 +277,9 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                     .error(R.drawable.img_error)
                     .placeholder(R.drawable.img_load)
                     .into(mImageView);
+
             mNoticiasArrayList.remove(0);
+
             if (mNoticiasArrayList.size()>0)
             {
                 /****/
@@ -264,10 +289,13 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                             public void onClick(View view)
                             {
                                 //abrirActivityNoticia(mNoticiasArrayList.get(mRecyclerViewNoticias.getChildAdapterPosition(view)));
+                                int pos = mRecyclerViewNoticias.getChildAdapterPosition(view);
+                                pos+=1;
 
                                 Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
                                 intent.putExtra("noticias", (Serializable) mNoticiasArrayList);
-                                intent.putExtra("posicion",mRecyclerViewNoticias.getChildAdapterPosition(view));
+                                intent.putExtra("noticia", (Serializable) mNoticias);
+                                intent.putExtra("posicion",pos);
                                 startActivity(intent);
 
                             }
@@ -294,16 +322,18 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                 //abrirActivityNoticia(mNoticias);
 
                 Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
-                mNoticiasArrayList.add(0,mNoticias);
+                //mNoticiasArrayList.add(0,mNoticias);
                 intent.putExtra("noticias", (Serializable) mNoticiasArrayList);
+                intent.putExtra("noticia", (Serializable) mNoticias);
                 intent.putExtra("posicion",0);
                 startActivity(intent);
 
 
                 break;
             case R.id.id_cargar_mas:
-                cont = cont+5;
-                break;
+                page_cont++;
+                llenarArraysListNoticias();
+                       break;
         }
     }
 }

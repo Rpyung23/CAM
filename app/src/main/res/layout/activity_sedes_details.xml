@@ -15,7 +15,7 @@
         android:weightSum="1">
 
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5">
@@ -26,9 +26,16 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo_wt">
-
             </ImageView>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/fondo_black_20"
+                >
+            </View>
+
+        </FrameLayout>
 
         <ScrollView
             android:layout_width="match_parent"

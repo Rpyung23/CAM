@@ -63,22 +63,22 @@ public class SedesDetailsActivity extends AppCompatActivity
             mTextViewTituloPhone1.setVisibility(View.GONE);
             mTextViewTituloPhone2.setVisibility(View.GONE);
             mTextViewTituloPhone3.setVisibility(View.GONE);
-            mTextViewPhone1.setText("(55) 5610 1124");
-            mTextViewPhone2.setText("(55) 5610 1723");
+            mTextViewPhone1.setText("(55) 56101124");
+            mTextViewPhone2.setText("(55) 56101723");
             mTextViewTituloSede.setText("Parque Asturias");
-            mTextViewDireccion.setText("Caliz 118,El Relog,Coyoacán, 04640\nCiudad de México");
+            mTextViewDireccion.setText("Caliz 118, El Relog, Coyoacán, 04640\nCiudad de México, CDMX");
             mCardView.setVisibility(View.GONE);
         }else if (sede==2)
         {
-            Picasso.with(SedesDetailsActivity.this).load(R.drawable.sede_2).into(mImageView);
+            Picasso.with(SedesDetailsActivity.this).load(R.drawable.sede_edi_socio_cultutal).into(mImageView);
             mTextViewTituloPhone1.setVisibility(View.GONE);
             mTextViewTituloPhone2.setVisibility(View.GONE);
             mTextViewTituloPhone3.setVisibility(View.GONE);
             mCardView.setVisibility(View.GONE);
             mTextViewPhone1.setText("(55) 52810024");
             mTextViewTituloSede.setText("Edificio Sociocultural");
-            mTextViewPhone2.setText("(55) 5281 0141");
-            mTextViewDireccion.setText("Arquímedes 4Col. Chapultec Morales\nCiudad de México");
+            mTextViewPhone2.setText("(55) 52810141");
+            mTextViewDireccion.setText("Arquímedes 4. Col. Chapultepec Morales, 11570.\nCiudad de México, CDMX");
         }else
             {
                 Picasso.with(SedesDetailsActivity.this).load(R.drawable.sede_3).into(mImageView);
@@ -91,7 +91,7 @@ public class SedesDetailsActivity extends AppCompatActivity
                 mTextViewTituloPhone1.setText("Casa club");
                 mTextViewTituloPhone2.setText("Campo de golf");
                 mTextViewTituloPhone3.setText("Hotel");
-                mTextViewDireccion.setText("Carretera Federal Cuautla-Chalco-Mexico km 53");
+                mTextViewDireccion.setText("Carretera Federal \nCuautla-Chalco-Mexico Km 53");
             }
     }
 

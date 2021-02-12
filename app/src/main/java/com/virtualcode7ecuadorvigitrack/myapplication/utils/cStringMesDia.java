@@ -13,7 +13,9 @@ public class cStringMesDia
     {
         String mes = "";
         String mesString ="Enero";
-        mes =fecha.charAt(8)+""+fecha.charAt(9);
+
+        String[] mesAr = fecha.split("/");
+        mes = mesAr[2];
 
         if (mes.equals("1") || mes.equals("01"))
         {
@@ -61,7 +63,9 @@ public class cStringMesDia
         String mes = "";
         //SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
        // mes = mSimpleDateFormat.format(fecha);
-        mes = fecha.charAt(5)+""+fecha.charAt(6);
+        String[] mesAr = fecha.split("/");
+
+        mes = mesAr[1];
         return mes;
     }
 }

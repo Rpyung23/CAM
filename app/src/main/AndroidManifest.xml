@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.virtualcode7ecuadorvigitrack.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,16 +8,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_asturian_primary_color"
+        android:icon="@drawable/icono_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        tools:replace="android:icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.EventosViewPagerContenidoActivity"
-            android:parentActivityName=".views.InicioActivity"
-            >
-
+        <activity android:name=".views_socios.ReciboDetalleScrollActivity"
+            android:parentActivityName=".views_socios.RecivosCuentaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views_socios.RecivosCuentaActivity" />
+        </activity>
+        <activity
+            android:name=".views.EventosViewPagerContenidoActivity"
+            android:parentActivityName=".views.InicioActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.InicioActivity" />

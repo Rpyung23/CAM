@@ -25,6 +25,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.framents_socios.NotificationSocioFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.framents_socios.ProfileSocioFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views_contacto.ContactoInicioActivity;
 
@@ -41,6 +42,7 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
     private View header;
 
     private AlertDialog mAlertDialog ;
+
 
 
     @Override
@@ -108,23 +110,48 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 switch (item.getItemId())
                 {
                     case R.id.opc_profile:
+
+                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        {
+                            alertDialogTimeOut();
+                        }
+
+
                         mTextViewTop.setText("MI PERFIL");
                         openFragments(mProfileSocioFragment);
                         mNavigationView.setCheckedItem(R.id.opc_perfil_drawer2);
                         break;
                     case R.id.opc_notification:
+                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        {
+                            alertDialogTimeOut();
+                        }
                         mTextViewTop.setText("NOTIFICACIONES");
                         openFragments(mNotificationSocioFragment);
                         mNavigationView.setCheckedItem(R.id.opc_noti_drawer2);
                         break;
                     case R.id.opc_menu_1:
+
+                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        {
+                            alertDialogTimeOut();
+                        }
+
+
                         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                             mDrawerLayout.closeDrawer(GravityCompat.START);
                         } else {
                             mDrawerLayout.openDrawer(GravityCompat.START);
                         }
+
                         break;
                     case R.id.opc_close:
+
+                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        {
+                            alertDialogTimeOut();
+                        }
+
                         mNavigationView.setCheckedItem(R.id.opc_cerrar_drawer2);
                         alertDialog();
                         break;
@@ -134,6 +161,41 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
         });
         super.onResume();
     }
+
+    private void alertDialogTimeOut()
+    {
+        AlertDialog mAlertDialog = null;
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(InicioSociosActivity.this);
+        mBuilder.setMessage("Lo sentimos su tiempo se agotado");
+        mBuilder.setTitle("Login");
+        mBuilder.setCancelable(false);
+        mBuilder.setIcon(R.drawable.ic_asturian_primary_color);
+        AlertDialog finalMAlertDialog = mAlertDialog;
+        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                finalMAlertDialog.cancel();
+                finish();
+            }
+        });
+        mAlertDialog = mBuilder.create();
+        mAlertDialog.show();
+        return;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void alertDialog()
     {
@@ -150,6 +212,7 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 mAlertDialog.cancel();
                 mAlertDialog.hide();
                 finish();
+                new cSharedTokenValidation(InicioSociosActivity.this).writeToken("error");
                 Intent mIntent = new Intent(InicioSociosActivity.this,InicioActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntent);
@@ -227,5 +290,9 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
 
         return true;
     }
+
+
+
+
 
 }

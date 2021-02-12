@@ -61,14 +61,13 @@
                 <TextView
                     android:layout_weight="0.5"
                     android:id="@+id/id_textview_tipo_noti"
-                    android:textSize="@dimen/textsize_25"
+                    android:textSize="@dimen/textsize_22sp"
                     android:textStyle="bold"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Aviso"
-                    android:maxLines="1"
-                    android:maxLength="15"
+                    android:text="Pago Aceptado"
                     >
                 </TextView>
                 <TextView
@@ -78,7 +77,7 @@
                     android:gravity="end"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="22/05/2020"

@@ -2,18 +2,23 @@ package com.virtualcode7ecuadorvigitrack.myapplication.fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterEventos;
@@ -65,8 +71,11 @@ public class EventosFragment extends Fragment
     private TextView mTextViewFechaInicioNum;
     private TextView mTextViewFechaDestinoNum;
     private LinearLayoutCompat mLinearLayoutCompatFechaFin;
-
+    private TextView mTextViewFechaDesde;
+    private View mViewFechasContainer;
     private CardView mCardView;
+    private int cont_pager = 1 ;
+    private MaterialButton materialButtonMoreEventos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,14 +91,26 @@ public class EventosFragment extends Fragment
         mTextViewFechaInicioNum = mView.findViewById(R.id.id_textview_fecha_inicio_num);
         mTextViewFechaDestinoNum = mView.findViewById(R.id.id_textview_fecha_fin_num);
         mLinearLayoutCompatFechaFin = mView.findViewById(R.id.id_linear_layout_fecha_fin);
+
+        materialButtonMoreEventos = mView.findViewById(R.id.id_cargar_mas);
+
         mCardView = mView.findViewById(R.id.id_card_view_evento);
+        mTextViewFechaDesde = mView.findViewById(R.id.id_textview_desde_texto);
+        mViewFechasContainer = mView.findViewById(R.id.id_view_ContainerFechas);
 
-        mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
-                "CONSULTANDO...",false);
-        mAlertDialog.show();
 
+        mRecyclerViewEventos.setHasFixedSize(true);
 
         llenarArraysListEventos();
+
+        materialButtonMoreEventos.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
 
         return mView;
     }
@@ -102,10 +123,17 @@ public class EventosFragment extends Fragment
         startActivity(mIntent);
     }
 
+
+
+
     private void llenarArraysListEventos()
     {
+        mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
+                "CONSULTANDO...",false);
+        mAlertDialog.show();
+
         mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                getString(R.string.api_rest_eventos_all), null,
+                getString(R.string.api_rest_eventos_all)+"?page="+cont_pager, null,
                 new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response)
@@ -123,11 +151,18 @@ public class EventosFragment extends Fragment
                             oE.setFecha_fin(mJsonObject.getString("fecha_fin"));
                             oE.setTitulo(mJsonObject.getString("titulo"));
                             oE.setUri_foto(mJsonObject.getString("url_imagen_miniatura"));
-                            oE.setDireccion("Sin dirección");
+                            oE.setDireccion(mJsonObject.getString("direccion"));
                             mEventosArrayList.add(oE);
                         }
 
-                        llenarRecyclerView();
+                        if(cont_pager<=1)
+                        {
+                            llenarRecyclerView();
+                        }else
+                            {
+                                mAdapterEventos.notifyDataSetChanged();
+                                cont_pager++;
+                            }
 
                     }else
                         {
@@ -190,16 +225,32 @@ public class EventosFragment extends Fragment
         {
             mNoticias = mEventosArrayList.get(0);
 
-            if ( mNoticias.getFecha_fin()==null
-                    ||mNoticias.getFecha_fin().isEmpty())
+
+            if(mEventosArrayList.get(0).getFecha().equals(mEventosArrayList.get(0).getFecha_fin()))
             {
+                /****/
+
+                mTextViewFechaDesde.setText("Inicio");
+                //mTextViewFechaDesde.setVisibility(View.GONE);
+
                 mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
+
+                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mViewFechasContainer.getLayoutParams();
+                params.leftMargin = 20;
+                params.gravity = Gravity.CENTER_VERTICAL;
+
+                mViewFechasContainer.setLayoutParams(params);
+                //holder.mViewFechasContainer.;
             }else
-            {
-                mLinearLayoutCompatFechaFin.setVisibility(View.VISIBLE);
-                mTextViewFechaDestino.setText(new cStringMesDia().mes(mNoticias.getFecha_fin()));
-                mTextViewFechaDestinoNum.setText(new cStringMesDia().dia(mNoticias.getFecha_fin()));
-            }
+                {
+                    mTextViewFechaDesde.setVisibility(View.VISIBLE);
+                }
+
+            //mLinearLayoutCompatFechaFin.setVisibility(View.VISIBLE);
+            mTextViewFechaDestino.setText(new cStringMesDia().mes(mNoticias.getFecha_fin()));
+            mTextViewFechaDestinoNum.setText(new cStringMesDia().dia(mNoticias.getFecha_fin()));
+
+
 
             if(mNoticias.getTitulo().length()>16)
             {
@@ -227,9 +278,13 @@ public class EventosFragment extends Fragment
                     public void onClick(View view)
                     {
                         //abrirActivityEventos(mEventosArrayList.get(mRecyclerViewEventos.getChildAdapterPosition(view)));
+                        int pos = mRecyclerViewEventos.getChildAdapterPosition(view);
+                        pos +=1;
+
                         Intent mIntent = new Intent(getActivity(), EventosViewPagerContenidoActivity.class);
                         mIntent.putExtra("eventos",(Serializable) mEventosArrayList);
-                        mIntent.putExtra("posicion",mRecyclerViewEventos.getChildAdapterPosition(view));
+                        mIntent.putExtra("evento",(Serializable) mNoticias);
+                        mIntent.putExtra("posicion",pos);
                         startActivity(mIntent);
 
                     }
@@ -256,9 +311,9 @@ public class EventosFragment extends Fragment
             public void onClick(View view)
             {
                 //abrirActivityEventos(mNoticias);
-                mEventosArrayList.add(0,mNoticias);
                 Intent mIntent = new Intent(getActivity(), EventosViewPagerContenidoActivity.class);
                 mIntent.putExtra("eventos",(Serializable) mEventosArrayList);
+                mIntent.putExtra("evento",(Serializable) mNoticias);
                 mIntent.putExtra("posicion",0);
                 startActivity(mIntent);
 

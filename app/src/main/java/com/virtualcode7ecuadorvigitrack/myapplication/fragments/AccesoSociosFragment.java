@@ -2,6 +2,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -46,6 +47,7 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
     private StringRequest mStringRequestLogin;
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialog;
+    private TextView mTextViewRegister;
     public AccesoSociosFragment() {
         // Required empty public constructor
     }
@@ -59,12 +61,14 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
         mButtonContinuar = mView.findViewById(R.id.id_button_validar);
         mTextInputEditTextCodigoUser= mView.findViewById(R.id.id_textviewnumSocio);
         mTextViewRecoveryPass = mView.findViewById(R.id.id_recovery_text);
+        mTextViewRegister = mView.findViewById(R.id.id_newSocio_text);
 
         mAlertDialog = new cAlertDialogProgress()
                 .showAlertProgress(getContext(),"Consultando...",false);
 
         mTextViewRecoveryPass.setOnClickListener(this);
         mButtonContinuar.setOnClickListener(this);
+        mTextViewRegister.setOnClickListener(this);
         return mView;
     }
 
@@ -89,6 +93,12 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
                 Intent mIntentRecoveryPass = new Intent(getActivity(), ValidacionNumSocioActivity.class);
                 mIntentRecoveryPass.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntentRecoveryPass);
+                break;
+            case R.id.id_newSocio_text:
+
+                Uri uri = Uri.parse("http://centroasturianodemexico.mx/registro/registro-app");
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri );
+                startActivity(intent);
                 break;
         }
     }

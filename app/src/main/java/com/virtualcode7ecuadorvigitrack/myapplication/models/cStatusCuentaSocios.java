@@ -2,7 +2,9 @@ package com.virtualcode7ecuadorvigitrack.myapplication.models;
 
 import com.android.volley.toolbox.StringRequest;
 
-public class cStatusCuentaSocios
+import java.io.Serializable;
+
+public class cStatusCuentaSocios implements Serializable
 {
     private String titulo_card_casillero;/**movimientoConcepto**/
     private String fecha_pago;/**movimientoFechaPago**/
@@ -15,9 +17,18 @@ public class cStatusCuentaSocios
     private String movimientoLeyenda;
     private int idMembresia;
     private String movimientoURLPago;
+    private int idRecibo;
 
 
     public cStatusCuentaSocios(){}
+
+    public int getIdRecibo() {
+        return idRecibo;
+    }
+
+    public void setIdRecibo(int idRecibo) {
+        this.idRecibo = idRecibo;
+    }
 
     public String getTitulo_card_casillero() {
         return titulo_card_casillero;

@@ -14,7 +14,10 @@ public class cEventos implements Serializable
     private String fecha_fin;
     private ArrayList<String> mItinerarioStringArrayList = new ArrayList<>();
 
-    public cEventos(){}
+    public cEventos()
+    {
+        this.acerca_de ="";
+    }
 
     public int getId_evento() {
         return id_evento;

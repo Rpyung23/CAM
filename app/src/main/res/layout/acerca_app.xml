@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="1dp"
-    android:layout_margin="@dimen/margin_15"
+    android:layout_marginTop="@dimen/margin_15"
+    android:layout_marginRight="@dimen/margin_15"
+    android:layout_marginLeft="@dimen/margin_15"
+    android:layout_marginBottom="@dimen/margin_15"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     app:cardCornerRadius="10dp">

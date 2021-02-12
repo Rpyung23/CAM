@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/duo_shape_rectangled_red"
+    >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/id_img_delete"
+        android:layout_width="?actionBarSize"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="20dp"
+        >
+    </androidx.appcompat.widget.AppCompatImageView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/id_container_notification"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView_item_notification_icon"
+            android:layout_width="@dimen/size_notification_icon"
+            android:layout_height="@dimen/size_notification_icon"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_xxxxlarge"
+            android:background="@drawable/bg_img_notification_open"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_mark_email_read" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:id="@+id/textView__item_notification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:text="Aviso"
+            android:textSize="@dimen/font_big"
+            app:layout_constraintBottom_toTopOf="@+id/textViewitem_notification_sub_text"
+            app:layout_constraintStart_toStartOf="@+id/textViewitem_notification_sub_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textViewitem_notification_sub_text"
+            android:layout_width="@dimen/spacing_empty"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xxlarge"
+            android:lines="1"
+            android:text="Estimado Adrian Chávez, ahora puede pagar su cuota anual a través de..."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewitem_notification_date"
+            app:layout_constraintStart_toEndOf="@+id/imageView_item_notification_icon"
+            app:layout_constraintTop_toBottomOf="@+id/textView__item_notification_title" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/textViewitem_notification_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:text="23 oct."
+            android:textSize="@dimen/font_small"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView__item_notification_title"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:background="@color/fondo_black_40"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.988"
+            tools:layout_editor_absoluteX="0dp"></View>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</FrameLayout>

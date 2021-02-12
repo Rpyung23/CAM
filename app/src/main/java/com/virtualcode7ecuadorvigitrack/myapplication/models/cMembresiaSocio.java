@@ -18,9 +18,18 @@ public class cMembresiaSocio implements Serializable
     private String membresiaTokenAplicacion;
     private String membresiaCelular;
     private String membresiaSaldo;
+    private int membresiaCuestionarioResultado;
 
 
     public cMembresiaSocio(){}
+
+    public int getMembresiaCuestionarioResultado() {
+        return membresiaCuestionarioResultado;
+    }
+
+    public void setMembresiaCuestionarioResultado(int membresiaCuestionarioResultado) {
+        this.membresiaCuestionarioResultado = membresiaCuestionarioResultado;
+    }
 
     public int getIdMembresia() {
         return idMembresia;

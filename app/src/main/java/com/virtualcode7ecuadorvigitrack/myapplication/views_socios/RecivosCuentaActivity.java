@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -65,10 +66,17 @@ public class RecivosCuentaActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent mIntent = new Intent(RecivosCuentaActivity.this,ReciboDetalleActivity.class);
+                /*Intent mIntent = new Intent(RecivosCuentaActivity.this,ReciboDetalleActivity.class);
                 mIntent.putExtra("oReciver", mReciverArrayList.get(mRecyclerView.getChildAdapterPosition(view)));
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(mIntent);*/
+
+                Intent mIntent = new Intent(RecivosCuentaActivity.this,ReciboDetalleScrollActivity.class);
+                mIntent.putExtra("recivos", mReciverArrayList);
+                mIntent.putExtra("posicion_inicial", mRecyclerView.getChildAdapterPosition(view));
+                mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntent);
+
             }
         });
 
@@ -120,6 +128,7 @@ public class RecivosCuentaActivity extends AppCompatActivity
                                 oReciver.setTexto_main(mJsonObjectR.getString("recibo_concepto"));
                                 oReciver.setDinero_total(mJsonObjectR.getString("recibo_monto"));
                                 oReciver.setRecibo_pdf(mJsonObjectR.getString("recibo_pdf"));
+                                Log.e("RECIVO_PDF",mJsonObjectR.getString("recibo_pdf"));
                                 oReciver.setRecibo_factura(mJsonObjectR.getString("recibo_factura"));
 
                                 mReciverArrayList.add(oReciver);

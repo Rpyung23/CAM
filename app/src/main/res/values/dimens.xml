@@ -107,6 +107,11 @@
     <dimen name="textsize_profile_socio_num">25sp</dimen>
     <dimen name="margin_right_card_profile_socio">15dp</dimen>
     <dimen name="margin_left_card_profile_socio">20dp</dimen>
+    <dimen name="alto_card_evento_mitad">150dp</dimen>
+    <dimen name="texto_fecha_destino_inicio">20sp</dimen>
+    <dimen name="margin_top_fechas_card_evento">40dp</dimen>
+    <dimen name="textsize_cerrar_alert_cuestionario_covid">15sp</dimen>
+    <dimen name="alto_item_notification">90dp</dimen>
 
 
 </resources>

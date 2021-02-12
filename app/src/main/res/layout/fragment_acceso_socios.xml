@@ -54,6 +54,7 @@
     </androidx.appcompat.widget.AppCompatButton>
 
     <TextView
+
         android:layout_marginTop="0.11in"
         android:gravity="center"
         android:textColor="@color/white"
@@ -62,11 +63,24 @@
         android:layout_height="wrap_content">
     </TextView>
     <TextView
+
         android:id="@+id/id_recovery_text"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/white"
         android:text="@string/recovery_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/id_newSocio_text"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/textsize_17sp"
+        android:textColor="@color/white"
+        android:text="@string/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >

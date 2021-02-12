@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +57,8 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
     private cSharedPreferenSocio mSharedPreferenSocio;
     private cSharedPreferencesMembresia mSharedPreferencesMembresia;
 
+    private androidx.appcompat.app.AlertDialog mAlertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -79,6 +83,13 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
         mTextViewSaldo.setText("$ "+mSharedPreferencesMembresia.readMembresia().getMembresiaSaldo());
 
         mAlertDialogProgress= new cAlertDialogProgress().showAlertProgress(StatusCuentaSociosActivity.this,"CONSULTANDO",false);
+
+        if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
+        {
+            alertDialogTimeOut();
+        }
+
+
         llenarArraysListStatusSocios();
     }
 
@@ -112,6 +123,10 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
                                 oS.setMovimientoLeyenda(mJsonObjectR.getString("movimientoLeyenda"));
                                 oS.setIdMembresia(mJsonObjectR.getInt("idMembresia"));
                                 oS.setMovimientoURLPago(mJsonObjectR.getString("movimientoURLPago"));
+                                if(oS.getMovientoEstado().equals("P"))
+                                {
+                                    oS.setIdRecibo(mJsonObjectR.getInt("idRecibo"));
+                                }
 
                                 mStatusCuentaSociosArrayList.add(oS);
                             }
@@ -171,16 +186,23 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
                 if (mStatusCuentaSociosArrayList
                         .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)).getMovientoEstado().equals("A"))
                 {
-                    Intent mIntent = new Intent(StatusCuentaSociosActivity.this, ViewPdfActivity.class);
-                    mIntent.putExtra("pdf_url",mStatusCuentaSociosArrayList
-                            .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)).getMovimientoURLPago());
-                    mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(mIntent);
-                }else
+
+                        Intent mIntent = new Intent(StatusCuentaSociosActivity.this, ViewPdfActivity.class);
+                        mIntent.putExtra("title","COMPLETE SU PAGO");
+                        mIntent.putExtra("pdf_url",mStatusCuentaSociosArrayList
+                                .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)).getMovimientoURLPago());
+                        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(mIntent);
+
+                }else if(mStatusCuentaSociosArrayList
+                        .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)).getMovientoEstado().equals("P"))
                     {
-                        Intent mIntent = new Intent(StatusCuentaSociosActivity.this, RecivosCuentaActivity.class);
-                        /*mIntent.putExtra("pdf_url",mStatusCuentaSociosArrayList
-                                .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)).getMovimientoURLPago());*/
+
+
+                        Intent mIntent = new Intent(StatusCuentaSociosActivity.this, ReciboDetalleActivity.class);
+                        mIntent.putExtra("movimiento",mStatusCuentaSociosArrayList
+                                .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)));
+
                         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(mIntent);
                     }
@@ -203,6 +225,30 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
+    private void alertDialogTimeOut()
+    {
+
+
+        androidx.appcompat.app.AlertDialog.Builder mBuilder =
+                new androidx.appcompat.app.AlertDialog.Builder(StatusCuentaSociosActivity.this);
+        mBuilder.setMessage("Lo sentimos su tiempo se agotado");
+        mBuilder.setTitle("Login");
+        mBuilder.setCancelable(false);
+        mBuilder.setIcon(R.drawable.ic_asturian_primary_color);
+
+        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                mAlertDialog.cancel();
+                finish();
+            }
+        });
+        mAlertDialog = mBuilder.create();
+        mAlertDialog.show();
+        return;
+    }
+
 
 
 }

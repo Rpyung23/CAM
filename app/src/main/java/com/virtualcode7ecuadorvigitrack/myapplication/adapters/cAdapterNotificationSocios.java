@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
@@ -22,6 +24,7 @@ public class cAdapterNotificationSocios extends
     private ArrayList<cNotificationSocio> mNotificationSocioArrayList;
     private Context mContext;
     private View.OnClickListener mOnClickListener;
+
 
     public cAdapterNotificationSocios(ArrayList<cNotificationSocio> mNotificationSocioArrayList,
                                       Context mContext, View.OnClickListener mOnClickListener) {
@@ -53,6 +56,7 @@ public class cAdapterNotificationSocios extends
                         .substring(0,5));
             }
         holder.mTextViewFecha.setText(mNotificationSocioArrayList.get(position).getFecha());
+
         if (mNotificationSocioArrayList.get(position).isLeido())
         {
             holder.mImageView.setBackground(mContext.getDrawable(R.drawable.bg_img_notification_close));
@@ -81,6 +85,8 @@ public class cAdapterNotificationSocios extends
         private TextView mTextViewPreviewMsm;
         private TextView mTextViewFecha;
         private TextView mTextViewTitulo;
+        public LinearLayoutCompat mConstraintLayoutNoti;
+        public ImageView mImageViewDelete;
 
         public cViewHolderNotification(@NonNull View itemView)
         {
@@ -89,6 +95,15 @@ public class cAdapterNotificationSocios extends
             mTextViewFecha = itemView.findViewById(R.id.textViewitem_notification_date);
             mTextViewPreviewMsm = itemView.findViewById(R.id.textViewitem_notification_sub_text);
             mTextViewTitulo = itemView.findViewById(R.id.textView__item_notification_title);
+            mConstraintLayoutNoti = itemView.findViewById(R.id.id_container_notification);
+            mImageViewDelete = itemView.findViewById(R.id.id_img_delete);
         }
     }
+
+    public void removiItem(int pos)
+    {
+        mNotificationSocioArrayList.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
 }

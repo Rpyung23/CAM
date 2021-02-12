@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,8 +29,10 @@ import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFrag
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cMembresiaSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.provider.cToken;
+import com.virtualcode7ecuadorvigitrack.myapplication.services.cServiceTimerToken;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferencesMembresia;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
 
@@ -145,6 +148,8 @@ public class LoginPassActivity extends AppCompatActivity
     private void openActivity()
     {
         closeAlertProgress();
+        new cSharedTokenValidation(LoginPassActivity.this).writeToken("ok");
+
         Intent mIntent = new Intent(LoginPassActivity.this, InicioSociosActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(mIntent);
@@ -260,9 +265,24 @@ public class LoginPassActivity extends AppCompatActivity
                         oM.setMembresiaTokenAplicacion(mJsonObjectResult.getString("membresiaTokenAplicacion"));
                         oM.setMembresiaCelular(mJsonObjectResult.getString("membresiaCelular"));
                         oM.setMembresiaSaldo(mJsonObjectResult.getString("membresiaSaldo"));
+                        oM.setMembresiaCuestionarioResultado(mJsonObjectResult.getInt("membresiaCuestionarioResultado"));
 
                         if (new cSharedPreferencesMembresia(LoginPassActivity.this).writeMembresia(oM))
                         {
+                            /**lanzar service***/
+
+                            cServiceTimerToken serviceTimerToken = new cServiceTimerToken();
+
+                            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
+                            {
+                                Intent mIntent = new Intent(LoginPassActivity.this,serviceTimerToken.getClass());
+                                startForegroundService(mIntent);
+                            }else
+                                {
+                                    Intent mIntent = new Intent(LoginPassActivity.this,serviceTimerToken.getClass());
+                                    startService(mIntent);
+                                }
+
                             openActivity();
                         }else
                             {

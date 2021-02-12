@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -79,6 +80,7 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
                 .error(R.drawable.img_error)
                 .placeholder(R.drawable.img_load)
                 .into(holder.mImageViewNoticia);
+
     }
 
     @Override
@@ -107,13 +109,15 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
         private TextView mTextViewTitulo;
         private TextView mTextViewFecha;
         private ImageView mImageViewNoticia;
+        private CardView mCardViewContainer;
+
         public cViewHolderNoticias(@NonNull View itemView)
         {
             super(itemView);
             mTextViewTitulo = itemView.findViewById(R.id.id_titulo_noticia);
             mTextViewFecha = itemView.findViewById(R.id.id_fecha_noticia);
             mImageViewNoticia = itemView.findViewById(R.id.id_image_noticia);
-
+            mCardViewContainer = itemView.findViewById(R.id.cardView2);
             mTextViewTitulo.setTextSize(13);
         }
     }

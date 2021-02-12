@@ -102,7 +102,7 @@ public class ContactoInicioActivity extends AppCompatActivity implements View.On
 
                 break;
             case R.id.mCardViewEmail:
-                sendEmail("test@gmail.com","Contáctame","");
+                sendEmail("contacto@centroasturianodemexico.mx","Contáctame","");
                 break;
             case R.id.mCardViewSedes:
                 Intent mIntentSed = new Intent(ContactoInicioActivity.this,SedesActivity.class);
@@ -115,7 +115,7 @@ public class ContactoInicioActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
                 break;
             case R.id.mCardViewSoporte:
-                sendEmail("test@gmail.com","Soporte","");
+                sendEmail("contacto@centroasturianodemexico.mx","Soporte","");
                 break;
             case R.id.mCardViewAcerca_de:
                 Intent mIntentAce = new Intent(ContactoInicioActivity.this,AcercaAppActivity.class);
@@ -235,7 +235,7 @@ public class ContactoInicioActivity extends AppCompatActivity implements View.On
 
     private void llamadaCentro()
     {
-        Intent intentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"+525575910447"));
+        Intent intentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"+525556101124"));
         startActivity(intentCall);
     }
 

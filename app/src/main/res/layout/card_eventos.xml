@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     android:id="@+id/id_card_view_evento"
-    android:layout_margin="@dimen/margin"
+    android:layout_marginTop="@dimen/margin"
+    android:layout_marginBottom="@dimen/margin"
+    android:layout_marginRight="@dimen/margin"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/alto_card_evento"
+    android:layout_height="wrap_content"
     card_view:cardCornerRadius="15dp"
     card_view:cardElevation="10dp"
+    card_view:cardBackgroundColor="@color/white"
     >
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="1"
             >
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.4">
 
                 <ImageView
                     android:id="@+id/id_image_evento"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/alto_card_evento_mitad"
                     android:src="@drawable/img_event"
                     android:scaleType="centerCrop"
                     >
                 </ImageView>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/alto_card_evento_mitad"
                     android:background="@color/fondo_black_20"
                     >
                 </View>
@@ -50,7 +53,9 @@
                 android:layout_weight="0.6"
                 android:orientation="vertical"
                 android:layout_marginLeft="8dp"
+                android:gravity="bottom"
                 >
+
                 <TextView
                     android:id="@+id/id_textview_titulo"
                     android:textStyle="bold"
@@ -59,7 +64,9 @@
                     android:layout_marginTop="45dp"
                     android:text="@string/test_title_event"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+
+                    >
                 </TextView>
                 <TextView
                     android:layout_marginTop="7dp"
@@ -70,19 +77,23 @@
                     android:textSize="@dimen/textsize_17sp"
                     android:text="@string/test_direction_event"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    >
                 </TextView>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
-            android:layout_marginRight="@dimen/margin"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginTop="40dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="@dimen/margin_top_fechas_card_evento"
             android:layout_gravity="center"
             layout="@layout/card_fechas_evento"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
+            android:layout_width="wrap_content"
+            >
         </include>
 
 

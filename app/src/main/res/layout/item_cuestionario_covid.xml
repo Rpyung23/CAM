@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/id_name"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="wrap_content"
+        android:text="Manueal"
+        android:textColor="@color/black"
+        android:layout_weight="0.25"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:maxLines="1"
+        android:scrollbars="vertical"
+        >
+    </androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/id_titular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="Titular"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_weight="0.4"
+        >
+    </androidx.appcompat.widget.AppCompatTextView>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.35"
+        android:gravity="center"
+        >
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/id_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Vigente"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:drawableLeft="@drawable/circle_green"
+            android:textColor="@color/ClubColorPrimary"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

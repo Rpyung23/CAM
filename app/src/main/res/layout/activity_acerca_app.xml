@@ -162,8 +162,9 @@
                     android:layout_marginTop="@dimen/margin_15"
                     >
                     <TextView
+                        android:visibility="gone"
+                        android:paddingLeft="10dp"
                         android:id="@+id/id_terminos"
-                        android:gravity="center"
                         android:layout_weight="0.5"
                         android:textStyle="bold"
                         android:textColor="@color/black"
@@ -173,7 +174,7 @@
                     </TextView>
                     <TextView
                         android:id="@+id/id_aviso"
-                        android:gravity="center"
+                        android:paddingLeft="15dp"
                         android:layout_weight="0.5"
                         android:textStyle="bold"
                         android:textColor="@color/black"

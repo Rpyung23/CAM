@@ -14,7 +14,10 @@ public class cNoticias implements Serializable
     private ArrayList<String> mUriArrayListGaleriaNoticia;
     private String TextoNoticia;
 
-    public  cNoticias(){}
+    public  cNoticias()
+    {
+        this.TextoNoticia = "";
+    }
 
     public int getId_noticias() {
         return id_noticias;

@@ -42,6 +42,7 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
     private AlertDialog mAlertDialog;
     private StringRequest mStringRequest;
     private RequestQueue mRequestQueue;
+    private cEventos oE = new cEventos();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,8 +53,9 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
         mViewPager2 = findViewById(R.id.viewpager2eventos);
 
         posInicial = getIntent().getIntExtra("posicion",0);
+        oE = (cEventos) getIntent().getSerializableExtra("evento");
         mEventosArrayList = (ArrayList<cEventos>) getIntent().getSerializableExtra("eventos");
-
+        mEventosArrayList.add(0,oE);
         new cToolbar().show(EventosViewPagerContenidoActivity.this,"",true,0);
 
         //posInicial = getIntent().getIntExtra("pos_inicial",0);
@@ -108,7 +110,7 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
                         JSONArray mJsonArray = jsonObjectRes.getJSONArray("resultado");
                         JSONObject mJsonObject = mJsonArray.getJSONObject(0);
 
-                        mEventosArrayList.get(position).setAcerca_de(Html.fromHtml(mJsonObject.getString("contenido")).toString());
+                        mEventosArrayList.get(position).setAcerca_de(mJsonObject.getString("contenido"));
 
                         mAdapterEventosDetailsScroll.notifyItemChanged(position);
 

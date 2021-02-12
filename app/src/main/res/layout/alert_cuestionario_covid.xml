@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/round_bottom_alert"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/round_top_alert"
+        android:backgroundTint="@color/color_prmary_fondo"
+        >
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuestionario COVID"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/textsize_17sp"
+            android:textStyle="bold"
+            android:textColor="@color/ClubColorPrimary"
+            android:paddingLeft="10dp"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+        <TextView
+            android:id="@+id/id_cerrar_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar"
+            android:layout_gravity="right|center_vertical"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/textsize_cerrar_alert_cuestionario_covid"
+            android:textColor="@color/ClubColorPrimary"
+            android:layout_marginRight="10dp">
+        </TextView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Beneficiario"
+            android:textColor="@color/ClubColorPrimary"
+            android:textStyle="bold"
+            android:layout_weight="0.25"
+            android:paddingLeft="10dp"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo"
+            android:gravity="center"
+            android:textColor="@color/ClubColorPrimary"
+            android:textStyle="bold"
+            android:layout_weight="0.4"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado"
+            android:gravity="center"
+            android:textColor="@color/ClubColorPrimary"
+            android:textStyle="bold"
+            android:layout_weight="0.35"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/id_recyclerview_cuestionario_covid"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_cuestionario_covid"
+        android:layout_marginBottom="10dp"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+</androidx.appcompat.widget.LinearLayoutCompat>

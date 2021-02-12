@@ -1,10 +1,13 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.framents_socios;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -20,9 +23,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNotificationSocios;
+import com.virtualcode7ecuadorvigitrack.myapplication.gestos.cRecyclerItemTouchHelperNoti;
+import com.virtualcode7ecuadorvigitrack.myapplication.handlers.cNotitifactionHandlers;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNotificationSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
+import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.NotificationDetailsSocioActivity;
 
 import org.json.JSONArray;
@@ -37,6 +44,7 @@ import es.dmoral.toasty.Toasty;
 
 
 public class NotificationSocioFragment extends Fragment
+        implements cRecyclerItemTouchHelperNoti.cRecyclerItemTouchHelperListene
 {
     private View mView;
     private RecyclerView mRecyclerViewNotification;
@@ -46,6 +54,10 @@ public class NotificationSocioFragment extends Fragment
     private StringRequest mStringRequestNotfication;
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialogNotiProg;
+    private androidx.appcompat.app.AlertDialog mAlertDialog;
+    private cNotitifactionHandlers mNotificationHandlers;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,6 +65,20 @@ public class NotificationSocioFragment extends Fragment
         mView =  inflater.inflate(R.layout.fragment_notification_socio, container, false);
         mRecyclerViewNotification = mView.findViewById(R.id.id_recyclerview_notificationSocios);
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
+
+        mNotificationHandlers = new cNotitifactionHandlers(getContext());
+
+        ItemTouchHelper.SimpleCallback simpleCallback =
+                new cRecyclerItemTouchHelperNoti(0,ItemTouchHelper.LEFT,this);
+
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(mRecyclerViewNotification);
+
+        if (!new cSharedTokenValidation(getContext()).readTokenValitation())
+        {
+            alertDialogTimeOut();
+        }
+
+
 
         mAlertDialogNotiProg = new cAlertDialogProgress().showAlertProgress(getContext(),"CONSULTANDO",false);
         mAlertDialogNotiProg.show();
@@ -92,23 +118,25 @@ public class NotificationSocioFragment extends Fragment
                                 JSONObject mJsonObjectN = mJsonArrayNoti.getJSONObject(i);
                                 cNotificationSocio oNotificationSocio = new cNotificationSocio();
                                 oNotificationSocio.setFecha(mJsonObjectN.getString("notificacion_fecha_envio"));
+
                                 if (mJsonObjectN.getString("notificacion_estado").equals("A"))
                                 {
-                                    oNotificationSocio.setLeido(true);
+                                    oNotificationSocio.setLeido(false);
                                 }else
                                 {
-                                    oNotificationSocio.setLeido(false);
+                                    oNotificationSocio.setLeido(true);
                                 }
                                 oNotificationSocio.setMensaje(mJsonObjectN.getString("notificacion_contenido"));
 
                                 oNotificationSocio.setId_notificacion(mJsonObjectN.getInt("id_notificacion"));
                                 oNotificationSocio.setNotificacion_titulo(mJsonObjectN.getString("notificacion_titulo"));
 
-                                if (mJsonObjectN.getString("notificacion_estado").equals("A")
-                                        || mJsonObjectN.getString("notificacion_estado").equals("L"))
+                               if (!mJsonObjectN.getString("notificacion_estado").equals("D"))
                                 {
                                     mNotificationSocios.add(oNotificationSocio);
                                 }
+
+                                //mNotificationSocios.add(oNotificationSocio);
                             }
                             llenarRecycelrView();
 
@@ -171,17 +199,63 @@ public class NotificationSocioFragment extends Fragment
     private void llenarRecycelrView()
     {
         new cAlertDialogProgress().closeAlertProgress(mAlertDialogNotiProg);
-        mAdapterNotificationSocios = new cAdapterNotificationSocios(mNotificationSocios, getContext(), new View.OnClickListener() {
+        mAdapterNotificationSocios = new cAdapterNotificationSocios(mNotificationSocios,
+                getContext(), new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
                 //Toasty.success(getContext(),"click",Toasty.LENGTH_LONG).show();
-                mNotificationSocios.get(mRecyclerViewNotification.getChildAdapterPosition(view)).setLeido(true);
+                int  pos = mRecyclerViewNotification.getChildAdapterPosition(view);
+                mNotificationSocios.get(pos).setLeido(true);
+
                 //mAdapterNotificationSocios.notifyItemChanged(mRecyclerViewNotification.getChildAdapterPosition(view), null);
                 openActivityDetailsNotification(mNotificationSocios.get(mRecyclerViewNotification.getChildAdapterPosition(view)));
+                mAdapterNotificationSocios.notifyItemChanged(pos);
             }
         });
         mAdapterNotificationSocios.notifyDataSetChanged();
         mRecyclerViewNotification.setAdapter(mAdapterNotificationSocios);
+    }
+
+
+    private void alertDialogTimeOut()
+    {
+
+
+        androidx.appcompat.app.AlertDialog.Builder mBuilder =
+                new androidx.appcompat.app.AlertDialog.Builder(getContext());
+        mBuilder.setMessage("Lo sentimos su tiempo se agotado");
+        mBuilder.setTitle("Login");
+        mBuilder.setCancelable(false);
+        mBuilder.setIcon(R.drawable.ic_asturian_primary_color);
+        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                mAlertDialog.cancel();
+                getActivity().finish();
+            }
+        });
+        mAlertDialog = mBuilder.create();
+        mAlertDialog.show();
+        return;
+    }
+
+
+    @Override
+    public void onSwipe(RecyclerView.ViewHolder mViewHolder, int direction, int position)
+    {
+        if (mViewHolder instanceof  cAdapterNotificationSocios.cViewHolderNotification)
+        {
+
+            mNotificationHandlers
+                    .setId_noti(mNotificationSocios
+                            .get(mViewHolder.getAdapterPosition()).getId_notificacion());
+            mNotificationHandlers.setToken(mSharedPreferenSocio.leerdatosSocio().getToken());
+            mNotificationHandlers.runDelete();
+            mAdapterNotificationSocios.removiItem(mViewHolder.getAdapterPosition());
+            /**REMOVE MOTIFICATION BACK - END**/
+
+        }
     }
 }

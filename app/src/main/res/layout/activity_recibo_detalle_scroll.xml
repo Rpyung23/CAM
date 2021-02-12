@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views_socios.ReciboDetalleScrollActivity"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/toolbar_color">
+    </include>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="?actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_fondo_profile"
+            >
+
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/id_viewpager2_recibos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </androidx.viewpager2.widget.ViewPager2>
+
+
+        </FrameLayout>
+
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <include
+                android:id="@+id/id_views_card_pdf"
+                layout="@layout/card_ver_pdf">
+            </include>
+
+            <include
+                android:id="@+id/id_views_card_soli_factura"
+                layout="@layout/card_soli_factura">
+            </include>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+

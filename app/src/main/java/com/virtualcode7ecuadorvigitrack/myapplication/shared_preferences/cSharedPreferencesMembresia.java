@@ -36,6 +36,7 @@ public class cSharedPreferencesMembresia
         mEditor.putString("membresiaTokenAplicacion",oMembresiaSocio.getMembresiaTokenAplicacion());
         mEditor.putString("membresiaCelular",oMembresiaSocio.getMembresiaCelular());
         mEditor.putString("membresiaSaldo",oMembresiaSocio.getMembresiaSaldo());
+        mEditor.putInt("membresiaCuestionarioResultado",oMembresiaSocio.getMembresiaCuestionarioResultado());
         return mEditor.commit();
     }
 
@@ -59,6 +60,7 @@ public class cSharedPreferencesMembresia
         oM.setMembresiaTokenAplicacion(mSharedPreferences.getString("membresiaTokenAplicacion",""));
         oM.setMembresiaCelular(mSharedPreferences.getString("membresiaCelular",""));
         oM.setMembresiaSaldo(mSharedPreferences.getString("membresiaSaldo",""));
+        oM.setMembresiaCuestionarioResultado(mSharedPreferences.getInt("membresiaCuestionarioResultado",0));
         return oM;
     }
 
