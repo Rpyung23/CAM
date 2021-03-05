@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -66,11 +67,15 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialog;
     private MaterialButton materialButton;
+
     private int page_cont = 1;
+
+    private  int desface_ = 0;
+    private  boolean first_desplazo = true;
+
 
     private StaggeredGridLayoutManager mLayoutManager;
 
-    private boolean primer_item = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,81 +112,90 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
     private void llenarArraysListNoticias()
     {
 
-        mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
-                "CONSULTANDO...",false);
-        mAlertDialog.show();
 
-        mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)+"?page="+page_cont, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response)
-            {
-                try {
-                    JSONObject mJsonObjectRes = new JSONObject(response);
-                    if(mJsonObjectRes.getString("codigo").equals("200"))
-                    {
-                        JSONArray mJsonArray = mJsonObjectRes.getJSONArray("resultado");
-                        for (int i=0;i<mJsonArray.length();i++)
+            mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
+                    "CONSULTANDO...",false);
+            mAlertDialog.show();
+
+            mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)+"?page="+page_cont, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response)
+                {
+                    try {
+                        JSONObject mJsonObjectRes = new JSONObject(response);
+                        if(mJsonObjectRes.getString("codigo").equals("200"))
                         {
-                            JSONObject mJsonObject = mJsonArray.getJSONObject(i);
-                            cNoticias oN = new cNoticias();
-                            oN.setId_noticias(mJsonObject.getInt("id"));
-                            oN.setTitulo(mJsonObject.getString("titulo"));
-                            oN.setFecha(mJsonObject.getString("fecha_publicacion"));
-                            oN.setmUriPicturePrincipalNoticia(mJsonObject.getString("url_imagen_miniatura"));
-                            oN.setTextoNoticia(mJsonObject.getString("descripcion_corta"));
-
-                            if (!verificar(oN))
+                            JSONArray mJsonArray = mJsonObjectRes.getJSONArray("resultado");
+                            if(mJsonArray.length() > 0)
                             {
-                                mNoticiasArrayList.add(oN);
+                                for (int i=0;i<mJsonArray.length();i++)
+                                {
+                                    JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                                    cNoticias oN = new cNoticias();
+                                    oN.setId_noticias(mJsonObject.getInt("id"));
+                                    oN.setTitulo(mJsonObject.getString("titulo"));
+                                    oN.setFecha(mJsonObject.getString("fecha_publicacion"));
+                                    oN.setmUriPicturePrincipalNoticia(mJsonObject.getString("url_imagen_miniatura"));
+                                    oN.setTextoNoticia(mJsonObject.getString("descripcion_corta"));
+
+                                    if (!verificar(oN))
+                                    {
+                                        mNoticiasArrayList.add(oN);
+                                    }
+                                }
+
+
+                                if(page_cont<=1)
+                                {
+                                    cargar_datosRecyclerView();
+                                    page_cont++;
+                                }else
+                                {
+                                    mAdapterNoticias.notifyDataSetChanged();
+                                    page_cont++;
+                                    desface_++;
+                                    Log.e("NotifyDataSetChanged","Add plus");
+                                }
+
                             }
-                        }
 
 
-                        if(page_cont<=1)
-                        {
-                            cargar_datosRecyclerView();
                         }else
                         {
-                            mAdapterNoticias.notifyDataSetChanged();
-                            page_cont++;
+                            Toasty.warning(getContext(),"No se puede mostrar los datos"
+                                    ,Toasty.LENGTH_LONG).show();
                         }
-
-
-                    }else
-                    {
-                        Toasty.warning(getContext(),"No se puede mostrar los datos"
+                    } catch (JSONException e) {
+                        Toasty.warning(getContext(),e.getMessage()
                                 ,Toasty.LENGTH_LONG).show();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
                 }
-                new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                Toasty.error(getContext(),error.toString()
-                        ,Toasty.LENGTH_LONG).show();
-                new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
-            }
-        }){
-            @Override
-            protected HashMap<String, String> getParams() throws AuthFailureError
-            {
-                HashMap<String,String> oMap = new HashMap<>();
-                oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
-                return oMap;
-            }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error)
+                {
+                    Toasty.error(getContext(),error.toString()
+                            ,Toasty.LENGTH_LONG).show();
+                    new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                }
+            }){
+                @Override
+                protected HashMap<String, String> getParams() throws AuthFailureError
+                {
+                    HashMap<String,String> oMap = new HashMap<>();
+                    oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+                    return oMap;
+                }
 
-            @Override
-            public HashMap<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String,String> oMap = new HashMap<>();
-                oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+                @Override
+                public HashMap<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String,String> oMap = new HashMap<>();
+                    oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
 
-                return oMap;
-            }
-        };
+                    return oMap;
+                }
+            };
         /*
         mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)
                 , null, new Response.Listener<JSONObject>() {
@@ -229,8 +243,8 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
             }
         });*/
 
-        mRequestQueue = Volley.newRequestQueue(getContext());
-        mRequestQueue.add(mStringRequest);
+            mRequestQueue = Volley.newRequestQueue(getContext());
+            mRequestQueue.add(mStringRequest);
 
         /*
         for (int i=1;i<10;i++)
@@ -249,6 +263,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
             oN.setmUriArrayListGaleriaNoticia(mUriArrayList);
             mNoticiasArrayList.add(oN);
         }*/
+
     }
 
     private boolean verificar(cNoticias oN)
@@ -311,6 +326,62 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
             Toasty.info(getContext(),"Lo sentimos no existen noticias disponibles"
                     ,Toasty.LENGTH_SHORT).show();
         }
+
+
+
+        mRecyclerViewNoticias.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy)
+            {
+                StaggeredGridLayoutManager mLayoutManager = ((StaggeredGridLayoutManager)mRecyclerViewNoticias.getLayoutManager());
+                //int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+
+                    int findFirstVisibleItemPosition =  mLayoutManager.findFirstVisibleItemPositions(null)[0];
+                    int findFirstCompletelyVisibleItemPosition = mLayoutManager.findLastCompletelyVisibleItemPositions(null)[0];
+                    int findLastVisibleItemPosition = mLayoutManager.findLastVisibleItemPositions(null)[0];
+                    int findLastCompletelyVisibleItemPosition = mLayoutManager.findLastCompletelyVisibleItemPositions(null)[0];
+
+                    Log.e("total",String.valueOf(mLayoutManager.getItemCount()));
+
+                    Log.e("findFirstViItemPosition",String.valueOf(findFirstVisibleItemPosition));
+                    Log.e("findFirstComViItemPos",String.valueOf(findFirstCompletelyVisibleItemPosition));
+                    Log.e("findLastVisItemPos",String.valueOf(findLastVisibleItemPosition));
+                    Log.e("findLastComViItemPos",String.valueOf(findLastCompletelyVisibleItemPosition));
+
+
+
+                if(mAlertDialog!=null && !mAlertDialog.isShowing())
+                {
+                    Log.e("desface",String.valueOf(desface_));
+                    Log.e("comparacion",String.valueOf(mLayoutManager.getItemCount()-desface_)+"  == "+ String.valueOf(findLastCompletelyVisibleItemPosition));
+
+                    Log.e("PageTotal",String.valueOf(page_cont));
+
+                    if (first_desplazo)
+                    {
+                        /**llamado nuevamente**/
+                        llenarArraysListNoticias();
+                    }else
+                        {
+                            if(mLayoutManager.getItemCount()-desface_ == findLastCompletelyVisibleItemPosition)
+                            {
+                                llenarArraysListNoticias();
+
+                            }
+                        }
+
+                    first_desplazo = false;
+
+                }
+
+
+
+                    super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+
+
     }
 
     @Override

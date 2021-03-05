@@ -121,4 +121,22 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
             mTextViewTitulo.setTextSize(13);
         }
     }
+
+    public class cViewHolderFirstNoticias extends RecyclerView.ViewHolder
+    {
+        private TextView mTextViewTitulo;
+        private TextView mTextViewFecha;
+        private ImageView mImageViewNoticia;
+        private CardView mCardViewContainer;
+
+        public cViewHolderFirstNoticias(@NonNull View itemView)
+        {
+            super(itemView);
+            mTextViewTitulo = itemView.findViewById(R.id.id_titulo_noticia);
+            mTextViewFecha = itemView.findViewById(R.id.id_fecha_noticia);
+            mImageViewNoticia = itemView.findViewById(R.id.id_image_noticia);
+            mCardViewContainer = itemView.findViewById(R.id.cardView2);
+        }
+    }
+
 }

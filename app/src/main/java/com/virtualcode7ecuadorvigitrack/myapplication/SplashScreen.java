@@ -58,7 +58,7 @@ public class SplashScreen extends AppCompatActivity
         int mes =  datePicker.getMonth()+1;
         String finEvalua_feha = "2021/1/14";
 
-        if (dia>=7)
+        if (dia>=18)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(SplashScreen.this);
             builder.setTitle("Desarrollado por VirtualCode7");
