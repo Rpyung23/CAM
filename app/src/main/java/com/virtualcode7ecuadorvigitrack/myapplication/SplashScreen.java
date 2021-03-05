@@ -32,7 +32,10 @@ public class SplashScreen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        comprobarFechaCad();
+        //comprobarFechaCad();
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(mRunnable,3000);
 
         Log.e("M", Build.MODEL.toString());
         Log.e("M",Build.RADIO.toString());

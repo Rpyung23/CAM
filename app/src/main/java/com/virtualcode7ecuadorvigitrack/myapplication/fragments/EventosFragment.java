@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -73,9 +75,15 @@ public class EventosFragment extends Fragment
     private LinearLayoutCompat mLinearLayoutCompatFechaFin;
     private TextView mTextViewFechaDesde;
     private View mViewFechasContainer;
-    private CardView mCardView;
+    private View mCardView;
     private int cont_pager = 1 ;
     private MaterialButton materialButtonMoreEventos;
+
+
+    private  int desface_ = 0;
+    private  boolean first_desplazo = true;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,7 +102,7 @@ public class EventosFragment extends Fragment
 
         materialButtonMoreEventos = mView.findViewById(R.id.id_cargar_mas);
 
-        mCardView = mView.findViewById(R.id.id_card_view_evento);
+        mCardView = mView.findViewById(R.id.id_include_evento);
         mTextViewFechaDesde = mView.findViewById(R.id.id_textview_desde_texto);
         mViewFechasContainer = mView.findViewById(R.id.id_view_ContainerFechas);
 
@@ -142,35 +150,51 @@ public class EventosFragment extends Fragment
                     if (response.getString("codigo").equals("200"))
                     {
                         JSONArray mJsonArray = response.getJSONArray("respuesta");
-                        for (int i=0;i<mJsonArray.length();i++)
-                        {
-                            JSONObject mJsonObject = mJsonArray.getJSONObject(i);
-                            cEventos oE = new cEventos();
-                            oE.setId_evento(mJsonObject.getInt("id"));
-                            oE.setFecha(mJsonObject.getString("fecha_inicio"));
-                            oE.setFecha_fin(mJsonObject.getString("fecha_fin"));
-                            oE.setTitulo(mJsonObject.getString("titulo"));
-                            oE.setUri_foto(mJsonObject.getString("url_imagen_miniatura"));
-                            oE.setDireccion(mJsonObject.getString("direccion"));
-                            mEventosArrayList.add(oE);
-                        }
 
-                        if(cont_pager<=1)
+                        if(mJsonArray.length()>0)
                         {
-                            llenarRecyclerView();
-                        }else
+                            for (int i=0;i<mJsonArray.length();i++)
+                            {
+                                JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                                cEventos oE = new cEventos();
+                                oE.setId_evento(mJsonObject.getInt("id"));
+                                oE.setFecha(mJsonObject.getString("fecha_inicio"));
+                                oE.setFecha_fin(mJsonObject.getString("fecha_fin"));
+                                oE.setTitulo(mJsonObject.getString("titulo"));
+                                oE.setUri_foto(mJsonObject.getString("url_imagen_miniatura"));
+                                oE.setDireccion(mJsonObject.getString("direccion"));
+                                mEventosArrayList.add(oE);
+                            }
+
+                            if(cont_pager<=1)
+                            {
+                                llenarRecyclerView();
+                                cont_pager++;
+
+                                mCardView.setVisibility(View.VISIBLE);
+
+                            }else
                             {
                                 mAdapterEventos.notifyDataSetChanged();
                                 cont_pager++;
+                                desface_++;
+                            }
+
+                        }else
+                            {
+                                Toasty.info(getContext(),"No existen eventos disponibles",
+                                        Toasty.LENGTH_LONG).show();
+
                             }
 
                     }else
                         {
                             Toasty.warning(getContext(),"No se pudo encontrar los eventos",
-                                    Toasty.LENGTH_LONG);
+                                    Toasty.LENGTH_LONG).show();
                         }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Toasty.warning(getContext(),e.getMessage(),
+                            Toasty.LENGTH_LONG).show();
                 }
 
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
@@ -300,6 +324,55 @@ public class EventosFragment extends Fragment
 
 
 
+        mRecyclerViewEventos.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy)
+            {
+                StaggeredGridLayoutManager mLayoutManager = ((StaggeredGridLayoutManager)mRecyclerViewEventos.getLayoutManager());
+                //int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+
+                int findFirstVisibleItemPosition =  mLayoutManager.findFirstVisibleItemPositions(null)[0];
+                int findFirstCompletelyVisibleItemPosition = mLayoutManager.findLastCompletelyVisibleItemPositions(null)[0];
+                int findLastVisibleItemPosition = mLayoutManager.findLastVisibleItemPositions(null)[0];
+                int findLastCompletelyVisibleItemPosition = mLayoutManager.findLastCompletelyVisibleItemPositions(null)[0];
+
+                Log.e("total",String.valueOf(mLayoutManager.getItemCount()));
+
+                Log.e("findFirstViItemPosition",String.valueOf(findFirstVisibleItemPosition));
+                Log.e("findFirstComViItemPos",String.valueOf(findFirstCompletelyVisibleItemPosition));
+                Log.e("findLastVisItemPos",String.valueOf(findLastVisibleItemPosition));
+                Log.e("findLastComViItemPos",String.valueOf(findLastCompletelyVisibleItemPosition));
+
+
+
+                if(mAlertDialog!=null && !mAlertDialog.isShowing())
+                {
+                    Log.e("desface",String.valueOf(desface_));
+                    Log.e("comparacion",String.valueOf(mLayoutManager.getItemCount()-desface_)+"  == "+ String.valueOf(findLastCompletelyVisibleItemPosition));
+
+                    Log.e("PageTotal",String.valueOf(cont_pager));
+
+                    if (first_desplazo)
+                    {
+                        /**llamado nuevamente**/
+                        llenarArraysListEventos();
+                    }else
+                    {
+                        if(mLayoutManager.getItemCount()-desface_ == findLastCompletelyVisibleItemPosition)
+                        {
+                            llenarArraysListEventos();
+                        }
+                    }
+
+                    first_desplazo = false;
+
+                }
+
+
+
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
     }
 
