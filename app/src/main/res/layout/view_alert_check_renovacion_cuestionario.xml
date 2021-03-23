@@ -53,7 +53,7 @@
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¿Afirma usted estar en condiciones óptimas de salud para utilizar las instalaxiones y equipo del Centro Asturiano de México A.C?"
+            android:text="¿Afirma usted estar en condiciones óptimas de salud para utilizar las instalaciones y equipo del Centro Asturiano de México A.C?"
             >
         </com.google.android.material.checkbox.MaterialCheckBox>
 

@@ -308,8 +308,11 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                                  * **/
 
 
-                                mAlertDialogCheckCovid.cancel();
-                                mAlertDialogCheckCovid.hide();
+                                if(mAlertDialogCheckCovid!=null)
+                                {
+                                    mAlertDialogCheckCovid.cancel();
+                                    mAlertDialogCheckCovid.hide();
+                                }
 
 
                               /*cInfoCustionarioCovid mCovid =  mInfoCustionarioCovidArrayList.get(posRenovado);
@@ -333,8 +336,11 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
                     }else
                         {
-                            mAlertDialogCheckCovid.cancel();
-                            mAlertDialogCheckCovid.hide();
+                            if(mAlertDialogCheckCovid!=null)
+                            {
+                                mAlertDialogCheckCovid.cancel();
+                                mAlertDialogCheckCovid.hide();
+                            }
                             sweetAlertErrorCuestionarioRenovar(mJsonObject.getString("mensaje"));
                         }
 
@@ -349,6 +355,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                     @Override
                     public void onErrorResponse(VolleyError error)
                     {
+                        Log.e("Error_Cuestionario",""+error.getMessage());
                         sweetAlertError(error.getMessage());
                     }
                 })
@@ -381,8 +388,11 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
             @Override
             public void onClick(View v)
             {
-                mAlertDialogCheckCovid.cancel();
-                mAlertDialogCheckCovid.hide();
+                if(mAlertDialogCheckCovid!=null)
+                {
+                    mAlertDialogCheckCovid.cancel();
+                    mAlertDialogCheckCovid.hide();
+                }
             }
         });
 

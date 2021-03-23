@@ -105,7 +105,7 @@ public class cNotitifactionHandlers
 
                     if (mJsonObject.getInt("codigo") == 200)
                     {
-                        Toasty.success(mContext,"Notificación Eliminada",Toasty.LENGTH_SHORT).show();
+                        Toasty.info(mContext,"Notificación Eliminada",Toasty.LENGTH_SHORT).show();
                     }else
                         {
                             Toasty.info(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();

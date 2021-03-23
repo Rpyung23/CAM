@@ -106,6 +106,7 @@
             android:layout_marginTop="15dp"
             android:textColor="@color/ClubColorPrimary"
             android:textStyle="bold"
+            android:textAllCaps="false"
             >
         </androidx.appcompat.widget.AppCompatButton>
 

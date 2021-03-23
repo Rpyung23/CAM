@@ -15,7 +15,7 @@ public class cStringMesDia
         String mesString ="Enero";
 
         String[] mesAr = fecha.split("/");
-        mes = mesAr[2];
+        mes = mesAr[1];
 
         if (mes.equals("1") || mes.equals("01"))
         {
@@ -65,7 +65,7 @@ public class cStringMesDia
        // mes = mSimpleDateFormat.format(fecha);
         String[] mesAr = fecha.split("/");
 
-        mes = mesAr[1];
+        mes = mesAr[0];
         return mes;
     }
 }

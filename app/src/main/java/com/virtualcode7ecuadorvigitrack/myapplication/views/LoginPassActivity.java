@@ -79,6 +79,8 @@ public class LoginPassActivity extends AppCompatActivity
         mTextInputEditTextPass = findViewById(R.id.id_edittextpassword);
 
         mStringNames =  mSocio.getNombre_socio().split(" ");
+        Log.e("name",mSocio.getNombre_socio());
+
         mAlertDialog = new cAlertDialogProgress()
                 .showAlertProgress(LoginPassActivity.this,"Verificando...",false);
 
@@ -91,8 +93,8 @@ public class LoginPassActivity extends AppCompatActivity
             mTextViewName1.setText(mStringNames[0].charAt(0)+"**** "+mStringNames[1].charAt(0)+"****");
         }else if (mStringNames.length==3)
         {
-            mTextViewName1.setText(mStringNames[0].charAt(0)+"**** "+mStringNames[1].charAt(1)+"****");
-            mTextViewName2.setText(mStringNames[2].charAt(0));
+            mTextViewName1.setText(mStringNames[0].charAt(0)+"**** "+mStringNames[1].charAt(0)+"****");
+            mTextViewName2.setText(mStringNames[2].charAt(0)+"****");
         }else if (mStringNames.length==4)
             {
                 mTextViewName1.setText(mStringNames[0].charAt(0)+"**** "+mStringNames[1].charAt(0)+"****");

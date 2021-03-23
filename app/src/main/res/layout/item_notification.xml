@@ -43,7 +43,7 @@
                 android:id="@+id/imageView_item_notification_icon"
                 android:layout_width="@dimen/size_notification_icon"
                 android:layout_height="@dimen/size_notification_icon"
-                android:background="@drawable/bg_img_notification_open"
+                android:background="@drawable/bg_img_notification_close"
                 android:src="@drawable/ic_mark_email_read"
                 android:scaleType="center"
                 />
