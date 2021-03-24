@@ -8,12 +8,14 @@
     tools:context=".fragments.EventosFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="?actionBarSize"
+    android:background="@color/color_gris"
     >
 
 
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:background="@color/color_gris"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -33,7 +35,7 @@
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/card_evento2"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/color_gris"
             >
         </androidx.recyclerview.widget.RecyclerView>
 

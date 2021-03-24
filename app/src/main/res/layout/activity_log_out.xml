@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="170dp"
+    tools:context=".views.LogOutActivity"
+    android:layout_gravity="center_horizontal"
+    >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/img_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/warning"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+    </androidx.appcompat.widget.AppCompatImageView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/txt_session_exp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/session_expired"
+        android:textStyle="bold"
+        android:textColor="@color/ClubColorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_warning"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:id="@+id/txt_newIntento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again_login_log_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_session_exp"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/btnAceptarLogOut"
+        android:textColor="@color/ClubColorPrimary"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accept_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_newIntento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+    </TextView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

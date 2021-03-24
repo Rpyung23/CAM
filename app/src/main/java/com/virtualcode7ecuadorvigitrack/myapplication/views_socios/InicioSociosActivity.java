@@ -24,6 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.framents_socios.NotificationSocioFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.framents_socios.ProfileSocioFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.services.cServiceTimerToken;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
@@ -176,6 +177,9 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
+                Intent mIntentS = new Intent(InicioSociosActivity.this, cServiceTimerToken.class);
+                stopService(mIntentS);
+
                 finalMAlertDialog.cancel();
                 finish();
             }
@@ -209,6 +213,9 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
+                Intent mIntentS = new Intent(InicioSociosActivity.this,cServiceTimerToken.class);
+                stopService(mIntentS);
+
                 mAlertDialog.cancel();
                 mAlertDialog.hide();
                 finish();

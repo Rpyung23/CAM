@@ -14,6 +14,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.handlers.cNotitifactionHan
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNotificationSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
+import com.virtualcode7ecuadorvigitrack.myapplication.utils.cStringMesDia;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
 public class NotificationDetailsSocioActivity extends AppCompatActivity
@@ -25,6 +26,7 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
     private AlertDialog mAlertDialog;
     private cNotitifactionHandlers mNotitifactionHandlers;
     private cSharedPreferenSocio mSharedPreferenSocio;
+    private TextView mTextViewTop;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,12 +39,17 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
 
         mSharedPreferenSocio = new cSharedPreferenSocio(NotificationDetailsSocioActivity.this);
 
-        new cToolbar().show(NotificationDetailsSocioActivity.this,"DETALLE",true,1);
+        new cToolbar().show(NotificationDetailsSocioActivity.this,"",true,3);
         mTextViewFecha = findViewById(R.id.id_textview_date_noti);
         mTextViewTextMsm = findViewById(R.id.id_textview_body_noti);
         mTextViewTipoNoti = findViewById(R.id.id_textview_tipo_noti);
 
-        mTextViewFecha.setText(mNotificationSocio.getFecha());
+        mTextViewTop = findViewById(R.id.id_detalles_toolbar_top);
+        mTextViewTop.setText("DETALLE");
+
+
+        mTextViewFecha.setText(new cStringMesDia().dia(mNotificationSocio.getFecha())+" "+new cStringMesDia().mes(mNotificationSocio.getFecha())+" de "+new cStringMesDia().year(mNotificationSocio.getFecha()));
+
         mTextViewTextMsm.setText(mNotificationSocio.getMensaje());
         mTextViewTipoNoti.setText(mNotificationSocio.getNotificacion_titulo());
 

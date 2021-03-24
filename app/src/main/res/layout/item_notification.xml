@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="20/20/2020"
+                    android:text="20 oct"
                     android:textSize="@dimen/font_small" />
 
 
@@ -103,7 +103,7 @@
                 android:id="@+id/textViewitem_notification_sub_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:lines="1"
+                android:lines="2"
                 android:text="Estimado Adrian Chávez, ahora puede pagar su cuota anual a través de..."
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />

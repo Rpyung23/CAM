@@ -20,4 +20,5 @@
     <color name="red">#FF0000</color>
     <color name="semaforo_inactive">#262E3286</color>
     <color name="color_prmary_fondo">#d9d5e3</color>
+    <color name="color_gris">#F3F3F3</color>
 </resources>

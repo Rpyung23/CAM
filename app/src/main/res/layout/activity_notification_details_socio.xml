@@ -5,11 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_gris"
     tools:context=".views_socios.NotificationDetailsSocioActivity"
     android:orientation="vertical"
     >
     <include
-        layout="@layout/toolbar_color">
+        android:id="@+id/id_view_toolbar_top"
+        layout="@layout/toolbar_top"
+        android:visibility="visible"
+        >
     </include>
 
     <androidx.cardview.widget.CardView
@@ -63,7 +67,7 @@
                     android:id="@+id/id_textview_tipo_noti"
                     android:textSize="@dimen/textsize_22sp"
                     android:textStyle="bold"
-                    android:textAlignment="center"
+
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +79,6 @@
                     android:id="@+id/id_textview_date_noti"
                     android:textSize="@dimen/textsize_17sp"
                     android:gravity="end"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.NoticiasFragment"
     android:layout_marginBottom="?actionBarSize"
-    android:backgroundTint="@color/white"
+    android:background="@color/color_gris"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -20,7 +20,9 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:backgroundTint="@color/color_gris"
+            >
 
             <include
                 android:id="@+id/card_principal"
@@ -37,6 +39,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/card_noticias"
+                android:backgroundTint="@color/color_gris"
                 >
             </androidx.recyclerview.widget.RecyclerView>
 

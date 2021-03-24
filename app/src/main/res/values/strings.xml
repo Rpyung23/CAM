@@ -86,9 +86,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="session_expired">La sesión ha caducado</string>
     <string name="try_again_login">Iniciar sesión nuevamente</string>
+    <string name="try_again_login_log_out">Inicia sesión nuevamente</string>
     <string name="accept_button">Aceptar</string>
     <string name="continue_">Continuar</string>
-    <string name="not_i_am">No soy yo</string>
+    <string name="not_i_am"><u>No soy yo</u></string>
     <string name="password">Contraseña</string>
     <string name="date_events">Fecha del evento</string>
     <string name="dir_events">Dirección del evento</string>

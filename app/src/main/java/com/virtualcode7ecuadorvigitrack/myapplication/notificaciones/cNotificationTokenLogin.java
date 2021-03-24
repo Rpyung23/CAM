@@ -60,9 +60,9 @@ public class cNotificationTokenLogin
     public Notification.Builder createNotificationManagerChannel()
     {
         Notification.Builder mBuilder = new Notification.Builder(getmContext());
-        mBuilder.setContentTitle("NOTIFICACION LOGIN CAM");
-        mBuilder.setContentText("Login iniciado");
-        mBuilder.setSmallIcon(R.drawable.ic_asturian_primary_color);
+        mBuilder.setContentTitle("ACCESO DE USUARIO");
+        mBuilder.setContentText("");
+        mBuilder.setSmallIcon(R.drawable.ic_mini_asturian_logo);
         mBuilder.setShowWhen(true);
         mBuilder.setVisibility(Notification.VISIBILITY_SECRET);
         //mBuilder.setStyle(new Notification.BigTextStyle().bigText(msm));
@@ -80,12 +80,12 @@ public class cNotificationTokenLogin
             getmNotificationManager().createNotificationChannel(createNotificationChannel());
             Notification.Builder mBuilder = new Notification.Builder(getmContext());
             mBuilder.setChannelId(channel_temporizador_login);
-            mBuilder.setContentTitle("NOTIFICACION LOGIN CAM");
-            mBuilder.setContentText("Login");
-            mBuilder.setSmallIcon(R.drawable.ic_asturian_primary_color);
+            mBuilder.setContentTitle("ACCESO DE USUARIO");
+            mBuilder.setContentText("");
+            mBuilder.setSmallIcon(R.drawable.ic_mini_asturian_logo);
             mBuilder.setShowWhen(true);
             mBuilder.setVisibility(Notification.VISIBILITY_SECRET);
-            mBuilder.setStyle(new Notification.BigTextStyle().bigText("Login"));
+            mBuilder.setStyle(new Notification.BigTextStyle().bigText(""));
             return mBuilder;
         }else {return null;}
     }

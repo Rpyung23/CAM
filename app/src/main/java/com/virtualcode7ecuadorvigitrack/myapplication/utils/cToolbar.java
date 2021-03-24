@@ -23,12 +23,20 @@ public class cToolbar
         if(ban==0)
         {
             toolbar = activity.findViewById(R.id.toolbar_);
-        }else
+        }else if(ban==1)
             {
                 toolbar = activity.findViewById(R.id.toolbar_color);
-            }
+            }else {
+
+            toolbar = activity.findViewById(R.id.toolbar);
+
+        }
+
+
         activity.setSupportActionBar(toolbar);
+
         activity.getSupportActionBar().setTitle(title);
+
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
 
     }

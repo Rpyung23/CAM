@@ -46,10 +46,12 @@
         android:layout_marginTop="@dimen/margin"
         android:layout_width="210dp"
         android:layout_height="58dp"
-        android:textStyle="bold"
+        android:textAllCaps="false"
         android:textColor="@color/ClubColorPrimary"
         android:text="@string/continue_"
-        android:textSize="17sp"
+        android:textSize="19sp"
+        android:background="@drawable/boton_border_round"
+        android:backgroundTint="@color/white"
         >
     </androidx.appcompat.widget.AppCompatButton>
 

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNotificationSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.utils.cStringMesDia;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class cAdapterNotificationSocios extends
     @Override
     public void onBindViewHolder(@NonNull cViewHolderNotification holder, int position)
     {
-        if (mNotificationSocioArrayList.get(position).getMensaje().length()>10)
+        /*if (mNotificationSocioArrayList.get(position).getMensaje().length()>10)
         {
             holder.mTextViewPreviewMsm.setText(mNotificationSocioArrayList.get(position).getMensaje()
                     .substring(0,10));
@@ -55,8 +56,9 @@ public class cAdapterNotificationSocios extends
             {
                 holder.mTextViewPreviewMsm.setText(mNotificationSocioArrayList.get(position).getMensaje()
                         .substring(0,5));
-            }
-        holder.mTextViewFecha.setText(mNotificationSocioArrayList.get(position).getFecha());
+            }*/
+        holder.mTextViewPreviewMsm.setText(mNotificationSocioArrayList.get(position).getMensaje());
+        holder.mTextViewFecha.setText(new cStringMesDia().dia(mNotificationSocioArrayList.get(position).getFecha())+" "+new cStringMesDia().mes(mNotificationSocioArrayList.get(position).getFecha()).substring(0,3));
 
         if (mNotificationSocioArrayList.get(position).isLeido())
         {

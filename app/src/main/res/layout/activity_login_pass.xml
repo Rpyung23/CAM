@@ -105,12 +105,16 @@
             android:text="@string/ingresar_copy"
             android:layout_marginTop="15dp"
             android:textColor="@color/ClubColorPrimary"
-            android:textStyle="bold"
             android:textAllCaps="false"
+            android:textSize="19sp"
+            android:background="@drawable/boton_border_round"
+            android:backgroundTint="@color/white"
+
             >
         </androidx.appcompat.widget.AppCompatButton>
 
         <TextView
+            android:layout_marginTop="8dp"
             android:id="@+id/id_no_soy_yo"
             android:textAlignment="center"
             android:textColor="@color/white"

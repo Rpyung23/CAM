@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.notificaciones.cNotificationTokenLogin;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
+
+import es.dmoral.toasty.Toasty;
 
 public class cServiceTimerToken extends Service
 {
@@ -23,8 +26,19 @@ public class cServiceTimerToken extends Service
         public void run()
         {
 
+            /*cNotificationTokenLogin mNotificationTokenLogin = new cNotificationTokenLogin(getApplicationContext());
+            mNotificationTokenLogin.getmNotificationManager().cancel(777);*/
+
+            Intent mIntentS = new Intent(getApplicationContext(),cServiceTimerToken.class);
+            stopService(mIntentS);
+
             mSharedTokenValidation = new cSharedTokenValidation(getApplicationContext());
             mSharedTokenValidation.writeToken("error");
+
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+
         }
     };
 
@@ -58,7 +72,8 @@ public class cServiceTimerToken extends Service
 
         }
 
-        mHandler.postDelayed(mRunnable,600000);
+
+        mHandler.postDelayed(mRunnable,570000);/** 9.5 minutos **/
 
         return START_NOT_STICKY;
     }

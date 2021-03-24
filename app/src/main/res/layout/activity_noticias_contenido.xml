@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".views.NoticiasContenidoActivity"
     android:weightSum="1"
-    android:background="@color/white"
+    android:background="@color/color_gris"
     >
 
 

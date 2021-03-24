@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_gris"
     tools:context=".views_contacto.ContactoInicioActivity">
     <include
         layout="@layout/toolbar_color"
