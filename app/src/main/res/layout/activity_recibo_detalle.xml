@@ -57,6 +57,7 @@
                         android:orientation="vertical"
                         >
                         <TextView
+                            android:fontFamily="@font/roboto_regular"
                             android:textColor="@color/black"
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
@@ -66,7 +67,7 @@
                         </TextView>
                         <TextView
                             android:id="@+id/id_textview_num_ope"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/ClubColorPrimary"
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
@@ -79,6 +80,7 @@
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
                             android:text="@string/date_pay_copy"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         </TextView>
@@ -97,13 +99,14 @@
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
                             android:text="@string/concept_copy"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         </TextView>
                         <TextView
                             android:id="@+id/id_textview_concepto"
                             android:textColor="@color/ClubColorPrimary"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textSize="@dimen/textsize_22sp"
                             android:gravity="center"
                             android:text="Casillero serie A-HGA-971"
@@ -114,13 +117,14 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
                             android:text="@string/pay_amount_copy"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         </TextView>
                         <TextView
                             android:id="@+id/id_textview_monto"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/ClubColorPrimary"
                             android:textSize="@dimen/textsize_30"
                             android:gravity="center"

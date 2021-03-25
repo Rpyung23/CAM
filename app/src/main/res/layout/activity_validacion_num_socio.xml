@@ -32,6 +32,7 @@
     app:startIconDrawable="@drawable/ic_person_add"
         android:textColorHint="@color/white"
         app:boxBackgroundColor="#8c2E3286"
+        android:fontFamily="@font/roboto_regular"
         app:startIconTint="@color/white"
     android:hint="@string/partner_number_copy"
     >
@@ -39,7 +40,7 @@
         android:id="@+id/id_textviewnumSocio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:fontFamily="@font/roboto_regular"
         android:singleLine="true"
         >
     </com.google.android.material.textfield.TextInputEditText>
@@ -51,6 +52,7 @@
         android:layout_height="58dp"
         android:textColor="@color/purple_700"
         android:text="@string/recovery_pass_botton"
+        android:fontFamily="@font/roboto_regular"
         android:textSize="17sp"
     >
 </androidx.appcompat.widget.AppCompatButton>

@@ -29,6 +29,7 @@
         android:backgroundTint="@color/black"
         >
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/id_detalles_toolbar_top"
             android:textSize="@dimen/textsize_22sp"
             android:gravity="center"

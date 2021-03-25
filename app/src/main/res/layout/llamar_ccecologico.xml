@@ -19,6 +19,7 @@
         >
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/textsize_17sp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/ClubColorPrimary"

@@ -61,6 +61,7 @@
         app:itemBackground="@android:color/transparent"
         app:itemIconTint="@drawable/drawer"
         app:itemTextColor="@drawable/drawer"
+        android:fontFamily="@font/roboto_regular"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

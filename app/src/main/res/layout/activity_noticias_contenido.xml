@@ -33,12 +33,12 @@
         <TextView
             android:id="@+id/id_titulo"
             android:text="titulo noticia"
+            android:fontFamily="@font/roboto_bold"
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textSize="@dimen/textsize_noticia"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/margin_bottom_titulo_noticia_cntenido"

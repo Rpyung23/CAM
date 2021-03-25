@@ -30,6 +30,7 @@
         </ImageView>
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:layout_marginTop="40dp"
             android:textAlignment="center"
             android:layout_width="match_parent"
@@ -39,6 +40,7 @@
             >
         </TextView>
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/id_textview_num_membre"
             android:textAlignment="center"
             android:textSize="@dimen/textsize_22sp"
@@ -49,6 +51,7 @@
             >
         </TextView>
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:layout_marginTop="15dp"
             android:textAlignment="center"
             android:layout_width="match_parent"
@@ -58,6 +61,7 @@
             >
         </TextView>
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/id_name_titulo_1"
             android:textAlignment="center"
             android:textSize="@dimen/textsize_22sp"
@@ -68,6 +72,7 @@
             >
         </TextView>
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/id_name_titulo_2"
             android:textAlignment="center"
             android:textSize="@dimen/textsize_22sp"
@@ -85,6 +90,7 @@
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_lock_white"
             android:hint="@string/password"
+            android:fontFamily="@font/roboto_regular"
             app:passwordToggleEnabled="true"
             android:textColorHint="@color/white"
             app:boxBackgroundColor="#8c2E3286"
@@ -103,6 +109,7 @@
             android:layout_width="210dp"
             android:layout_height="55dp"
             android:text="@string/ingresar_copy"
+            android:fontFamily="@font/roboto_regular"
             android:layout_marginTop="15dp"
             android:textColor="@color/ClubColorPrimary"
             android:textAllCaps="false"
@@ -120,6 +127,7 @@
             android:textColor="@color/white"
             android:text="@string/not_i_am"
             android:layout_width="match_parent"
+            android:fontFamily="@font/roboto_regular"
             android:layout_height="wrap_content"
             >
         </TextView>

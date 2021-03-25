@@ -139,7 +139,6 @@ public class cNotitifactionHandlers
 
     }
 
-
     public void readNotification(int id_noti,String token)
     {
         /**https://centroasturianodemexico.mx/api/v1/notificaciones/3/estado/D**/

@@ -22,7 +22,7 @@
             android:textColor="@color/ClubColorPrimary"
             android:drawableStart="@drawable/ic_pdf"
             android:text="  Ver PDF"
-
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </TextView>

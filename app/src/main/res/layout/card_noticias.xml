@@ -32,7 +32,7 @@
             android:layout_marginLeft="10dp"
             android:id="@+id/id_titulo_noticia"
             android:textColor="@color/white"
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:textSize="@dimen/textsize_22sp"
             android:text="@string/test_titulo_largo"
             android:layout_width="match_parent"
@@ -48,6 +48,7 @@
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
             android:text="@string/test_fecha_publicacion"
             android:layout_marginBottom="10dp"
             >

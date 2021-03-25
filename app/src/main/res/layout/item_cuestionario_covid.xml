@@ -18,6 +18,7 @@
         android:layout_gravity="center_vertical"
         android:paddingLeft="10dp"
         android:maxLines="1"
+        android:fontFamily="@font/roboto_regular"
         android:scrollbars="vertical"
         >
     </androidx.appcompat.widget.AppCompatTextView>
@@ -29,6 +30,7 @@
         android:layout_gravity="center_vertical"
         android:text="Titular"
         android:gravity="center"
+        android:fontFamily="@font/roboto_regular"
         android:textColor="@color/black"
         android:layout_weight="0.4"
         >
@@ -50,6 +52,7 @@
             android:text=" Vigente"
             android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:fontFamily="@font/roboto_regular"
             android:textAlignment="center"
             android:drawableLeft="@drawable/circle_green"
             android:textColor="@color/ClubColorPrimary"

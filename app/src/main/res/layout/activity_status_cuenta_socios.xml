@@ -42,6 +42,7 @@
                     android:orientation="vertical"
                     >
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_hi_copy"
@@ -52,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/textsize_22sp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/black"
                         android:text="Froylan Mendoza"
                         >
@@ -77,6 +78,7 @@
                             android:orientation="vertical"
                             >
                             <TextView
+                                android:fontFamily="@font/roboto_regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/partner_number_copy"
@@ -88,7 +90,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/textsize_profile_socio_num"
                                 android:text="1234567890"
-                                android:textStyle="bold"
+                                android:fontFamily="@font/roboto_bold"
                                 android:textColor="@color/black"
                                 >
                             </TextView>
@@ -114,6 +116,7 @@
                             android:orientation="vertical"
                             >
                             <TextView
+                                android:fontFamily="@font/roboto_regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/profile_type_membership_copy"
@@ -125,7 +128,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/textsize_22sp"
                                 android:text="Familiar"
-
+                                android:fontFamily="@font/roboto_regular"
                                 android:textColor="@color/black"
                                 >
                             </TextView>
@@ -151,6 +154,7 @@
                             android:orientation="vertical"
                             >
                             <TextView
+                                android:fontFamily="@font/roboto_regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/profile_membre_since_copy"
@@ -162,7 +166,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/textsize_22sp"
                                 android:text="2000/05/10"
-
+                                android:fontFamily="@font/roboto_regular"
                                 android:textColor="@color/black"
                                 >
                             </TextView>
@@ -199,6 +203,7 @@
             android:gravity="center"
             >
             <TextView
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/your_balance_copy"
                 android:textSize="@dimen/textsize_17sp"
                 android:layout_width="wrap_content"
@@ -207,7 +212,7 @@
             <TextView
                 android:id="@+id/id_textview_saldo"
                 android:textColor="@color/black"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_bold"
                 android:textSize="@dimen/textsize_30"
                 android:text="$526.59"
                 android:layout_width="wrap_content"
@@ -221,7 +226,7 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"
         android:textColor="@color/black"
         android:text="Historial de movimientos"
         >

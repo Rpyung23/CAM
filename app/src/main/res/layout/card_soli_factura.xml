@@ -16,6 +16,7 @@
         >
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/textsize_17sp"
             android:layout_marginLeft="@dimen/margin_left_card_profile_socio"
             android:layout_gravity="center_vertical"

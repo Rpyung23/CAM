@@ -57,7 +57,8 @@
                     android:text="Número de contacto"
                     android:textColor="@color/black"
                     android:textSize="@dimen/textsize_17sp"
-                    android:textStyle="bold"></TextView>
+                    android:fontFamily="@font/roboto_bold">
+                </TextView>
 
                 <TextView
                     android:id="@+id/textnum1"
@@ -68,7 +69,8 @@
                     android:text="Contacto directo"
                     android:textColor="@color/black"
                     android:textSize="@dimen/textsize_17sp"
-                    android:textStyle="bold"></TextView>
+                    android:fontFamily="@font/roboto_bold">
+                </TextView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -90,9 +92,12 @@
                             android:layout_margin="@dimen/margin"
                             android:drawableStart="@drawable/ic_phone"
                             android:drawableTint="@color/ClubColorPrimary"
-                            android:text="Llamar al Centro asturiano"
+                            android:text="  Llamar al Centro asturiano"
                             android:textColor="@color/ClubColorPrimary"
-                            android:textSize="@dimen/textsize_17sp"></TextView>
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_regular"
+                            >
+                        </TextView>
 
 
                         <TextView
@@ -119,7 +124,8 @@
                     android:text="Contacto directo"
                     android:textColor="@color/black"
                     android:textSize="@dimen/textsize_17sp"
-                    android:textStyle="bold"></TextView>
+                    android:fontFamily="@font/roboto_bold">
+                </TextView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -141,9 +147,13 @@
                             android:layout_margin="@dimen/margin"
                             android:drawableStart="@drawable/ic_phone"
                             android:drawableTint="@color/ClubColorPrimary"
-                            android:text="Llamar al Centro asturiano"
+                            android:text="  Llamar al Centro asturiano"
                             android:textColor="@color/ClubColorPrimary"
-                            android:textSize="@dimen/textsize_17sp"></TextView>
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_regular"
+
+                            >
+                        </TextView>
 
 
                         <TextView
@@ -170,7 +180,8 @@
                     android:text="Contacto directo"
                     android:textColor="@color/black"
                     android:textSize="@dimen/textsize_17sp"
-                    android:textStyle="bold"></TextView>
+                    android:fontFamily="@font/roboto_bold">
+                </TextView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView3"
@@ -193,9 +204,11 @@
                             android:layout_margin="@dimen/margin"
                             android:drawableStart="@drawable/ic_phone"
                             android:drawableTint="@color/ClubColorPrimary"
-                            android:text="Llamar al Centro asturiano"
+                            android:text="  Llamar al Centro asturiano"
                             android:textColor="@color/ClubColorPrimary"
-                            android:textSize="@dimen/textsize_17sp"></TextView>
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_regular"
+                            ></TextView>
 
 
                         <TextView
@@ -238,7 +251,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/textsize_22sp"
                 android:text="Club Campestre Ecologico"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -251,6 +264,7 @@
                 android:textColor="@color/white"
                 android:text="  Carretera Federal Cuautla-Chalco-Mexico km 53"
                 android:textSize="15sp"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

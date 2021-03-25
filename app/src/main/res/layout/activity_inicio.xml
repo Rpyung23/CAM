@@ -55,6 +55,7 @@
         app:itemIconTint="@drawable/drawer"
         app:itemTextColor="@drawable/drawer"
         app:menu="@menu/menu_inicio"
+        android:fontFamily="@font/roboto_regular"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

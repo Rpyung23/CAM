@@ -22,6 +22,7 @@
     </androidx.appcompat.widget.AppCompatImageView>
 
     <TextView
+        android:fontFamily="@font/roboto_bold"
         android:layout_marginTop="10dp"
         android:id="@+id/txt_session_exp"
         android:layout_width="wrap_content"
@@ -37,6 +38,7 @@
     </TextView>
 
     <TextView
+        android:fontFamily="@font/roboto_regular"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -52,6 +54,7 @@
 
 
     <TextView
+        android:fontFamily="@font/roboto_regular"
         android:id="@+id/btnAceptarLogOut"
         android:textColor="@color/ClubColorPrimary"
         android:textSize="14sp"

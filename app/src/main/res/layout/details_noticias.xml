@@ -18,7 +18,7 @@
         android:scrollbars="vertical"
         >
         <TextView
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:id="@+id/id_textview_fecha_noticia_details"
             android:layout_margin="@dimen/margin"
             android:drawableStart="@drawable/ic_access_time_black"
@@ -33,6 +33,7 @@
         <TextView
             android:id="@+id/id_textview_contenido"
             android:layout_margin="@dimen/margin"
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/loren_xxipsum"

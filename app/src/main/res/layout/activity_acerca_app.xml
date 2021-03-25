@@ -8,6 +8,7 @@
     tools:context=".views_contacto.AcercaAppActivity"
     android:orientation="vertical"
     android:background="@color/color_gris"
+
     >
     <include
         layout="@layout/toolbar_color"
@@ -77,6 +78,7 @@
 
 
                         <TextView
+                            android:fontFamily="@font/roboto_regular"
                             android:textSize="@dimen/textsize_17sp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/ClubColorPrimary"
@@ -123,6 +125,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
+                                android:fontFamily="@font/roboto_regular"
                                 android:textSize="@dimen/textsize_17sp"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/ClubColorPrimary"
@@ -132,6 +135,7 @@
                                 android:layout_height="wrap_content">
                             </TextView>
                             <TextView
+                                android:fontFamily="@font/roboto_bold"
                                 android:textStyle="bold"
                                 android:textSize="@dimen/textsize_17sp"
                                 android:layout_gravity="center_vertical"
@@ -177,7 +181,7 @@
                         android:id="@+id/id_aviso"
                         android:paddingLeft="15dp"
                         android:layout_weight="0.5"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/black"
                         android:text="Aviso de Privacidad"
                         android:layout_width="wrap_content"

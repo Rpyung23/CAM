@@ -125,5 +125,8 @@
 
     <string name="semaforo_amarillo_rojo">https://centroasturianodemexico.mx/api/v1/membresias/beneficiarios/id/</string>
     <string name="register">Registrate</string>
+    <string name="not_read">Marcar como no leído</string>
+    <string name="delete_notification">Eliminar</string>
+    <string name="see_in_app">Ver en app</string>
 
 </resources>

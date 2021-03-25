@@ -53,6 +53,7 @@
                 >
 
                 <TextView
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_weight="0.4"
                     android:id="@+id/textView_nro_receipt"
                     android:textColor="@color/ClubColorPrimary"
@@ -62,6 +63,7 @@
                     android:textSize="@dimen/font_normal" />
 
                 <TextView
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_weight="0.6"
                     android:textColor="@color/ClubColorPrimary"
                     android:id="@+id/textView_date"
@@ -88,7 +90,7 @@
                     android:layout_weight="0.4"
                     android:id="@+id/textView_main"
                     android:textColor="@color/ClubColorPrimary"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="cuota anual 2021"
@@ -100,7 +102,7 @@
                     android:textAlignment="viewEnd"
                     android:textSize="@dimen/textsize_17sp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold"
                     android:id="@+id/textView_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

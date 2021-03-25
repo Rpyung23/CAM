@@ -11,6 +11,7 @@
     android:layout_height="wrap_content"
     android:background="@color/ClubColorPrimary"
     app:menu="@menu/menu_nav_bottom_1"
+    android:fontFamily="@font/roboto_regular"
     app:labelVisibilityMode="labeled"
     style="@style/bottomnavigationview"
 >

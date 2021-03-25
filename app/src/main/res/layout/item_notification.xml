@@ -16,7 +16,17 @@
     android:layout_gravity="center_vertical|right"
     android:layout_marginRight="20dp"
     >
-</androidx.appcompat.widget.AppCompatImageView>
+    </androidx.appcompat.widget.AppCompatImageView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/id_img_delete_left"
+        android:layout_width="?actionBarSize"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        android:layout_gravity="center_vertical|left"
+        android:layout_marginLeft="20dp"
+        >
+    </androidx.appcompat.widget.AppCompatImageView>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/id_container_notification"
@@ -73,7 +83,7 @@
                     <TextView
                         android:paddingLeft="5dp"
                         android:paddingRight="3dp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/black"
                         android:id="@+id/textView__item_notification_title"
                         android:layout_width="match_parent"
@@ -91,6 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="20 oct"
                     android:textSize="@dimen/font_small" />
 
@@ -98,6 +109,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <TextView
+                android:fontFamily="@font/roboto_regular"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:id="@+id/textViewitem_notification_sub_text"

@@ -58,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/id_textview_titulo"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/ClubColorPrimary"
                     android:textSize="@dimen/textsize_22sp"
                     android:layout_marginTop="45dp"
@@ -73,6 +73,7 @@
                     android:gravity="center_vertical"
                     android:id="@+id/id_textview_direccion"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_regular"
                     android:drawableStart="@drawable/ic_location"
                     android:textSize="@dimen/textsize_17sp"
                     android:text="@string/test_direction_event"

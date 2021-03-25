@@ -37,7 +37,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:textSize="@dimen/textsize_noticia"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/margin_bottom_titulo_noticia_cntenido"

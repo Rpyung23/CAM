@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sedes"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold"
                     android:textSize="@dimen/textsize_17sp"
                     >
                 </TextView>
@@ -65,6 +65,7 @@
 
                         <TextView
                             android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/ClubColorPrimary"
                             android:drawableStart="@drawable/ic_apartment_white"
@@ -109,6 +110,7 @@
 
                         <TextView
                             android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/ClubColorPrimary"
                             android:drawableStart="@drawable/ic_apartment_white"
@@ -152,6 +154,7 @@
 
                         <TextView
                             android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/ClubColorPrimary"
                             android:drawableStart="@drawable/ic_apartment_white"

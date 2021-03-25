@@ -69,7 +69,7 @@ public class NotificationSocioFragment extends Fragment
         mNotificationHandlers = new cNotitifactionHandlers(getContext());
 
         ItemTouchHelper.SimpleCallback simpleCallback =
-                new cRecyclerItemTouchHelperNoti(0,ItemTouchHelper.LEFT,this);
+                new cRecyclerItemTouchHelperNoti(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,this);
 
         new ItemTouchHelper(simpleCallback).attachToRecyclerView(mRecyclerViewNotification);
 

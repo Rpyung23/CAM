@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/test_fecha_publicacion"
                 android:textSize="@dimen/font_small"
+                android:fontFamily="@font/roboto_regular"
                 app:drawableTopCompat="@drawable/ic_time_primary_color" />
 
             <View
@@ -49,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="Direccion del evento"
                 android:textSize="@dimen/font_small"
+                android:fontFamily="@font/roboto_regular"
                 app:drawableTopCompat="@drawable/ic_place_primary_color" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -64,6 +66,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/ClubColorPrimary"
                 android:id="@+id/textView_hint_about_event"
                 android:layout_width="match_parent"
@@ -73,6 +76,7 @@
                 android:text="@string/about_event_copy" />
 
             <TextView
+                android:fontFamily="@font/roboto_regular"
                 android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginLeft="@dimen/spacing_large"
                 android:id="@+id/textView_about_event"

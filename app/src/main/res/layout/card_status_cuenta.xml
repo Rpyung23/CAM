@@ -16,6 +16,7 @@
         >
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/textsize_17sp"
             android:layout_marginLeft="@dimen/margin_left_card_profile_socio"
             android:layout_gravity="center_vertical"
@@ -31,7 +32,7 @@
             android:id="@+id/id_membresia_saldo"
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/textsize_17sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:textColor="@color/black"
             android:drawableEnd="@drawable/ic_arrow_rigth"
             android:text="$0.00"

@@ -9,4 +9,5 @@
     <dimen name="textsize_num_fecha">33sp</dimen>
     <dimen name="margin_bottom_titulo_evento_cntenido">70dp</dimen>
     <dimen name="margin_textinput_num_socio">15dp</dimen>
+    <dimen name="textsize_opc_notification_details">14sp</dimen>
 </resources>

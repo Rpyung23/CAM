@@ -12,6 +12,7 @@
     android:background="@color/ClubColorPrimary"
     app:menu="@menu/menu_nav_bottom_2"
     app:labelVisibilityMode="labeled"
+    android:fontFamily="@font/roboto_regular"
     style="@style/bottomnavigationview"
     >
 </com.google.android.material.bottomnavigation.BottomNavigationView>

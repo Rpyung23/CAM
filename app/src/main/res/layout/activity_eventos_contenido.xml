@@ -41,7 +41,7 @@
             android:layout_marginBottom="@dimen/margin_bottom_titulo_evento_cntenido"
             android:id="@+id/id_titulo_evento"
             android:textColor="@color/white"
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:textSize="@dimen/textsize_22sp"
             android:text="@string/test_titulo_largo"
             android:layout_width="match_parent"
