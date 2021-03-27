@@ -63,6 +63,23 @@ public class cNotitifactionHandlers
         }
     };
 
+    private Runnable mRunnableNoLeido = new Runnable() {
+        @Override
+        public void run()
+        {
+            NoLeidoNotification(getId_noti(),getToken());
+        }
+    };
+
+
+    private Runnable mRunnableLeido = new Runnable() {
+        @Override
+        public void run()
+        {
+            LeidoNotification(getId_noti(),getToken());
+        }
+    };
+
     public cNotitifactionHandlers(Context mContext)
     {
         this.mContext = mContext;
@@ -85,6 +102,15 @@ public class cNotitifactionHandlers
         mHandler.post(mRunnableRead);
     }
 
+    public void runNoLido()
+    {
+        mHandler.post(mRunnableNoLeido);
+    }
+    public void runLeido()
+    {
+        mHandler.post(mRunnableLeido);
+    }
+
     public void deleteNotification(int id_noti,String token)
     {
         /**https://centroasturianodemexico.mx/api/v1/notificaciones/3/estado/D**/
@@ -103,13 +129,10 @@ public class cNotitifactionHandlers
                 try {
                     JSONObject mJsonObject = new JSONObject(response);
 
-                    if (mJsonObject.getInt("codigo") == 200)
+                    if (mJsonObject.getInt("codigo") != 200)
                     {
-                        Toasty.info(mContext,"Notificación Eliminada",Toasty.LENGTH_SHORT).show();
-                    }else
-                        {
-                            Toasty.info(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();
-                        }
+                        Toasty.error(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -123,6 +146,57 @@ public class cNotitifactionHandlers
                 Toasty.error(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         })
+                {
+                    @Override
+                    public HashMap<String, String> getHeaders() throws AuthFailureError
+                    {
+                        HashMap<String,String> stringStringHashMap = new HashMap<>();
+                        stringStringHashMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+                        stringStringHashMap.put("token",token);
+                        return stringStringHashMap;
+                    }
+                };
+
+
+        mRequestQueueNotification.add(mStringRequestNotification);
+
+    }
+
+    public void LeidoNotification(int id_noti,String token)
+    {
+        /**https://centroasturianodemexico.mx/api/v1/notificaciones/3/estado/D**/
+        mStringRequestNotification =
+                new StringRequest(mContext.getString(R.string.update_notification)+id_noti+"/estado/P"
+                        , new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        /**
+                         *     "resultado": "3",
+                         *     "mensaje": "Se a cambiado el estado de la notificacion",
+                         *     "codigo": "200"
+                         * **/
+
+                        try {
+                            JSONObject mJsonObject = new JSONObject(response);
+
+                            if (mJsonObject.getInt("codigo") != 200)
+                            {
+                                Toasty.error(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toasty.error(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                })
                 {
                     @Override
                     public HashMap<String, String> getHeaders() throws AuthFailureError
@@ -160,6 +234,63 @@ public class cNotitifactionHandlers
                             if (mJsonObject.getInt("codigo") == 200)
                             {
                                // Toasty.success(mContext,"Notificación Eliminada",Toasty.LENGTH_SHORT).show();
+                                Log.e("NOTIFICATION","LEIDA");
+                            }else
+                            {
+                                //Toasty.info(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();
+                                Log.e("NOTIFICATION","NO LEIDA");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //Toasty.error(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("NOTIFICATION",error.getMessage());
+                    }
+                })
+                {
+                    @Override
+                    public HashMap<String, String> getHeaders() throws AuthFailureError
+                    {
+                        HashMap<String,String> stringStringHashMap = new HashMap<>();
+                        stringStringHashMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+                        stringStringHashMap.put("token",token);
+                        return stringStringHashMap;
+                    }
+                };
+
+
+        mRequestQueueNotification.add(mStringRequestNotification);
+
+    }
+
+    public void NoLeidoNotification(int id_noti,String token)
+    {
+        /**https://centroasturianodemexico.mx/api/v1/notificaciones/3/estado/D**/
+        mStringRequestNotification =
+                new StringRequest(mContext.getString(R.string.update_notification)+id_noti+"/estado/A"
+                        , new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        /**
+                         *     "resultado": "3",
+                         *     "mensaje": "Se a cambiado el estado de la notificacion",
+                         *     "codigo": "200"
+                         * **/
+
+                        try {
+                            JSONObject mJsonObject = new JSONObject(response);
+
+                            if (mJsonObject.getInt("codigo") == 200)
+                            {
+                                // Toasty.success(mContext,"Notificación Eliminada",Toasty.LENGTH_SHORT).show();
                                 Log.e("NOTIFICATION","LEIDA");
                             }else
                             {

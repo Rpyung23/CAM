@@ -54,4 +54,5 @@ public class cNotificationSocio implements Serializable
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
 }

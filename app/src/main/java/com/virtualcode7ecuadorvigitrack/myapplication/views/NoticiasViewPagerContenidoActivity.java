@@ -3,6 +3,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
@@ -49,10 +50,14 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
     private AlertDialog mAlertDialog;
     private cNoticias oN =  new cNoticias();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticias_view_pager_contenido);
+
+
+
         mViewPager2Noticias = findViewById(R.id.viewpager2noticias);
 
         posInicial = getIntent().getIntExtra("posicion",0);
@@ -79,7 +84,7 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
         });
         mViewPager2Noticias.setCurrentItem(posInicial);
 
-        //mViewPager2Noticias.set
+
 
     }
 

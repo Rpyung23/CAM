@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,7 +76,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
 
 
     private StaggeredGridLayoutManager mLayoutManager;
-
+    private SwipeRefreshLayout mSwipeRefreshLayoutNoticias;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +89,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
         mRecyclerViewNoticias = mView.findViewById(R.id.id_recyclerViewNoticias);
         mViewCardPrincipal = mView.findViewById(R.id.card_principal);
         materialButton = mView.findViewById(R.id.id_cargar_mas);
+        mSwipeRefreshLayoutNoticias = mView.findViewById(R.id.swipeRefreshNoticias);
         mViewCardPrincipal.setOnClickListener(this);
         materialButton.setOnClickListener(this);
 
@@ -96,6 +98,15 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
         mRecyclerViewNoticias.setHasFixedSize(true);
 
         llenarArraysListNoticias();
+
+        mSwipeRefreshLayoutNoticias.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                llenarArraysListNoticias();
+            }
+        });
+
 
         return  mView;
     }
@@ -169,6 +180,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                         Toasty.warning(getContext(),e.getMessage()
                                 ,Toasty.LENGTH_LONG).show();
                     }
+                    mSwipeRefreshLayoutNoticias.setRefreshing(false);
                     new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
                 }
             }, new Response.ErrorListener() {
@@ -178,6 +190,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                     Toasty.error(getContext(),error.toString()
                             ,Toasty.LENGTH_LONG).show();
                     new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                    mSwipeRefreshLayoutNoticias.setRefreshing(false);
                 }
             }){
                 @Override

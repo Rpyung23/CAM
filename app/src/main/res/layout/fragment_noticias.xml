@@ -10,55 +10,64 @@
     android:background="@color/color_gris"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshNoticias"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:backgroundTint="@color/color_gris"
-            >
+            android:scrollbars="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <include
-                android:id="@+id/card_principal"
-                layout="@layout/card_noticias"
-                >
-            </include>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/id_recyclerViewNoticias"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="none"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/card_noticias"
+                android:orientation="vertical"
                 android:backgroundTint="@color/color_gris"
                 >
-            </androidx.recyclerview.widget.RecyclerView>
 
-            <com.google.android.material.button.MaterialButton
-                android:visibility="gone"
-                android:id="@+id/id_cargar_mas"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Cargar más Noticias"
-                app:backgroundTint="@color/ClubColorPrimary"
-                app:icon="@drawable/plus_not_eve"
-                app:iconTint="@color/white"
-                android:textAllCaps="false"
-                >
-            </com.google.android.material.button.MaterialButton>
+                <include
+                    android:id="@+id/card_principal"
+                    layout="@layout/card_noticias"
+                    >
+                </include>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/id_recyclerViewNoticias"
+                    android:layout_width="match_parent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/card_noticias"
+                    android:backgroundTint="@color/color_gris"
+                    >
+                </androidx.recyclerview.widget.RecyclerView>
 
-    </ScrollView>
+                <com.google.android.material.button.MaterialButton
+                    android:visibility="gone"
+                    android:id="@+id/id_cargar_mas"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Cargar más Noticias"
+                    app:backgroundTint="@color/ClubColorPrimary"
+                    app:icon="@drawable/plus_not_eve"
+                    app:iconTint="@color/white"
+                    android:textAllCaps="false"
+                    >
+                </com.google.android.material.button.MaterialButton>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

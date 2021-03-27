@@ -12,6 +12,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -78,7 +79,7 @@ public class EventosFragment extends Fragment
     private View mCardView;
     private int cont_pager = 1 ;
     private MaterialButton materialButtonMoreEventos;
-
+    private SwipeRefreshLayout mSwipeRefreshLayoutEventos;
 
     private  int desface_ = 0;
     private  boolean first_desplazo = true;
@@ -99,7 +100,7 @@ public class EventosFragment extends Fragment
         mTextViewFechaInicioNum = mView.findViewById(R.id.id_textview_fecha_inicio_num);
         mTextViewFechaDestinoNum = mView.findViewById(R.id.id_textview_fecha_fin_num);
         mLinearLayoutCompatFechaFin = mView.findViewById(R.id.id_linear_layout_fecha_fin);
-
+        mSwipeRefreshLayoutEventos = mView.findViewById(R.id.swipeRefreshEventos);
         materialButtonMoreEventos = mView.findViewById(R.id.id_cargar_mas);
 
         mCardView = mView.findViewById(R.id.id_include_evento);
@@ -119,6 +120,16 @@ public class EventosFragment extends Fragment
 
             }
         });
+
+
+        mSwipeRefreshLayoutEventos.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                llenarArraysListEventos();
+            }
+        });
+
 
         return mView;
     }
@@ -182,7 +193,7 @@ public class EventosFragment extends Fragment
 
                         }else
                             {
-                                Toasty.info(getContext(),"No existen eventos disponibles",
+                                Toasty.info(getContext(),"No más existen eventos disponibles",
                                         Toasty.LENGTH_LONG).show();
 
                             }
@@ -197,12 +208,14 @@ public class EventosFragment extends Fragment
                             Toasty.LENGTH_LONG).show();
                 }
 
+                mSwipeRefreshLayoutEventos.setRefreshing(false);
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                mSwipeRefreshLayoutEventos.setRefreshing(false);
                 Toasty.error(getContext(),error.getMessage(),Toasty.LENGTH_LONG).show();
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
             }

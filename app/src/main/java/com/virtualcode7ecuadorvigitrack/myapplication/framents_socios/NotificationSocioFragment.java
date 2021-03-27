@@ -1,10 +1,13 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.framents_socios;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -21,10 +24,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNotificationSocios;
 import com.virtualcode7ecuadorvigitrack.myapplication.gestos.cRecyclerItemTouchHelperNoti;
 import com.virtualcode7ecuadorvigitrack.myapplication.handlers.cNotitifactionHandlers;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.cInterfaceNotification;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNotificationSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
@@ -44,9 +49,10 @@ import es.dmoral.toasty.Toasty;
 
 
 public class NotificationSocioFragment extends Fragment
-        implements cRecyclerItemTouchHelperNoti.cRecyclerItemTouchHelperListene
+        implements cRecyclerItemTouchHelperNoti.cRecyclerItemTouchHelperListene, cInterfaceNotification
 {
     private View mView;
+    private LinearLayoutCompat mLinearLayoutCompat;
     private RecyclerView mRecyclerViewNotification;
     private cAdapterNotificationSocios mAdapterNotificationSocios;
     private ArrayList<cNotificationSocio> mNotificationSocios;
@@ -56,6 +62,7 @@ public class NotificationSocioFragment extends Fragment
     private AlertDialog mAlertDialogNotiProg;
     private androidx.appcompat.app.AlertDialog mAlertDialog;
     private cNotitifactionHandlers mNotificationHandlers;
+    private int code_notification_result = 500;
 
 
     @Override
@@ -65,6 +72,7 @@ public class NotificationSocioFragment extends Fragment
         mView =  inflater.inflate(R.layout.fragment_notification_socio, container, false);
         mRecyclerViewNotification = mView.findViewById(R.id.id_recyclerview_notificationSocios);
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
+        mLinearLayoutCompat = mView.findViewById(R.id.linearlayoutNotification);
 
         mNotificationHandlers = new cNotitifactionHandlers(getContext());
 
@@ -86,13 +94,7 @@ public class NotificationSocioFragment extends Fragment
         return mView;
     }
 
-    private void openActivityDetailsNotification(cNotificationSocio oNotificationSocio)
-    {
-        Intent mIntent = new Intent(getActivity(), NotificationDetailsSocioActivity.class);
-        mIntent.putExtra("oNotificationSocio",oNotificationSocio);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(mIntent);
-    }
+
 
     private void llenearNotificationArraysList()
     {
@@ -209,7 +211,7 @@ public class NotificationSocioFragment extends Fragment
                 mNotificationSocios.get(pos).setLeido(true);
 
                 //mAdapterNotificationSocios.notifyItemChanged(mRecyclerViewNotification.getChildAdapterPosition(view), null);
-                openActivityDetailsNotification(mNotificationSocios.get(mRecyclerViewNotification.getChildAdapterPosition(view)));
+                openActivityDetailsNotification(mNotificationSocios.size(),pos,mNotificationSocios.get(mRecyclerViewNotification.getChildAdapterPosition(view)));
                 mAdapterNotificationSocios.notifyItemChanged(pos);
             }
         });
@@ -217,6 +219,31 @@ public class NotificationSocioFragment extends Fragment
         mRecyclerViewNotification.setAdapter(mAdapterNotificationSocios);
     }
 
+
+    private void openActivityDetailsNotification(int tam,int pos,cNotificationSocio oNotificationSocio)
+    {
+        Intent mIntent = new Intent(getActivity(), NotificationDetailsSocioActivity.class);
+        mIntent.putExtra("oNotificationSocio",oNotificationSocio);
+        mIntent.putExtra("cantidadNotification",tam);
+        mIntent.putExtra("PositionSeekbar",pos);
+        mIntent.putExtra("NotificationSocios",mNotificationSocios);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(mIntent,code_notification_result);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        if(requestCode==code_notification_result)
+        {
+            if(resultCode== Activity.RESULT_OK)
+            {
+                mNotificationSocios = (ArrayList<cNotificationSocio>) data.getSerializableExtra("Notifications");
+                mAdapterNotificationSocios.notify();
+            }
+        }
+    }
 
     private void alertDialogTimeOut()
     {
@@ -252,10 +279,40 @@ public class NotificationSocioFragment extends Fragment
                     .setId_noti(mNotificationSocios
                             .get(mViewHolder.getAdapterPosition()).getId_notificacion());
             mNotificationHandlers.setToken(mSharedPreferenSocio.leerdatosSocio().getToken());
-            mNotificationHandlers.runDelete();
-            mAdapterNotificationSocios.removiItem(mViewHolder.getAdapterPosition());
-            /**REMOVE MOTIFICATION BACK - END**/
 
+            mNotificationHandlers.runDelete();
+
+            recoveryNotification(position,mNotificationSocios.get(mViewHolder.getAdapterPosition()));
+
+            mAdapterNotificationSocios.removiItem(mViewHolder.getAdapterPosition());
+
+            /**REMOVE MOTIFICATION BACK - END**/
         }
+    }
+
+    @Override
+    public void no_leido(int position, cNotificationSocio mNotificationSocio)
+    {
+    }
+
+    @Override
+    public void recoveryNotification(int position, cNotificationSocio mNotificationSocio)
+    {
+        Snackbar mSnackbar =  Snackbar.make(mLinearLayoutCompat,"Notificación eliminada", Snackbar.LENGTH_SHORT).setAction("Deshacer", new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                mNotificationSocios.add(position,mNotificationSocio);
+                mAdapterNotificationSocios.notifyItemInserted(position);
+                mNotificationHandlers
+                        .setId_noti(mNotificationSocio.getId_notificacion());
+
+                mNotificationHandlers.runLeido();
+            }
+        }).setBackgroundTint(getResources().getColor(R.color.ClubColorPrimary))
+                .setTextColor(getResources().getColor(R.color.white));
+
+        mSnackbar.getView().setTranslationY(-1*(getResources().getDimension(R.dimen.toolbarTop_alto_70dp)+30));
+        mSnackbar.show();
     }
 }

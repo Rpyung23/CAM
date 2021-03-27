@@ -18,8 +18,20 @@
         >
     </include>
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPAgerNotificaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top"
+        android:visibility="gone"
+        >
+    </androidx.viewpager2.widget.ViewPager2>
+
+
     <androidx.cardview.widget.CardView
-        app:cardElevation="20dp"
+        app:cardElevation="5dp"
         app:cardCornerRadius="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,6 +143,7 @@
             >
         </TextView>
         <TextView
+            android:id="@+id/txtDeleteNotification"
             android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/textsize_opc_notification_details"
             android:textColor="@color/color_opc_notifiation_details"
