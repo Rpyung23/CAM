@@ -22,6 +22,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cShared
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cStringMesDia;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
 import java.util.ArrayList;
 
@@ -123,6 +124,14 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (!new cSharedTokenValidation(NotificationDetailsSocioActivity.this).readTokenValitation())
+        {
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+        }
+
 
         mTextViewDeleteNotification.setOnClickListener(new View.OnClickListener() {
             @Override

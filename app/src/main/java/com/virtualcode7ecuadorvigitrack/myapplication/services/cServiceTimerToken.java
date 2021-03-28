@@ -72,7 +72,7 @@ public class cServiceTimerToken extends Service
 
         }
 
-
+        //570000
         mHandler.postDelayed(mRunnable,570000);/** 9.5 minutos **/
 
         return START_NOT_STICKY;

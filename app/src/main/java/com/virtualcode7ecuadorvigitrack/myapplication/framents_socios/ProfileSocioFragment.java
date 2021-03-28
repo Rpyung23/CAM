@@ -341,7 +341,20 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                                 mAlertDialogCheckCovid.cancel();
                                 mAlertDialogCheckCovid.hide();
                             }
-                            sweetAlertErrorCuestionarioRenovar(mJsonObject.getString("mensaje"));
+
+                            if(!bandera_type)
+                            {
+                                sweetAlertErrorCuestionarioRenovar(mJsonObject.getString("mensaje"));
+                            }else
+                                {
+                                    if(AlertInfoCovid!=null && AlertInfoCovid.isShowing())
+                                    {
+                                        AlertInfoCovid.hide();
+                                        AlertInfoCovid.cancel();
+                                    }
+                                    Intent mIntent = new Intent(Intent.ACTION_VIEW,Uri.parse(mJsonObject.getString("mensaje")));
+                                    startActivity(mIntent);
+                                }
                         }
 
                 } catch (JSONException e) {

@@ -25,8 +25,10 @@ import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.*;
 import com.virtualcode7ecuadorvigitrack.myapplication.pdf.ViewPdfActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -197,6 +199,21 @@ public class ReciboDetalleActivity extends AppCompatActivity implements View.OnC
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!new cSharedTokenValidation(ReciboDetalleActivity.this).readTokenValitation())
+        {
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+        }
+
+
     }
 
     @Override

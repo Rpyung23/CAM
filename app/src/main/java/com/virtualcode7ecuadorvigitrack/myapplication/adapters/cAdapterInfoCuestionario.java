@@ -55,6 +55,7 @@ public class cAdapterInfoCuestionario extends RecyclerView
             holder.mTextViewEstado.setCompoundDrawablesWithIntrinsicBounds(mContext.getDrawable(R.drawable.circle_red)
                     ,null,null,null);
             holder.mTextViewEstado.setTextColor(Color.parseColor("#4e4b7f"));
+
         }else if(mInfoCustionarioCovidArrayList.get(position).isColor_verde())
         {
             holder.mTextViewEstado.setCompoundDrawablesWithIntrinsicBounds(mContext.getDrawable(R.drawable.circle_green)

@@ -51,6 +51,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
     private TextView mTextViewToolbar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private int bandera = 0;
 
 
     @Override
@@ -65,6 +66,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         mNavigationView = findViewById(R.id.navigation_view);
         mDrawerLayout = findViewById(R.id.id_drawer_layout);
 
+
+        bandera = getIntent().getIntExtra("bandera",0);
 
 
         //MaterialShapeDrawable materialShapeDrawable = (MaterialShapeDrawable) mBottomNavigationView.getBackground();
@@ -172,6 +175,10 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
             }
         });
 
+        if (bandera == 1)
+        {
+            mBottomNavigationView.setSelectedItemId(R.id.opc_acceso_socios_1);
+        }
         super.onPostResume();
     }
 

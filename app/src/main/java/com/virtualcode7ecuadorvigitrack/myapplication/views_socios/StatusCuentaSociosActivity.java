@@ -26,6 +26,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.pdf.ViewPdfActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.*;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -250,5 +251,18 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+
+        if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
+        {
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+        }
+
+
+    }
 }

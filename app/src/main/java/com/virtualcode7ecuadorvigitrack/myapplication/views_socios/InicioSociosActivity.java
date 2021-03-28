@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -28,6 +29,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.services.cServiceTimerToke
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views_contacto.ContactoInicioActivity;
 
 public class InicioSociosActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener
@@ -104,6 +106,15 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
     @Override
     protected void onResume()
     {
+
+        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+        {
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+        }
+
+
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item)

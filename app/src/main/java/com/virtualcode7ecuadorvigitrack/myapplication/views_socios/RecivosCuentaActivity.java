@@ -23,8 +23,10 @@ import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterRecivos;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cReciver;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -195,4 +197,17 @@ public class RecivosCuentaActivity extends AppCompatActivity
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!new cSharedTokenValidation(RecivosCuentaActivity.this).readTokenValitation())
+        {
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+        }
+
+    }
 }

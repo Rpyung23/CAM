@@ -21,6 +21,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.models.cReciver;
 import com.virtualcode7ecuadorvigitrack.myapplication.pdf.ViewPdfActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
 import java.util.ArrayList;
 
@@ -174,6 +175,16 @@ public class ReciboDetalleScrollActivity extends AppCompatActivity implements Vi
         return;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
 
+        if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
+        {
+            Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntent);
+        }
+    }
 }

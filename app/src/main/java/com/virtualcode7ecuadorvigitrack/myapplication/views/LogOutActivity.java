@@ -30,6 +30,7 @@ public class LogOutActivity extends AppCompatActivity
             {
                 Intent mIntent = new Intent(LogOutActivity.this, InicioActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                mIntent.putExtra("bandera",1);
                 startActivity(mIntent);
                 finish();
             }
