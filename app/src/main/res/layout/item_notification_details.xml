@@ -1,45 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:background="@color/color_gris"
-    tools:context=".views_socios.NotificationDetailsSocioActivity"
     >
-    <include
-        android:id="@+id/id_view_toolbar_top"
-        layout="@layout/toolbar_top"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-    </include>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerNotificaciones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top"
-        >
-    </androidx.viewpager2.widget.ViewPager2>
-
-
     <androidx.cardview.widget.CardView
+
         app:cardElevation="5dp"
-        android:visibility="gone"
         app:cardCornerRadius="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top"
-        >
+        app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top">
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,75 +96,4 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_container_opc_notification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="35dp"
-        app:layout_constraintBottom_toTopOf="@id/linear_container_opc_notification"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        >
-        <TextView
-            android:id="@+id/tvNoLeido"
-            android:fontFamily="@font/roboto_regular"
-            android:textSize="@dimen/textsize_opc_notification_details"
-            android:textColor="@color/color_opc_notifiation_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/not_read"
-            android:layout_marginRight="12dp"
-            >
-        </TextView>
-        <TextView
-            android:id="@+id/txtDeleteNotification"
-            android:fontFamily="@font/roboto_regular"
-            android:textSize="@dimen/textsize_opc_notification_details"
-            android:textColor="@color/color_opc_notifiation_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_notification"
-            android:layout_marginRight="12dp"
-            >
-        </TextView>
-        <TextView
-            android:fontFamily="@font/roboto_regular"
-            android:textSize="@dimen/textsize_opc_notification_details"
-            android:textColor="@color/color_opc_notifiation_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/see_in_app"
-            >
-        </TextView>
-
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar"
-        android:splitTrack="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textsize_17sp"
-        android:layout_marginBottom="@dimen/toolbarTop_alto_70dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:fitsSystemWindows="true"
-        android:max="5"
-        android:progress="1"
-
-        android:progressDrawable="@drawable/skeerbar_progressbar"
-        android:thumb="@drawable/thumb_skeebar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_container_opc_notification"
-
-        />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

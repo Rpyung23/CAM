@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,7 @@ public class NotificationSocioFragment extends Fragment
     private androidx.appcompat.app.AlertDialog mAlertDialog;
     private cNotitifactionHandlers mNotificationHandlers;
     private int code_notification_result = 500;
+    private SwipeRefreshLayout mSwipeRefreshLayoutNotifications;
 
 
     @Override
@@ -73,8 +75,11 @@ public class NotificationSocioFragment extends Fragment
         mRecyclerViewNotification = mView.findViewById(R.id.id_recyclerview_notificationSocios);
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
         mLinearLayoutCompat = mView.findViewById(R.id.linearlayoutNotification);
+        mSwipeRefreshLayoutNotifications = mView.findViewById(R.id.swipeRefreshNotifications);
+
 
         mNotificationHandlers = new cNotitifactionHandlers(getContext());
+
 
         ItemTouchHelper.SimpleCallback simpleCallback =
                 new cRecyclerItemTouchHelperNoti(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,this);
@@ -91,6 +96,17 @@ public class NotificationSocioFragment extends Fragment
         mAlertDialogNotiProg = new cAlertDialogProgress().showAlertProgress(getContext(),"CONSULTANDO",false);
         mAlertDialogNotiProg.show();
         llenearNotificationArraysList();
+
+
+        mSwipeRefreshLayoutNotifications.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                llenearNotificationArraysList();
+            }
+        });
+
+
         return mView;
     }
 
@@ -111,6 +127,8 @@ public class NotificationSocioFragment extends Fragment
                     JSONObject mJsonObject = new JSONObject(response);
                     if (mJsonObject.getString("codigo").equals("200"))
                     {
+                        closeRefreshing();
+
                         JSONArray mJsonArrayNoti = mJsonObject.getJSONArray("resultado");
                         if (mJsonArrayNoti.length()>0)
                         {
@@ -142,7 +160,6 @@ public class NotificationSocioFragment extends Fragment
                             }
                             llenarRecycelrView();
 
-
                         }else
                             {
                                 new cAlertDialogProgress().closeAlertProgress(mAlertDialogNotiProg);
@@ -155,6 +172,7 @@ public class NotificationSocioFragment extends Fragment
                     }
                 } catch (JSONException e) {
                     Toasty.error(getContext(),"TRYCATH "+e.getMessage(),Toasty.LENGTH_LONG).show();
+                    closeRefreshing();
                 }
             }
         }, new Response.ErrorListener() {
@@ -163,6 +181,7 @@ public class NotificationSocioFragment extends Fragment
             {
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialogNotiProg);
                 Toasty.error(getContext(),error.getMessage(),Toasty.LENGTH_LONG).show();
+                closeRefreshing();
             }
         })
         {
@@ -196,6 +215,14 @@ public class NotificationSocioFragment extends Fragment
 
             mNotificationSocios.add(oNotificationSocio);
         }*/
+    }
+
+    private void closeRefreshing()
+    {
+        if(mSwipeRefreshLayoutNotifications.isRefreshing())
+        {
+            mSwipeRefreshLayoutNotifications.setRefreshing(false);
+        }
     }
 
     private void llenarRecycelrView()
@@ -239,8 +266,10 @@ public class NotificationSocioFragment extends Fragment
         {
             if(resultCode== Activity.RESULT_OK)
             {
-                mNotificationSocios = (ArrayList<cNotificationSocio>) data.getSerializableExtra("Notifications");
-                mAdapterNotificationSocios.notify();
+                if(data.getIntExtra("value",0) == 1)
+                {
+                    llenearNotificationArraysList();
+                }
             }
         }
     }
