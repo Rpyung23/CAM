@@ -29,6 +29,8 @@
         android:layout_marginTop="15dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+        app:boxCornerRadiusTopStart="7dp"
+        app:boxCornerRadiusTopEnd="7dp"
     app:startIconDrawable="@drawable/ic_person_add"
         android:textColorHint="@color/white"
         app:boxBackgroundColor="#8c2E3286"
@@ -45,17 +47,22 @@
         >
     </com.google.android.material.textfield.TextInputEditText>
 </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/id_button_validar"
         android:layout_marginTop="@dimen/margin"
         android:layout_width="@dimen/ancho_recovery_button"
         android:layout_height="58dp"
-        android:textColor="@color/purple_700"
+        android:background="@drawable/boton_border_round"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/ClubColorPrimary"
         android:text="@string/recovery_pass_botton"
         android:fontFamily="@font/roboto_regular"
-        android:textSize="17sp"
+        android:textAllCaps="false"
+        android:textSize="18sp"
     >
-</androidx.appcompat.widget.AppCompatButton>
+
+    </androidx.appcompat.widget.AppCompatButton>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

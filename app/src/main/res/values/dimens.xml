@@ -113,6 +113,11 @@
     <dimen name="textsize_cerrar_alert_cuestionario_covid">15sp</dimen>
     <dimen name="alto_item_notification">90dp</dimen>
     <dimen name="textsize_opc_notification_details">14sp</dimen>
+    <dimen name="alto_ancho_img_check_list_invitaciones">35dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10</dimen>
+    <dimen name="node_add_invitados">10sp</dimen>
+    <dimen name="alto_add_img_dni_invitado">200dp</dimen>
 
 
 </resources>

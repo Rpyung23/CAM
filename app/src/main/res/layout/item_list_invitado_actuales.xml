@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/line_view"
+        >
+    </View>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        >
+
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <ImageView
+            android:layout_width="@dimen/alto_ancho_img_check_list_invitaciones"
+            android:layout_height="@dimen/alto_ancho_img_check_list_invitaciones"
+            android:src="@drawable/ic_check_box"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            >
+        </ImageView>
+
+
+        <TextView
+            android:id="@+id/tvInvitados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invitados(s):"
+            android:fontFamily="@font/roboto_light"
+            android:layout_marginLeft="@dimen/margin_15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            android:textColor="@color/ClubColorPrimary"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvListNameInvitados"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juan Mendoza Alcázar\nPaul Jose Caceres\nAndrea Elizabeth Vizuete"
+            android:layout_marginLeft="@dimen/margin_15"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/tvInvitados"
+            android:textColor="@color/ClubColorPrimary"
+            android:fontFamily="@font/roboto_bold"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvFechaDesde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:text="Desde : "
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_light"
+            android:layout_marginLeft="@dimen/margin_15"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/tvListNameInvitados"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvListInvitadoFechaDesde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:text="2021/01/10"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/margin_5"
+            app:layout_constraintStart_toEndOf="@id/tvFechaDesde"
+            app:layout_constraintTop_toBottomOf="@id/tvListNameInvitados"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvFechaHasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:text="Hasta : "
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/margin_15"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/tvFechaDesde"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/tvListInvitadoFechaHasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:text=" 2021/01/10"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/margin_5"
+            app:layout_constraintStart_toEndOf="@id/tvFechaHasta"
+            app:layout_constraintTop_toBottomOf="@id/tvListInvitadoFechaDesde"
+            >
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

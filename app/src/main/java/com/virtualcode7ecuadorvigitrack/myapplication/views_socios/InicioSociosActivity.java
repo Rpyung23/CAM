@@ -229,11 +229,21 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
 
                 mAlertDialog.cancel();
                 mAlertDialog.hide();
-                finish();
+
+
+                Intent mIntentService = new Intent(InicioSociosActivity.this,cServiceTimerToken.class);
+
+                stopService(mIntentService);
+
+
+
                 new cSharedTokenValidation(InicioSociosActivity.this).writeToken("error");
                 Intent mIntent = new Intent(InicioSociosActivity.this,InicioActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntent);
+
+
+                finish();
             }
         });
         mBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener()

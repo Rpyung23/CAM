@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ClubColorPrimary">#2E3286</color>
+    <color name="ClubColorPrimary_16">#732E3286</color>
+    <color name="ClubColorPrimary_55">#8c2E3286</color>
     <color name="backgrount_beigs">#F3F3F3</color>
     <color name="backgrount_beigs_op_40">#66F3F3F3</color>
     <color name="purple_200">#FFBB86FC</color>
@@ -22,4 +24,5 @@
     <color name="color_prmary_fondo">#d9d5e3</color>
     <color name="color_gris">#F3F3F3</color>
     <color name="color_opc_notifiation_details">#6200EE</color>
+    <color name="btn_add_invitado">#88A919</color>
 </resources>

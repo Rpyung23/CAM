@@ -9,221 +9,236 @@
     android:orientation="vertical"
     >
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:scrollbars="vertical"
         android:background="@color/color_gris"
         >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/drawable_fondo_profile"
-            >
-            <androidx.cardview.widget.CardView
-                android:layout_margin="@dimen/margin_25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="10dp"
-                >
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:fontFamily="@font/roboto_regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/profile_hi_copy">
-                    </TextView>
-
-                    <TextView
-                        android:id="@+id/id_Textview_name_socio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Froylan Mendoza"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textsize_22sp"
-                        android:fontFamily="@font/roboto_bold">
-                    </TextView>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin"
-                            android:src="@drawable/ic_how_to_reg">
-                        </androidx.appcompat.widget.AppCompatImageView>
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:fontFamily="@font/roboto_regular"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/partner_number_copy">
-                            </TextView>
-
-                            <TextView
-                                android:id="@+id/id_textview_num_membre_"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234567890"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/textsize_profile_socio_num"
-                                android:fontFamily="@font/roboto_bold">
-                            </TextView>
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin"
-                            android:src="@drawable/ic_portrait"></androidx.appcompat.widget.AppCompatImageView>
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:fontFamily="@font/roboto_regular"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/profile_type_membership_copy"></TextView>
-
-                            <TextView
-                                android:id="@+id/id_type_membresia"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Familiar"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/roboto_regular"
-                                android:textSize="@dimen/textsize_17sp"></TextView>
-
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin"
-                            android:src="@drawable/ic_calendar_today">
-                        </androidx.appcompat.widget.AppCompatImageView>
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:fontFamily="@font/roboto_regular"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/profile_membre_since_copy"></TextView>
-
-                            <TextView
-                                android:id="@+id/id_socio_desde"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="2000/05/10"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/roboto_regular"
-                                android:textSize="@dimen/textsize_17sp"></TextView>
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/id_circle_covid_semaforo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin"
-                            android:src="@drawable/circle_green">
-                        </androidx.appcompat.widget.AppCompatImageView>
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:fontFamily="@font/roboto_regular"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Cuestionario COVID"></TextView>
-
-                            <TextView
-                                android:id="@+id/id_consultar_alert_dialog"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Consultar"
-                                android:textColor="@color/ClubColorPrimary"
-                                android:textSize="@dimen/textsize_17sp"
-                                android:fontFamily="@font/roboto_bold"
-                                ></TextView>
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-
-
-
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="@color/color_gris"
             >
 
-            <include
-                android:id="@+id/id_views_status_cuenta"
-                layout="@layout/card_status_cuenta">
-            </include>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/drawable_fondo_profile"
+                >
+                <androidx.cardview.widget.CardView
+                    android:layout_margin="@dimen/margin_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    >
 
-            <include
-                android:id="@+id/id_views_recibos_cuenta"
-                layout="@layout/card_recibos">
-            </include>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_hi_copy">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/id_Textview_name_socio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Froylan Mendoza"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_22sp"
+                            android:fontFamily="@font/roboto_bold">
+                        </TextView>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/margin"
+                                android:src="@drawable/ic_how_to_reg">
+                            </androidx.appcompat.widget.AppCompatImageView>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/partner_number_copy">
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/id_textview_num_membre_"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="1234567890"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/textsize_profile_socio_num"
+                                    android:fontFamily="@font/roboto_bold">
+                                </TextView>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/margin"
+                                android:src="@drawable/ic_portrait"></androidx.appcompat.widget.AppCompatImageView>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/profile_type_membership_copy"></TextView>
+
+                                <TextView
+                                    android:id="@+id/id_type_membresia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Familiar"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textSize="@dimen/textsize_17sp"></TextView>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/margin"
+                                android:src="@drawable/ic_calendar_today">
+                            </androidx.appcompat.widget.AppCompatImageView>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/profile_membre_since_copy"></TextView>
+
+                                <TextView
+                                    android:id="@+id/id_socio_desde"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="2000/05/10"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textSize="@dimen/textsize_17sp"></TextView>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/id_circle_covid_semaforo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/margin"
+                                android:src="@drawable/circle_green">
+                            </androidx.appcompat.widget.AppCompatImageView>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cuestionario COVID"></TextView>
+
+                                <TextView
+                                    android:id="@+id/id_consultar_alert_dialog"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Consultar"
+                                    android:textColor="@color/ClubColorPrimary"
+                                    android:textSize="@dimen/textsize_17sp"
+                                    android:fontFamily="@font/roboto_bold"
+                                    ></TextView>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <include
+                    android:id="@+id/id_views_status_cuenta"
+                    layout="@layout/card_status_cuenta">
+                </include>
+
+                <include
+                    android:id="@+id/id_views_recibos_cuenta"
+                    layout="@layout/card_recibos">
+                </include>
+
+                <include
+                    android:id="@+id/id_views_invitados"
+                    layout="@layout/card_invitados">
+                </include>
+
+                <include
+                    android:id="@+id/id_views_reservaciones"
+                    layout="@layout/card_reservaciones">
+                </include>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

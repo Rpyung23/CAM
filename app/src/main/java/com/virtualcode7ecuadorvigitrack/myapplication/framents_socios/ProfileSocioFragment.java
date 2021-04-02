@@ -59,6 +59,8 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
     private View mView;
     private View mViewStatusCuenta;
     private View mViewRecivos;
+    private View mViewInvitados;
+    private View mViewReservaciones;
     private cSharedPreferenSocio mSharedPreferenSocio;
     private TextView mTextViewNameSocio;
     private TextView mTextViewNumMembre;
@@ -113,6 +115,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mTextViewSaldo = mView.findViewById(R.id.id_membresia_saldo);
         mTextViewCovid = mView.findViewById(R.id.id_consultar_alert_dialog);
         mImageViewSemaforo = mView.findViewById(R.id.id_circle_covid_semaforo);
+        mViewInvitados = mView.findViewById(R.id.id_views_invitados);
 
 
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
@@ -123,6 +126,8 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mImageViewSemaforo.setOnClickListener(this);
         mViewStatusCuenta.setOnClickListener(this);
         mViewRecivos.setOnClickListener(this);
+        mViewInvitados.setOnClickListener(this);
+
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
         mSharedPreferencesMembresia = new cSharedPreferencesMembresia(getContext());
 
@@ -196,6 +201,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
             case R.id.id_consultar_alert_dialog:
                 readDatosCuestionario();
+                break;
+
+            case R.id.id_views_invitados:
+                
                 break;
         }
     }

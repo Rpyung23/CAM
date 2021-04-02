@@ -191,12 +191,12 @@ public class EventosFragment extends Fragment
                                 desface_++;
                             }
 
-                        }else
+                        }/*else
                             {
                                 Toasty.info(getContext(),"No más existen eventos disponibles",
                                         Toasty.LENGTH_LONG).show();
 
-                            }
+                            }*/
 
                     }else
                         {
@@ -329,11 +329,11 @@ public class EventosFragment extends Fragment
                 mRecyclerViewEventos.setAdapter(mAdapterEventos);
 
             }
-        }else
+        }/*else
         {
             Toasty.info(getContext(),"Lo sentimos no existen eventos disponibles"
                     ,Toasty.LENGTH_SHORT).show();
-        }
+        }*/
 
 
 

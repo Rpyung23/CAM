@@ -29,6 +29,8 @@
         android:textColorHint="@color/white"
         app:boxBackgroundColor="#8c2E3286"
         android:fontFamily="@font/roboto_regular"
+        app:boxCornerRadiusTopStart="7dp"
+        app:boxCornerRadiusTopEnd="7dp"
 
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -47,7 +49,7 @@
         android:id="@+id/id_button_validar"
         android:layout_marginTop="@dimen/margin"
         android:layout_width="210dp"
-        android:layout_height="58dp"
+        android:layout_height="50dp"
         android:textAllCaps="false"
         android:textColor="@color/ClubColorPrimary"
         android:text="@string/continue_"
@@ -78,12 +80,11 @@
         android:text="@string/recovery_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold_italic"
         >
     </TextView>
     <TextView
         android:id="@+id/id_newSocio_text"
-        android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="@dimen/textsize_17sp"
@@ -91,7 +92,7 @@
         android:text="@string/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         >
     </TextView>
 

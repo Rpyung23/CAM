@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/trnsparente"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_15"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_15"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_percent="0.3"
+            android:orientation="vertical"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDniInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dni_mexico"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+        </androidx.appcompat.widget.AppCompatImageView>
+
+        <TextView
+            android:id="@+id/tvNumInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invitado 1:"
+            android:textSize="@dimen/textsize_17sp"
+            android:textColor="@color/ClubColorPrimary"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toTopOf="@+id/imgDniInvitado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDniInvitado"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/lblNombreInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textColor="@color/ClubColorPrimary"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_light"
+            app:layout_constraintTop_toTopOf="@+id/tvNombreInvitado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNombreInvitado"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/lblCurpInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CURP:"
+            android:textColor="@color/ClubColorPrimary"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_light"
+            app:layout_constraintTop_toTopOf="@+id/tvCurpInvitado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCurpInvitado"
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edad:"
+            android:textColor="@color/ClubColorPrimary"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_light"
+            app:layout_constraintTop_toTopOf="@+id/tvEdadInvitado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEdadInvitado"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvNombreInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jorge Dorantes Montemayor"
+            android:textColor="@color/ClubColorPrimary"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toBottomOf="@+id/imgDniInvitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvCurpInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DOMJ891001HDFNES00"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreInvitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/ClubColorPrimary"
+            android:textSize="@dimen/textsize_17sp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvEdadInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="31"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/ClubColorPrimary"
+            android:textSize="@dimen/textsize_17sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurpInvitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+        </TextView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditInvitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            app:icon="@drawable/icon_content_edit"
+            android:text="EDITAR"
+            android:fontFamily="@font/roboto_medium"
+
+            app:layout_constraintTop_toBottomOf="@+id/tvEdadInvitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            >
+        </com.google.android.material.button.MaterialButton>
+
+
+        <View
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditInvitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+        </View>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

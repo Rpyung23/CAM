@@ -95,6 +95,8 @@
             android:textColorHint="@color/white"
             app:boxBackgroundColor="#8c2E3286"
             app:startIconTint="@color/white"
+            app:boxCornerRadiusTopStart="7dp"
+            app:boxCornerRadiusTopEnd="7dp"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id_edittextpassword"

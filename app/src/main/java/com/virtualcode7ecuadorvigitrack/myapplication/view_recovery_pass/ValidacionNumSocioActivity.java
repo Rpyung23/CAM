@@ -50,9 +50,11 @@ public class ValidacionNumSocioActivity extends AppCompatActivity implements Vie
                 /**open activity**/
                 mAlertDialog.cancel();
                 mAlertDialog.hide();
-                Intent mIntent = new Intent(ValidacionNumSocioActivity.this,UpdatePasswordActivity.class);
+                /*Intent mIntent = new Intent(ValidacionNumSocioActivity.this,UpdatePasswordActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(mIntent);
+                startActivity(mIntent);*/
+
+                finish();
             }
         });
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(ValidacionNumSocioActivity.this);

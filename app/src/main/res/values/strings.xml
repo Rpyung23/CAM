@@ -128,5 +128,19 @@
     <string name="not_read">Marcar como no leído</string>
     <string name="delete_notification">Eliminar</string>
     <string name="see_in_app">Ver en app</string>
+    <string name="realize_invitacion">Realiza tu invitación ahora</string>
+    <string name="list_invitaciones">Lista de invitaciones actuales y próximos</string>
+    <string name="solicitud_invitados">Solicitud de invitados</string>
+    <string name="add_date">Agregar fecha</string>
+    <string name="add_invitados">Agregar invitados</string>
+    <string name="note_add_invitados">*Puedes agregar más de 1 invitado</string>
+    <string name="resumer_solicitud">Resumen de solicitud</string>
+    <string name="location">Ubicación:</string>
+    <string name="list_invitados">Lista de invitados</string>
+    <string name="name_cam">Centro Asturiano de México A.C</string>
+    <string name="all_obligatorios">*Todos los campos son obligatorios</string>
+    <string name="menor_edad">Menor de edad</string>
+    <string name="btn_cancelar">CANCELAR</string>
+    <string name="add">AGREGAR</string>
 
 </resources>

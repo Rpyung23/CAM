@@ -10,4 +10,7 @@
     <dimen name="margin_bottom_titulo_evento_cntenido">70dp</dimen>
     <dimen name="margin_textinput_num_socio">15dp</dimen>
     <dimen name="textsize_opc_notification_details">14sp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10</dimen>
+    <dimen name="node_add_invitados">10sp</dimen>
 </resources>

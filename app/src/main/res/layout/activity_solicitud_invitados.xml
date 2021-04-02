@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view_invitado.SolicitudInvitadosActivity"
+    android:orientation="vertical"
+    android:background="@color/color_gris"
+    >
+
+
+    <include layout="@layout/toolbar_color">
+    </include>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardAddFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_15"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/margin_15"
+                >
+
+
+                <TextView
+                    android:text="@string/solicitud_invitados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/ClubColorPrimary"
+                    android:textSize="@dimen/textsize_25"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    >
+                </TextView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:cardElevation="15dp"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_5"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_calendar"
+
+                            android:layout_marginLeft="@dimen/margin_15"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/calendar_cuadriculado"
+                            android:tint="@color/ClubColorPrimary"
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+
+
+                            >
+                        </androidx.appcompat.widget.AppCompatImageView>
+
+                        <TextView
+                            android:text="@string/add_date"
+
+                            android:layout_marginLeft="@dimen/margin_5"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:textColor="@color/ClubColorPrimary"
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/img_calendar"
+
+                            >
+                        </TextView>
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_check_date"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/check_circle"
+                            android:visibility="invisible"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginRight="@dimen/margin_15"
+
+
+                            >
+                        </androidx.appcompat.widget.AppCompatImageView>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAddInvitados"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="@dimen/margin_10"
+                    app:cardElevation="15dp"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_5"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_add_invitado"
+
+                            android:layout_marginLeft="@dimen/margin_15"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_person_add"
+                            android:tint="@color/ClubColorPrimary"
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+
+
+                            >
+                        </androidx.appcompat.widget.AppCompatImageView>
+
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            app:layout_constraintStart_toEndOf="@+id/img_add_invitado"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            >
+                            <TextView
+                                android:id="@+id/tv_note_add_invitados"
+                                android:text="@string/add_invitados"
+
+                                android:layout_marginLeft="@dimen/margin_5"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textSize="@dimen/textsize_17sp"
+                                android:textColor="@color/ClubColorPrimary"
+
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                app:layout_constraintStart_toEndOf="@id/img_add_invitado"
+
+
+                                >
+                            </TextView>
+
+
+                            <TextView
+                                android:text="@string/note_add_invitados"
+                                android:layout_marginLeft="@dimen/margin_5"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_light"
+                                android:textSize="@dimen/node_add_invitados"
+                                android:textColor="@color/black"
+
+                                >
+                            </TextView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAddListInvitados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:visibility="gone"
+                    app:cardElevation="1dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@color/color_prmary_fondo"
+                    >
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_15"
+
+                        >
+
+                        <TextView
+                            android:paddingBottom="@dimen/margin_10"
+                            android:id="@+id/lblTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resumer_solicitud"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_22sp"
+                            android:fontFamily="@font/roboto_bold"
+
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            >
+                        </TextView>
+
+
+                        <TextView
+                            android:id="@+id/lblUbicacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/location"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+
+                            app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+                            app:layout_constraintStart_toStartOf="parentparent"
+                            >
+                        </TextView>
+
+
+                        <TextView
+                            android:id="@+id/tvUbicacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cuotola"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+
+                            app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+
+                            >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/lblLugar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lugar:"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+
+                            app:layout_constraintTop_toBottomOf="@+id/lblUbicacion"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/tvLugar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hotel"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+
+                            app:layout_constraintTop_toBottomOf="@+id/tvUbicacion"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            >
+                        </TextView>
+
+                        <View
+                            android:id="@+id/viewLine1"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/white"
+                            android:layout_marginTop="@dimen/margin_10"
+
+                            app:layout_constraintTop_toBottomOf="@+id/tvLugar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toTopOf="@+id/lblDesde"
+                            >
+                        </View>
+
+                        <TextView
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:id="@+id/lblDesde"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Desde:"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/viewLine1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/tvFechaDesde"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2021-02-02"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/viewLine1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/lblHasta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hasta:"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/lblDesde"
+                            app:layout_constraintStart_toStartOf="parent"
+                            >
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2021-02-02"
+                            android:textColor="@color/ClubColorPrimary"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/tvFechaDesde"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            >
+                        </TextView>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEdit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            app:icon="@drawable/icon_content_edit"
+                            android:text="EDITAR"
+                            android:visibility="gone"
+                            app:rippleColor="@color/trnsparente"
+                            app:layout_constraintTop_toBottomOf="@+id/lblHasta"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+
+                            >
+                        </com.google.android.material.button.MaterialButton>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/white"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/btnEdit"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            >
+                        </View>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardListInvitados"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="@dimen/margin_10"
+                    app:cardElevation="15dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@color/color_prmary_fondo"
+
+                    >
+
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="@string/list_invitados"
+
+                            android:layout_marginLeft="@dimen/margin_15"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:textColor="@color/ClubColorPrimary"
+
+                            app:layout_constraintTop_toTopOf="@id/btnVisibilityRecycler"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/btnVisibilityRecycler"
+                            >
+                        </TextView>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/btnVisibilityRecycler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_5"
+                            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                            android:tint="@color/ClubColorPrimary"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            >
+                        </androidx.appcompat.widget.AppCompatImageView>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    app:layout_constraintTop_toBottomOf="@+id/btnVisibilityRecycler"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/item_list_invitados"
+
+                    android:background="@drawable/boton_border_round"
+                    android:backgroundTint="@color/color_prmary_fondo"
+
+                    >
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveSolicitud"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="PROCESAR LA SOLICITUD"
+                    android:fontFamily="@font/roboto_bold"
+                    app:icon="@drawable/ic_baseline_save_24"
+                    >
+
+                </com.google.android.material.button.MaterialButton>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

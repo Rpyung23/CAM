@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"></uses-permission>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +16,12 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".views.LogOutActivity"
-            android:theme="@style/Theme.UserDialog"
-            >
-        </activity>
+        <activity android:name=".view_invitado.AddInvitadoActivity"></activity>
+        <activity android:name=".view_invitado.SolicitudInvitadosActivity" />
+        <activity android:name=".views_socios.InvitadosActivity" />
+        <activity
+            android:name=".views.LogOutActivity"
+            android:theme="@style/Theme.UserDialog" />
         <activity
             android:name=".views_socios.ReciboDetalleScrollActivity"
             android:parentActivityName=".views_socios.RecivosCuentaActivity">
@@ -169,13 +171,9 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-
         <service
             android:name=".services.cServiceTimerToken"
-            android:exported="false">
-        </service>
-
+            android:exported="false" />
     </application>
 
 </manifest>
