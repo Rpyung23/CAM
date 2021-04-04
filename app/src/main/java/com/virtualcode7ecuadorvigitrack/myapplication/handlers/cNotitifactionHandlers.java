@@ -76,6 +76,8 @@ public class cNotitifactionHandlers
         @Override
         public void run()
         {
+            Log.e("TOKEN_READ",token);
+
             LeidoNotification(getId_noti(),getToken());
         }
     };
@@ -164,9 +166,9 @@ public class cNotitifactionHandlers
 
     public void LeidoNotification(int id_noti,String token)
     {
-        /**https://centroasturianodemexico.mx/api/v1/notificaciones/3/estado/D**/
+
         mStringRequestNotification =
-                new StringRequest(mContext.getString(R.string.update_notification)+id_noti+"/estado/P"
+                new StringRequest(mContext.getString(R.string.update_notification)+id_noti+"/estado/L"
                         , new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response)
@@ -182,7 +184,7 @@ public class cNotitifactionHandlers
 
                             if (mJsonObject.getInt("codigo") != 200)
                             {
-                                Toasty.error(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();
+                                Toasty.error(mContext, "No se pudo cambiar el estado", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
@@ -292,10 +294,18 @@ public class cNotitifactionHandlers
                             {
                                 // Toasty.success(mContext,"Notificación Eliminada",Toasty.LENGTH_SHORT).show();
                                 Log.e("NOTIFICATION","LEIDA");
+
+                                Toasty.info(mContext,"Marcada como no leida",Toasty.LENGTH_SHORT)
+                                        .show();
+
                             }else
                             {
                                 //Toasty.info(mContext, "No se pudo Eliminar", Toast.LENGTH_SHORT).show();
                                 Log.e("NOTIFICATION","NO LEIDA");
+
+                                Toasty.error(mContext,"Update Invalid",Toasty.LENGTH_SHORT)
+                                        .show();
+
                             }
 
                         } catch (JSONException e) {

@@ -174,6 +174,11 @@ public class EventosFragment extends Fragment
                                 oE.setTitulo(mJsonObject.getString("titulo"));
                                 oE.setUri_foto(mJsonObject.getString("url_imagen_miniatura"));
                                 oE.setDireccion(mJsonObject.getString("direccion"));
+
+
+                                Log.e("FechasEvento",oE.getFecha()+"  -->  "+oE.getFecha_fin());
+
+
                                 mEventosArrayList.add(oE);
                             }
 

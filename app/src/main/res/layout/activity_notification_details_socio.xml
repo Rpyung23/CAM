@@ -8,118 +8,36 @@
     android:background="@color/color_gris"
     tools:context=".views_socios.NotificationDetailsSocioActivity"
     >
-    <include
-        android:id="@+id/id_view_toolbar_top"
-        layout="@layout/toolbar_top"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-    </include>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerNotificaciones"
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
-    </androidx.viewpager2.widget.ViewPager2>
 
-
-    <androidx.cardview.widget.CardView
-        app:cardElevation="5dp"
-        android:visibility="gone"
-        app:cardCornerRadius="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top"
-        >
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin"
-            android:orientation="vertical"
+        <include
+            android:id="@+id/id_view_toolbar_top"
+            layout="@layout/toolbar_top"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             >
+        </include>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_asturian_primary_color"
-                    >
-                </ImageView>
-                <TextView
-                    android:textSize="@dimen/textsize_22sp"
-                    android:gravity="center"
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Centro Asturiano de Mexico"
-                    >
-                </TextView>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerNotificaciones"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_view_toolbar_top"
+            >
+        </androidx.viewpager2.widget.ViewPager2>
 
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_marginTop="@dimen/margin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                >
-                <TextView
-                    android:layout_weight="0.5"
-                    android:id="@+id/id_textview_tipo_noti"
-                    android:textSize="@dimen/textsize_22sp"
-                    android:fontFamily="@font/roboto_bold"
-
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pago Aceptado"
-                    >
-                </TextView>
-                <TextView
-                    android:fontFamily="@font/roboto_regular"
-                    android:layout_weight="0.5"
-                    android:id="@+id/id_textview_date_noti"
-                    android:textSize="@dimen/textsize_17sp"
-                    android:gravity="end"
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="22/05/2020"
-                    >
-                </TextView>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <TextView
-                android:layout_marginTop="@dimen/margin"
-                android:id="@+id/id_textview_body_noti"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/loren_xxipsum"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/roboto_regular"
-                >
-            </TextView>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_container_opc_notification"
@@ -155,6 +73,7 @@
             >
         </TextView>
         <TextView
+            android:visibility="gone"
             android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/textsize_opc_notification_details"
             android:textColor="@color/color_opc_notifiation_details"

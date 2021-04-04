@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -86,8 +87,10 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
         mTextViewTop = findViewById(R.id.id_detalles_toolbar_top);
 
         /***Cantidad de Notification**/
+        mSeekBar.setEnabled(false);
         mSeekBar.setMax(CantNotification);
         mSeekBar.setProgress(ProgresoNotification+1);
+
         /*********/
 
         mTextViewTop.setText("DETALLE");
@@ -129,6 +132,7 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
 
                     mSeekBar.setProgress(position+1);
 
+
                     mNotificationSocioAux = mNotificationSocios.get(position);
                 }
 
@@ -167,8 +171,11 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
 
                 mNotitifactionHandlers.runDelete();
 
+                banderaCambios = true;
+
                 if(mNotificationSocios.size() == 0)
                 {
+                    send_intent_result();
                     finish();
                 }
 
@@ -189,15 +196,18 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
                         if(progress == mNotificationSocios.size())
                         {
                             mSeekBar.setProgress(mNotificationSocios.size());
+                            //mSeekBar.setProgress(progress-1);
                         }else
                             {
                                 mSeekBar.setProgress(progress);
+                                //mSeekBar.setProgress(progress-1);
                             }
                     }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
 
             }
 
@@ -270,11 +280,36 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case android.R.id.home:
-                finish();
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+
+    private void send_intent_result()
+    {
+
+        Intent mIntent = new Intent();
+
+        if (banderaCambios)
+        {
+            mIntent.putExtra("bandera",1);
+        }else
+            {
+                mIntent.putExtra("bandera",0);
+            }
+
+        setResult(Activity.RESULT_OK,mIntent);
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+        send_intent_result();
+        finish();
+    }
 }

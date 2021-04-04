@@ -258,7 +258,7 @@
                             android:fontFamily="@font/roboto_bold"
 
                             app:layout_constraintTop_toBottomOf="@+id/lblTitle"
-                            app:layout_constraintStart_toStartOf="parentparent"
+                            app:layout_constraintStart_toStartOf="parent"
                             >
                         </TextView>
 
@@ -478,11 +478,14 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSaveSolicitud"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/margin_10"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:text="PROCESAR LA SOLICITUD"
+
+                    app:iconGravity="textStart"
+
                     android:fontFamily="@font/roboto_bold"
                     app:icon="@drawable/ic_baseline_save_24"
                     >

@@ -12,6 +12,8 @@ import com.virtualcode7ecuadorvigitrack.myapplication.notificaciones.cNotificati
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
+import java.util.concurrent.TimeUnit;
+
 import es.dmoral.toasty.Toasty;
 
 public class cServiceTimerToken extends Service
@@ -34,6 +36,9 @@ public class cServiceTimerToken extends Service
 
             mSharedTokenValidation = new cSharedTokenValidation(getApplicationContext());
             mSharedTokenValidation.writeToken("error");
+
+
+            mHandler.removeCallbacks(mRunnable);
 
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -72,14 +77,16 @@ public class cServiceTimerToken extends Service
 
         }
 
-        //570000
-        mHandler.postDelayed(mRunnable,570000);/** 9.5 minutos **/
+        mHandler.postDelayed(mRunnable, TimeUnit.MILLISECONDS.convert(9,TimeUnit.MINUTES));/** 9.5 minutos **/
 
         return START_NOT_STICKY;
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
+        mHandler.removeCallbacks(mRunnable);
+
         super.onDestroy();
     }
 }

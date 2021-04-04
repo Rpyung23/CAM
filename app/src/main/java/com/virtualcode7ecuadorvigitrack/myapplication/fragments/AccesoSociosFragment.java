@@ -1,6 +1,7 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.utils.HideKeys;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.view_recovery_pass.ValidacionNumSocioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.LoginPassActivity;
@@ -36,6 +39,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
+
+import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class AccesoSociosFragment extends Fragment implements View.OnClickListener
@@ -66,6 +71,13 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
         mAlertDialog = new cAlertDialogProgress()
                 .showAlertProgress(getContext(),"Consultando...",false);
 
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                new HideKeys().ocultar(getActivity());
+            }
+        });
         mTextViewRecoveryPass.setOnClickListener(this);
         mButtonContinuar.setOnClickListener(this);
         mTextViewRegister.setOnClickListener(this);
@@ -80,9 +92,10 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
             case R.id.id_button_validar:
                 if (!mTextInputEditTextCodigoUser.getText().toString().isEmpty())
                 {
+                    new HideKeys().ocultar(getActivity());
+
                     mAlertDialog.show();
                     cosumirApiRestLogin();
-
                 }else
                     {
                         /****/
@@ -90,11 +103,15 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
                     }
                 break;
             case R.id.id_recovery_text:
+                new HideKeys().ocultar(getActivity());
+
                 Intent mIntentRecoveryPass = new Intent(getActivity(), ValidacionNumSocioActivity.class);
                 mIntentRecoveryPass.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntentRecoveryPass);
                 break;
             case R.id.id_newSocio_text:
+
+                new HideKeys().ocultar(getActivity());
 
                 Uri uri = Uri.parse("http://centroasturianodemexico.mx/registro/registro-app");
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri );
@@ -171,4 +188,7 @@ public class AccesoSociosFragment extends Fragment implements View.OnClickListen
         intent.putExtra("oSocio",oS);
         startActivity(intent);
     }
+
+
+
 }

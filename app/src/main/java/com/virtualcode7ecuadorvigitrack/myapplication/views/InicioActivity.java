@@ -149,7 +149,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                     case  R.id.opc_acceso_socios_1:
                         goneViewToolbarTop();
 
-                        if (new cSharedTokenValidation(InicioActivity.this).readTokenValitation())
+                        if (new cSharedTokenValidation(InicioActivity.this).readTokenValitationFragmentInicio())
                         {
                             Intent mIntent = new Intent(InicioActivity.this,
                                     InicioSociosActivity.class);

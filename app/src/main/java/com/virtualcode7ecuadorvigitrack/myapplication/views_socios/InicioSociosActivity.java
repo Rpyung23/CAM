@@ -192,6 +192,12 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 stopService(mIntentS);
 
                 finalMAlertDialog.cancel();
+
+                Intent mIntent = new Intent(InicioSociosActivity.this, InicioActivity.class);
+                mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                mIntent.putExtra("bandera",1);
+                startActivity(mIntent);
+
                 finish();
             }
         });
@@ -240,6 +246,7 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 new cSharedTokenValidation(InicioSociosActivity.this).writeToken("error");
                 Intent mIntent = new Intent(InicioSociosActivity.this,InicioActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mIntent.putExtra("bandera",1);
                 startActivity(mIntent);
 
 

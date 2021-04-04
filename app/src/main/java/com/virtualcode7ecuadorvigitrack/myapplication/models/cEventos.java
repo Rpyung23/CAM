@@ -16,8 +16,16 @@ public class cEventos implements Serializable
 
     public cEventos()
     {
-        this.acerca_de ="";
+        this.id_evento = 0;
+        this.fecha = "";
+        this.titulo = "";
+        this.direccion = "";
+        this.acerca_de = "";
+        this.uri_foto = "";
+        this.fecha_fin = "";
     }
+
+
 
     public int getId_evento() {
         return id_evento;

@@ -47,7 +47,7 @@
 
             <TextView
                 android:fontFamily="@font/roboto_regular"
-                android:id="@+id/id_textview_fecha_fin"
+                android:id="@+id/id_textview_fecha_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -87,7 +87,8 @@
 
             <TextView
                 android:fontFamily="@font/roboto_regular"
-                android:id="@+id/id_textview_fecha_inicio"
+                android:id="@+id/id_textview_fecha_fin"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

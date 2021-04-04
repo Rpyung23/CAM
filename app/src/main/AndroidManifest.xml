@@ -100,7 +100,8 @@
         <activity android:name=".pdf.ViewPdfActivity" />
         <activity
             android:name=".views_socios.NotificationDetailsSocioActivity"
-            android:parentActivityName=".views_socios.InicioSociosActivity">
+            android:parentActivityName=".views_socios.InicioSociosActivity"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views_socios.InicioSociosActivity" />

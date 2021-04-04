@@ -2,7 +2,9 @@ package com.virtualcode7ecuadorvigitrack.myapplication.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -33,6 +35,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.services.cServiceTimerToke
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferencesMembresia;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
+import com.virtualcode7ecuadorvigitrack.myapplication.utils.HideKeys;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
 
@@ -63,6 +66,9 @@ public class LoginPassActivity extends AppCompatActivity
     private TextView mTextViewNumMem;
     private cToken mToken;
     private TextView mTextViewNoSoyYo;
+    private Activity mActivity;
+    private LinearLayoutCompat mLinearLayoutCompat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +78,16 @@ public class LoginPassActivity extends AppCompatActivity
         mSocio = (cSocio) getIntent().getSerializableExtra("oSocio");
         mToken = new cToken();
 
+        mActivity = this;
+
         mTextViewNumMem = findViewById(R.id.id_textview_num_membre);
         mTextViewName1 = findViewById(R.id.id_name_titulo_1);
         mTextViewName2 = findViewById(R.id.id_name_titulo_2);
         mTextViewNoSoyYo = findViewById(R.id.id_no_soy_yo);
+
+        mLinearLayoutCompat = findViewById(R.id.LinearLayout);
+
+
         mTextInputEditTextPass = findViewById(R.id.id_edittextpassword);
 
         mStringNames =  mSocio.getNombre_socio().split(" ");
@@ -102,10 +114,19 @@ public class LoginPassActivity extends AppCompatActivity
             }
 
 
+        mLinearLayoutCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                new HideKeys().ocultar(mActivity);
+            }
+        });
+
         mTextViewNoSoyYo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+                new HideKeys().ocultar(mActivity);
                 finish();
             }
         });
@@ -116,6 +137,8 @@ public class LoginPassActivity extends AppCompatActivity
             {
                 if (!mTextInputEditTextPass.getText().toString().isEmpty())
                 {
+                    new HideKeys().ocultar(mActivity);
+
                     mAlertDialog.show();
                     mToken.readTokenMovil().addOnSuccessListener(new OnSuccessListener<String>() {
                         @Override

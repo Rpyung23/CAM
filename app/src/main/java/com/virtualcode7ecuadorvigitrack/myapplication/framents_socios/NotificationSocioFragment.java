@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,8 +94,7 @@ public class NotificationSocioFragment extends Fragment
 
 
 
-        mAlertDialogNotiProg = new cAlertDialogProgress().showAlertProgress(getContext(),"CONSULTANDO",false);
-        mAlertDialogNotiProg.show();
+
         llenearNotificationArraysList();
 
 
@@ -114,6 +114,10 @@ public class NotificationSocioFragment extends Fragment
 
     private void llenearNotificationArraysList()
     {
+
+        mAlertDialogNotiProg = new cAlertDialogProgress().showAlertProgress(getContext(),"CONSULTANDO",false);
+        mAlertDialogNotiProg.show();
+
 
         mStringRequestNotfication= new StringRequest(Request.Method.GET,
                 getString(R.string.api_rest_notificaciones)
@@ -235,6 +239,15 @@ public class NotificationSocioFragment extends Fragment
             {
                 //Toasty.success(getContext(),"click",Toasty.LENGTH_LONG).show();
                 int  pos = mRecyclerViewNotification.getChildAdapterPosition(view);
+
+                mNotificationHandlers.setId_noti(mNotificationSocios.get(pos).getId_notificacion());
+
+
+                mNotificationHandlers.setToken(mSharedPreferenSocio.leerdatosSocio().getToken());
+
+
+                mNotificationHandlers.runLeido();
+
                 mNotificationSocios.get(pos).setLeido(true);
 
                 //mAdapterNotificationSocios.notifyItemChanged(mRecyclerViewNotification.getChildAdapterPosition(view), null);
@@ -254,7 +267,7 @@ public class NotificationSocioFragment extends Fragment
         mIntent.putExtra("cantidadNotification",tam);
         mIntent.putExtra("PositionSeekbar",pos);
         mIntent.putExtra("NotificationSocios",mNotificationSocios);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivityForResult(mIntent,code_notification_result);
     }
 
@@ -266,12 +279,30 @@ public class NotificationSocioFragment extends Fragment
         {
             if(resultCode== Activity.RESULT_OK)
             {
-                if(data.getIntExtra("value",0) == 1)
+                if(data!=null)
                 {
-                    llenearNotificationArraysList();
+                    int bandera = data.getIntExtra("bandera",0);
+
+                    if(bandera == 1)
+                    {
+                        llenearNotificationArraysList();
+                        Log.e("INTENT","BANDERA 1");
+                    }else
+                        {
+                            Log.e("INTENT","BANDERA 0");
+                        }
+                }else
+                    {
+                        Log.e("INTENT","SIN CAMBIOS UPDATE");
+                    }
+            }else
+                {
+                    Log.e("INTENT","RESULT NO OK");
                 }
+        }else
+            {
+                Log.e("INTENT","NO REQUEST CODE");
             }
-        }
     }
 
     private void alertDialogTimeOut()

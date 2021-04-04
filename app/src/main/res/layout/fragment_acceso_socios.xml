@@ -41,6 +41,7 @@
             android:inputType="text"
             android:singleLine="true"
             android:fontFamily="@font/roboto_regular"
+            android:imeOptions="actionDone"
             >
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>

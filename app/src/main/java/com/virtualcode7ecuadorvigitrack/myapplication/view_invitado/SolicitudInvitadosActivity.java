@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.virtualcode7ecuadorvigitrack.myapplication.R;
+
 public class SolicitudInvitadosActivity extends AppCompatActivity {
 
     @Override
