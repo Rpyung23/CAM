@@ -54,6 +54,7 @@
                 android:layout_margin="@dimen/margin"
                 >
                 <TextView
+                    android:maxLines="2"
                     android:fontFamily="@font/roboto_bold"
                     android:id="@+id/id_textview_titulo"
                     android:textColor="@color/ClubColorPrimary"

@@ -43,7 +43,7 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
     @Override
     public cViewHolderEventos onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View mView = LayoutInflater.from(mContext).inflate(R.layout.card_eventos,parent,false);
+        View mView = LayoutInflater.from(mContext).inflate(R.layout.card_eventos_3,parent,false);
         mView.setOnClickListener(this);
         return new cViewHolderEventos(mView);
     }
@@ -51,14 +51,14 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
     @Override
     public void onBindViewHolder(@NonNull cViewHolderEventos holder, int position)
     {
-
-
-
-        if ( mEventosArrayList.get(position).getFecha_fin()==null
-                ||mEventosArrayList.get(position).getFecha_fin().isEmpty())
+        if(getItemCount()>0)
         {
-            holder.mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
-        }else
+
+            if ( mEventosArrayList.get(position).getFecha_fin()==null
+                    ||mEventosArrayList.get(position).getFecha_fin().isEmpty())
+            {
+                holder.mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
+            }else
             {
                 holder.mLinearLayoutCompatFechaFin.setVisibility(View.VISIBLE);
                 holder.mTextViewFechaDestino.setText(new cStringMesDia().mes(mEventosArrayList.get(position).getFecha_fin()));
@@ -74,23 +74,26 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
 
 
-        if(mEventosArrayList.get(position).getFecha().equals(mEventosArrayList.get(position).getFecha_fin()))
-        {
-            /****/
-            holder.mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
-            holder.mTextViewFechaDesde.setVisibility(View.GONE);
-            holder.mViewFechasContainer.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL));
-            //holder.mViewFechasContainer.;
-        }
+            if(mEventosArrayList.get(position).getFecha().equals(mEventosArrayList.get(position).getFecha_fin()))
+            {
+                /****/
+                holder.mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
+                holder.mTextViewFechaDesde.setVisibility(View.GONE);
+
+                LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams) holder.mLinearLayoutCompat_Dates_All.getLayoutParams();
+
+                mLayoutParams.setMargins(4,-60,4,0);
+
+                holder.mLinearLayoutCompat_Dates_All.setLayoutParams(mLayoutParams);
+            }
 
 
-        holder.mTextViewTitulo.setText(mEventosArrayList.get(position).getTitulo());
-        //holder.mTextViewTitulo.setText(mEventosArrayList.get(position).getTitulo());
-        holder.mTextViewDireccion.setText(mEventosArrayList.get(position).getDireccion());
-        holder.mTextViewFechaInicio.setText(new cStringMesDia().mes(mEventosArrayList.get(position).getFecha()));
+            holder.mTextViewTitulo.setText(mEventosArrayList.get(position).getTitulo());
+            //holder.mTextViewTitulo.setText(mEventosArrayList.get(position).getTitulo());
+            holder.mTextViewDireccion.setText(mEventosArrayList.get(position).getDireccion());
+            holder.mTextViewFechaInicio.setText(new cStringMesDia().mes(mEventosArrayList.get(position).getFecha()));
 
-        holder.mTextViewFechaInicioNum.setText(new cStringMesDia().dia(mEventosArrayList.get(position).getFecha()));
+            holder.mTextViewFechaInicioNum.setText(new cStringMesDia().dia(mEventosArrayList.get(position).getFecha()));
 
         /*if (holder.mTextViewFechaInicio.getText().length()>6)
         {
@@ -99,15 +102,16 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
         }*/
 
-        Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
-                .error(R.drawable.img_error)
-                .placeholder(R.drawable.img_load)
-                .into(holder.mImageView);
-        /**
-         *     <dimen name="texto_fecha_destino_inicio">12sp</dimen>
-         *     <dimen name="textsize_num_fecha">20sp</dimen>
-         *
-         * **/
+            Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
+                    .error(R.drawable.img_error)
+                    .placeholder(R.drawable.img_load)
+                    .into(holder.mImageView);
+            /**
+             *     <dimen name="texto_fecha_destino_inicio">12sp</dimen>
+             *     <dimen name="textsize_num_fecha">20sp</dimen>
+             *
+             * **/
+        }
     }
 
     @Override
@@ -136,6 +140,10 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
         private TextView mTextViewFechaDestinoNum;
         private LinearLayoutCompat mLinearLayoutCompatFechaFin;
 
+
+        private LinearLayoutCompat mLinearLayoutCompat_Dates_All;
+
+
         private TextView mTextViewFechaDesde;
         private View mViewFechasContainer;
 
@@ -150,6 +158,8 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
             mTextViewFechaDestinoNum = itemView.findViewById(R.id.id_textview_fecha_fin_num);
             mLinearLayoutCompatFechaFin = itemView.findViewById(R.id.id_linear_layout_fecha_fin);
             mCardView = itemView.findViewById(R.id.id_card_view_evento);
+
+            mLinearLayoutCompat_Dates_All = itemView.findViewById(R.id.linear_layout_cotainer_fechas_all);
 
             mLinearLayoutCompatFechaFin = itemView.findViewById(R.id.id_linear_layout_fecha_fin);
             mTextViewFechaDesde = itemView.findViewById(R.id.id_textview_desde_texto);

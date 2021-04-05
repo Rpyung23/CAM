@@ -57,6 +57,8 @@
                 >
 
                 <TextView
+                    android:paddingTop="2dp"
+                    android:maxLines="2"
                     android:id="@+id/id_textview_titulo"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/ClubColorPrimary"
@@ -84,6 +86,7 @@
                 </TextView>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include

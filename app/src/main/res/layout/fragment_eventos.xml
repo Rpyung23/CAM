@@ -37,7 +37,7 @@
                 android:layout_marginLeft="@dimen/margin"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="2"
-                tools:listitem="@layout/card_evento2"
+                tools:listitem="@layout/card_eventos_3"
                 android:backgroundTint="@color/color_gris"
                 >
             </androidx.recyclerview.widget.RecyclerView>
