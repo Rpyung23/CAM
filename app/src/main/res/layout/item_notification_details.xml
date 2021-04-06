@@ -68,7 +68,7 @@
                     >
                 </TextView>
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/roboto_light"
                     android:layout_weight="0.5"
                     android:id="@+id/id_textview_date_noti"
                     android:textSize="@dimen/textsize_17sp"

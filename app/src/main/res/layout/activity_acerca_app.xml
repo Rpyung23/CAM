@@ -78,8 +78,8 @@
 
 
                         <TextView
-                            android:fontFamily="@font/roboto_regular"
                             android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_bold"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/ClubColorPrimary"
                             android:text="Versión de la app\n1.0"
@@ -125,18 +125,17 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
-                                android:fontFamily="@font/roboto_regular"
                                 android:textSize="@dimen/textsize_17sp"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/ClubColorPrimary"
                                 android:text=" Desarrollado por"
                                 android:layout_margin="@dimen/margin"
+                                android:fontFamily="@font/roboto_bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                             </TextView>
                             <TextView
                                 android:fontFamily="@font/roboto_bold"
-                                android:textStyle="bold"
                                 android:textSize="@dimen/textsize_17sp"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/ClubColorPrimary"

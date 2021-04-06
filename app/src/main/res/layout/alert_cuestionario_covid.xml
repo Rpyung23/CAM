@@ -19,7 +19,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_medium"
             android:text="Cuestionario COVID"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
@@ -31,7 +31,7 @@
         </androidx.appcompat.widget.AppCompatTextView>
 
         <TextView
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_medium"
             android:id="@+id/id_cerrar_alert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="Beneficiario"
             android:textColor="@color/ClubColorPrimary"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/roboto_medium"
             android:layout_weight="0.25"
             android:paddingLeft="10dp"
             >
@@ -71,7 +71,7 @@
             android:text="Tipo"
             android:gravity="center"
             android:textColor="@color/ClubColorPrimary"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/roboto_medium"
             android:layout_weight="0.4"
             >
         </androidx.appcompat.widget.AppCompatTextView>
@@ -82,7 +82,7 @@
             android:text="Estado"
             android:gravity="center"
             android:textColor="@color/ClubColorPrimary"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/roboto_medium"
             android:layout_weight="0.35"
             >
         </androidx.appcompat.widget.AppCompatTextView>

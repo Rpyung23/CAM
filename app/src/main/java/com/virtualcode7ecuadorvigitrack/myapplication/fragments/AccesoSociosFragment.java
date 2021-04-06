@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cSocio;
@@ -45,7 +46,7 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 public class AccesoSociosFragment extends Fragment implements View.OnClickListener
 {
-    private Button mButtonContinuar;
+    private MaterialButton mButtonContinuar;
     private View mView;
     private TextInputEditText mTextInputEditTextCodigoUser;
     private TextView mTextViewRecoveryPass;

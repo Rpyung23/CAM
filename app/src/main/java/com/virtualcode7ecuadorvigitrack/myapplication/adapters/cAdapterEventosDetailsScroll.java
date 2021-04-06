@@ -1,6 +1,7 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -65,7 +66,6 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
         holder.mTextViewTitle.setText(mEventosArrayList.get(position).getTitulo());
 
-        holder.mTextViewAcerca.setText(Html.fromHtml(mEventosArrayList.get(position).getAcerca_de()));
 
 
 
@@ -86,6 +86,15 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
                 .into(holder.mImageView);
 
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            holder.mTextViewAcerca
+                    .setText(Html.fromHtml(mEventosArrayList.get(position)
+                            .getAcerca_de(),Html.FROM_HTML_MODE_LEGACY));
+        }else {
+            holder.mTextViewAcerca
+                    .setText(Html.fromHtml(mEventosArrayList.get(position)
+                            .getAcerca_de()));
+        }
 
 
         holder.mTextViewAcerca.setMovementMethod(LinkMovementMethod.getInstance());
@@ -93,8 +102,18 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
 
 
+        if(holder.mTextViewTitle.getLineCount()==1)
+        {
 
-        if(holder.mTextViewTitle.getLineCount()==1 || holder.mTextViewTitle.getLineCount() == 2)
+            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
+                    holder.mLinearLayoutCompat.getLayoutParams();
+
+            mLayoutParams.setMargins(0,-230,0,0);
+
+            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        }
+
+        if(holder.mTextViewTitle.getLineCount() == 2)
         {
 
             LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)

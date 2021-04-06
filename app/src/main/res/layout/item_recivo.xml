@@ -102,7 +102,7 @@
                     android:textAlignment="viewEnd"
                     android:textSize="@dimen/textsize_17sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/textView_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

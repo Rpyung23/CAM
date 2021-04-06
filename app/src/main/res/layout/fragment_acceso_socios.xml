@@ -9,14 +9,15 @@
     android:background="@drawable/background_gradiente"
     tools:context=".fragments.AccesoSociosFragment"
     android:gravity="center_horizontal">
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_marginTop="?actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_main_logo"
+        android:tint="@color/white"
         android:layout_marginBottom="20dp"
         >
-    </ImageView>
+    </androidx.appcompat.widget.AppCompatImageView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginLeft="@dimen/margin_textinput_num_socio"
@@ -46,20 +47,21 @@
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/id_button_validar"
         android:layout_marginTop="@dimen/margin"
         android:layout_width="210dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:textAllCaps="false"
         android:textColor="@color/ClubColorPrimary"
         android:text="@string/continue_"
         android:textSize="19sp"
-        android:fontFamily="@font/roboto_regular"
-        android:background="@drawable/boton_border_round"
-        android:backgroundTint="@color/white"
+        android:fontFamily="@font/roboto_medium"
+        app:cornerRadius="7dp"
+        app:backgroundTint="@color/white"
+        android:theme="@style/Widget.AppCompat.Button"
         >
-    </androidx.appcompat.widget.AppCompatButton>
+    </com.google.android.material.button.MaterialButton>
 
     <TextView
 
@@ -69,7 +71,7 @@
         android:text="@string/olvidates_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_medium"
         >
     </TextView>
     <TextView
@@ -81,7 +83,7 @@
         android:text="@string/recovery_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold_italic"
+        android:fontFamily="@font/roboto_mediumitalic"
         >
     </TextView>
     <TextView
@@ -93,7 +95,7 @@
         android:text="@string/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_medium"
         >
     </TextView>
 

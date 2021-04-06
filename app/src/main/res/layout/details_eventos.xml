@@ -67,6 +67,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:visibility="gone"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/ClubColorPrimary"
                 android:id="@+id/textView_hint_about_event"
@@ -78,6 +79,7 @@
 
             <TextView
                 android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/black"
                 android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginLeft="@dimen/spacing_large"
                 android:id="@+id/textView_about_event"

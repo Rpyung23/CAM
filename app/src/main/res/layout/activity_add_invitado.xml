@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/all_obligatorios"
-                android:fontFamily="@font/roboto_light"
+                android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/black"
                 >
             </TextView>
@@ -126,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Subir foto identificación del invitado"
-                android:fontFamily="@font/roboto_light"
+                android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/black"
                 android:gravity="center"
                 >
@@ -157,6 +157,7 @@
                     android:textColor="@color/red"
                     app:icon="@drawable/ic_baseline_close_24"
                     app:iconTint="@color/red"
+                    android:fontFamily="@font/roboto_regular"
                     app:strokeColor="@color/red"
                     android:layout_marginRight="@dimen/margin_15"
                     >
@@ -166,6 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:backgroundTint="@color/btn_add_invitado"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/add"
                     app:icon="@drawable/ic_baseline_save_24"
                     app:iconTint="@color/white"

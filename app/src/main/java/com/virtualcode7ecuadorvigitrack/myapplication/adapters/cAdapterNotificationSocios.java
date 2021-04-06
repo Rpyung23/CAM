@@ -63,6 +63,7 @@ public class cAdapterNotificationSocios extends
         if (mNotificationSocioArrayList.get(position).isLeido())
         {
             holder.mTextViewTitulo.setTypeface(Typeface.DEFAULT);
+            holder.mTextViewFecha.setTypeface(Typeface.DEFAULT);
             holder.mImageView.setBackground(mContext.getDrawable(R.drawable.bg_img_notification_open));
             holder.mImageView.setImageDrawable(mContext.getDrawable(R.drawable.ic_mark_email_read));
         }

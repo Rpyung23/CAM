@@ -486,7 +486,7 @@
 
                     app:iconGravity="textStart"
 
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/roboto_regular"
                     app:icon="@drawable/ic_baseline_save_24"
                     >
 

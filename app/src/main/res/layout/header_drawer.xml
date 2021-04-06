@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,7 +19,7 @@
             android:layout_marginTop="@dimen/margin"
             android:layout_marginLeft="20dp"
             android:id="@+id/id_textview_name"
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:textSize="@dimen/textsize_30"
             android:text="qwqw"
             android:backgroundTint="@android:color/transparent"
@@ -40,6 +41,7 @@
             android:backgroundTint="@android:color/transparent"
             android:background="@android:color/transparent"
             android:textColor="@color/white"
+            android:fontFamily="@font/roboto_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </TextView>

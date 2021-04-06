@@ -46,7 +46,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.90"
+            android:layout_weight="0.85"
             android:orientation="vertical"
             >
             <ImageView
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0.10"
+            android:layout_weight="0.15"
             android:orientation="vertical"
             >
 
@@ -103,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="20 oct"
                     android:textSize="@dimen/font_small" />
 

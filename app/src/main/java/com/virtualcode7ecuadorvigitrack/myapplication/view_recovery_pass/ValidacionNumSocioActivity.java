@@ -10,12 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
 public class ValidacionNumSocioActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private Button mButtonRecoveryPass;
+    private MaterialButton mButtonRecoveryPass;
     private AlertDialog mAlertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)

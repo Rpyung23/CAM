@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,7 +104,8 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         mView =  inflater.inflate(R.layout.fragment_profile_socio, container, false);
         mViewRecivos = mView.findViewById(R.id.id_views_recibos_cuenta);
@@ -159,6 +161,36 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mTextViewSaldo.setText("$ "+mSharedPreferencesMembresia.readMembresia().getMembresiaSaldo());
         return mView;
     }
+
+
+    private void sweetAlertErrorCuestionarioRenovar(String error)
+    {
+        SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
+        pDialog.setTitleText("Existió un problema en la renovación, por favor ingrese a ");
+        pDialog.setContentText(error);
+
+        if (!error.contains("Debe") && !error.contains("iniciar"))
+        {
+            pDialog.setConfirmButton("Acceder", new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog)
+                {
+
+                    Uri uri = Uri.parse(error);
+                    Intent intentCovid = new Intent(Intent.ACTION_VIEW,uri );
+                    startActivity(intentCovid);
+
+                }
+            });
+
+        }
+
+
+        pDialog.show();
+
+
+    }
+
 
     @Override
     public void onClick(View view)
@@ -266,9 +298,6 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                         }else if (mInfoCustionarioCovidArrayList.get(mRecyclerViewCuestionario
                                 .getChildAdapterPosition(v)).isColor_yellow())
                         {
-                            /**Renovacion de token**/
-
-
                             posRenovado = mRecyclerViewCuestionario
                                     .getChildAdapterPosition(v);
 
@@ -300,6 +329,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                 try {
                     JSONArray mJsonArray = new JSONArray(response);
                     JSONObject mJsonObject = mJsonArray.getJSONObject(0);
+
+
+                    Log.e("codigo"," : "+mJsonObject.getInt("codigo"));
+                    Log.e("codigo"," : "+mJsonObject.getString("mensaje"));
 
                     if (mJsonObject.getInt("codigo")==200)
                     {
@@ -339,6 +372,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                                 mInfoCustionarioCovidArrayList = mInfoCustionarioCovidArrayListAux;
 
                                 llenarListaCovid();
+
 
                                 //mAdapterInfoCuestionario.notifyItemRangeChanged(0,posRenovado);
                                //mRecyclerViewCuestionario.notify();
@@ -452,13 +486,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         pDialog.show();
     }
 
-    private void sweetAlertErrorCuestionarioRenovar(String error)
-    {
-        SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
-        pDialog.setTitleText("Existió un problema en la renovación, por favor ingrese a ");
-        pDialog.setContentText(error);
-        pDialog.show();
-    }
+
 
 
     private void sweetAlertInfo(String mensaje)
@@ -497,14 +525,6 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
                         for (int i =0 ;i<mJsonArray.length();i++)
                         {
-                            /**
-                             *     {
-                             *         "beneficiarioContador": "43677",
-                             *         "beneficiarioNombre": "CENTRO ASTURIANO DE MEXICO 1",
-                             *         "beneficiarioCuestionario": 2,
-                             *         "beneficiarioTipo": "C"
-                             *     },
-                             * **/
                             JSONObject mJsonObject = mJsonArray.getJSONObject(i);
                             cInfoCustionarioCovid mInfoCustionarioCovid = new cInfoCustionarioCovid();
 
@@ -534,6 +554,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                             {
                                 mInfoCustionarioCovid.setColor_yellow(true);
                                 mInfoCustionarioCovid.setmStringEstado("Renovar");
+                            }else if(mJsonObject.getInt("beneficiarioCuestionario")==4)
+                            {
+                                mInfoCustionarioCovid.setIsrenovado(true);
+                                mInfoCustionarioCovid.setmStringEstado("Procesando");
                             }else
                                 {
                                     mInfoCustionarioCovid.setColor_red(true);

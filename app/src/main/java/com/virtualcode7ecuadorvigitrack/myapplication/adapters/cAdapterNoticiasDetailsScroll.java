@@ -58,9 +58,15 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
                     .placeholder(R.drawable.img_load)
                     .into(holder.mImageView);
 
-        holder.mTextViewContenido
-                .setText(Html.fromHtml(mNoticiasArrayList.get(position)
-                .getTextoNoticia()));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            holder.mTextViewContenido
+                    .setText(Html.fromHtml(mNoticiasArrayList.get(position)
+                            .getTextoNoticia(),Html.FROM_HTML_MODE_LEGACY));
+        }else {
+            holder.mTextViewContenido
+                    .setText(Html.fromHtml(mNoticiasArrayList.get(position)
+                            .getTextoNoticia()));
+        }
 
 
         holder.mTextViewContenido.setMovementMethod(LinkMovementMethod.getInstance());
@@ -68,8 +74,22 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
         Log.e("HTML",mNoticiasArrayList
                 .get(position).getTextoNoticia());
 
+        Log.e("LINE CONT"," : "+holder.mTextViewTitulo.getLineCount());
 
-        if(holder.mTextViewTitulo.getLineCount()==1 || holder.mTextViewTitulo.getLineCount() == 2)
+
+
+        if(holder.mTextViewTitulo.getLineCount()==1)
+        {
+
+            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
+                    holder.mLinearLayoutCompat.getLayoutParams();
+
+            mLayoutParams.setMargins(0,-230,0,0);
+
+            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        }
+
+        if(holder.mTextViewTitulo.getLineCount() == 2)
         {
 
             LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)

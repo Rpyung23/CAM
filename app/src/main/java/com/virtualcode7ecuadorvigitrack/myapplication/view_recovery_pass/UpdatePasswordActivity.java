@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 
 import dmax.dialog.SpotsDialog;
@@ -15,7 +16,7 @@ import es.dmoral.toasty.Toasty;
 
 public class UpdatePasswordActivity extends AppCompatActivity
 {
-    private Button mButton;
+    private MaterialButton mButton;
     private Handler mHandlerPass;
     private AlertDialog mAlertDialog;
     private Runnable mRunnable = new Runnable() {

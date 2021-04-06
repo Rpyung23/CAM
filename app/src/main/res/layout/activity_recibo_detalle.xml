@@ -67,7 +67,7 @@
                         </TextView>
                         <TextView
                             android:id="@+id/id_textview_num_ope"
-                            android:fontFamily="@font/roboto_bold"
+                            android:fontFamily="@font/roboto_medium"
                             android:textColor="@color/ClubColorPrimary"
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
@@ -86,7 +86,8 @@
                         </TextView>
                         <TextView
                             android:id="@+id/id_textview_fecha_pago"
-                            android:textStyle="bold"
+
+                            android:fontFamily="@font/roboto_medium"
                             android:textColor="@color/ClubColorPrimary"
                             android:textSize="@dimen/textsize_17sp"
                             android:gravity="center"
@@ -124,7 +125,7 @@
                         </TextView>
                         <TextView
                             android:id="@+id/id_textview_monto"
-                            android:fontFamily="@font/roboto_bold"
+                            android:fontFamily="@font/roboto_black"
                             android:textColor="@color/ClubColorPrimary"
                             android:textSize="@dimen/textsize_30"
                             android:gravity="center"
