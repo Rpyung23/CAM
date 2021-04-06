@@ -308,6 +308,11 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
 
             mNoticiasArrayList.remove(0);
 
+            if (mViewCardPrincipal.getVisibility() == View.GONE)
+            {
+                mViewCardPrincipal.setVisibility(View.VISIBLE);
+            }
+
             if (mNoticiasArrayList.size()>0)
             {
                 /****/

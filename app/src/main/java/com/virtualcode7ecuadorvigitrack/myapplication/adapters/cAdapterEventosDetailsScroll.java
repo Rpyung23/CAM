@@ -63,6 +63,7 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
         holder.mTextViewAcerca.setText(Html.fromHtml(mEventosArrayList.get(position).getAcerca_de()));
 
+
         Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
                 .error(R.drawable.img_error)
                 .placeholder(R.drawable.img_load)

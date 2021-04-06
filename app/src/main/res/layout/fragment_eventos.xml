@@ -11,55 +11,71 @@
     android:background="@color/color_gris"
     >
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/swipeRefreshEventos"
-        >
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:background="@color/color_gris"
+        android:layout_height="wrap_content"
+        android:background="@color/trnsparente"
+        android:backgroundTint="@color/trnsparente"
+        android:theme="@style/AppBar"
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            >
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            android:background="@color/trnsparente"
+            android:backgroundTint="@color/trnsparente"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <include
                 android:visibility="gone"
                 android:id="@+id/id_include_evento"
                 layout="@layout/card_evento2"
                 >
             </include>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/id_recyclerViewEventos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/card_eventos_3"
-                android:backgroundTint="@color/color_gris"
-                >
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <com.google.android.material.button.MaterialButton
-                android:visibility="gone"
-                android:id="@+id/id_cargar_mas"
-                android:layout_width="200dp"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Cargar más Eventos"
-                app:backgroundTint="@color/ClubColorPrimary"
-                app:icon="@drawable/plus_not_eve"
-                app:iconTint="@color/white"
-                android:textAllCaps="false"
-                >
-            </com.google.android.material.button.MaterialButton>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefreshEventos"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/id_recyclerViewEventos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/card_eventos_3"
+            android:backgroundTint="@color/color_gris"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.button.MaterialButton
+            android:visibility="gone"
+            android:id="@+id/id_cargar_mas"
+            android:layout_width="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Cargar más Eventos"
+            app:backgroundTint="@color/ClubColorPrimary"
+            app:icon="@drawable/plus_not_eve"
+            app:iconTint="@color/white"
+            android:textAllCaps="false"
+            >
+        </com.google.android.material.button.MaterialButton>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

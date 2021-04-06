@@ -15,6 +15,10 @@
     </style>
 
 
+    <style name="AppBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/trnsparente</item>
+    </style>
+
     <style name="bottomnavigationview" parent="Widget.Design.BottomNavigationView">
         <item name="itemIconTint">@color/color_navigation_1</item>
         <item name="color">@color/gray</item>

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
@@ -25,6 +26,7 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
     private Context mContext;
     private List<cNoticias> mNoticiasArrayList;
     private View.OnClickListener mOnClickListener;
+    private RecyclerView mRecyclerView;
 
     public cAdapterNoticias(Context mContext, List<cNoticias>
             mNoticiasArrayList, View.OnClickListener mOnClickListener) {
@@ -80,7 +82,6 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
                 .error(R.drawable.img_error)
                 .placeholder(R.drawable.img_load)
                 .into(holder.mImageViewNoticia);
-
     }
 
     @Override

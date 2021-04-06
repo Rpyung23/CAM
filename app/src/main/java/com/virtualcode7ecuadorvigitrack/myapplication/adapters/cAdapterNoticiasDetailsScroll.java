@@ -3,6 +3,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.adapters;
 import android.content.Context;
 import android.os.Build;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,8 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
                 .setText(Html.fromHtml(mNoticiasArrayList.get(position)
                 .getTextoNoticia()));
 
+
+        holder.mTextViewContenido.setMovementMethod(LinkMovementMethod.getInstance());
 
         Log.e("HTML",mNoticiasArrayList
                 .get(position).getTextoNoticia());
