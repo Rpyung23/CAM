@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/margin"
     android:layout_height="@dimen/alto_item_notification"
     android:background="@drawable/duo_shape_rectangled_red"
     >
@@ -97,6 +98,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.40"
                     android:textColor="@color/black"
+
                     android:id="@+id/textViewitem_notification_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -112,10 +114,11 @@
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
+                android:layout_marginRight="@dimen/margin"
                 android:id="@+id/textViewitem_notification_sub_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:lines="2"
+                android:maxLines="2"
                 android:text="Estimado Adrian Chávez, ahora puede pagar su cuota anual a través de..."
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />

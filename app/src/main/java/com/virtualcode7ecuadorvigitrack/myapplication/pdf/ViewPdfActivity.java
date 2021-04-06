@@ -2,6 +2,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.pdf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
@@ -22,6 +24,8 @@ public class ViewPdfActivity extends AppCompatActivity
     private String title = "";
     private TextView mTextView;
     private int pdf = 0;
+
+    private CircularProgressIndicator mCircularProgressIndicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,7 @@ public class ViewPdfActivity extends AppCompatActivity
         mWebView = findViewById(R.id.id_pdf_web_view);
         mTextView = findViewById(R.id.id_title);
         mImageViewClose = findViewById(R.id.id_close_pdf);
+        mCircularProgressIndicator = findViewById(R.id.circleIndicator);
         mTextView.setText(title);
         //Habilitamos el javaScript y el zoom
         mWebView.getSettings().setJavaScriptEnabled(true);
@@ -51,11 +56,21 @@ public class ViewPdfActivity extends AppCompatActivity
         mWebView.setWebViewClient(new WebViewClient()
         {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            public void onPageStarted(WebView view, String url, Bitmap favicon)
             {
-                return false;
+                mCircularProgressIndicator.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url)
+            {
+                if (mCircularProgressIndicator.getVisibility()==View.VISIBLE){
+                    mCircularProgressIndicator.setVisibility(View.GONE);
+                }
             }
         });
+
+
         mImageViewClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -64,6 +79,7 @@ public class ViewPdfActivity extends AppCompatActivity
             }
         });
     }
+
 
     @Override
     public void onBackPressed()

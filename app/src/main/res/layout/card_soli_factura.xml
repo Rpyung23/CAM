@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     app:cardElevation="1dp"
-    android:layout_margin="@dimen/margin_15"
+    android:layout_marginRight="@dimen/margin_15"
+    android:layout_marginLeft="@dimen/margin_15"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     app:cardCornerRadius="10dp">

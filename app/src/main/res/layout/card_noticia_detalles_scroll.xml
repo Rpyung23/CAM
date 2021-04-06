@@ -7,60 +7,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="@color/white"
+    android:background="@color/color_gris"
     >
 
 
 
-    <FrameLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="2.2in">
-        <ImageView
-            android:id="@+id/id_image_noticia_details"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        >
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/item_back"
-            android:scaleType="centerCrop"
+            android:layout_weight="0.5"
             >
-        </ImageView>
-        <View
-            android:background="@color/fondo_black_20"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </View>
 
-        <TextView
-            android:id="@+id/id_titulo"
-            android:text="titulo noticia"
-            android:textColor="@color/white"
+
+
+            <ImageView
+                android:id="@+id/id_image_noticia_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/item_back"
+                android:scaleType="centerCrop"
+                >
+            </ImageView>
+            <View
+                android:background="@color/fondo_black_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </View>
+
+
+            <include
+                layout="@layout/toolbar"
+                >
+            </include>
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutNoticia"
             android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="@dimen/textsize_noticia"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/margin_bottom_titulo_noticia_cntenido"
+            android:layout_marginTop="@dimen/margin_top_container_evento"
+            android:layout_weight="0.5"
             >
-        </TextView>
+            <TextView
+                android:id="@+id/id_titulo"
+                android:text="DUAL MEET CENTRO ASTURIANO VS PARAISO 04 y 05 de septiembre"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="@dimen/textsize_noticia"
+                android:maxLines="3"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/margin_15"
+                >
+            </TextView>
+            <include
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                layout="@layout/details_noticias"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+            </include>
 
-    </FrameLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
-    <include
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="1.8in"
-        layout="@layout/details_noticias"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-    </include>
 
-    <include
-        layout="@layout/toolbar"
-        >
-    </include>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:fillViewport="true"
         android:layout_height="wrap_content"
-        android:text="Manueal"
+        android:text="Manueal JUASDNASD ASDJASDAKSDNASD"
         android:textColor="@color/black"
         android:layout_weight="0.25"
         android:layout_gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:maxLines="1"
+
         android:fontFamily="@font/roboto_regular"
         android:scrollbars="vertical"
         >

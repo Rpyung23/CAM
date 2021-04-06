@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,11 +44,14 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
     }
 
 
+
     @Override
     public void onBindViewHolder(@NonNull cViewHolderNoticiasScroll holder, int position)
     {
             holder.mTextViewTitulo.setText(mNoticiasArrayList.get(position).getTitulo());
             holder.mTextViewFecha.setText(mNoticiasArrayList.get(position).getFecha());
+
+
 
             Picasso.with(mContext).load(mNoticiasArrayList.get(position).getmUriPicturePrincipalNoticia())
                     .error(R.drawable.img_error)
@@ -63,6 +67,31 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
 
         Log.e("HTML",mNoticiasArrayList
                 .get(position).getTextoNoticia());
+
+
+        if(holder.mTextViewTitulo.getLineCount()==1 || holder.mTextViewTitulo.getLineCount() == 2)
+        {
+
+            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
+                    holder.mLinearLayoutCompat.getLayoutParams();
+
+            mLayoutParams.setMargins(0,-240,0,0);
+
+            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        }
+
+
+
+        if(holder.mTextViewTitulo.getLineCount()>=3)
+        {
+
+            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
+                    holder.mLinearLayoutCompat.getLayoutParams();
+
+            mLayoutParams.setMargins(0,-275,0,0);
+
+            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        }
 
     }
 
@@ -80,6 +109,7 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
         private TextView mTextViewFecha;
         private TextView mTextViewContenido;
         private TextView mTextViewTitulo;
+        private LinearLayoutCompat mLinearLayoutCompat;
 
 
         public cViewHolderNoticiasScroll(@NonNull View itemView) {
@@ -89,10 +119,8 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
             mTextViewFecha = itemView.findViewById(R.id.id_textview_fecha_noticia_details);
             mTextViewContenido = itemView.findViewById(R.id.id_textview_contenido);
             mTextViewTitulo = itemView.findViewById(R.id.id_titulo);
+            mLinearLayoutCompat = itemView.findViewById(R.id.linearLayoutNoticia);
         }
 
-        public TextView getmTextViewContenido() {
-            return mTextViewContenido;
-        }
     }
 }

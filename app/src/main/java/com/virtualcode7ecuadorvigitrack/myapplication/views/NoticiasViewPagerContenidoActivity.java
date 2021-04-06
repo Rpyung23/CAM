@@ -2,6 +2,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
@@ -78,13 +79,13 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
             @Override
             public void onPageSelected(int position)
             {
-                super.onPageSelected(position);
                 readNoticiaApiRest(position);
             }
         });
+
         mViewPager2Noticias.setCurrentItem(posInicial);
 
-
+        mAdapterNoticias.notifyDataSetChanged();
 
     }
 
@@ -110,7 +111,7 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
 
                         mNoticiasArrayList.get(position).setTextoNoticia(mJsonObject.getString("contenido"));
 
-                        mAdapterNoticias.notifyItemChanged(position);
+
 
                         /*mTextViewFecha.setText(" "+mNoticiasArrayList.get(position).getFecha());
                         Picasso.with(getApplicationContext())
@@ -138,7 +139,7 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
 
                         /*mRecyclerView.setAdapter(mAdapterNoticiasDetailsPicture);*/
 
-
+                        mAdapterNoticias.notifyItemChanged(position);
                     }else
                     {
                         Toasty.warning(getApplicationContext(),"No se puedo realizar la consulta"

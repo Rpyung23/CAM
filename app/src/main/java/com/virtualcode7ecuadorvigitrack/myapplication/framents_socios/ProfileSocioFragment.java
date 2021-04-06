@@ -290,6 +290,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
                 .leerdatosSocio().getToken()+"/v/"+status;
 
         Log.e("ROJOAMARILLO",mStringUrl);
+        Log.e("ROJOAMARILLO",mSharedPreferenSocio.leerdatosSocio().getToken());
 
         mStringRequestRenovacionTokenAmarillo =
                 new StringRequest(mStringUrl, new Response.Listener<String>() {

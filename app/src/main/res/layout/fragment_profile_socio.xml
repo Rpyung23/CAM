@@ -228,11 +228,13 @@
                 </include>
 
                 <include
+                    android:visibility="gone"
                     android:id="@+id/id_views_invitados"
                     layout="@layout/card_invitados">
                 </include>
 
                 <include
+                    android:visibility="gone"
                     android:id="@+id/id_views_reservaciones"
                     layout="@layout/card_reservaciones">
                 </include>

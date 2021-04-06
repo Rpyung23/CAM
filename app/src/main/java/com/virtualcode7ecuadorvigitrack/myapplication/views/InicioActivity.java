@@ -79,7 +79,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                 this, mDrawerLayout, toolbar, R.string.vacio, R.string.vacio);
 
 
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.ClubColorPrimary));
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.trnsparente));
 
         mDrawerLayout.addDrawerListener(toggle);
 

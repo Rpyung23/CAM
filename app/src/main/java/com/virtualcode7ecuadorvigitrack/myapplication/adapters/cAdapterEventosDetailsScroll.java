@@ -2,6 +2,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.adapters;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
     @Override
     public cViewHolderEventosDetailsScroll onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
+
         View mView = LayoutInflater.from(mContext).inflate(R.layout.card_eventos_detalles_scroll,parent,false);
 
         return new cViewHolderEventosDetailsScroll(mView);
@@ -49,6 +51,9 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
             }
 
 
+
+
+
         if (mEventosArrayList.get(position).getDireccion()!=null)
         {
             holder.mTextViewDirec.setText(mEventosArrayList.get(position).getDireccion());
@@ -59,15 +64,59 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
 
         holder.mTextViewTitle.setText(mEventosArrayList.get(position).getTitulo());
-        //holder.mTextViewAcerca.setText(mEventosArrayList.get(position).getAcerca_de());
 
         holder.mTextViewAcerca.setText(Html.fromHtml(mEventosArrayList.get(position).getAcerca_de()));
+
+
+
+
+
+
+
+
+
+        //holder.mTextViewAcerca.setText(mEventosArrayList.get(position).getAcerca_de());
+
+
 
 
         Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
                 .error(R.drawable.img_error)
                 .placeholder(R.drawable.img_load)
                 .into(holder.mImageView);
+
+
+
+
+        holder.mTextViewAcerca.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+
+
+
+        if(holder.mTextViewTitle.getLineCount()==1 || holder.mTextViewTitle.getLineCount() == 2)
+        {
+
+            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
+                    holder.mLinearLayoutCompat.getLayoutParams();
+
+            mLayoutParams.setMargins(0,-240,0,0);
+
+            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        }
+
+
+
+        if(holder.mTextViewTitle.getLineCount()>=3)
+        {
+
+            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
+                    holder.mLinearLayoutCompat.getLayoutParams();
+
+            mLayoutParams.setMargins(0,-275,0,0);
+
+            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        }
     }
 
     @Override
@@ -83,6 +132,7 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
         private TextView mTextViewTitle;
         private TextView mTextViewAcerca;
 
+        private LinearLayoutCompat mLinearLayoutCompat;
 
         public cViewHolderEventosDetailsScroll(@NonNull View itemView) {
             super(itemView);
@@ -92,7 +142,9 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
             mTextViewDirec = itemView.findViewById(R.id.textView2);
             mTextViewTitle = itemView.findViewById(R.id.id_titulo_evento);
             mTextViewAcerca = itemView.findViewById(R.id.textView_about_event);
+            mLinearLayoutCompat = itemView.findViewById(R.id.linearEventosDetails);
 
         }
+
     }
 }

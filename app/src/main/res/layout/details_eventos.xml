@@ -10,6 +10,7 @@
     android:background="@drawable/backgrount_shape_text_details"
     android:elevation="6dp"
     android:paddingBottom="@dimen/spacing_xxmedium"
+    android:backgroundTint="@color/white"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
 
