@@ -85,7 +85,7 @@
                 </TextView>
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/roboto_black"
                     android:id="@+id/id_textview_fecha_inicio_num"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                     android:text="25"
                     android:textColor="@color/ClubColorPrimary"
                     android:textSize="@dimen/textsize_num_fecha"
-                    android:textStyle="bold">
+                    >
                 </TextView>
 
                 <TextView
@@ -127,7 +127,7 @@
                     android:textSize="@dimen/textsize_17sp"></TextView>
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/roboto_black"
                     android:id="@+id/id_textview_fecha_fin_num"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:text="10"
                     android:textColor="@color/ClubColorPrimary"
                     android:textSize="@dimen/textsize_num_fecha"
-                    android:textStyle="bold"></TextView>
+                    ></TextView>
 
                 <TextView
                     android:fontFamily="@font/roboto_regular"

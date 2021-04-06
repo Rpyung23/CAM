@@ -262,6 +262,7 @@ public class LoginPassActivity extends AppCompatActivity
         Log.e("MEMBRESIA",getString(R.string.api_rest_membresia)
                 +new cSharedPreferenSocio(LoginPassActivity.this)
                 .leerdatosSocio().getId_token_socio());
+
         Log.e("MEMBRESIA",new cSharedPreferenSocio(LoginPassActivity.this)
                 .leerdatosSocio().getToken());
 
