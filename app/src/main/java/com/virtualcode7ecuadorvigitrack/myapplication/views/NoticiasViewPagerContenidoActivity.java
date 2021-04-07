@@ -2,18 +2,11 @@ package com.virtualcode7ecuadorvigitrack.myapplication.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -22,11 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNoticias;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNoticiasDetailsPicture;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNoticiasDetailsScroll;
+import com.virtualcode7ecuadorvigitrack.myapplication.adapters.noticias.cAdapterNoticiasDetailsScroll;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;

@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNotificationSocios;
+import com.virtualcode7ecuadorvigitrack.myapplication.adapters.notificacion.cAdapterNotificationSocios;
 
 public class cRecyclerItemTouchHelperNoti extends ItemTouchHelper.SimpleCallback
 {

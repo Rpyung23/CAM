@@ -6,7 +6,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MenuItem;
 
 import com.android.volley.AuthFailureError;
@@ -17,10 +16,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterEventosDetailsScroll;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNoticiasDetailsScroll;
+import com.virtualcode7ecuadorvigitrack.myapplication.adapters.eventos.cAdapterEventosDetailsScroll;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
-import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 

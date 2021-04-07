@@ -2,12 +2,10 @@ package com.virtualcode7ecuadorvigitrack.myapplication.fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,11 +17,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,14 +30,12 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterEventos;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNoticias;
+import com.virtualcode7ecuadorvigitrack.myapplication.adapters.eventos.cAdapterEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cStringMesDia;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.EventosContenidoActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.EventosViewPagerContenidoActivity;
-import com.virtualcode7ecuadorvigitrack.myapplication.views.NoticiasContenidoActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +44,6 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 

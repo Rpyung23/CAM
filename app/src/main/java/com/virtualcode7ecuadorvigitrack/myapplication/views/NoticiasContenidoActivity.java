@@ -2,7 +2,6 @@ package com.virtualcode7ecuadorvigitrack.myapplication.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -21,7 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
-import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterNoticiasDetailsPicture;
+import com.virtualcode7ecuadorvigitrack.myapplication.adapters.noticias.cAdapterNoticiasDetailsPicture;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
@@ -30,10 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 

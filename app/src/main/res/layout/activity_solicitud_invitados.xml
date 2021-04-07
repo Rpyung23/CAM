@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view_invitado.SolicitudInvitadosActivity"
+    tools:context=".views.views_socios.view_invitado.SolicitudInvitadosActivity"
     android:orientation="vertical"
     android:background="@color/color_gris"
     >
@@ -28,12 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
+            android:background="@color/white"
             >
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:layout_margin="@dimen/margin_15"
                 >
 
@@ -52,13 +54,15 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    app:cardElevation="15dp"
+                    app:cardElevation="2dp"
                     app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@color/white"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/trnsparente"
                         android:layout_margin="@dimen/margin_5"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -126,14 +130,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/margin_10"
-                    app:cardElevation="15dp"
+                    app:cardElevation="2dp"
                     app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@color/white"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5"
+                        android:background="@color/trnsparente"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         >
@@ -215,8 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10"
-                    android:visibility="gone"
-                    app:cardElevation="1dp"
+                    app:cardElevation="2dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/color_prmary_fondo"
                     >
@@ -414,7 +419,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/margin_10"
-                    app:cardElevation="15dp"
+                    app:cardElevation="2dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/color_prmary_fondo"
 

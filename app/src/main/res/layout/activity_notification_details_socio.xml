@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gris"
-    tools:context=".views_socios.NotificationDetailsSocioActivity"
+    tools:context=".views.views_socios.NotificationDetailsSocioActivity"
     >
 
 

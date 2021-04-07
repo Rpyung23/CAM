@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gris"
-    tools:context=".views_socios.StatusCuentaSociosActivity">
+    tools:context=".views.views_socios.StatusCuentaSociosActivity">
     <include
         layout="@layout/toolbar_color">
     </include>

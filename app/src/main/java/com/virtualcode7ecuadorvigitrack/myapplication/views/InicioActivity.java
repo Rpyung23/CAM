@@ -11,32 +11,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.shape.MaterialShapeDrawable;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.EventosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.NoticiasFragment;
-import com.virtualcode7ecuadorvigitrack.myapplication.framents_socios.ProfileSocioFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
-import com.virtualcode7ecuadorvigitrack.myapplication.views_contacto.ContactoInicioActivity;
-import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_contacto.ContactoInicioActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.InicioSociosActivity;
 
 import java.util.List;
-
-import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout;
-import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle;
 
 
 public class InicioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener

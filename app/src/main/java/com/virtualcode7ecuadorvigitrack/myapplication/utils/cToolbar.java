@@ -20,6 +20,7 @@ public class cToolbar
     public static void show(AppCompatActivity activity, String title, boolean upButton, int ban)
     {
         Toolbar toolbar= null;
+
         if(ban==0)
         {
             toolbar = activity.findViewById(R.id.toolbar_);

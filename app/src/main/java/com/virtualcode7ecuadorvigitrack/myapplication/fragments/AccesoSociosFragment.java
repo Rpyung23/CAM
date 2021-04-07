@@ -1,7 +1,6 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.fragments;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,8 +10,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,19 +26,15 @@ import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.HideKeys;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
-import com.virtualcode7ecuadorvigitrack.myapplication.view_recovery_pass.ValidacionNumSocioActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.view_recovery_pass.ValidacionNumSocioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.LoginPassActivity;
-import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
-
-import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class AccesoSociosFragment extends Fragment implements View.OnClickListener

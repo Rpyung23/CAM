@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.MainActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_invitado.InvitadosActivity;
 
 public class SplashScreen extends AppCompatActivity
 {
@@ -22,9 +23,14 @@ public class SplashScreen extends AppCompatActivity
         @Override
         public void run()
         {
-            Intent mIntent = new Intent(SplashScreen.this, InicioActivity.class);
+            /*Intent mIntent = new Intent(SplashScreen.this, InicioActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(mIntent);
+            startActivity(mIntent);*/
+            Intent mIntentInvitados = new Intent(SplashScreen.this, InvitadosActivity.class);
+            mIntentInvitados.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(mIntentInvitados);
+
+
             finish();
         }
     };

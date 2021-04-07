@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gris"
-    tools:context=".framents_socios.NotificationSocioFragment"
+    tools:context=".fragments.framents_socios.NotificationSocioFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

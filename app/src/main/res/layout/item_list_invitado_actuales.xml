@@ -39,16 +39,18 @@
             >
         </androidx.constraintlayout.widget.Guideline>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgStatusInvitado"
             android:layout_width="@dimen/alto_ancho_img_check_list_invitaciones"
             android:layout_height="@dimen/alto_ancho_img_check_list_invitaciones"
             android:src="@drawable/ic_check_box"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline"
             >
-        </ImageView>
+        </androidx.appcompat.widget.AppCompatImageView>
 
 
         <TextView
@@ -118,18 +120,17 @@
             app:layout_constraintTop_toBottomOf="@id/tvFechaDesde"
             >
         </TextView>
+
         <TextView
             android:id="@+id/tvListInvitadoFechaHasta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_marginTop="4dp"
             android:text=" 2021/01/10"
             android:textColor="@color/black"
-            android:layout_marginLeft="@dimen/margin_5"
             app:layout_constraintStart_toEndOf="@id/tvFechaHasta"
-            app:layout_constraintTop_toBottomOf="@id/tvListInvitadoFechaDesde"
-            >
-        </TextView>
+            app:layout_constraintTop_toBottomOf="@id/tvListInvitadoFechaDesde"></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background_gradiente"
-    tools:context=".view_recovery_pass.ValidacionNumSocioActivity"
+    tools:context=".views.view_recovery_pass.ValidacionNumSocioActivity"
     android:gravity="center_horizontal">
     <include
         layout="@layout/toolbar">

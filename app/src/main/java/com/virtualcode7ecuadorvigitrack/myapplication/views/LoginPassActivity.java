@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -21,14 +20,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
-import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cMembresiaSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.provider.cToken;
@@ -38,17 +34,12 @@ import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cShared
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.HideKeys;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
-import com.virtualcode7ecuadorvigitrack.myapplication.views_socios.InicioSociosActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.InicioSociosActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 

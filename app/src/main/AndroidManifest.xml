@@ -17,22 +17,22 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity android:screenOrientation="portrait"
-            android:name=".view_invitado.AddInvitadoActivity"></activity>
+            android:name=".views.views_socios.view_invitado.AddInvitadoActivity"></activity>
         <activity android:screenOrientation="portrait"
-            android:name=".view_invitado.SolicitudInvitadosActivity" />
+            android:name=".views.views_socios.view_invitado.SolicitudInvitadosActivity" />
         <activity android:screenOrientation="portrait"
-            android:name=".views_socios.InvitadosActivity" />
+            android:name=".views.views_socios.view_invitado.InvitadosActivity" />
         <activity
             android:screenOrientation="portrait"
             android:name=".views.LogOutActivity"
             android:theme="@style/Theme.UserDialog" />
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_socios.ReciboDetalleScrollActivity"
-            android:parentActivityName=".views_socios.RecivosCuentaActivity">
+            android:name=".views.views_socios.ReciboDetalleScrollActivity"
+            android:parentActivityName=".views.views_socios.RecivosCuentaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_socios.RecivosCuentaActivity" />
+                android:value=".views.views_socios.RecivosCuentaActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
@@ -52,11 +52,11 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_contacto.TerminosPrivacidadActivity"
-            android:parentActivityName=".views_contacto.AcercaAppActivity">
+            android:name=".views.views_contacto.TerminosPrivacidadActivity"
+            android:parentActivityName=".views.views_contacto.AcercaAppActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_contacto.AcercaAppActivity" />
+                android:value=".views.views_contacto.AcercaAppActivity" />
         </activity>
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -78,31 +78,31 @@
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_contacto.SedesDetailsActivity"
-            android:parentActivityName=".views_contacto.SedesActivity">
+            android:name=".views.views_contacto.SedesDetailsActivity"
+            android:parentActivityName=".views.views_contacto.SedesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_contacto.SedesActivity" />
+                android:value=".views.views_contacto.SedesActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_contacto.AcercaAppActivity"
-            android:parentActivityName=".views_contacto.ContactoInicioActivity">
+            android:name=".views.views_contacto.AcercaAppActivity"
+            android:parentActivityName=".views.views_contacto.ContactoInicioActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_contacto.ContactoInicioActivity" />
+                android:value=".views.views_contacto.ContactoInicioActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_contacto.SedesActivity"
-            android:parentActivityName=".views_contacto.ContactoInicioActivity">
+            android:name=".views.views_contacto.SedesActivity"
+            android:parentActivityName=".views.views_contacto.ContactoInicioActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_contacto.ContactoInicioActivity" />
+                android:value=".views.views_contacto.ContactoInicioActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_contacto.ContactoInicioActivity"
+            android:name=".views.views_contacto.ContactoInicioActivity"
             android:parentActivityName=".views.InicioActivity" />
 
         <meta-data
@@ -112,51 +112,51 @@
         <activity
 
             android:screenOrientation="portrait"
-            android:name=".pdf.ViewPdfActivity" />
+            android:name=".views.pdf.ViewPdfActivity" />
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_socios.NotificationDetailsSocioActivity"
-            android:parentActivityName=".views_socios.InicioSociosActivity"
+            android:name=".views.views_socios.NotificationDetailsSocioActivity"
+            android:parentActivityName=".views.views_socios.InicioSociosActivity"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_socios.InicioSociosActivity" />
+                android:value=".views.views_socios.InicioSociosActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".view_recovery_pass.UpdatePasswordActivity"
+            android:name=".views.view_recovery_pass.UpdatePasswordActivity"
             android:noHistory="true" />
         <activity
             android:screenOrientation="portrait"
-            android:name=".view_recovery_pass.ValidacionNumSocioActivity"
-            android:parentActivityName=".views_socios.InicioSociosActivity">
+            android:name=".views.view_recovery_pass.ValidacionNumSocioActivity"
+            android:parentActivityName=".views.views_socios.InicioSociosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_socios.InicioSociosActivity" />
+                android:value=".views.views_socios.InicioSociosActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_socios.ReciboDetalleActivity"
-            android:parentActivityName=".views_socios.RecivosCuentaActivity">
+            android:name=".views.views_socios.ReciboDetalleActivity"
+            android:parentActivityName=".views.views_socios.RecivosCuentaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_socios.RecivosCuentaActivity" />
+                android:value=".views.views_socios.RecivosCuentaActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_socios.RecivosCuentaActivity"
-            android:parentActivityName=".views_socios.InicioSociosActivity">
+            android:name=".views.views_socios.RecivosCuentaActivity"
+            android:parentActivityName=".views.views_socios.InicioSociosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_socios.InicioSociosActivity" />
+                android:value=".views.views_socios.InicioSociosActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_socios.StatusCuentaSociosActivity"
-            android:parentActivityName=".views_socios.InicioSociosActivity">
+            android:name=".views.views_socios.StatusCuentaSociosActivity"
+            android:parentActivityName=".views.views_socios.InicioSociosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views_socios.InicioSociosActivity" />
+                android:value=".views.views_socios.InicioSociosActivity" />
         </activity>
         <activity
             android:screenOrientation="portrait"
@@ -168,7 +168,7 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".views_socios.InicioSociosActivity" />
+            android:name=".views.views_socios.InicioSociosActivity" />
         <activity
             android:screenOrientation="portrait"
             android:name=".views.LoginPassActivity" />

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".framents_socios.ProfileSocioFragment"
+    tools:context=".fragments.framents_socios.ProfileSocioFragment"
     android:orientation="vertical"
     >
 
@@ -235,7 +235,6 @@
                 </include>
 
                 <include
-                    android:visibility="gone"
                     android:id="@+id/id_views_invitados"
                     layout="@layout/card_invitados">
                 </include>
