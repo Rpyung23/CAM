@@ -142,5 +142,6 @@
     <string name="menor_edad">Menor de edad</string>
     <string name="btn_cancelar">CANCELAR</string>
     <string name="add">AGREGAR</string>
+    <string name="lbl_fechas_quince_dias">Las fechas a ingresar deben ser quince días hábiles a partir del día de la solicitud.</string>
 
 </resources>

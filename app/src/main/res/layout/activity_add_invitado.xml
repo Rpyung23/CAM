@@ -141,41 +141,34 @@
 
 
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/margin_15"
+                android:layout_height="@dimen/alto_botones_default"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="@string/btn_cancelar"
+                android:textColor="@color/red"
+                app:icon="@drawable/ic_baseline_close_24"
+                app:iconTint="@color/red"
+                app:iconGravity="textStart"
+                android:fontFamily="@font/roboto_regular"
+                app:strokeColor="@color/red"
+                android:layout_marginRight="@dimen/margin_15"
                 >
+            </com.google.android.material.button.MaterialButton>
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:text="@string/btn_cancelar"
-                    android:textColor="@color/red"
-                    app:icon="@drawable/ic_baseline_close_24"
-                    app:iconTint="@color/red"
-                    android:fontFamily="@font/roboto_regular"
-                    app:strokeColor="@color/red"
-                    android:layout_marginRight="@dimen/margin_15"
-                    >
-                </com.google.android.material.button.MaterialButton>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/alto_botones_default"
+                app:backgroundTint="@color/btn_add_invitado"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/add"
+                app:icon="@drawable/ic_baseline_save_24"
+                app:iconGravity="textStart"
+                app:iconTint="@color/white"
+                >
+            </com.google.android.material.button.MaterialButton>
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:backgroundTint="@color/btn_add_invitado"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/add"
-                    app:icon="@drawable/ic_baseline_save_24"
-                    app:iconTint="@color/white"
-                    >
-                </com.google.android.material.button.MaterialButton>
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
