@@ -3,6 +3,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.adapters.eventos;
 import android.content.Context;
 import android.os.Build;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,15 +20,17 @@ import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
 
 import java.util.ArrayList;
+import com.virtualcode7ecuadorvigitrack.myapplication.models.cImageGetter;
 
 public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterEventosDetailsScroll.cViewHolderEventosDetailsScroll>
 {
     private Context mContext;
     private ArrayList<cEventos> mEventosArrayList;
-
+    private cImageGetter mCImageGetter;
     public cAdapterEventosDetailsScroll(Context mContext, ArrayList<cEventos> mEventosArrayList) {
         this.mContext = mContext;
         this.mEventosArrayList = mEventosArrayList;
+        this.mCImageGetter = new cImageGetter(mContext);
     }
 
     @NonNull
@@ -86,17 +89,19 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
                 .into(holder.mImageView);
 
 
+        Spanned mSpanned = null;
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            holder.mTextViewAcerca
-                    .setText(Html.fromHtml(mEventosArrayList.get(position)
-                            .getAcerca_de(),Html.FROM_HTML_MODE_LEGACY));
+            mSpanned = (Html.fromHtml(mEventosArrayList.get(position)
+                            .getAcerca_de(),Html.FROM_HTML_MODE_LEGACY,
+                    mCImageGetter,null));
         }else {
-            holder.mTextViewAcerca
-                    .setText(Html.fromHtml(mEventosArrayList.get(position)
-                            .getAcerca_de()));
+            mSpanned = (Html.fromHtml(mEventosArrayList.get(position)
+                            .getAcerca_de(),Html.FROM_HTML_MODE_LEGACY,
+                    mCImageGetter,null));
         }
 
-
+        holder.mTextViewAcerca.setText(mSpanned);
         holder.mTextViewAcerca.setMovementMethod(LinkMovementMethod.getInstance());
 
 

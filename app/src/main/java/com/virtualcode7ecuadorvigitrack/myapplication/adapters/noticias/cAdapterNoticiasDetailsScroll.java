@@ -3,6 +3,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.adapters.noticias;
 import android.content.Context;
 import android.os.Build;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.models.cImageGetter;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 
 import java.util.ArrayList;
@@ -25,10 +27,13 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
 {
     private Context mContext;
     private ArrayList<cNoticias> mNoticiasArrayList;
+    private cImageGetter mCImageGetter;
 
-    public cAdapterNoticiasDetailsScroll(Context mContext, ArrayList<cNoticias> mNoticiasArrayList) {
+    public cAdapterNoticiasDetailsScroll(Context mContext,
+                                         ArrayList<cNoticias> mNoticiasArrayList) {
         this.mContext = mContext;
         this.mNoticiasArrayList = mNoticiasArrayList;
+        this.mCImageGetter = new cImageGetter(mContext);
     }
 
     @NonNull
@@ -51,21 +56,24 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
 
 
 
-            Picasso.with(mContext).load(mNoticiasArrayList.get(position).getmUriPicturePrincipalNoticia())
+            Picasso.with(mContext).load(mNoticiasArrayList.get(position)
+                    .getmUriPicturePrincipalNoticia())
                     .error(R.drawable.img_error)
                     .placeholder(R.drawable.img_load)
                     .into(holder.mImageView);
 
+        Spanned mSpanned = null;
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            holder.mTextViewContenido
-                    .setText(Html.fromHtml(mNoticiasArrayList.get(position)
-                            .getTextoNoticia(),Html.FROM_HTML_MODE_LEGACY));
+            mSpanned = (Html.fromHtml(mNoticiasArrayList.get(position)
+                            .getTextoNoticia(),Html.FROM_HTML_MODE_LEGACY,
+                    mCImageGetter,null));
         }else {
-            holder.mTextViewContenido
-                    .setText(Html.fromHtml(mNoticiasArrayList.get(position)
-                            .getTextoNoticia()));
+            mSpanned = (Html.fromHtml(mNoticiasArrayList.get(position)
+                            .getTextoNoticia(),mCImageGetter,null));
         }
 
+        holder.mTextViewContenido.setText(mSpanned);
 
         holder.mTextViewContenido.setMovementMethod(LinkMovementMethod.getInstance());
 
