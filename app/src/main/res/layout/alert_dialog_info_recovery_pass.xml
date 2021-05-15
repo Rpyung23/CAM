@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:padding="@dimen/margin_10"
     >
     <ImageView
         android:layout_width="100dp"
@@ -42,15 +43,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </TextView>
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/id_button_accep"
         android:layout_marginTop="@dimen/margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/white"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:text="ACEPTAR"
         android:textColor="@color/ClubColorPrimary"
         >
-    </Button>
+    </com.google.android.material.button.MaterialButton>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

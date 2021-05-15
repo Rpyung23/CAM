@@ -24,6 +24,7 @@
 </ImageView>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/idTextInputLayoutError"
         android:layout_marginLeft="@dimen/margin_textinput_num_socio"
         android:layout_marginRight="@dimen/margin_textinput_num_socio"
         android:layout_marginTop="15dp"
@@ -36,7 +37,10 @@
         app:boxBackgroundColor="#8c2E3286"
         android:fontFamily="@font/roboto_regular"
         app:startIconTint="@color/white"
-    android:hint="@string/partner_number_copy"
+        app:errorIconTint="@android:color/holo_red_dark"
+        app:errorTextColor="@android:color/holo_red_dark"
+        app:errorIconDrawable="@drawable/ic_baseline_highlight_off_24"
+        android:hint="@string/partner_number_copy"
     >
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/id_textviewnumSocio"

@@ -117,6 +117,9 @@
     <string name="api_rest_recibo">https://centroasturianodemexico.mx/api/v1/membresias/</string>
     <string name="vacio" />
 
+    <string name="api_rest_recovery_account">https://www.centroasturianodemexico.mx/api/v1/usuarios/recuperar</string>
+
+
     <string name="update_notification">https://centroasturianodemexico.mx/api/v1/notificaciones/</string>
 
     <string name="default_notification_channel_id">com.virtualcode7ecuadorvigitrack.myapplication.notificaciones</string>
@@ -143,5 +146,6 @@
     <string name="btn_cancelar">CANCELAR</string>
     <string name="add">AGREGAR</string>
     <string name="lbl_fechas_quince_dias">Las fechas a ingresar deben ser quince días hábiles a partir del día de la solicitud.</string>
+    <string name="text_empty">Campo obligatorio</string>
 
 </resources>
