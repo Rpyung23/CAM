@@ -84,7 +84,7 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
 
 
 
-        if(holder.mTextViewTitulo.getLineCount()==1)
+        /*if(holder.mTextViewTitulo.getLineCount()==1)
         {
 
             LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
@@ -117,7 +117,7 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
             mLayoutParams.setMargins(0,-275,0,0);
 
             holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
-        }
+        }*/
 
     }
 
@@ -135,7 +135,7 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
         private TextView mTextViewFecha;
         private TextView mTextViewContenido;
         private TextView mTextViewTitulo;
-        private LinearLayoutCompat mLinearLayoutCompat;
+        //private LinearLayoutCompat mLinearLayoutCompat;
 
 
         public cViewHolderNoticiasScroll(@NonNull View itemView) {
@@ -145,7 +145,7 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
             mTextViewFecha = itemView.findViewById(R.id.id_textview_fecha_noticia_details);
             mTextViewContenido = itemView.findViewById(R.id.id_textview_contenido);
             mTextViewTitulo = itemView.findViewById(R.id.id_titulo);
-            mLinearLayoutCompat = itemView.findViewById(R.id.linearLayoutNoticia);
+            //mLinearLayoutCompat = itemView.findViewById(R.id.linearLayoutNoticia);
         }
 
     }
