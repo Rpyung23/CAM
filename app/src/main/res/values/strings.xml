@@ -67,7 +67,7 @@
 
     <string name="notifications_copy">Notificaciones</string>
     <string name="notifications_title">NOTIFICACIONES</string>
-    <string name="log_out_copy">Cerrar sesion</string>
+    <string name="log_out_copy">Cerrar sesión</string>
     <string name="profile_copy">Mi perfil</string>
     <string name="your_balance_copy">Tu saldo es de:</string>
     <string name="receipt_title_copy">Detalle del recibo</string>
@@ -147,5 +147,10 @@
     <string name="add">AGREGAR</string>
     <string name="lbl_fechas_quince_dias">Las fechas a ingresar deben ser quince días hábiles a partir del día de la solicitud.</string>
     <string name="text_empty">Campo obligatorio</string>
+    <string name="my_account">Mi Cuenta</string>
+    <string name="status_account">Estado de Cuenta</string>
+    <string name="my_profile">Mi Perfil</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="recive">Recibos</string>
 
 </resources>

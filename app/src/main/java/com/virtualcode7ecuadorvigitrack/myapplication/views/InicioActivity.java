@@ -20,17 +20,20 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicio;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.EventosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.NoticiasFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_contacto.ContactoInicioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.InicioSociosActivity;
 
 import java.util.List;
 
-
-public class InicioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+//AppCompatActivity
+public class InicioActivity extends cActivityInicio
+        implements NavigationView.OnNavigationItemSelectedListener
 {
     private  BottomNavigationView mBottomNavigationView;
     private View mViewToolbarTop;
@@ -80,18 +83,22 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         oFragmentManager = getSupportFragmentManager();
 
 
-        oFragmentManager.beginTransaction().replace(R.id.fragment_container_1,mNoticiasFragment,"news")
+        /*oFragmentManager.beginTransaction().replace(R.id.fragment_container_1,mNoticiasFragment,"news")
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .addToBackStack("news")
-                .commit();
-        mNavigationView.setCheckedItem(R.id.opc_noticias_drawer);
-        mNavigationView.setNavigationItemSelectedListener(this);
-        mBottomNavigationView.setSelectedItemId(R.id.opc_noticias_1);
+                .commit();*/
+
+        onResume(mNavigationView);
     }
 
     @Override
     protected void onPostResume()
     {
+
+        mNavigationView.setCheckedItem(R.id.opc_noticias_drawer);
+        mNavigationView.setNavigationItemSelectedListener(this);
+
+
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -109,7 +116,6 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                             mDrawerLayout.openDrawer(GravityCompat.START);
                         }
 
-                        //Toast.makeText(InicioActivity.this, "menu", Toast.LENGTH_SHORT).show();
                         break;
                     case  R.id.opc_noticias_1:
                         visibleViewToolbarTop();
@@ -121,9 +127,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                         llenarFragmentContainer("news",mNoticiasFragment);
 
                         mNavigationView.setCheckedItem(R.id.opc_noticias_drawer);
-
-
                         mTextViewToolbar.setText("NOTICIAS");
+
                         //Toast.makeText(InicioActivity.this, "opc_noticias_1", Toast.LENGTH_SHORT).show();
                         break;
                     case  R.id.opc_eventos_1:
@@ -140,7 +145,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                     case  R.id.opc_acceso_socios_1:
                         goneViewToolbarTop();
 
-                        if (new cSharedTokenValidation(InicioActivity.this).readTokenValitationFragmentInicio())
+                        /*if (new cSharedTokenValidation(InicioActivity.this).readTokenValitationFragmentInicio())
                         {
                             Intent mIntent = new Intent(InicioActivity.this,
                                     InicioSociosActivity.class);
@@ -151,13 +156,24 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                                 .replace(R.id.fragment_container_1,mAccesoSociosFragment)
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                                 .commit();*/
-                                llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
+                                /*llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
                                 mTextViewToolbar.setText("LOGIN");
                                 //Toast.makeText(InicioActivity.this, "opc_acceso_socios_1", Toast.LENGTH_SHORT).show();
                                 mNavigationView.setCheckedItem(R.id.opc_acceso_drawer);
-                            }
+                            }*/
 
+                        llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
+                        mTextViewToolbar.setText("LOGIN");
+                        //Toast.makeText(InicioActivity.this, "opc_acceso_socios_1", Toast.LENGTH_SHORT).show();
+                        mNavigationView.setCheckedItem(R.id.opc_acceso_drawer);
 
+                        if (! new cSharedPreferenSocio(getApplicationContext())
+                                .leerdatosSocio().getToken().equals("s/n")){
+                            Intent mIntent = new Intent(InicioActivity.this,InicioSociosActivity.class);
+                            mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(mIntent);
+                            finish();
+                        }
 
 
                         break;
@@ -170,6 +186,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         {
             mBottomNavigationView.setSelectedItemId(R.id.opc_acceso_socios_1);
         }
+        mBottomNavigationView.setSelectedItemId(R.id.opc_noticias_1);
         super.onPostResume();
     }
 
@@ -231,7 +248,6 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
-
     @Override
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -283,4 +299,5 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
 
         return true;
     }
+
 }

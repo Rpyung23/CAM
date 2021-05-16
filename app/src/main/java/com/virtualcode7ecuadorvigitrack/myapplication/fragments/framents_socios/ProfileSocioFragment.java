@@ -127,10 +127,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
         mSharedPreferencesMembresia = new cSharedPreferencesMembresia(getContext());
 
-        if (!new cSharedTokenValidation(getContext()).readTokenValitation())
+        /*if (!new cSharedTokenValidation(getContext()).readTokenValitation())
         {
             alertDialogTimeOut();
-        }
+        }*/
 
 
         if (mSharedPreferencesMembresia.readMembresia().getMembresiaCuestionarioResultado()==1)
@@ -194,10 +194,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
             case R.id.id_views_status_cuenta:
                 /**ESTADO DE CUENTA**/
 
-                if (!new cSharedTokenValidation(getContext()).readTokenValitation())
+                /*if (!new cSharedTokenValidation(getContext()).readTokenValitation())
                 {
                     alertDialogTimeOut();
-                }
+                }*/
 
                 Intent mIntent = new Intent(getActivity(), StatusCuentaSociosActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -206,10 +206,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
             case R.id.id_views_recibos_cuenta:
                 /**RECIBOS CUENTA**/
 
-                if (!new cSharedTokenValidation(getContext()).readTokenValitation())
+                /*if (!new cSharedTokenValidation(getContext()).readTokenValitation())
                 {
                     alertDialogTimeOut();
-                }
+                }*/
                 Intent mIntentRecibos = new Intent(getActivity(), RecivosCuentaActivity.class);
                 mIntentRecibos.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntentRecibos);

@@ -84,10 +84,10 @@ public class NotificationSocioFragment extends Fragment
 
         new ItemTouchHelper(simpleCallback).attachToRecyclerView(mRecyclerViewNotification);
 
-        if (!new cSharedTokenValidation(getContext()).readTokenValitation())
+        /*if (!new cSharedTokenValidation(getContext()).readTokenValitation())
         {
             alertDialogTimeOut();
-        }
+        }*/
 
 
 

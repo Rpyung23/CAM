@@ -202,12 +202,12 @@ public class ReciboDetalleActivity extends AppCompatActivity implements View.OnC
     protected void onResume() {
         super.onResume();
 
-        if (!new cSharedTokenValidation(ReciboDetalleActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(ReciboDetalleActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mIntent);
-        }
+        }*/
 
 
     }

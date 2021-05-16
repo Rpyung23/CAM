@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.recivos.cAdapterRecivos;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cReciver;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
@@ -36,7 +37,7 @@ import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
-public class RecivosCuentaActivity extends AppCompatActivity
+public class RecivosCuentaActivity extends cActivityInicioSocio
 {
     private RecyclerView mRecyclerView;
     private ArrayList<cReciver> mReciverArrayList = new ArrayList<>();
@@ -200,12 +201,12 @@ public class RecivosCuentaActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        if (!new cSharedTokenValidation(RecivosCuentaActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(RecivosCuentaActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mIntent);
-        }
+        }*/
 
     }
 }

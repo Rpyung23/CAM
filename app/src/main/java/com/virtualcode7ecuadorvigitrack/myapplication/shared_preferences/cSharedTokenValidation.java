@@ -21,6 +21,7 @@ public class cSharedTokenValidation
 {
     public Context mContext;
 
+    /*
     public cSharedTokenValidation(Context mContext) {
         this.mContext = mContext;
     }
@@ -51,9 +52,9 @@ public class cSharedTokenValidation
         /*Date dateTimeNow = new Date(timeStampNow);
         Date dateTimeLogin = new Date(timeStampLogin);*/
 
-        Log.e("TIMESTAMP",timeStampLogin+" --> "+timeStampNow);
+        //Log.e("TIMESTAMP",timeStampLogin+" --> "+timeStampNow);
 
-
+/*
         try {
             Date mDateLogin = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(timeStampLogin);
 
@@ -110,6 +111,6 @@ public class cSharedTokenValidation
 
 
         return false;
-    }
+    }*/
 
 }

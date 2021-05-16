@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterStatusCuentaSocios;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cStatusCuentaSocios;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.pdf.ViewPdfActivity;
@@ -37,7 +38,7 @@ import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
-public class StatusCuentaSociosActivity extends AppCompatActivity
+public class StatusCuentaSociosActivity extends cActivityInicioSocio
 {
     private RecyclerView mRecyclerViewStateCuenta;
     private cAdapterStatusCuentaSocios mAdapterStatusCuentaSocios;
@@ -83,10 +84,10 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
 
         mAlertDialogProgress= new cAlertDialogProgress().showAlertProgress(StatusCuentaSociosActivity.this,"CONSULTANDO",false);
 
-        if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
         {
             alertDialogTimeOut();
-        }
+        }*/
 
 
         llenarArraysListStatusSocios();
@@ -224,7 +225,8 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
-    private void alertDialogTimeOut()
+
+    /*private void alertDialogTimeOut()
     {
 
 
@@ -246,7 +248,7 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
         mAlertDialog = mBuilder.create();
         mAlertDialog.show();
         return;
-    }
+    }*/
 
 
     @Override
@@ -254,12 +256,12 @@ public class StatusCuentaSociosActivity extends AppCompatActivity
         super.onResume();
 
 
-        if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mIntent);
-        }
+        }*/
 
 
     }

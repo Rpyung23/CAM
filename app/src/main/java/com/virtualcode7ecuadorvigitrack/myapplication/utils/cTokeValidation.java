@@ -6,11 +6,11 @@ import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cShared
 
 public class cTokeValidation
 {
-    public static boolean validationToken(Context mContext)
+    /*public static boolean validationToken(Context mContext)
     {
         cSharedTokenValidation mSharedTokenValidation  = new cSharedTokenValidation(mContext);
 
         return mSharedTokenValidation.readTokenValitation();
-    }
+    }*/
 
 }

@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
 import java.util.ArrayList;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.*;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.invitados.*;
 
-public class InvitadosActivity extends AppCompatActivity
+public class InvitadosActivity extends cActivityInicioSocio
 {
 
     private TextView mTextViewTitulo;

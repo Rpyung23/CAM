@@ -3,7 +3,6 @@ package com.virtualcode7ecuadorvigitrack.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,11 +10,8 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
-import com.virtualcode7ecuadorvigitrack.myapplication.views.MainActivity;
-import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_invitado.InvitadosActivity;
 
 public class SplashScreen extends AppCompatActivity
 {

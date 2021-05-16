@@ -72,6 +72,7 @@ public class LoginPassActivity extends AppCompatActivity
 
         mActivity = this;
 
+
         mTextViewNumMem = findViewById(R.id.id_textview_num_membre);
         mTextViewName1 = findViewById(R.id.id_name_titulo_1);
         mTextViewName2 = findViewById(R.id.id_name_titulo_2);
@@ -165,7 +166,7 @@ public class LoginPassActivity extends AppCompatActivity
     private void openActivity()
     {
         closeAlertProgress();
-        new cSharedTokenValidation(LoginPassActivity.this).writeToken("ok");
+        //new cSharedTokenValidation(LoginPassActivity.this).writeToken("ok");
 
         Intent mIntent = new Intent(LoginPassActivity.this, InicioSociosActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);

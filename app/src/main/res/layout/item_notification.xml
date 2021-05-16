@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_marginLeft="@dimen/margin"
     android:layout_height="@dimen/alto_item_notification"
-    android:background="@drawable/duo_shape_rectangled_red"
+    android:background="@android:color/holo_red_dark"
     >
 
     <androidx.appcompat.widget.AppCompatImageView

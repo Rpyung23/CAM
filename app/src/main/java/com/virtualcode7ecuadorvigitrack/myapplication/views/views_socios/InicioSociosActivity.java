@@ -20,8 +20,10 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.framents_socios.NotificationSocioFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.framents_socios.ProfileSocioFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.models.cSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.services.cServiceTimerToken;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
@@ -29,7 +31,8 @@ import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_contacto.ContactoInicioActivity;
 
-public class InicioSociosActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener
+public class InicioSociosActivity extends cActivityInicioSocio
+        implements  NavigationView.OnNavigationItemSelectedListener
 {
     private BottomNavigationView mBottomNavigationView;
     private ProfileSocioFragment mProfileSocioFragment = new ProfileSocioFragment();
@@ -78,8 +81,11 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
         mTextViewName.setText(new cSharedPreferenSocio(InicioSociosActivity.this).leerdatosSocio().getNombre_socio());
         mTextViewNum.setText("No socio "+new cSharedPreferenSocio(InicioSociosActivity.this).leerdatosSocio().getNum_membresia());
 
-        openFragmentInicio();
+        //openFragmentInicio();
         mNavigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setCheckedItem(R.id.opc_perfil_drawer2);
+
+
     }
 
     private void openFragmentInicio()
@@ -104,12 +110,13 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
     protected void onResume()
     {
 
-        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mIntent);
-        }
+        }*/
+        super.onResume();
 
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,31 +127,30 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 {
                     case R.id.opc_profile:
 
-                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        /*if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
                         {
                             alertDialogTimeOut();
-                        }
-
+                        }*/
 
                         mTextViewTop.setText("MI PERFIL");
                         openFragments(mProfileSocioFragment);
                         mNavigationView.setCheckedItem(R.id.opc_perfil_drawer2);
                         break;
                     case R.id.opc_notification:
-                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        /*if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
                         {
                             alertDialogTimeOut();
-                        }
+                        }*/
                         mTextViewTop.setText("NOTIFICACIONES");
                         openFragments(mNotificationSocioFragment);
                         mNavigationView.setCheckedItem(R.id.opc_noti_drawer2);
                         break;
                     case R.id.opc_menu_1:
 
-                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        /*if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
                         {
                             alertDialogTimeOut();
-                        }
+                        }*/
 
 
                         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -156,10 +162,10 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                         break;
                     case R.id.opc_close:
 
-                        if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
+                        /*if (!new cSharedTokenValidation(InicioSociosActivity.this).readTokenValitation())
                         {
                             alertDialogTimeOut();
-                        }
+                        }*/
 
                         mNavigationView.setCheckedItem(R.id.opc_cerrar_drawer2);
                         alertDialog();
@@ -168,7 +174,7 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 return true;
             }
         });
-        super.onResume();
+        mBottomNavigationView.setSelectedItemId(R.id.opc_profile);
     }
 
     private void alertDialogTimeOut()
@@ -204,17 +210,6 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     private void alertDialog()
     {
 
@@ -234,13 +229,18 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
                 mAlertDialog.hide();
 
 
-                Intent mIntentService = new Intent(InicioSociosActivity.this,cServiceTimerToken.class);
+                /*Intent mIntentService = new Intent(InicioSociosActivity.this,cServiceTimerToken.class);
 
-                stopService(mIntentService);
+                stopService(mIntentService);*/
 
 
 
-                new cSharedTokenValidation(InicioSociosActivity.this).writeToken("error");
+                //new cSharedTokenValidation(InicioSociosActivity.this).writeToken("error");
+
+
+                clearToken();
+
+
                 Intent mIntent = new Intent(InicioSociosActivity.this,InicioActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mIntent.putExtra("bandera",1);
@@ -262,6 +262,11 @@ public class InicioSociosActivity extends AppCompatActivity implements  Navigati
 
         mAlertDialog = mBuilder.create();
         mAlertDialog.show();
+    }
+
+    private void clearToken()
+    {
+        new cSharedPreferenSocio(getApplicationContext()).clearSharedSocio();
     }
 
     private void openFragments(Fragment oFragment)

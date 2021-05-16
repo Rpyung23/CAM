@@ -11,9 +11,10 @@ import android.view.View;
 
 import com.google.android.material.card.MaterialCardView;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
-public class SolicitudInvitadosActivity extends AppCompatActivity
+public class SolicitudInvitadosActivity extends cActivityInicioSocio
 {
     private MaterialCardView mMaterialCardViewFechasSolicitud;
     private MaterialCardView mMaterialCardViewAddInvitados;

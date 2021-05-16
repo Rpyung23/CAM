@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.recivos.cAdapterReciboScroll;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cReciver;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.pdf.ViewPdfActivity;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class ReciboDetalleScrollActivity extends AppCompatActivity implements View.OnClickListener
+public class ReciboDetalleScrollActivity extends cActivityInicioSocio implements View.OnClickListener
 {
     private ViewPager2 mViewPager2;
     private ArrayList<cReciver> mReciverArrayList;
@@ -90,10 +91,10 @@ public class ReciboDetalleScrollActivity extends AppCompatActivity implements Vi
         mViewSolicitarFactura.setOnClickListener(this);
 
 
-        if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
         {
             alertDialogTimeOut();
-        }
+        }*/
 
 
 
@@ -107,10 +108,10 @@ public class ReciboDetalleScrollActivity extends AppCompatActivity implements Vi
         {
             case R.id.id_views_card_pdf:
 
-                if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
+                /*if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
                 {
                     alertDialogTimeOut();
-                }
+                }*/
 
                 Toasty.info(ReciboDetalleScrollActivity.this,"OBSERVANDO PDF",Toasty.LENGTH_SHORT)
                         .show();
@@ -126,10 +127,10 @@ public class ReciboDetalleScrollActivity extends AppCompatActivity implements Vi
                 break;
             case R.id.id_views_card_soli_factura:
 
-                if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
+                /*if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
                 {
                     alertDialogTimeOut();
-                }
+                }*/
                 Toasty.info(ReciboDetalleScrollActivity.this,"SOLICITANDO FACTURA",Toasty.LENGTH_SHORT)
                         .show();
                 Uri uri = Uri.parse(mReciverArrayList.get(posScroll).getRecibo_factura());
@@ -180,11 +181,11 @@ public class ReciboDetalleScrollActivity extends AppCompatActivity implements Vi
         super.onResume();
 
 
-        if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(ReciboDetalleScrollActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mIntent);
-        }
+        }*/
     }
 }

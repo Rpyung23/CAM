@@ -15,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.notificacion.cAdapterNotificationScroll;
 import com.virtualcode7ecuadorvigitrack.myapplication.handlers.cNotitifactionHandlers;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNotificationSocio;
@@ -25,7 +26,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.views.LogOutActivity;
 
 import java.util.ArrayList;
 
-public class NotificationDetailsSocioActivity extends AppCompatActivity
+public class NotificationDetailsSocioActivity extends cActivityInicioSocio
 {
     private ArrayList<cNotificationSocio> mNotificationSocios;
     /*private TextView mTextViewFecha;
@@ -242,12 +243,12 @@ public class NotificationDetailsSocioActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        if (!new cSharedTokenValidation(NotificationDetailsSocioActivity.this).readTokenValitation())
+        /*if (!new cSharedTokenValidation(NotificationDetailsSocioActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mIntent);
-        }
+        }*/
 
 
         /*mTextViewDeleteNotification.setOnClickListener(new View.OnClickListener() {

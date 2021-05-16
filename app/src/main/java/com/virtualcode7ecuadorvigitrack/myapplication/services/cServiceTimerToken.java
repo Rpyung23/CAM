@@ -18,7 +18,7 @@ import es.dmoral.toasty.Toasty;
 
 public class cServiceTimerToken extends Service
 {
-    private cNotificationTokenLogin mNotificationTokenLogin;
+    /*private cNotificationTokenLogin mNotificationTokenLogin;
 
     private Handler mHandler = new Handler();
     private cSharedTokenValidation mSharedTokenValidation;
@@ -30,14 +30,14 @@ public class cServiceTimerToken extends Service
 
             /*cNotificationTokenLogin mNotificationTokenLogin = new cNotificationTokenLogin(getApplicationContext());
             mNotificationTokenLogin.getmNotificationManager().cancel(777);*/
-
+/*
             Intent mIntentS = new Intent(getApplicationContext(),cServiceTimerToken.class);
             stopService(mIntentS);
 
-            mSharedTokenValidation = new cSharedTokenValidation(getApplicationContext());
-            mSharedTokenValidation.writeToken("error");
+            /*mSharedTokenValidation = new cSharedTokenValidation(getApplicationContext());
+            mSharedTokenValidation.writeToken("error");*/
 
-
+/*
             mHandler.removeCallbacks(mRunnable);
 
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
@@ -45,7 +45,7 @@ public class cServiceTimerToken extends Service
             startActivity(mIntent);
 
         }
-    };
+    };*/
 
 
     @Nullable
@@ -57,6 +57,7 @@ public class cServiceTimerToken extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
+        /*
 
         mSharedTokenValidation = new cSharedTokenValidation(getApplicationContext());
 
@@ -78,14 +79,13 @@ public class cServiceTimerToken extends Service
         }
 
         mHandler.postDelayed(mRunnable, TimeUnit.MILLISECONDS.convert(9,TimeUnit.MINUTES));/** 9.5 minutos **/
-
         return START_NOT_STICKY;
     }
 
     @Override
     public void onDestroy()
     {
-        mHandler.removeCallbacks(mRunnable);
+        //mHandler.removeCallbacks(mRunnable);
 
         super.onDestroy();
     }

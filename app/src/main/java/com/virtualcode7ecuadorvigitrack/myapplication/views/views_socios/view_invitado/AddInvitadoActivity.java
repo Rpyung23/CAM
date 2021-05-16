@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
 
-public class AddInvitadoActivity extends AppCompatActivity {
+public class AddInvitadoActivity extends cActivityInicioSocio {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
