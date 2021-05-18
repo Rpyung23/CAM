@@ -9,9 +9,9 @@
     <dimen name="margin_25">25dp</dimen>
     <dimen name="textsize_30">30sp</dimen>
     <dimen name="alto_card_evento">270dp</dimen>
-    <dimen name="ancho_view_fechas_event">120dp</dimen>
+    <dimen name="ancho_view_fechas_event">90dp</dimen>
     <dimen name="alto_ancho_image_top_details_eventos">50dp</dimen>
-
+    <dimen name="ancho_alert_fechas">350dp</dimen>
 
 
     <!-- Spacing-->

@@ -399,9 +399,6 @@ public class EventosFragment extends Fragment
                 mIntent.putExtra("evento",(Serializable) mNoticias);
                 mIntent.putExtra("posicion",0);
                 startActivity(mIntent);
-
-
-
             }
         });
         super.onResume();

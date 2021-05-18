@@ -12,6 +12,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
@@ -51,10 +52,13 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
         if(getItemCount()>0)
         {
 
+            holder.mTextViewFechaDesde.setVisibility(View.VISIBLE);
+
             if ( mEventosArrayList.get(position).getFecha_fin()==null
-                    ||mEventosArrayList.get(position).getFecha_fin().isEmpty())
+                    || mEventosArrayList.get(position).getFecha_fin().isEmpty())
             {
                 holder.mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
+                holder.mTextViewFechaDesde.setVisibility(View.GONE);
             }else
             {
                 holder.mLinearLayoutCompatFechaFin.setVisibility(View.VISIBLE);
@@ -69,19 +73,27 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
                 }*/
             }
 
-
-
-            if(mEventosArrayList.get(position).getFecha().equals(mEventosArrayList.get(position).getFecha_fin()))
+            if(mEventosArrayList.get(position).getFecha()
+                    .equals(mEventosArrayList.get(position).getFecha_fin()))
             {
                 /****/
                 holder.mLinearLayoutCompatFechaFin.setVisibility(View.GONE);
                 holder.mTextViewFechaDesde.setVisibility(View.GONE);
 
-                LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams) holder.mLinearLayoutCompat_Dates_All.getLayoutParams();
+                holder.mTextViewFechaInicio.setPadding(3,0,3,0);
 
-                mLayoutParams.setMargins(4,-60,4,0);
+                ViewGroup.LayoutParams params = holder.mLinearLayoutCompat_Dates_All.getLayoutParams();
 
-                holder.mLinearLayoutCompat_Dates_All.setLayoutParams(mLayoutParams);
+                params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                holder.mLinearLayoutCompat_Dates_All.setLayoutParams(params);
+
+
+                /*LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams) holder.mLinearLayoutCompat_Dates_All.getLayoutParams();
+
+                mLayoutParams.setMargins(4,-60,4,0);*/
+
+                //holder.mLinearLayoutCompat_Dates_All.setLayoutParams(mLayoutParams);
             }
 
 
@@ -128,7 +140,7 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
     public class cViewHolderEventos extends RecyclerView.ViewHolder
     {
         private ImageView mImageView;
-        private CardView mCardView;
+        private MaterialCardView mCardView;
         private TextView mTextViewTitulo;
         private TextView mTextViewDireccion;
         private TextView mTextViewFechaInicio;
@@ -142,7 +154,8 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
 
         private TextView mTextViewFechaDesde;
-        private View mViewFechasContainer;
+
+        //private View mViewFechasContainer;
 
         public cViewHolderEventos(@NonNull View itemView) {
             super(itemView);
@@ -160,7 +173,7 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
             mLinearLayoutCompatFechaFin = itemView.findViewById(R.id.id_linear_layout_fecha_fin);
             mTextViewFechaDesde = itemView.findViewById(R.id.id_textview_desde_texto);
-            mViewFechasContainer = itemView.findViewById(R.id.id_view_ContainerFechas);
+            //mViewFechasContainer = itemView.findViewById(R.id.id_view_ContainerFechas);
 
 
 

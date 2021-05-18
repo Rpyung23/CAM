@@ -265,4 +265,5 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
 
 
     }
+
 }

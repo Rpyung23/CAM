@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cShared
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_contacto.ContactoInicioActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.InicioSociosActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.RecivosCuentaActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.StatusCuentaSociosActivity;
 
 import java.util.List;
 
@@ -64,9 +67,6 @@ public class InicioActivity extends cActivityInicio
         bandera = getIntent().getIntExtra("bandera",0);
 
 
-        //MaterialShapeDrawable materialShapeDrawable = (MaterialShapeDrawable) mBottomNavigationView.getBackground();
-
-        //materialShapeDrawable = materialShapeDrawable.getShapeAppearanceModel().toBuilder();
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,16 +79,19 @@ public class InicioActivity extends cActivityInicio
 
         toggle.syncState();
 
+        openFragmentNews();
+        onResume(mNavigationView);
+    }
 
+    private void openFragmentNews()
+    {
         oFragmentManager = getSupportFragmentManager();
 
-
-        /*oFragmentManager.beginTransaction().replace(R.id.fragment_container_1,mNoticiasFragment,"news")
+        oFragmentManager.beginTransaction().replace(R.id.fragment_container_1,mNoticiasFragment,"news")
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .addToBackStack("news")
-                .commit();*/
+                .commit();
 
-        onResume(mNavigationView);
     }
 
     @Override
@@ -186,7 +189,7 @@ public class InicioActivity extends cActivityInicio
         {
             mBottomNavigationView.setSelectedItemId(R.id.opc_acceso_socios_1);
         }
-        mBottomNavigationView.setSelectedItemId(R.id.opc_noticias_1);
+
         super.onPostResume();
     }
 
@@ -295,9 +298,46 @@ public class InicioActivity extends cActivityInicio
                 mTextViewToolbar.setText("LOGIN");
                 mBottomNavigationView.setSelectedItemId(R.id.opc_acceso_socios_1);
                 break;
+
+            case R.id.opc_my_account_inicio_login:
+
+                Intent mIntentSocioProfile = new Intent(InicioActivity.this,
+                        InicioSociosActivity.class);
+                startIntentOpcSocios(mIntentSocioProfile);
+
+                break;
+
+            case R.id.opc_notification_inicio_login:
+
+                Intent mIntentNotificationSocio = new Intent(InicioActivity.this,
+                        InicioSociosActivity.class);
+                mIntentNotificationSocio.putExtra("fragment","notification");
+                startIntentOpcSocios(mIntentNotificationSocio);
+
+                break;
+
+            case R.id.opc_status_account_inicio_login:
+                Intent mIntentStatusCuentaSocio = new Intent(InicioActivity.this,
+                        StatusCuentaSociosActivity.class);
+                startIntentOpcSocios(mIntentStatusCuentaSocio);
+                break;
+
+            case R.id.opc_recivos_inicio_login:
+                Intent mIntentRecivos = new Intent(InicioActivity.this, RecivosCuentaActivity.class);
+                startIntentOpcSocios(mIntentRecivos);
+                break;
         }
 
         return true;
+    }
+
+    private void startIntentOpcSocios(Intent mIntent)
+    {
+        TaskStackBuilder mTaskStackBuilder = TaskStackBuilder.create(getApplicationContext());
+        mTaskStackBuilder.addNextIntentWithParentStack(mIntent);
+        mTaskStackBuilder.startActivities();
+
+        finish();
     }
 
 }

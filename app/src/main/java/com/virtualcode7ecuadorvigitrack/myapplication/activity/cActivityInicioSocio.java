@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.views.InicioActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.InicioSociosActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +32,9 @@ public class cActivityInicioSocio extends AppCompatActivity
     protected void onDestroy()
     {
         stopCounterDown();
+        /*Intent mIntent = new Intent(getApplicationContext(), InicioSociosActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(mIntent);*/
         super.onDestroy();
     }
 

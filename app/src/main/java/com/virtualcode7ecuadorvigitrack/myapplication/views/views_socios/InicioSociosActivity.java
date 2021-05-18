@@ -45,6 +45,7 @@ public class InicioSociosActivity extends cActivityInicioSocio
     private View header;
 
     private AlertDialog mAlertDialog ;
+    private String mStringFragmentBandera = "";
 
 
 
@@ -62,6 +63,7 @@ public class InicioSociosActivity extends cActivityInicioSocio
 
         mDrawerLayout = findViewById(R.id.id_drawer_layout);
 
+        mStringFragmentBandera = getIntent().getStringExtra("fragment");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.vacio, R.string.vacio);
@@ -81,20 +83,35 @@ public class InicioSociosActivity extends cActivityInicioSocio
         mTextViewName.setText(new cSharedPreferenSocio(InicioSociosActivity.this).leerdatosSocio().getNombre_socio());
         mTextViewNum.setText("No socio "+new cSharedPreferenSocio(InicioSociosActivity.this).leerdatosSocio().getNum_membresia());
 
-        //openFragmentInicio();
+        openFragmentInicio();
         mNavigationView.setNavigationItemSelectedListener(this);
-        mNavigationView.setCheckedItem(R.id.opc_perfil_drawer2);
+
 
 
     }
 
     private void openFragmentInicio()
     {
-        mTextViewTop.setText("MI PERFIL");
-        FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-        mFragmentTransaction.replace(R.id.fragment_container_2,mProfileSocioFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+        if(mStringFragmentBandera!=null && mStringFragmentBandera.equals("notification"))
+        {
+            mTextViewTop.setText("NOTIFICACIONES");
+
+            FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+            mFragmentTransaction.replace(R.id.fragment_container_2,mNotificationSocioFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+            mNavigationView.setCheckedItem(R.id.opc_noti_drawer2);
+            mBottomNavigationView.setSelectedItemId(R.id.opc_notification);
+
+        }else{
+            mTextViewTop.setText("MI PERFIL");
+
+            FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+            mFragmentTransaction.replace(R.id.fragment_container_2,mProfileSocioFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+            mNavigationView.setCheckedItem(R.id.opc_perfil_drawer2);
+        }
     }
 
     @Override
@@ -174,7 +191,7 @@ public class InicioSociosActivity extends cActivityInicioSocio
                 return true;
             }
         });
-        mBottomNavigationView.setSelectedItemId(R.id.opc_profile);
+        //mBottomNavigationView.setSelectedItemId(R.id.opc_profile);
     }
 
     private void alertDialogTimeOut()
