@@ -152,5 +152,6 @@
     <string name="my_profile">Mi Perfil</string>
     <string name="notifications">Notificaciones</string>
     <string name="recive">Recibos</string>
+    <string name="off_network">Sin Acceso a Internet</string>
 
 </resources>

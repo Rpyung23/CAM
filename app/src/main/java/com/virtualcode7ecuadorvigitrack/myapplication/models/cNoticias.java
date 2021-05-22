@@ -9,18 +9,46 @@ public class cNoticias implements Serializable
 {
     private int id_noticias;
     private String titulo;
+    private String descriptionCorta;
     private String fecha;
     private String mUriPicturePrincipalNoticia;
-    private ArrayList<String> mUriArrayListGaleriaNoticia;
+    private String mUriPictureContenidoNoticia;
+    /*private ArrayList<String> mUriArrayListGaleriaNoticia;*/
     private String TextoNoticia;
+    private int numPage;
 
     public  cNoticias()
     {
         this.TextoNoticia = "";
+        this.numPage = 0;
+    }
+
+    public int getNumPage() {
+        return numPage;
+    }
+
+    public void setNumPage(int numPage) {
+        this.numPage = numPage;
     }
 
     public int getId_noticias() {
         return id_noticias;
+    }
+
+    public String getDescriptionCorta() {
+        return descriptionCorta;
+    }
+
+    public void setDescriptionCorta(String descriptionCorta) {
+        this.descriptionCorta = descriptionCorta;
+    }
+
+    public String getmUriPictureContenidoNoticia() {
+        return mUriPictureContenidoNoticia;
+    }
+
+    public void setmUriPictureContenidoNoticia(String mUriPictureContenidoNoticia) {
+        this.mUriPictureContenidoNoticia = mUriPictureContenidoNoticia;
     }
 
     public void setId_noticias(int id_noticias) {
@@ -51,13 +79,13 @@ public class cNoticias implements Serializable
         this.mUriPicturePrincipalNoticia = mUriPicturePrincipalNoticia;
     }
 
-    public ArrayList<String> getmUriArrayListGaleriaNoticia() {
+    /*public ArrayList<String> getmUriArrayListGaleriaNoticia() {
         return mUriArrayListGaleriaNoticia;
     }
 
     public void setmUriArrayListGaleriaNoticia(ArrayList<String> mUriArrayListGaleriaNoticia) {
         this.mUriArrayListGaleriaNoticia = mUriArrayListGaleriaNoticia;
-    }
+    }*/
 
     public String getTextoNoticia() {
         return TextoNoticia;

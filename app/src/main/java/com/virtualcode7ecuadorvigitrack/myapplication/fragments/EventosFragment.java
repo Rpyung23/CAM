@@ -34,7 +34,6 @@ import com.virtualcode7ecuadorvigitrack.myapplication.adapters.eventos.cAdapterE
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cStringMesDia;
-import com.virtualcode7ecuadorvigitrack.myapplication.views.EventosContenidoActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.EventosViewPagerContenidoActivity;
 
 import org.json.JSONArray;
@@ -126,13 +125,7 @@ public class EventosFragment extends Fragment
         return mView;
     }
 
-    private void abrirActivityEventos(cEventos oEventos)
-    {
-        Intent mIntent = new Intent(getActivity(), EventosContenidoActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mIntent.putExtra("oEvento", oEventos);
-        startActivity(mIntent);
-    }
+
 
 
 

@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicio;
+import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.EventosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.NoticiasFragment;
@@ -67,8 +68,6 @@ public class InicioActivity extends cActivityInicio
         bandera = getIntent().getIntExtra("bandera",0);
 
 
-
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.vacio, R.string.vacio);
 
@@ -110,8 +109,6 @@ public class InicioActivity extends cActivityInicio
                 switch (item.getItemId())
                 {
                     case  R.id.opc_menu_1:
-                        //visibleViewToolbarTop();
-                        //llenarFragmentContainer();
 
                         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                             mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -122,10 +119,8 @@ public class InicioActivity extends cActivityInicio
                         break;
                     case  R.id.opc_noticias_1:
                         visibleViewToolbarTop();
-                        /*FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        mFragmentTransaction.replace(R.id.fragment_container_1,mNoticiasFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                .commit();*/
+
+                        cApplication.bandera_fragment = 1;
 
                         llenarFragmentContainer("news",mNoticiasFragment);
 
@@ -136,10 +131,8 @@ public class InicioActivity extends cActivityInicio
                         break;
                     case  R.id.opc_eventos_1:
                         visibleViewToolbarTop();
-                        /*getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container_1,mEventosFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                .commit();*/
+                        cApplication.bandera_fragment = 2;
+
                         llenarFragmentContainer("event",mEventosFragment);
                         mTextViewToolbar.setText("EVENTOS");
                         //Toast.makeText(InicioActivity.this, "opc_eventos_1", Toast.LENGTH_SHORT).show();
@@ -147,23 +140,6 @@ public class InicioActivity extends cActivityInicio
                         break;
                     case  R.id.opc_acceso_socios_1:
                         goneViewToolbarTop();
-
-                        /*if (new cSharedTokenValidation(InicioActivity.this).readTokenValitationFragmentInicio())
-                        {
-                            Intent mIntent = new Intent(InicioActivity.this,
-                                    InicioSociosActivity.class);
-                            startActivity(mIntent);
-                        }else
-                            {
-                                                        /*getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container_1,mAccesoSociosFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                .commit();*/
-                                /*llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
-                                mTextViewToolbar.setText("LOGIN");
-                                //Toast.makeText(InicioActivity.this, "opc_acceso_socios_1", Toast.LENGTH_SHORT).show();
-                                mNavigationView.setCheckedItem(R.id.opc_acceso_drawer);
-                            }*/
 
                         llenarFragmentContainer("acc_socio",mAccesoSociosFragment);
                         mTextViewToolbar.setText("LOGIN");

@@ -18,19 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cImageGetter;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapterNoticiasDetailsScroll.cViewHolderNoticiasScroll>
 {
     private Context mContext;
-    private ArrayList<cNoticias> mNoticiasArrayList;
+    private List<cNoticias> mNoticiasArrayList;
     private cImageGetter mCImageGetter;
 
-    public cAdapterNoticiasDetailsScroll(Context mContext,
-                                         ArrayList<cNoticias> mNoticiasArrayList) {
+    public cAdapterNoticiasDetailsScroll(Context mContext,List<cNoticias> mNoticiasArrayList) {
         this.mContext = mContext;
         this.mNoticiasArrayList = mNoticiasArrayList;
         this.mCImageGetter = new cImageGetter(mContext);
@@ -51,12 +52,16 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
     @Override
     public void onBindViewHolder(@NonNull cViewHolderNoticiasScroll holder, int position)
     {
-            holder.mTextViewTitulo.setText(mNoticiasArrayList.get(position).getTitulo());
-            holder.mTextViewFecha.setText(mNoticiasArrayList.get(position).getFecha());
+            holder.mTextViewTitulo.setText(mNoticiasArrayList
+                    .get(position).getTitulo());
+            holder.mTextViewFecha.setText(mNoticiasArrayList
+                    .get(position).getFecha());
 
 
 
-            Picasso.with(mContext).load(mNoticiasArrayList.get(position)
+            Picasso.with(mContext)
+                    .load(mNoticiasArrayList
+                    .get(position)
                     .getmUriPicturePrincipalNoticia())
                     .error(R.drawable.img_error)
                     .placeholder(R.drawable.img_load)
@@ -65,11 +70,13 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
         Spanned mSpanned = null;
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            mSpanned = (Html.fromHtml(mNoticiasArrayList.get(position)
+            mSpanned = (Html.fromHtml(mNoticiasArrayList
+                            .get(position)
                             .getTextoNoticia(),Html.FROM_HTML_MODE_LEGACY,
                     mCImageGetter,null));
         }else {
-            mSpanned = (Html.fromHtml(mNoticiasArrayList.get(position)
+            mSpanned = (Html.fromHtml(mNoticiasArrayList
+                    .get(position)
                             .getTextoNoticia(),mCImageGetter,null));
         }
 
@@ -81,43 +88,6 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
                 .get(position).getTextoNoticia());
 
         Log.e("LINE CONT"," : "+holder.mTextViewTitulo.getLineCount());
-
-
-
-        /*if(holder.mTextViewTitulo.getLineCount()==1)
-        {
-
-            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
-                    holder.mLinearLayoutCompat.getLayoutParams();
-
-            mLayoutParams.setMargins(0,-230,0,0);
-
-            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
-        }
-
-        if(holder.mTextViewTitulo.getLineCount() == 2)
-        {
-
-            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
-                    holder.mLinearLayoutCompat.getLayoutParams();
-
-            mLayoutParams.setMargins(0,-240,0,0);
-
-            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
-        }
-
-
-
-        if(holder.mTextViewTitulo.getLineCount()>=3)
-        {
-
-            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
-                    holder.mLinearLayoutCompat.getLayoutParams();
-
-            mLayoutParams.setMargins(0,-275,0,0);
-
-            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
-        }*/
 
     }
 

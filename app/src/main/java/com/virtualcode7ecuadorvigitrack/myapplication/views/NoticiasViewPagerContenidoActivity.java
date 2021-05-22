@@ -6,7 +6,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,7 +19,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.noticias.cAdapterNoticiasDetailsScroll;
+import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
+import com.virtualcode7ecuadorvigitrack.myapplication.sqlite.cSQLNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
@@ -27,19 +31,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
 public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
 {
     private ViewPager2 mViewPager2Noticias;
-    private ArrayList<cNoticias> mNoticiasArrayList;
+
+    private List<cNoticias> mNoticiasArrayList_;
+
     private int posInicial = 0;
     private cAdapterNoticiasDetailsScroll mAdapterNoticias;
     private JsonObjectRequest mJsonObjectRequest;
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialog;
+
     private cNoticias oN =  new cNoticias();
+
+    private cSQLNoticias mSqlNoticias = new cSQLNoticias();
 
 
     @Override
@@ -51,43 +61,63 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
 
         mViewPager2Noticias = findViewById(R.id.viewpager2noticias);
 
+
+
         posInicial = getIntent().getIntExtra("posicion",0);
+        Log.e("postion_pageInicial",String.valueOf(posInicial));
+
         oN = (cNoticias) getIntent().getSerializableExtra("noticia");
+
+        //oN = cApplication.getmApplicationInstance().getmNoticia();
+
         new cToolbar().show(NoticiasViewPagerContenidoActivity.this,"",true,0);
-        mNoticiasArrayList = (ArrayList<cNoticias>) getIntent().getSerializableExtra("noticias");
 
-        mNoticiasArrayList.add(0,oN);
+        mNoticiasArrayList_ = (ArrayList<cNoticias>) getIntent().getSerializableExtra("noticias");
 
-        mAdapterNoticias = new cAdapterNoticiasDetailsScroll(NoticiasViewPagerContenidoActivity.this
-                ,mNoticiasArrayList);
+        //mNoticiasArrayList_ = cApplication.getmApplicationInstance().getmNoticiasList();
+
+        mNoticiasArrayList_.add(0,oN);
+
+        //cApplication.getmApplicationInstance().getmNoticiasList().add(0,cApplication.getmApplicationInstance().getmNoticia());
+
+        mAdapterNoticias = new cAdapterNoticiasDetailsScroll
+                (getApplicationContext(),mNoticiasArrayList_);
 
         mViewPager2Noticias.setAdapter(mAdapterNoticias);
 
 
-        mViewPager2Noticias.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
-        {
-            @Override
-            public void onPageSelected(int position)
-            {
-                readNoticiaApiRest(position);
-            }
-        });
 
-        mViewPager2Noticias.setCurrentItem(posInicial);
 
-        mAdapterNoticias.notifyDataSetChanged();
+        //mAdapterNoticias.notifyDataSetChanged();
 
     }
 
     private void readNoticiaApiRest(int position)
     {
+        if (cApplication.getmApplicationInstance().checkInternet()){
+            consumoServiceDeatilsNoticias(position);
+        }else{
+            //visibleLoading();
+            cNoticias mNoticias = mSqlNoticias.readNoticia(mNoticiasArrayList_.get(position).getId_noticias());
+            mNoticiasArrayList_.get(position).setTextoNoticia(mNoticias.getTextoNoticia());
+            mNoticiasArrayList_.get(position).setmUriPictureContenidoNoticia(mNoticias.getmUriPictureContenidoNoticia());
+            mAdapterNoticias.notifyItemChanged(position);
+            //invisibleLoading();
+        }
+    }
+
+    private void consumoServiceDeatilsNoticias(int position)
+    {
         mAlertDialog = new cAlertDialogProgress().showAlertProgress(NoticiasViewPagerContenidoActivity.this,
-            "CONSULTANDO...",false);
+                "CONSULTANDO...",false);
         mAlertDialog.show();
+
+        //visibleLoading();
+
         //Toast.makeText(this, "pos : "+position, Toast.LENGTH_SHORT).show();
 
         mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                getString(R.string.api_rest_noticias_id)+mNoticiasArrayList.get(position).getId_noticias(),
+                getString(R.string.api_rest_noticias_id)+mNoticiasArrayList_.get(position).getId_noticias(),
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response)
@@ -99,35 +129,10 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
                         JSONObject mJsonObject = mJsonArray.getJSONObject(0);
 
 
-                        mNoticiasArrayList.get(position).setTextoNoticia(mJsonObject.getString("contenido"));
+                        mNoticiasArrayList_.get(position).setmUriPictureContenidoNoticia(mJsonObject.getString("url_imagen_principal"));
+                        mNoticiasArrayList_.get(position).setTextoNoticia(mJsonObject.getString("contenido"));
 
-
-
-                        /*mTextViewFecha.setText(" "+mNoticiasArrayList.get(position).getFecha());
-                        Picasso.with(getApplicationContext())
-                                .load(mJsonObject.getString("url_imagen_principal"))
-                                .placeholder(R.drawable.img_load).error(R.drawable.img_error)
-                                .into(mImageView);*/
-
-                        /*View mView = mViewPager2Noticias.getChildAt(position);
-
-                        TextView mTextView = mView.findViewById(R.id.id_textview_contenido);
-
-                        mTextView.setText(Html.fromHtml(mJsonObject.getString("contenido")));*/
-
-                        /*ArrayList<String> urls = new ArrayList<>();
-
-                        urls.add(oNoticias.getmUriPicturePrincipalNoticia());
-                        urls.add(mJsonObject.getString("url_imagen_principal"));*/
-
-                        /*mNoticiasArrayList.get(position).setmUriArrayListGaleriaNoticia(urls);*/
-
-
-                        /*mAdapterNoticiasDetailsPicture = new
-                                cAdapterNoticiasDetailsPicture(oNoticias.getmUriArrayListGaleriaNoticia(),
-                                NoticiasContenidoActivity.this);*/
-
-                        /*mRecyclerView.setAdapter(mAdapterNoticiasDetailsPicture);*/
+                        mSqlNoticias.updateNoticiaContenido(mNoticiasArrayList_.get(position));
 
                         mAdapterNoticias.notifyItemChanged(position);
                     }else
@@ -138,7 +143,8 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-               new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                //invisibleLoading();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -146,7 +152,8 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
             {
                 Toasty.error(getApplicationContext(),
                         error.getMessage(),Toasty.LENGTH_LONG).show();
-               new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                //invisibleLoading();
             }
         }){
             @Override
@@ -180,4 +187,23 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
     public void onBackPressed() {
         finish();
     }
+
+
+    @Override
+    protected void onPostResume() {
+
+        mViewPager2Noticias.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
+        {
+            @Override
+            public void onPageSelected(int position)
+            {
+                Log.e("postion_page_titulo",mNoticiasArrayList_.get(position).getTitulo());
+                Log.e("postion_page",String.valueOf(position));
+                readNoticiaApiRest(position);
+            }
+        });
+        mViewPager2Noticias.setCurrentItem(posInicial,true);
+        super.onPostResume();
+    }
+
 }

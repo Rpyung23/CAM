@@ -2,6 +2,8 @@ package com.virtualcode7ecuadorvigitrack.myapplication.fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,9 +31,13 @@ import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.noticias.cAdapterNoticias;
+import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
+import com.virtualcode7ecuadorvigitrack.myapplication.broadcast.cBroadCastNetworkStatus;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.cCheckNetwork;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.cEventRecyclerViewNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
+import com.virtualcode7ecuadorvigitrack.myapplication.sqlite.cSQLNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
-import com.virtualcode7ecuadorvigitrack.myapplication.views.NoticiasContenidoActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.NoticiasViewPagerContenidoActivity;
 
 import org.json.JSONArray;
@@ -44,17 +51,21 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-public class NoticiasFragment extends Fragment implements View.OnClickListener
-{
+public class NoticiasFragment extends Fragment implements View.OnClickListener,
+        cCheckNetwork, cEventRecyclerViewNoticias {
+
     private View mView;
     private View mViewCardPrincipal;
     private ImageView mImageView;
     private TextView mTextViewTituloNoticia;
     private TextView mTextViewFechaNoticia;
     private RecyclerView mRecyclerViewNoticias;
-    private List<cNoticias> mNoticiasArrayList = new ArrayList<>();
+
     private cAdapterNoticias mAdapterNoticias;
-    private cNoticias mNoticias = new cNoticias();
+
+    private List<cNoticias> mNoticiasList = new ArrayList<>();
+    private cNoticias mNoticias_ = new cNoticias();
+
     private StringRequest mStringRequest;
     private RequestQueue mRequestQueue;
     private AlertDialog mAlertDialog;
@@ -64,10 +75,26 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
 
     private  int desface_ = 0;
     private  boolean first_desplazo = true;
+    private boolean first_consulta = true;
+
+    private StaggeredGridLayoutManager mLayoutManager_;
 
 
-    private StaggeredGridLayoutManager mLayoutManager;
+
     private SwipeRefreshLayout mSwipeRefreshLayoutNoticias;
+
+    private cSQLNoticias mSqlNoticias = new cSQLNoticias();
+
+
+    private cBroadCastNetworkStatus mBroadCastNetworkStatus;
+
+
+
+    private int findFirstVisibleItemPosition =  0;
+    private int findFirstCompletelyVisibleItemPosition = 0;
+    private int findLastVisibleItemPosition = 0;
+    private int findLastCompletelyVisibleItemPosition = 0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,20 +108,30 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
         mViewCardPrincipal = mView.findViewById(R.id.card_principal);
         materialButton = mView.findViewById(R.id.id_cargar_mas);
         mSwipeRefreshLayoutNoticias = mView.findViewById(R.id.swipeRefreshNoticias);
+
+        mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
+
+
         mViewCardPrincipal.setOnClickListener(this);
         materialButton.setOnClickListener(this);
 
-        mLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerViewNoticias.setLayoutManager(mLayoutManager);
+        mLayoutManager_ = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerViewNoticias.setLayoutManager(mLayoutManager_);
         mRecyclerViewNoticias.setHasFixedSize(true);
 
-        llenarArraysListNoticias();
+        initRecyclerViewNoticias();
+
+        //llenarArraysListNoticias();
 
         mSwipeRefreshLayoutNoticias.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh()
             {
-                llenarArraysListNoticias();
+                if (cApplication.getmApplicationInstance().checkInternet()){
+                    llenarArraysListNoticias();
+                }else {
+                    mSwipeRefreshLayoutNoticias.setRefreshing(false);
+                }
             }
         });
 
@@ -102,179 +139,161 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
         return  mView;
     }
 
-
-    private void abrirActivityNoticia(cNoticias oNoticias)
+    private void initRecyclerViewNoticias()
     {
-        Intent mIntent = new Intent(getActivity(), NoticiasContenidoActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mIntent.putExtra("oNoticia", oNoticias);
-        startActivity(mIntent);
+        mAdapterNoticias = new cAdapterNoticias(getContext(),mNoticiasList,this
+                ,mRecyclerViewNoticias);
+
+        /**llenar recyclerView**/
+
+        mRecyclerViewNoticias.setAdapter(mAdapterNoticias);
+    }
+
+    @Override
+    public void onResume() {
+        initBroadCastReciver();
+        scrollNoticias();
+        super.onResume();
     }
 
     private void llenarArraysListNoticias()
     {
+        if (cApplication.getmApplicationInstance().checkInternet())
+        {
+            consumirApiNoticias();
+        }else{
+            showAlertConsultando();
+            consumirApiNoticiasLocalBD();
+            hideAlertDialogConsultando();
+        }
+    }
 
+    private void consumirApiNoticiasLocalBD()
+    {
+        mNoticiasList = mSqlNoticias.readNoticias(page_cont,mNoticiasList);
+        if (mNoticiasList.size()>0){
+            controlPageCont();
+        }
+    }
 
-            mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
-                    "CONSULTANDO...",false);
-            mAlertDialog.show();
+    private void consumirApiNoticias()
+    {
 
-            mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)+"?page="+page_cont, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response)
-                {
-                    try {
-                        JSONObject mJsonObjectRes = new JSONObject(response);
-                        if(mJsonObjectRes.getString("codigo").equals("200"))
-                        {
-                            JSONArray mJsonArray = mJsonObjectRes.getJSONArray("resultado");
-                            if(mJsonArray.length() > 0)
-                            {
-                                for (int i=0;i<mJsonArray.length();i++)
-                                {
-                                    JSONObject mJsonObject = mJsonArray.getJSONObject(i);
-                                    cNoticias oN = new cNoticias();
-                                    oN.setId_noticias(mJsonObject.getInt("id"));
-                                    oN.setTitulo(mJsonObject.getString("titulo"));
-                                    oN.setFecha(mJsonObject.getString("fecha_publicacion"));
-                                    oN.setmUriPicturePrincipalNoticia(mJsonObject.getString("url_imagen_miniatura"));
-                                    oN.setTextoNoticia(mJsonObject.getString("descripcion_corta"));
+        showAlertConsultando();
 
-                                    if (!verificar(oN))
-                                    {
-                                        mNoticiasArrayList.add(oN);
-                                    }
-                                }
-
-
-                                if(page_cont<=1)
-                                {
-                                    cargar_datosRecyclerView();
-                                    page_cont++;
-                                }else
-                                {
-                                    mAdapterNoticias.notifyDataSetChanged();
-                                    page_cont++;
-                                    desface_++;
-                                    Log.e("NotifyDataSetChanged","Add plus");
-                                }
-
-                            }
-
-
-                        }else
-                        {
-                            Toasty.warning(getContext(),"No se puede mostrar los datos"
-                                    ,Toasty.LENGTH_LONG).show();
-                        }
-                    } catch (JSONException e) {
-                        Toasty.warning(getContext(),e.getMessage()
-                                ,Toasty.LENGTH_LONG).show();
-                    }
-                    mSwipeRefreshLayoutNoticias.setRefreshing(false);
-                    new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error)
-                {
-                    Toasty.error(getContext(),error.toString()
-                            ,Toasty.LENGTH_LONG).show();
-                    new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
-                    mSwipeRefreshLayoutNoticias.setRefreshing(false);
-                }
-            }){
-                @Override
-                protected HashMap<String, String> getParams() throws AuthFailureError
-                {
-                    HashMap<String,String> oMap = new HashMap<>();
-                    oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
-                    return oMap;
-                }
-
-                @Override
-                public HashMap<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String,String> oMap = new HashMap<>();
-                    oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
-
-                    return oMap;
-                }
-            };
-        /*
-        mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)
-                , null, new Response.Listener<JSONObject>() {
+        mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_noticias_all)+"?page="+page_cont, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response)
+            public void onResponse(String response)
             {
                 try {
-                    if(response.getString("codigo").equals("200"))
+                    JSONObject mJsonObjectRes = new JSONObject(response);
+                    if(mJsonObjectRes.getString("codigo").equals("200"))
                     {
-                        JSONArray mJsonArray = response.getJSONArray("resultado");
-                        for (int i=0;i<mJsonArray.length();i++)
+                        JSONArray mJsonArray = mJsonObjectRes.getJSONArray("resultado");
+                        if(mJsonArray.length() > 0)
                         {
-                            JSONObject mJsonObject = mJsonArray.getJSONObject(i);
-                            cNoticias oN = new cNoticias();
-                            oN.setId_noticias(mJsonObject.getInt("id"));
-                            oN.setTitulo(mJsonObject.getString("titulo"));
-                            oN.setFecha(mJsonObject.getString("fecha_publicacion"));
-                            oN.setmUriPicturePrincipalNoticia(mJsonObject.getString("url_imagen_miniatura"));
-                            oN.setTextoNoticia(mJsonObject.getString("descripcion_corta"));
+                            Log.e("pageCont",String.valueOf(page_cont));
 
-                            if (!verificar(oN))
+                            List<cNoticias> mNoticiasListAuxiliar = new ArrayList<>();
+
+                            for (int i=0;i<mJsonArray.length();i++)
                             {
-                                mNoticiasArrayList.add(oN);
-                            }
-                        }
-                        cargar_datosRecyclerView();
-                    }else
-                        {
-                            Toasty.warning(getContext(),"No se puede mostrar los datos"
-                                    ,Toasty.LENGTH_LONG).show();
-                        }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                                JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                                cNoticias oN = new cNoticias();
+                                oN.setNumPage(page_cont);
+                                oN.setId_noticias(mJsonObject.getInt("id"));
+                                oN.setTitulo(mJsonObject.getString("titulo"));
+                                oN.setFecha(mJsonObject.getString("fecha_publicacion"));
+                                //oN.setTextoNoticia(mJsonObject.getString("contenido"));
+                                oN.setmUriPicturePrincipalNoticia(mJsonObject.getString("url_imagen_miniatura"));
+                                oN.setDescriptionCorta(mJsonObject.getString("descripcion_corta"));
 
+                                if (!verificar(oN))
+                                {
+                                    mNoticiasList.add(oN);
+                                    mNoticiasListAuxiliar.add(oN);
+                                }
+                            }
+
+                            mSqlNoticias.InsertNoticias(page_cont,mNoticiasListAuxiliar);
+
+                            controlPageCont();
+
+                        }
+
+                    }else
+                    {
+                        Toasty.warning(getContext(),"No se puede mostrar los datos"
+                                ,Toasty.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Toasty.warning(getContext(),e.getMessage()
+                            ,Toasty.LENGTH_LONG).show();
+                }
+                mSwipeRefreshLayoutNoticias.setRefreshing(false);
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toasty.error(getContext(),error.getMessage()
+                Toasty.error(getContext(),error.toString()
                         ,Toasty.LENGTH_LONG).show();
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+                mSwipeRefreshLayoutNoticias.setRefreshing(false);
             }
-        });*/
-
-            mRequestQueue = Volley.newRequestQueue(getContext());
-            mRequestQueue.add(mStringRequest);
-
-        /*
-        for (int i=1;i<10;i++)
-        {
-            cNoticias oN = new cNoticias();
-            oN.setTitulo("Noticia "+i);
-            oN.setFecha("0"+i+"/01/2021");
-            oN.setTextoNoticia(getContext().getString(R.string.loren_ipsum));
-            oN.setmUriPicturePrincipalNoticia("https://img.olympicchannel.com/images/image/private/t_16-9_1280/primary/tdyjbhcmhsbadlxopda0");
-            ArrayList<String> mUriArrayList = new ArrayList<>();
-            for (int j = 0;j<5;j++)
+        }){
+            @Override
+            protected HashMap<String, String> getParams() throws AuthFailureError
             {
-                String oUri = "https://media3.minutemediacdn.com/process?url=http%3A%2F%2Fftbpro-post-images.s3-eu-west-1.amazonaws.com%2Fproduction%2F56511d0005df7acefb000003.jpeg&filters%5Bcrop%5D%5Bw%5D=0.560639070442992&filters%5Bcrop%5D%5Bh%5D=0.9975433460421206&filters%5Bcrop%5D%5Bo_x%5D=0.2696078431372549&filters%5Bcrop%5D%5Bo_y%5D=0.0&filters%5Bresize%5D%5Bw%5D=912&filters%5Bresize%5D%5Bh%5D=516&filters%5Bresize%5D%5Bgravity%5D=Center&filters%5Bquality%5D%5Btarget%5D=80&type=.jpg";
-                mUriArrayList.add(oUri);
+                HashMap<String,String> oMap = new HashMap<>();
+                oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+                return oMap;
             }
-            oN.setmUriArrayListGaleriaNoticia(mUriArrayList);
-            mNoticiasArrayList.add(oN);
-        }*/
 
+            @Override
+            public HashMap<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> oMap = new HashMap<>();
+                oMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+
+                return oMap;
+            }
+        };
+
+
+        mRequestQueue = Volley.newRequestQueue(getContext());
+        mRequestQueue.add(mStringRequest);
+
+
+    }
+
+    private void showAlertConsultando()
+    {
+        mAlertDialog = new cAlertDialogProgress().showAlertProgress(getContext(),
+                "CONSULTANDO...",false);
+        mAlertDialog.show();
+    }
+
+    private void controlPageCont()
+    {
+        if(page_cont<=1)
+        {
+            cargar_datosRecyclerView();
+            page_cont++;
+        }else
+        {
+            mAdapterNoticias.notifyDataSetChanged();
+            page_cont++;
+            desface_++;
+            Log.e("NotifyDataSetChanged","Add plus");
+        }
     }
 
     private boolean verificar(cNoticias oN)
     {
-        for (int i=0;i<mNoticiasArrayList.size();i++)
+        for (int i=0;i<mNoticiasList.size();i++)
         {
-            if (mNoticiasArrayList.get(i).getId_noticias() == oN.getId_noticias())
+            if (mNoticiasList.get(i).getId_noticias() == oN.getId_noticias())
             {
                 return true;
             }
@@ -285,65 +304,64 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
 
     private void cargar_datosRecyclerView()
     {
-        if (mNoticiasArrayList.size()>0)
+
+        if (mNoticiasList.size()>0)
         {
-            mNoticias = mNoticiasArrayList.get(0);
+            config_FirstConsulta();
 
-            mTextViewTituloNoticia.setText(mNoticiasArrayList.get(0).getTitulo());
-            mTextViewFechaNoticia.setText(mNoticiasArrayList.get(0).getFecha());
-            Log.e("URI",mNoticiasArrayList.get(0).getmUriPicturePrincipalNoticia().toString());
-            Picasso.with(getContext()).load(mNoticiasArrayList.get(0).getmUriPicturePrincipalNoticia())
-                    .error(R.drawable.img_error)
-                    .placeholder(R.drawable.img_load)
-                    .into(mImageView);
-
-            mNoticiasArrayList.remove(0);
-
-            if (mViewCardPrincipal.getVisibility() == View.GONE)
-            {
-                mViewCardPrincipal.setVisibility(View.VISIBLE);
-            }
-
-            if (mNoticiasArrayList.size()>0)
-            {
-                /****/
-                mAdapterNoticias = new cAdapterNoticias(getContext(), mNoticiasArrayList,
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view)
-                            {
-                                //abrirActivityNoticia(mNoticiasArrayList.get(mRecyclerViewNoticias.getChildAdapterPosition(view)));
-                                int pos = mRecyclerViewNoticias.getChildAdapterPosition(view);
-                                pos+=1;
-
-                                Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
-                                intent.putExtra("noticias", (Serializable) mNoticiasArrayList);
-                                intent.putExtra("noticia", (Serializable) mNoticias);
-                                intent.putExtra("posicion",pos);
-                                startActivity(intent);
-
-                            }
-                        });
-
-                /**llenar recyclerView**/
-
-                mRecyclerViewNoticias.setAdapter(mAdapterNoticias);
-
-            }
+            mAdapterNoticias.notifyDataSetChanged();
+            if(mSwipeRefreshLayoutNoticias.isRefreshing())
+            {mSwipeRefreshLayoutNoticias.setRefreshing(false);}
         }else
         {
             Toasty.info(getContext(),"Lo sentimos no existen noticias disponibles"
                     ,Toasty.LENGTH_SHORT).show();
         }
 
+    }
 
+    private void config_FirstConsulta()
+    {
+        if (first_consulta)
+        {
+            mNoticias_ = mNoticiasList.get(0);
 
+            mTextViewTituloNoticia.setText(mNoticiasList.get(0).getTitulo());
+            mTextViewFechaNoticia.setText(mNoticiasList.get(0).getFecha());
+            //Log.e("URI",cApplication.getmApplicationInstance().getmNoticiasList().get(0).getmUriPicturePrincipalNoticia().toString());
+            Picasso.with(getContext()).load(mNoticiasList.get(0).getmUriPicturePrincipalNoticia())
+                    .error(R.drawable.img_error)
+                    .placeholder(R.drawable.img_load)
+                    .into(mImageView);
+
+            mNoticiasList.remove(0);
+
+            if (mViewCardPrincipal.getVisibility() == View.GONE)
+            {
+                mViewCardPrincipal.setVisibility(View.VISIBLE);
+            }
+            first_consulta = false;
+        }
+    }
+
+    private void hideAlertDialogConsultando()
+    {
+        if (mAlertDialog!=null && mAlertDialog.isShowing()){
+            new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
+        }
+    }
+
+    private void scrollNoticias()
+    {
         mRecyclerViewNoticias.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy)
             {
-                StaggeredGridLayoutManager mLayoutManager = ((StaggeredGridLayoutManager)mRecyclerViewNoticias.getLayoutManager());
-                //int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+                Log.e("dy",String.valueOf(dy));
+
+                if (dy>0){
+                    StaggeredGridLayoutManager  mLayoutManager = ((StaggeredGridLayoutManager)mRecyclerViewNoticias.getLayoutManager());
+                    //int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
 
                     int findFirstVisibleItemPosition =  mLayoutManager.findFirstVisibleItemPositions(null)[0];
                     int findFirstCompletelyVisibleItemPosition = mLayoutManager.findLastCompletelyVisibleItemPositions(null)[0];
@@ -357,40 +375,41 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                     Log.e("findLastVisItemPos",String.valueOf(findLastVisibleItemPosition));
                     Log.e("findLastComViItemPos",String.valueOf(findLastCompletelyVisibleItemPosition));
 
-
-
-                if(mAlertDialog!=null && !mAlertDialog.isShowing())
-                {
-                    Log.e("desface",String.valueOf(desface_));
-                    Log.e("comparacion",String.valueOf(mLayoutManager.getItemCount()-desface_)+"  == "+ String.valueOf(findLastCompletelyVisibleItemPosition));
-
-                    Log.e("PageTotal",String.valueOf(page_cont));
-
-                    if (first_desplazo)
-                    {
-                        /**llamado nuevamente**/
-                        llenarArraysListNoticias();
-                    }else
-                        {
-                            if(mLayoutManager.getItemCount()-desface_ == findLastCompletelyVisibleItemPosition)
-                            {
-                                llenarArraysListNoticias();
-
-                            }
-                        }
-
-                    first_desplazo = false;
-
+                    if (mLayoutManager.getItemCount()-desface_ > 0){
+                        scrollReadNoticias(mLayoutManager,findLastCompletelyVisibleItemPosition);
+                    }
                 }
 
-
-
-                    super.onScrolled(recyclerView, dx, dy);
+                super.onScrolled(recyclerView, dx, dy);
             }
         });
+    }
 
+    private void scrollReadNoticias(StaggeredGridLayoutManager mLayoutManager,int findLastCompletelyVisibleItemPosition)
+    {
+        if(mAlertDialog!=null && !mAlertDialog.isShowing())
+        {
+            Log.e("desface",String.valueOf(desface_));
+            Log.e("comparacion",String.valueOf(findLastCompletelyVisibleItemPosition) +"  >= "+ String.valueOf(mLayoutManager.getItemCount()-desface_));
 
+            Log.e("PageTotal",String.valueOf(page_cont));
 
+            if (first_desplazo)
+            {
+                /**llamado nuevamente**/
+                llenarArraysListNoticias();
+            }else
+            {
+                if(findLastCompletelyVisibleItemPosition >= mLayoutManager.getItemCount()-desface_)
+                {
+                    llenarArraysListNoticias();
+
+                }
+            }
+
+            first_desplazo = false;
+
+        }
     }
 
     @Override
@@ -402,9 +421,9 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                 //abrirActivityNoticia(mNoticias);
 
                 Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
-                //mNoticiasArrayList.add(0,mNoticias);
-                intent.putExtra("noticias", (Serializable) mNoticiasArrayList);
-                intent.putExtra("noticia", (Serializable) mNoticias);
+                //mNoticiasList.add(0,mNoticias);
+                intent.putExtra("noticias", (Serializable) mNoticiasList);
+                intent.putExtra("noticia", (Serializable) mNoticias_);
                 intent.putExtra("posicion",0);
                 startActivity(intent);
 
@@ -416,4 +435,62 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener
                        break;
         }
     }
+
+
+    public void initBroadCastReciver()
+    {
+        cBroadCastNetworkStatus.mCheckNetwork = this;
+
+        IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mIntentFilter.addAction(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
+        getContext().registerReceiver(mBroadCastNetworkStatus,mIntentFilter);
+    }
+
+    @Override
+    public void checkNetwork(boolean bandera)
+    {
+        if (bandera)
+        {
+            if (cApplication.bandera_fragment == 1) /**NOTICIAS**/
+            {
+                //Toast.makeText(getContext(), "eweew", Toast.LENGTH_SHORT).show();
+                Log.e("page_network",String.valueOf(page_cont));
+
+                if (mAdapterNoticias!=null)
+                {
+                    if (page_cont == 1){
+                        //scrollReadNoticias();
+                        llenarArraysListNoticias();
+                    }else
+                    {
+                        mAdapterNoticias.notifyDataSetChanged();
+                        llenarArraysListNoticias();
+                    }
+
+                }
+
+            }else
+                {
+
+                }
+        }else
+            {
+                Toasty.warning(getContext(),getResources()
+                    .getString(R.string.off_network),Toasty.LENGTH_SHORT).show();
+                llenarArraysListNoticias();
+            }
+    }
+
+    @Override
+    public void onClickNoticia(int pos)
+    {
+        Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
+        //mNoticiasList.add(0,mNoticias);
+        intent.putExtra("noticias", (Serializable) mNoticiasList);
+        intent.putExtra("noticia", (Serializable) mNoticias_);
+        intent.putExtra("posicion",pos);
+        startActivity(intent);
+    }
+
+
 }
