@@ -254,7 +254,6 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity implem
                     .setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.trnsparente)));
             mAlertDialogOffNetwork.getWindow()
                     .setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
             if (banderaOnCreate){
                 banderaOnCreate = false;
                 return;

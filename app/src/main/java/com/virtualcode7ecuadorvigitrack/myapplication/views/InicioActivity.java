@@ -62,7 +62,9 @@ public class InicioActivity extends cActivityInicio
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private int bandera = 0;
+    private cBroadCastNetworkStatus mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
     private AlertDialog mAlertDialogOffNetwork;
+    private boolean banderaOnCreate =  true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -92,15 +94,15 @@ public class InicioActivity extends cActivityInicio
 
         openFragmentNews();
 
-        initBroadCastNetwork();
-
+        if(!cApplication.getmApplicationInstance().checkInternet()){
+            showAlertOffNetwork();
+        }
 
         onResume(mNavigationView);
     }
 
     private void initBroadCastNetwork()
     {
-        cBroadCastNetworkStatus mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
         cBroadCastNetworkStatus.mCheckNetwork = this;
 
         IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -123,7 +125,7 @@ public class InicioActivity extends cActivityInicio
     @Override
     protected void onPostResume()
     {
-
+        initBroadCastNetwork();
         mNavigationView.setCheckedItem(R.id.opc_noticias_drawer);
         mNavigationView.setNavigationItemSelectedListener(this);
 
@@ -196,6 +198,13 @@ public class InicioActivity extends cActivityInicio
         super.onPostResume();
     }
 
+    @Override
+    protected void onPause()
+    {
+        banderaOnCreate = true;
+        this.unregisterReceiver(mBroadCastNetworkStatus);
+        super.onPause();
+    }
 
     private void visibleViewToolbarTop()
     {
@@ -348,37 +357,12 @@ public class InicioActivity extends cActivityInicio
         if (!bandera){
             /**Alert Sin Internet***/
 
-            View mView = LayoutInflater.from(InicioActivity.this).inflate(R.layout.alert_off_network,null,false);
+            if (banderaOnCreate){
+                banderaOnCreate = false;
+                return;
+            }
 
-            AlertDialog.Builder mAlertDialogBuilder = new AlertDialog
-                    .Builder(InicioActivity.this);
-
-            mAlertDialogBuilder.setView(mView);
-
-            MaterialButton materialButton = mView.findViewById(R.id.idMateriButtonCheckNetwork);
-
-            materialButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    if (mAlertDialogOffNetwork.isShowing()){
-                        mAlertDialogOffNetwork.hide();
-                        mAlertDialogOffNetwork.cancel();
-                    }
-                }
-            });
-
-            mAlertDialogOffNetwork = mAlertDialogBuilder.create();
-            mAlertDialogOffNetwork.getWindow()
-                    .setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.trnsparente)));
-            mAlertDialogOffNetwork.getWindow()
-                    .setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-
-
-
-
-            mAlertDialogOffNetwork.show();
+            showAlertOffNetwork();
         }else{
 
             if (mNoticiasFragment.mAdapterNoticias!=null){
@@ -394,6 +378,37 @@ public class InicioActivity extends cActivityInicio
                 mAlertDialogOffNetwork.cancel();
             }
         }
+    }
+
+    private void showAlertOffNetwork()
+    {
+        View mView = LayoutInflater.from(InicioActivity.this).inflate(R.layout.alert_off_network,null,false);
+
+        AlertDialog.Builder mAlertDialogBuilder = new AlertDialog
+                .Builder(InicioActivity.this);
+
+        mAlertDialogBuilder.setView(mView);
+
+        MaterialButton materialButton = mView.findViewById(R.id.idMateriButtonCheckNetwork);
+
+        materialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (mAlertDialogOffNetwork.isShowing()){
+                    mAlertDialogOffNetwork.hide();
+                    mAlertDialogOffNetwork.cancel();
+                }
+            }
+        });
+
+        mAlertDialogOffNetwork = mAlertDialogBuilder.create();
+        mAlertDialogOffNetwork.getWindow()
+                .setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.trnsparente)));
+        mAlertDialogOffNetwork.getWindow()
+                .setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        mAlertDialogOffNetwork.show();
     }
 
 }
