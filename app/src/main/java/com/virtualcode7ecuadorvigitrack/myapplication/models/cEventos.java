@@ -9,10 +9,14 @@ public class cEventos implements Serializable
     private String fecha;
     private String titulo;
     private String direccion;
-    private String acerca_de;
+    private String contenido;
     private String uri_foto;
     private String fecha_fin;
-    private ArrayList<String> mItinerarioStringArrayList = new ArrayList<>();
+    private String descripcion;
+
+    private String uri_foto_imagen_principal;/**Al consultar evento en especifico**/
+
+    private int numPage;
 
     public cEventos()
     {
@@ -20,12 +24,35 @@ public class cEventos implements Serializable
         this.fecha = "";
         this.titulo = "";
         this.direccion = "";
-        this.acerca_de = "";
+        this.contenido = "";
         this.uri_foto = "";
         this.fecha_fin = "";
+        this.numPage = 1;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getUri_foto_imagen_principal() {
+        return uri_foto_imagen_principal;
+    }
+
+    public void setUri_foto_imagen_principal(String uri_foto_imagen_principal) {
+        this.uri_foto_imagen_principal = uri_foto_imagen_principal;
+    }
+
+    public int getNumPage() {
+        return numPage;
+    }
+
+    public void setNumPage(int numPage) {
+        this.numPage = numPage;
+    }
 
     public int getId_evento() {
         return id_evento;
@@ -67,12 +94,12 @@ public class cEventos implements Serializable
         this.direccion = direccion;
     }
 
-    public String getAcerca_de() {
-        return acerca_de;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setAcerca_de(String acerca_de) {
-        this.acerca_de = acerca_de;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
     public String getUri_foto() {
@@ -83,11 +110,5 @@ public class cEventos implements Serializable
         this.uri_foto = uri_foto;
     }
 
-    public ArrayList<String> getmItinerarioStringArrayList() {
-        return mItinerarioStringArrayList;
-    }
 
-    public void setmItinerarioStringArrayList(ArrayList<String> mItinerarioStringArrayList) {
-        this.mItinerarioStringArrayList = mItinerarioStringArrayList;
-    }
 }

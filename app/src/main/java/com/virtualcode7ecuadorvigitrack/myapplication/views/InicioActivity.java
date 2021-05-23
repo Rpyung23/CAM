@@ -2,6 +2,7 @@ package com.virtualcode7ecuadorvigitrack.myapplication.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,22 +11,33 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicio;
 import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
+import com.virtualcode7ecuadorvigitrack.myapplication.broadcast.cBroadCastNetworkStatus;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.AccesoSociosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.EventosFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.fragments.NoticiasFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.cCheckNetwork;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_contacto.ContactoInicioActivity;
@@ -35,9 +47,9 @@ import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.StatusC
 
 import java.util.List;
 
-//AppCompatActivity
+
 public class InicioActivity extends cActivityInicio
-        implements NavigationView.OnNavigationItemSelectedListener
+        implements NavigationView.OnNavigationItemSelectedListener, cCheckNetwork
 {
     private  BottomNavigationView mBottomNavigationView;
     private View mViewToolbarTop;
@@ -50,7 +62,7 @@ public class InicioActivity extends cActivityInicio
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private int bandera = 0;
-
+    private AlertDialog mAlertDialogOffNetwork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,7 +91,22 @@ public class InicioActivity extends cActivityInicio
         toggle.syncState();
 
         openFragmentNews();
+
+        initBroadCastNetwork();
+
+
         onResume(mNavigationView);
+    }
+
+    private void initBroadCastNetwork()
+    {
+        cBroadCastNetworkStatus mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
+        cBroadCastNetworkStatus.mCheckNetwork = this;
+
+        IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mIntentFilter.addAction(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
+
+        this.registerReceiver(mBroadCastNetworkStatus,mIntentFilter);
     }
 
     private void openFragmentNews()
@@ -312,8 +339,61 @@ public class InicioActivity extends cActivityInicio
         TaskStackBuilder mTaskStackBuilder = TaskStackBuilder.create(getApplicationContext());
         mTaskStackBuilder.addNextIntentWithParentStack(mIntent);
         mTaskStackBuilder.startActivities();
-
         finish();
+    }
+
+    @Override
+    public void checkNetwork(boolean bandera)
+    {
+        if (!bandera){
+            /**Alert Sin Internet***/
+
+            View mView = LayoutInflater.from(InicioActivity.this).inflate(R.layout.alert_off_network,null,false);
+
+            AlertDialog.Builder mAlertDialogBuilder = new AlertDialog
+                    .Builder(InicioActivity.this);
+
+            mAlertDialogBuilder.setView(mView);
+
+            MaterialButton materialButton = mView.findViewById(R.id.idMateriButtonCheckNetwork);
+
+            materialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    if (mAlertDialogOffNetwork.isShowing()){
+                        mAlertDialogOffNetwork.hide();
+                        mAlertDialogOffNetwork.cancel();
+                    }
+                }
+            });
+
+            mAlertDialogOffNetwork = mAlertDialogBuilder.create();
+            mAlertDialogOffNetwork.getWindow()
+                    .setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.trnsparente)));
+            mAlertDialogOffNetwork.getWindow()
+                    .setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+
+
+
+            mAlertDialogOffNetwork.show();
+        }else{
+
+            if (mNoticiasFragment.mAdapterNoticias!=null){
+                mNoticiasFragment.mAdapterNoticias.notifyDataSetChanged();
+            }
+
+            if (mEventosFragment.mAdapterEventos!=null){
+                mEventosFragment.mAdapterEventos.notifyDataSetChanged();
+            }
+
+            if (mAlertDialogOffNetwork!=null && mAlertDialogOffNetwork.isShowing()){
+                mAlertDialogOffNetwork.hide();
+                mAlertDialogOffNetwork.cancel();
+            }
+        }
     }
 
 }

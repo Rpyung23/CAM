@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
+import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,9 +22,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.noticias.cAdapterNoticiasDetailsScroll;
 import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
+import com.virtualcode7ecuadorvigitrack.myapplication.broadcast.cBroadCastNetworkStatus;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.sqlite.cSQLNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
@@ -34,8 +41,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
-
-public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.*;
+public class NoticiasViewPagerContenidoActivity extends AppCompatActivity implements cCheckNetwork
 {
     private ViewPager2 mViewPager2Noticias;
 
@@ -50,46 +57,38 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
     private cNoticias oN =  new cNoticias();
 
     private cSQLNoticias mSqlNoticias = new cSQLNoticias();
-
+    private cBroadCastNetworkStatus mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
+    private androidx.appcompat.app.AlertDialog mAlertDialogOffNetwork;
+    private boolean banderaOnCreate = true;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticias_view_pager_contenido);
 
 
-
         mViewPager2Noticias = findViewById(R.id.viewpager2noticias);
-
-
 
         posInicial = getIntent().getIntExtra("posicion",0);
         Log.e("postion_pageInicial",String.valueOf(posInicial));
 
         oN = (cNoticias) getIntent().getSerializableExtra("noticia");
 
-        //oN = cApplication.getmApplicationInstance().getmNoticia();
 
         new cToolbar().show(NoticiasViewPagerContenidoActivity.this,"",true,0);
 
         mNoticiasArrayList_ = (ArrayList<cNoticias>) getIntent().getSerializableExtra("noticias");
 
-        //mNoticiasArrayList_ = cApplication.getmApplicationInstance().getmNoticiasList();
 
         mNoticiasArrayList_.add(0,oN);
-
-        //cApplication.getmApplicationInstance().getmNoticiasList().add(0,cApplication.getmApplicationInstance().getmNoticia());
 
         mAdapterNoticias = new cAdapterNoticiasDetailsScroll
                 (getApplicationContext(),mNoticiasArrayList_);
 
         mViewPager2Noticias.setAdapter(mAdapterNoticias);
 
-
-
-
-        //mAdapterNoticias.notifyDataSetChanged();
-
+        initBroadCastNetwork();
     }
 
     private void readNoticiaApiRest(int position)
@@ -99,9 +98,14 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
         }else{
             //visibleLoading();
             cNoticias mNoticias = mSqlNoticias.readNoticia(mNoticiasArrayList_.get(position).getId_noticias());
-            mNoticiasArrayList_.get(position).setTextoNoticia(mNoticias.getTextoNoticia());
-            mNoticiasArrayList_.get(position).setmUriPictureContenidoNoticia(mNoticias.getmUriPictureContenidoNoticia());
-            mAdapterNoticias.notifyItemChanged(position);
+            if (mNoticias!=null){
+                mNoticiasArrayList_.get(position).setTextoNoticia(mNoticias.getTextoNoticia());
+                mNoticiasArrayList_.get(position).setmUriPictureContenidoNoticia(mNoticias.getmUriPictureContenidoNoticia());
+                mAdapterNoticias.notifyItemChanged(position);
+            }else{
+                Toasty.info(getApplicationContext(),"Noticia no disponible",Toasty.LENGTH_LONG)
+                        .show();
+            }
             //invisibleLoading();
         }
     }
@@ -111,10 +115,6 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
         mAlertDialog = new cAlertDialogProgress().showAlertProgress(NoticiasViewPagerContenidoActivity.this,
                 "CONSULTANDO...",false);
         mAlertDialog.show();
-
-        //visibleLoading();
-
-        //Toast.makeText(this, "pos : "+position, Toast.LENGTH_SHORT).show();
 
         mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 getString(R.string.api_rest_noticias_id)+mNoticiasArrayList_.get(position).getId_noticias(),
@@ -170,6 +170,16 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
     }
 
 
+    private void initBroadCastNetwork()
+    {
+        cBroadCastNetworkStatus.mCheckNetwork = this;
+
+        IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mIntentFilter.addAction(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
+
+        this.registerReceiver(mBroadCastNetworkStatus,mIntentFilter);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
@@ -206,4 +216,58 @@ public class NoticiasViewPagerContenidoActivity extends AppCompatActivity
         super.onPostResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        this.unregisterReceiver(mBroadCastNetworkStatus);
+        super.onDestroy();
+    }
+
+    @Override
+    public void checkNetwork(boolean bandera) {
+        if (!bandera){
+            /**Alert Sin Internet***/
+
+
+            View mView = LayoutInflater.from(NoticiasViewPagerContenidoActivity.this)
+                    .inflate(R.layout.alert_off_network,null,false);
+
+            androidx.appcompat.app.AlertDialog.Builder mAlertDialogBuilder = new androidx.appcompat.app.AlertDialog
+                    .Builder(NoticiasViewPagerContenidoActivity.this);
+
+            mAlertDialogBuilder.setView(mView);
+
+            MaterialButton materialButton = mView.findViewById(R.id.idMateriButtonCheckNetwork);
+
+            materialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    if (mAlertDialogOffNetwork.isShowing()){
+                        mAlertDialogOffNetwork.hide();
+                        mAlertDialogOffNetwork.cancel();
+                    }
+                }
+            });
+
+            mAlertDialogOffNetwork = mAlertDialogBuilder.create();
+            mAlertDialogOffNetwork.getWindow()
+                    .setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.trnsparente)));
+            mAlertDialogOffNetwork.getWindow()
+                    .setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            if (banderaOnCreate){
+                banderaOnCreate = false;
+                return;
+            }
+
+            mAlertDialogOffNetwork.show();
+        }else{
+
+            if (mAlertDialogOffNetwork!=null && mAlertDialogOffNetwork.isShowing())
+            {
+                mAlertDialogOffNetwork.hide();
+                mAlertDialogOffNetwork.cancel();
+            }
+        }
+    }
 }

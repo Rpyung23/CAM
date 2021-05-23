@@ -5,8 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
+import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -15,9 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.eventos.cAdapterEventosDetailsScroll;
+import com.virtualcode7ecuadorvigitrack.myapplication.application.cApplication;
+import com.virtualcode7ecuadorvigitrack.myapplication.broadcast.cBroadCastNetworkStatus;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
+import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
+import com.virtualcode7ecuadorvigitrack.myapplication.sqlite.cSQLEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
@@ -29,8 +40,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.*;
 
-public class EventosViewPagerContenidoActivity extends AppCompatActivity
+public class EventosViewPagerContenidoActivity extends AppCompatActivity implements cCheckNetwork
 {
     private ViewPager2 mViewPager2;
     private cAdapterEventosDetailsScroll mAdapterEventosDetailsScroll;
@@ -40,6 +52,10 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
     private StringRequest mStringRequest;
     private RequestQueue mRequestQueue;
     private cEventos oE = new cEventos();
+    private cBroadCastNetworkStatus mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
+    private cSQLEventos mSqlEventos = new cSQLEventos();
+    private androidx.appcompat.app.AlertDialog mAlertDialogOffNetwork;
+    private boolean banderaOnCreate = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,42 +69,48 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
         oE = (cEventos) getIntent().getSerializableExtra("evento");
         mEventosArrayList = (ArrayList<cEventos>) getIntent().getSerializableExtra("eventos");
         mEventosArrayList.add(0,oE);
+
         new cToolbar().show(EventosViewPagerContenidoActivity.this,"",true,0);
 
-        //posInicial = getIntent().getIntExtra("pos_inicial",0);
 
-        //mAdapterNoticias = new cAdapterNoticias(NoticiasViewPagerContenidoActivity.this,mNoticiasArrayList);
-        mAdapterEventosDetailsScroll = new cAdapterEventosDetailsScroll(EventosViewPagerContenidoActivity.this
+        mAdapterEventosDetailsScroll = new cAdapterEventosDetailsScroll(
+                EventosViewPagerContenidoActivity.this
                 ,mEventosArrayList);
 
         mViewPager2.setAdapter(mAdapterEventosDetailsScroll);
 
-
-
-
-        mViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
-        {
-            @Override
-            public void onPageSelected(int position)
-            {
-                super.onPageSelected(position);
-                readEventoApiRest(position);
-            }
-        });
-
-        mViewPager2.setCurrentItem(posInicial);
-
-
-
-
-
-
-
-
+        initBroadCastReciver();
 
     }
 
+    private void initBroadCastReciver()
+    {
+
+        cBroadCastNetworkStatus.mCheckNetwork = this;
+
+        IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mIntentFilter.addAction(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
+
+        this.registerReceiver(mBroadCastNetworkStatus,mIntentFilter);
+    }
+
     private void readEventoApiRest(int position)
+    {
+
+        if (cApplication.getmApplicationInstance().checkInternet()){
+            consumoServiceDeatilsEventos(position);
+        }else{
+            //visibleLoading();
+            cEventos mEventos = mSqlEventos.readEvento(mEventosArrayList.get(position).getId_evento());
+            mEventosArrayList.get(position).setContenido(mEventos.getContenido());
+            mEventosArrayList.get(position).setUri_foto_imagen_principal(mEventos.getUri_foto_imagen_principal());
+            mAdapterEventosDetailsScroll.notifyItemChanged(position);
+            //invisibleLoading();
+        }
+
+    }
+
+    private void consumoServiceDeatilsEventos(int position)
     {
         mAlertDialog = new cAlertDialogProgress().showAlertProgress(EventosViewPagerContenidoActivity.this,
                 "CONSULTANDO...",false);
@@ -107,7 +129,10 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
                         JSONArray mJsonArray = jsonObjectRes.getJSONArray("resultado");
                         JSONObject mJsonObject = mJsonArray.getJSONObject(0);
 
-                        mEventosArrayList.get(position).setAcerca_de(mJsonObject.getString("contenido"));
+                        mEventosArrayList.get(position).setContenido(mJsonObject.getString("contenido"));
+                        mEventosArrayList.get(position).setUri_foto_imagen_principal(mJsonObject.getString("url_imagen_principal"));
+
+                        mSqlEventos.updateEventoContenido(mEventosArrayList.get(position));
 
                         mAdapterEventosDetailsScroll.notifyItemChanged(position);
 
@@ -141,42 +166,9 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
                 return oMap;
             }
         };
-        /*
-        mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                getString(R.string.api_rest_eventos_id) + oEventos.getId_evento(), null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response)
-                    {
-                        try {
-                            if (response.getString("codigo").equals("200"))
-                            {
-                                JSONArray mJsonArray = response.getJSONArray("resultado");
-                                JSONObject mJsonObject = mJsonArray.getJSONObject(0);
-
-                                mTextViewContenido.setText(Html.fromHtml(mJsonObject.getString("contenido")));
-                            }else
-                                {
-                                    Toasty.warning(getApplicationContext(),"No se pudo realizar la consulta"
-                                            ,Toasty.LENGTH_LONG).show();
-                                }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                Toasty.error(getApplicationContext(),error.getMessage(),Toasty.LENGTH_LONG).show();
-                new cAlertDialogProgress().closeAlertProgress(mAlertDialog);
-            }
-        });*/
 
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         mRequestQueue.add(mStringRequest);
-
     }
 
     @Override
@@ -192,9 +184,83 @@ public class EventosViewPagerContenidoActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onPostResume()
+    {
+        mViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
+        {
+            @Override
+            public void onPageSelected(int position)
+            {
+                super.onPageSelected(position);
+                readEventoApiRest(position);
+            }
+        });
+
+        mViewPager2.setCurrentItem(posInicial,true);
+
+        super.onPostResume();
+    }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         finish();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        this.unregisterReceiver(mBroadCastNetworkStatus);
+        super.onDestroy();
+    }
+
+    @Override
+    public void checkNetwork(boolean bandera)
+    {
+        if (!bandera){
+            /**Alert Sin Internet***/
+
+
+
+            View mView = LayoutInflater.from(EventosViewPagerContenidoActivity.this)
+                    .inflate(R.layout.alert_off_network,null,false);
+
+            androidx.appcompat.app.AlertDialog.Builder mAlertDialogBuilder = new androidx.appcompat.app.AlertDialog
+                    .Builder(EventosViewPagerContenidoActivity.this);
+
+            mAlertDialogBuilder.setView(mView);
+
+            MaterialButton materialButton = mView.findViewById(R.id.idMateriButtonCheckNetwork);
+
+            materialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    if (mAlertDialogOffNetwork.isShowing()){
+                        mAlertDialogOffNetwork.hide();
+                        mAlertDialogOffNetwork.cancel();
+                    }
+                }
+            });
+
+            mAlertDialogOffNetwork = mAlertDialogBuilder.create();
+            mAlertDialogOffNetwork.getWindow()
+                    .setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.trnsparente)));
+            mAlertDialogOffNetwork.getWindow()
+                    .setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            if (banderaOnCreate){
+                banderaOnCreate = false;
+                return;
+            }
+
+            mAlertDialogOffNetwork.show();
+        }else{
+            if (mAlertDialogOffNetwork!=null && mAlertDialogOffNetwork.isShowing()){
+                mAlertDialogOffNetwork.hide();
+                mAlertDialogOffNetwork.cancel();
+            }
+        }
     }
 }

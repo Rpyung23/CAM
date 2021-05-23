@@ -56,8 +56,6 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
 
 
-
-
         if (mEventosArrayList.get(position).getDireccion()!=null)
         {
             holder.mTextViewDirec.setText(mEventosArrayList.get(position).getDireccion());
@@ -70,19 +68,6 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
         holder.mTextViewTitle.setText(mEventosArrayList.get(position).getTitulo());
 
 
-
-
-
-
-
-
-
-
-        //holder.mTextViewAcerca.setText(mEventosArrayList.get(position).getAcerca_de());
-
-
-
-
         Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
                 .error(R.drawable.img_error)
                 .placeholder(R.drawable.img_load)
@@ -91,56 +76,23 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
 
         Spanned mSpanned = null;
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            mSpanned = (Html.fromHtml(mEventosArrayList.get(position)
-                            .getAcerca_de(),Html.FROM_HTML_MODE_LEGACY,
-                    mCImageGetter,null));
-        }else {
-            mSpanned = (Html.fromHtml(mEventosArrayList.get(position)
-                            .getAcerca_de(),Html.FROM_HTML_MODE_LEGACY,
-                    mCImageGetter,null));
-        }
-
-        holder.mTextViewAcerca.setText(mSpanned);
-        holder.mTextViewAcerca.setMovementMethod(LinkMovementMethod.getInstance());
-
-
-
-
-        /*if(holder.mTextViewTitle.getLineCount()==1)
-        {
-
-            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
-                    holder.mLinearLayoutCompat.getLayoutParams();
-
-            mLayoutParams.setMargins(0,-230,0,0);
-
-            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
-        }
-
-        if(holder.mTextViewTitle.getLineCount() == 2)
-        {
-
-            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
-                    holder.mLinearLayoutCompat.getLayoutParams();
-
-            mLayoutParams.setMargins(0,-240,0,0);
-
-            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
+        if(mEventosArrayList.get(position).getContenido()!=null){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                mSpanned = (Html.fromHtml(mEventosArrayList.get(position)
+                                .getContenido(),Html.FROM_HTML_MODE_LEGACY,
+                        mCImageGetter,null));
+            }else {
+                mSpanned = (Html.fromHtml(mEventosArrayList.get(position)
+                                .getContenido(),Html.FROM_HTML_MODE_LEGACY,
+                        mCImageGetter,null));
+            }
+            holder.mTextViewAcerca.setText(mSpanned);
+            holder.mTextViewAcerca.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
 
 
-        if(holder.mTextViewTitle.getLineCount()>=3)
-        {
 
-            LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams)
-                    holder.mLinearLayoutCompat.getLayoutParams();
-
-            mLayoutParams.setMargins(0,-275,0,0);
-
-            holder.mLinearLayoutCompat.setLayoutParams(mLayoutParams);
-        }*/
     }
 
     @Override
@@ -156,7 +108,6 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
         private TextView mTextViewTitle;
         private TextView mTextViewAcerca;
 
-        //private LinearLayoutCompat mLinearLayoutCompat;
 
         public cViewHolderEventosDetailsScroll(@NonNull View itemView) {
             super(itemView);
@@ -166,7 +117,6 @@ public class cAdapterEventosDetailsScroll extends RecyclerView.Adapter<cAdapterE
             mTextViewDirec = itemView.findViewById(R.id.textView2);
             mTextViewTitle = itemView.findViewById(R.id.id_titulo_evento);
             mTextViewAcerca = itemView.findViewById(R.id.textView_about_event);
-            //mLinearLayoutCompat = itemView.findViewById(R.id.linearEventosDetails);
 
         }
 

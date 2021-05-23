@@ -52,7 +52,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 public class NoticiasFragment extends Fragment implements View.OnClickListener,
-        cCheckNetwork, cEventRecyclerViewNoticias {
+        cEventRecyclerViewNoticias {
 
     private View mView;
     private View mViewCardPrincipal;
@@ -61,7 +61,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
     private TextView mTextViewFechaNoticia;
     private RecyclerView mRecyclerViewNoticias;
 
-    private cAdapterNoticias mAdapterNoticias;
+    public static cAdapterNoticias mAdapterNoticias;
 
     private List<cNoticias> mNoticiasList = new ArrayList<>();
     private cNoticias mNoticias_ = new cNoticias();
@@ -86,10 +86,6 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
     private cSQLNoticias mSqlNoticias = new cSQLNoticias();
 
 
-    private cBroadCastNetworkStatus mBroadCastNetworkStatus;
-
-
-
     private int findFirstVisibleItemPosition =  0;
     private int findFirstCompletelyVisibleItemPosition = 0;
     private int findLastVisibleItemPosition = 0;
@@ -109,8 +105,6 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
         materialButton = mView.findViewById(R.id.id_cargar_mas);
         mSwipeRefreshLayoutNoticias = mView.findViewById(R.id.swipeRefreshNoticias);
 
-        mBroadCastNetworkStatus = new cBroadCastNetworkStatus();
-
 
         mViewCardPrincipal.setOnClickListener(this);
         materialButton.setOnClickListener(this);
@@ -121,7 +115,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
 
         initRecyclerViewNoticias();
 
-        //llenarArraysListNoticias();
+        llenarArraysListNoticias();
 
         mSwipeRefreshLayoutNoticias.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -130,6 +124,7 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
                 if (cApplication.getmApplicationInstance().checkInternet()){
                     llenarArraysListNoticias();
                 }else {
+                    mAdapterNoticias.notifyDataSetChanged();
                     mSwipeRefreshLayoutNoticias.setRefreshing(false);
                 }
             }
@@ -151,17 +146,38 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onResume() {
-        initBroadCastReciver();
+        //initBroadCastReciver();
         scrollNoticias();
         super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        //getContext().unregisterReceiver(mBroadCastNetworkStatus);
+        Log.e("cicloVidaFragment","NOTICIAS");
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        Log.e("cicloVidaFragment","NOTICIAS");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.e("cicloVidaFragment","NOTICIAS");
+        super.onDestroyView();
     }
 
     private void llenarArraysListNoticias()
     {
         if (cApplication.getmApplicationInstance().checkInternet())
         {
+            Log.e("pageCont","ON Network");
             consumirApiNoticias();
         }else{
+            Log.e("pageCont","OFF Network");
             showAlertConsultando();
             consumirApiNoticiasLocalBD();
             hideAlertDialogConsultando();
@@ -170,8 +186,11 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
 
     private void consumirApiNoticiasLocalBD()
     {
-        mNoticiasList = mSqlNoticias.readNoticias(page_cont,mNoticiasList);
-        if (mNoticiasList.size()>0){
+        List<cNoticias> mList  = mSqlNoticias.readNoticias(page_cont);
+
+        if (mList.size()>0)
+        {
+            mNoticiasList.addAll(mList);
             controlPageCont();
         }
     }
@@ -185,6 +204,8 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
             @Override
             public void onResponse(String response)
             {
+                Log.e("pageCont",String.valueOf(page_cont));
+
                 try {
                     JSONObject mJsonObjectRes = new JSONObject(response);
                     if(mJsonObjectRes.getString("codigo").equals("200"))
@@ -192,12 +213,11 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
                         JSONArray mJsonArray = mJsonObjectRes.getJSONArray("resultado");
                         if(mJsonArray.length() > 0)
                         {
-                            Log.e("pageCont",String.valueOf(page_cont));
 
+                            Log.e("pageCont","mayor a 0 noticias");
                             List<cNoticias> mNoticiasListAuxiliar = new ArrayList<>();
 
-                            for (int i=0;i<mJsonArray.length();i++)
-                            {
+                            for (int i=0;i<mJsonArray.length();i++){
                                 JSONObject mJsonObject = mJsonArray.getJSONObject(i);
                                 cNoticias oN = new cNoticias();
                                 oN.setNumPage(page_cont);
@@ -208,17 +228,14 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
                                 oN.setmUriPicturePrincipalNoticia(mJsonObject.getString("url_imagen_miniatura"));
                                 oN.setDescriptionCorta(mJsonObject.getString("descripcion_corta"));
 
-                                if (!verificar(oN))
-                                {
+                                if (!verificar(oN)) {
                                     mNoticiasList.add(oN);
                                     mNoticiasListAuxiliar.add(oN);
                                 }
                             }
 
                             mSqlNoticias.InsertNoticias(page_cont,mNoticiasListAuxiliar);
-
                             controlPageCont();
-
                         }
 
                     }else
@@ -284,8 +301,8 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
         {
             mAdapterNoticias.notifyDataSetChanged();
             page_cont++;
+            Log.e("pageCont","CONTROL PAGE CONT : "+String.valueOf(page_cont));
             desface_++;
-            Log.e("NotifyDataSetChanged","Add plus");
         }
     }
 
@@ -418,10 +435,10 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
         switch (view.getId())
         {
             case R.id.card_principal:
-                //abrirActivityNoticia(mNoticias);
+
 
                 Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
-                //mNoticiasList.add(0,mNoticias);
+
                 intent.putExtra("noticias", (Serializable) mNoticiasList);
                 intent.putExtra("noticia", (Serializable) mNoticias_);
                 intent.putExtra("posicion",0);
@@ -437,55 +454,11 @@ public class NoticiasFragment extends Fragment implements View.OnClickListener,
     }
 
 
-    public void initBroadCastReciver()
-    {
-        cBroadCastNetworkStatus.mCheckNetwork = this;
-
-        IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        mIntentFilter.addAction(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
-        getContext().registerReceiver(mBroadCastNetworkStatus,mIntentFilter);
-    }
-
-    @Override
-    public void checkNetwork(boolean bandera)
-    {
-        if (bandera)
-        {
-            if (cApplication.bandera_fragment == 1) /**NOTICIAS**/
-            {
-                //Toast.makeText(getContext(), "eweew", Toast.LENGTH_SHORT).show();
-                Log.e("page_network",String.valueOf(page_cont));
-
-                if (mAdapterNoticias!=null)
-                {
-                    if (page_cont == 1){
-                        //scrollReadNoticias();
-                        llenarArraysListNoticias();
-                    }else
-                    {
-                        mAdapterNoticias.notifyDataSetChanged();
-                        llenarArraysListNoticias();
-                    }
-
-                }
-
-            }else
-                {
-
-                }
-        }else
-            {
-                Toasty.warning(getContext(),getResources()
-                    .getString(R.string.off_network),Toasty.LENGTH_SHORT).show();
-                llenarArraysListNoticias();
-            }
-    }
-
     @Override
     public void onClickNoticia(int pos)
     {
         Intent intent = new Intent(getActivity(), NoticiasViewPagerContenidoActivity.class);
-        //mNoticiasList.add(0,mNoticias);
+
         intent.putExtra("noticias", (Serializable) mNoticiasList);
         intent.putExtra("noticia", (Serializable) mNoticias_);
         intent.putExtra("posicion",pos);

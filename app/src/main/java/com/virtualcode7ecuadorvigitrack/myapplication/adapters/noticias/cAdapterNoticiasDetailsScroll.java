@@ -69,25 +69,24 @@ public class cAdapterNoticiasDetailsScroll extends RecyclerView.Adapter<cAdapter
 
         Spanned mSpanned = null;
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            mSpanned = (Html.fromHtml(mNoticiasArrayList
-                            .get(position)
-                            .getTextoNoticia(),Html.FROM_HTML_MODE_LEGACY,
-                    mCImageGetter,null));
-        }else {
-            mSpanned = (Html.fromHtml(mNoticiasArrayList
-                    .get(position)
-                            .getTextoNoticia(),mCImageGetter,null));
+
+        if(mNoticiasArrayList.get(position).getTextoNoticia()!=null){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                mSpanned = (Html.fromHtml(mNoticiasArrayList
+                                .get(position)
+                                .getTextoNoticia(),Html.FROM_HTML_MODE_LEGACY,
+                        mCImageGetter,null));
+            }else {
+                mSpanned = (Html.fromHtml(mNoticiasArrayList
+                        .get(position)
+                        .getTextoNoticia(),mCImageGetter,null));
+            }
+
+            holder.mTextViewContenido.setText(mSpanned);
+
+            holder.mTextViewContenido.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
-        holder.mTextViewContenido.setText(mSpanned);
-
-        holder.mTextViewContenido.setMovementMethod(LinkMovementMethod.getInstance());
-
-        Log.e("HTML",mNoticiasArrayList
-                .get(position).getTextoNoticia());
-
-        Log.e("LINE CONT"," : "+holder.mTextViewTitulo.getLineCount());
 
     }
 

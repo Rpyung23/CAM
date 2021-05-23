@@ -16,6 +16,12 @@ public class cSQLiteOpenHelper extends SQLiteOpenHelper
                     ",contenido TEXT,descripcion_corta TEXT,url_imagen_miniatura TEXT" +
                     ",url_imagen_principal TEXT,page INTEGER)";
 
+
+    private static final String SQL_CREATE_ENTRIES_EVENTO =
+            "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, titulo TEXT, fecha_publicacion_inicio TEXT" +
+                    ",fecha_publicacion_fin TEXT,contenido TEXT,descripcion_corta TEXT,url_imagen_miniatura TEXT" +
+                    ",url_imagen_principal TEXT,direccion TEXT,page INTEGER)";
+
     private static final String SQL_DELETE_ENTRIES_NOTICIA =
             "DROP TABLE IF EXISTS noticias";
 
@@ -27,6 +33,7 @@ public class cSQLiteOpenHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         db.execSQL(SQL_CREATE_ENTRIES_NOTICIA);
+        db.execSQL(SQL_CREATE_ENTRIES_EVENTO);
     }
 
     @Override

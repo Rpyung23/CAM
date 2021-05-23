@@ -1,6 +1,7 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.sqlite;
 
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -59,8 +60,25 @@ public class cSQLNoticias
             if(!checkNoticia(mNoticiasList.get(i).getId_noticias()))
             {
                 writeSQliteDatabase().execSQL(mStrinInsertNoticia);
+            }else{
+                updateNoticia(mNoticiasList.get(i));
             }
         }
+    }
+
+    private void updateNoticia(cNoticias oN)
+    {
+        String mStrinUpdateNoticia = "update noticias set titulo='"+oN.getTitulo()+"'" +
+                ",fecha_publicacion='"+oN.getFecha()+"',descripcion_corta='"+oN.getDescriptionCorta()+"'" +
+                ",url_imagen_miniatura='"+oN.getmUriPicturePrincipalNoticia()+"'" +
+                ",page="+oN.getNumPage()+" where = id = "+oN.getId_noticias();
+
+        try {
+            writeSQliteDatabase().execSQL(mStrinUpdateNoticia);
+        }catch (SQLException mSqlException){
+            Log.e("updateNoticia",mSqlException.getMessage());
+        }
+
     }
 
     public boolean deleteNoticias(int page)
@@ -72,21 +90,22 @@ public class cSQLNoticias
         return true;
     }
 
-    public List<cNoticias> readNoticias(int page, List<cNoticias> mNoticiasList){
+    public List<cNoticias> readNoticias(int page){
 
-        String mStringReadNoticiasPage = "select id,titulo,fecha_publicacion,contenido,descripcion_corta,url_imagen_miniatura,page from noticias where page = "+page;
+        String mStringReadNoticiasPage = "select id,titulo,fecha_publicacion,descripcion_corta,url_imagen_miniatura,page from noticias where page = "+page;
 
         Cursor mCursor = readSQliteDatabase().rawQuery(mStringReadNoticiasPage,null);
+
+        List<cNoticias> mNoticiasList = new ArrayList<>();
 
         while (mCursor.moveToNext())
         {
             cNoticias mNoticias = new cNoticias();
             mNoticias.setFecha(mCursor.getString(2));
             mNoticias.setId_noticias(mCursor.getInt(0));
-            mNoticias.setmUriPicturePrincipalNoticia(mCursor.getString(5));/*imagen miniatura**/
-            mNoticias.setTextoNoticia(mCursor.getString(3));
+            mNoticias.setmUriPicturePrincipalNoticia(mCursor.getString(4));/*imagen miniatura**/
             mNoticias.setTitulo(mCursor.getString(1));
-            mNoticias.setDescriptionCorta(mCursor.getString(4));
+            mNoticias.setDescriptionCorta(mCursor.getString(3));
 
             mNoticiasList.add(mNoticias);
         }

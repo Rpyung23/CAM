@@ -31,15 +31,6 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
     private List<cNoticias> mNoticiasArrayList;
     private cEventRecyclerViewNoticias mEventRecyclerViewNoticias;
     private RecyclerView mRecyclerViewNoticias;
-    //private View.OnClickListener mOnClickListener;
-
-
-    /*public cAdapterNoticias(Context mContext, List<cNoticias>
-            mNoticiasArrayList, View.OnClickListener mOnClickListener) {
-        this.mContext = mContext;
-        this.mNoticiasArrayList = mNoticiasArrayList;
-        this.mOnClickListener = mOnClickListener;
-    }*/
 
     public cAdapterNoticias(Context mContext, List<cNoticias>
             mNoticiasArrayListm,cEventRecyclerViewNoticias mEventRecyclerViewNoticias
@@ -59,19 +50,11 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
     }
 
 
-    /*public View.OnClickListener getmOnClickListener() {
-        return mOnClickListener;
-    }*/
-
     @NonNull
     @Override
     public cViewHolderNoticias onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View mView = LayoutInflater.from(mContext).inflate(R.layout.card_noticias,parent,false);
-        /*if (mOnClickListener!=null)
-        {
-            mView.setOnClickListener(this);
-        }*/
         return new cViewHolderNoticias(mView);
     }
 
@@ -99,21 +82,6 @@ public class cAdapterNoticias extends RecyclerView.Adapter<cAdapterNoticias.cVie
     public int getItemCount() {
         return mNoticiasArrayList.size();
     }
-
-    /*public void setmOnClickListener(View.OnClickListener mOnClickListener)
-    {
-        if (mOnClickListener!=null)
-        {
-            this.mOnClickListener = mOnClickListener;
-        }
-
-    }*/
-
-    /*@Override
-    public void onClick(View view)
-    {
-        mOnClickListener.onClick(view);
-    }*/
 
 
     public class cViewHolderNoticias extends RecyclerView.ViewHolder

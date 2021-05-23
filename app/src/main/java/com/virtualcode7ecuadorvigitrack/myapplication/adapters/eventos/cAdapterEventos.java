@@ -15,26 +15,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.cEventRecyclerViewEvento;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cStringMesDia;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewHolderEventos> implements View.OnClickListener
+public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewHolderEventos>
+        implements Serializable
 {
-    private ArrayList<cEventos> mEventosArrayList;
+    private List<cEventos> mEventosArrayList;
     private Context mContext;
-    private View.OnClickListener mOnClickListener;
+    private RecyclerView mRecyclerViewEventos;
+    private cEventRecyclerViewEvento mEventRecyclerViewEvento;
 
-    public cAdapterEventos(ArrayList<cEventos> mEventosArrayList, Context mContext) {
+
+    public cAdapterEventos(List<cEventos> mEventosArrayList,
+                           Context mContext, RecyclerView mRecyclerViewEventos,
+                           cEventRecyclerViewEvento mEventRecyclerViewEvento) {
+
         this.mEventosArrayList = mEventosArrayList;
         this.mContext = mContext;
-    }
-
-    public cAdapterEventos(ArrayList<cEventos> mEventosArrayList, Context mContext, View.OnClickListener mOnClickListener) {
-        this.mEventosArrayList = mEventosArrayList;
-        this.mContext = mContext;
-        this.mOnClickListener = mOnClickListener;
+        this.mRecyclerViewEventos = mRecyclerViewEventos;
+        this.mEventRecyclerViewEvento = mEventRecyclerViewEvento;
     }
 
     @NonNull
@@ -42,7 +47,7 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
     public cViewHolderEventos onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View mView = LayoutInflater.from(mContext).inflate(R.layout.card_eventos_3,parent,false);
-        mView.setOnClickListener(this);
+
         return new cViewHolderEventos(mView);
     }
 
@@ -65,12 +70,6 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
                 holder.mTextViewFechaDestino.setText(new cStringMesDia().mes(mEventosArrayList.get(position).getFecha_fin()));
                 holder.mTextViewFechaDestinoNum.setText(new cStringMesDia().dia(mEventosArrayList.get(position).getFecha_fin()));
 
-
-                /*if (holder.mTextViewFechaDestino.getText().length()>6)
-                {
-                    holder.mTextViewFechaDestino.setTextSize(mContext.getResources()
-                            .getDimension(R.dimen.texto_fecha_destino_inicio));
-                }*/
             }
 
             if(mEventosArrayList.get(position).getFecha()
@@ -88,12 +87,6 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
                 params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
                 holder.mLinearLayoutCompat_Dates_All.setLayoutParams(params);
 
-
-                /*LinearLayoutCompat.LayoutParams mLayoutParams = (LinearLayoutCompat.LayoutParams) holder.mLinearLayoutCompat_Dates_All.getLayoutParams();
-
-                mLayoutParams.setMargins(4,-60,4,0);*/
-
-                //holder.mLinearLayoutCompat_Dates_All.setLayoutParams(mLayoutParams);
             }
 
 
@@ -104,22 +97,12 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
             holder.mTextViewFechaInicioNum.setText(new cStringMesDia().dia(mEventosArrayList.get(position).getFecha()));
 
-        /*if (holder.mTextViewFechaInicio.getText().length()>6)
-        {
-            holder.mTextViewFechaInicio.setTextSize(mContext.getResources()
-                    .getDimension(R.dimen.texto_fecha_destino_inicio));
-
-        }*/
 
             Picasso.with(mContext).load(mEventosArrayList.get(position).getUri_foto())
                     .error(R.drawable.img_error)
                     .placeholder(R.drawable.img_load)
                     .into(holder.mImageView);
-            /**
-             *     <dimen name="texto_fecha_destino_inicio">12sp</dimen>
-             *     <dimen name="textsize_num_fecha">20sp</dimen>
-             *
-             * **/
+
         }
     }
 
@@ -128,14 +111,7 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
         return mEventosArrayList.size();
     }
 
-    @Override
-    public void onClick(View view)
-    {
-        if (mOnClickListener!=null)
-        {
-            mOnClickListener.onClick(view);
-        }
-    }
+
 
     public class cViewHolderEventos extends RecyclerView.ViewHolder
     {
@@ -155,7 +131,7 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
         private TextView mTextViewFechaDesde;
 
-        //private View mViewFechasContainer;
+
 
         public cViewHolderEventos(@NonNull View itemView) {
             super(itemView);
@@ -173,16 +149,23 @@ public class cAdapterEventos extends RecyclerView.Adapter<cAdapterEventos.cViewH
 
             mLinearLayoutCompatFechaFin = itemView.findViewById(R.id.id_linear_layout_fecha_fin);
             mTextViewFechaDesde = itemView.findViewById(R.id.id_textview_desde_texto);
-            //mViewFechasContainer = itemView.findViewById(R.id.id_view_ContainerFechas);
-
-
-
-            /*mTextViewFechaInicioNum.setTextSize(20);
-            mTextViewFechaDestinoNum.setTextSize(20);*/
 
 
             mTextViewTitulo.setTextSize(17);
             mTextViewDireccion.setTextSize(14);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    int pos = mRecyclerViewEventos.getChildAdapterPosition(itemView);
+                    pos+=1;
+                    mEventRecyclerViewEvento.onClickEvento(pos);
+                }
+            });
+
+
         }
     }
 }
