@@ -94,11 +94,11 @@ public class InicioActivity extends cActivityInicio
 
         openFragmentNews();
 
+        onResume(mNavigationView);
+
         if(!cApplication.getmApplicationInstance().checkInternet()){
             showAlertOffNetwork();
         }
-
-        onResume(mNavigationView);
     }
 
     private void initBroadCastNetwork()

@@ -7,11 +7,16 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.StrictMode;
+import android.util.Log;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.sqlite.cSQLiteOpenHelper;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +104,13 @@ public class cApplication extends Application
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
                             || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
                             || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET))
-                        isConnected = isOnlineNet() ? true : false;
+                    {
+                        NetworkInfo mNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+                        isConnected = (mNetworkInfo!=null && mNetworkInfo.isConnected()
+                                && isOnlineNet()) ? true : false;
+                    }
+
                 }
             }
         }
@@ -109,28 +120,22 @@ public class cApplication extends Application
 
 
 
-    public static Boolean isOnlineNet() {
+    public static Boolean isOnlineNet()
+    {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
+        Boolean ipAddr = null;
         try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
-
-            int val           = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
+            ipAddr = InetAddress.getByName("www.google.com").isReachable(1000);
+        } catch (IOException e) {
             e.printStackTrace();
+            ipAddr = false;
         }
-        return false;
+        //You can replace it with your name
+        return ipAddr;
     }
-
-
-
-
-
-
-
 
 
 
