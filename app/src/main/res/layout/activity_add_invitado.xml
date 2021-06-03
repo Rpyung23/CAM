@@ -20,9 +20,9 @@
         android:scrollbars="vertical"
         android:layout_marginRight="@dimen/margin_15"
         android:layout_marginLeft="@dimen/margin_15"
-        android:layout_marginTop="@dimen/margin_15"
         >
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="@dimen/margin_15"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -40,8 +40,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre(s)"
+                android:hint="Nombre(s):*"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:errorIconTint="@color/red"
+                app:errorIconDrawable="@drawable/close"
+
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -52,8 +58,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellido Paterno"
+                android:hint="Apellido Paterno *"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:errorIconTint="@color/red"
+                app:errorIconDrawable="@drawable/close"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -64,8 +75,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellido Materno"
+                android:hint="Apellido Materno:*"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:errorIconTint="@color/red"
+                app:errorIconDrawable="@drawable/close"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -76,8 +92,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Curp"
+                android:hint="Curp:*"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:errorIconTint="@color/red"
+                app:errorIconDrawable="@drawable/close"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -101,6 +122,11 @@
                 android:layout_height="wrap_content"
                 android:hint="Edad"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:errorIconTint="@color/red"
+                app:errorIconDrawable="@drawable/close"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -115,6 +141,11 @@
                 android:layout_height="wrap_content"
                 android:hint="Parentezo"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeErrorColor="@color/red"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:errorIconTint="@color/red"
+                app:errorIconDrawable="@drawable/close"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -125,26 +156,46 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Subir foto identificación del invitado"
+                android:text="@string/upload_photo_invitado"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/black"
                 android:gravity="center"
+                android:layout_marginBottom="@dimen/margin_5"
                 >
             </TextView>
 
-            <FrameLayout
+           <!-- <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/alto_add_img_dni_invitado"
-
                 >
-            </FrameLayout>
 
+            </View>-->
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/idViewBtnLoadPhoto"
+                    layout="@layout/view_add_photo_dni"
+                    >
+                </include>
+
+                <include
+                    android:visibility="gone"
+                    android:id="@+id/idViewBtnEditLoadPhoto"
+                    layout="@layout/view_photo_dni_load"
+                    >
+                </include>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/alto_botones_default"
+                android:layout_marginTop="@dimen/margin_15"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:text="@string/btn_cancelar"
                 android:textColor="@color/red"
@@ -166,6 +217,7 @@
                 app:icon="@drawable/ic_baseline_save_24"
                 app:iconGravity="textStart"
                 app:iconTint="@color/white"
+                android:layout_marginBottom="30dp"
                 >
             </com.google.android.material.button.MaterialButton>
 

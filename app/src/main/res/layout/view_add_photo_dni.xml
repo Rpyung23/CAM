@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,12 +31,13 @@
 
             app:backgroundTint="@color/btn_add_invitado"
             android:fontFamily="@font/roboto_bold"
-            android:text="SUBIR UN ARCHIVO"
+            android:text="@string/upload_photo_galeria"
 
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
 
             >
         </com.google.android.material.button.MaterialButton>
@@ -66,7 +68,7 @@
 
             app:icon="@drawable/ic_baseline_photo_camera_24"
             app:iconTint="@color/ClubColorPrimary"
-            android:text="TOMAR FOTO"
+            android:text="@string/take_photo"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/ClubColorPrimary"
 

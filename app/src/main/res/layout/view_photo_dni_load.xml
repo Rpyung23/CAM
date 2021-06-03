@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.fragment_photo.AddPhotoDniFragment"
+    android:background="@drawable/marco_photo_dni"
+    android:gravity="center_horizontal"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:background="@drawable/linear_round"
+        android:backgroundTint="@color/color_gris_invitados_solicitud"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_15"
+        android:padding="@dimen/margin_10"
+        >
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"
+            >
+
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"
+            >
+
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05"
+            >
+
+        </androidx.constraintlayout.widget.Guideline>
+
+
+        <ImageView
+            android:id="@+id/idImgDniInvitado"
+            android:layout_width="220dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/idGuidelineRight"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/idGuideline"
+            android:layout_marginBottom="@dimen/margin_5"
+            android:src="@drawable/dni_mexico"
+            android:scaleType="centerCrop"
+            >
+        </ImageView>
+
+
+        <TextView
+            android:id="@+id/idTxtNamePhotoDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_photo_upload"
+            android:textColor="#1A1A1A"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toBottomOf="@+id/idImgDniInvitado"
+            app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/idGuidelineRight"
+
+            >
+        </TextView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/id_btn_upload_other_photo_socio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/idTxtNamePhotoDni"
+            app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/idGuidelineRight"
+
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+
+            app:icon="@drawable/upload_file"
+            app:iconTint="@color/ClubColorPrimary"
+            android:text="@string/upload_other_photo_dni"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/ClubColorPrimary"
+            app:iconSize="@dimen/textsize_25"
+            android:textSize="@dimen/textsize_17sp"
+            >
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/id_btn_delete_photo_socio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/id_btn_upload_other_photo_socio"
+            app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/idGuidelineRight"
+
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+
+            app:icon="@drawable/delete"
+            app:iconSize="@dimen/textsize_22sp"
+            android:textSize="@dimen/textsize_17sp"
+            app:iconTint="@color/red"
+            android:text="@string/delete_photo_dni"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/red"
+
+            >
+        </com.google.android.material.button.MaterialButton>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

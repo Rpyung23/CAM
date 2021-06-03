@@ -235,7 +235,7 @@
                 </include>
 
                 <include
-                    android:visibility="gone"
+               
                     android:id="@+id/id_views_invitados"
                     layout="@layout/card_invitados">
                 </include>

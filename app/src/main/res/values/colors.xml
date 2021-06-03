@@ -23,6 +23,7 @@
     <color name="semaforo_inactive">#262E3286</color>
     <color name="color_prmary_fondo">#d9d5e3</color>
     <color name="color_gris">#F3F3F3</color>
+    <color name="color_gris_invitados_solicitud">#F2F2F2</color>
     <color name="color_opc_notifiation_details">#6200EE</color>
     <color name="btn_add_invitado">#88A919</color>
     <color name="ColorIconFechas">#00549C</color>

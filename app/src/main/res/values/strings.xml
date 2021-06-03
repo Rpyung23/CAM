@@ -153,5 +153,12 @@
     <string name="notifications">Notificaciones</string>
     <string name="recive">Recibos</string>
     <string name="off_network">Sin Acceso a Internet</string>
+    <string name="upload_photo_invitado">Subir foto identificación del invitado</string>
+    <string name="upload_other_photo_dni">SUBIR OTRA IMAGEN</string>
+    <string name="delete_photo_dni">ELIMINAR IMAGEN</string>
+    <string name="name_photo_upload">INE-escaner.png</string>
+    <string name="process_solicitud_invitado">PROCESAR LA SOLICITUD</string>
+    <string name="upload_photo_galeria">SUBIR UN ARCHIVO</string>
+    <string name="take_photo">TOMAR FOTO</string>
 
 </resources>

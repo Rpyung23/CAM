@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.virtualcode7ecuadorvigitrack.myapplication">
 
+
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -22,7 +23,15 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity android:screenOrientation="portrait"
-            android:name=".views.views_socios.view_invitado.AddInvitadoActivity"></activity>
+            android:name=".views.views_socios.view_invitado.AddInvitadoActivity"
+            android:parentActivityName=".views.views_socios.view_invitado.SolicitudInvitadosActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.views_socios.view_invitado.SolicitudInvitadosActivity"
+                >
+            </meta-data>
+        </activity>
         <activity android:screenOrientation="portrait"
             android:name=".views.views_socios.view_invitado.SolicitudInvitadosActivity" />
         <activity android:screenOrientation="portrait"

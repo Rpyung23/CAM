@@ -486,10 +486,11 @@
                     android:id="@+id/btnSaveSolicitud"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_15"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:text="PROCESAR LA SOLICITUD"
-
+                    android:text="@string/process_solicitud_invitado"
+                    android:enabled="false"
                     app:iconGravity="textStart"
 
                     android:fontFamily="@font/roboto_regular"

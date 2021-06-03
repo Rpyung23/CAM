@@ -147,6 +147,7 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tvInputLayoutDesde"
                     android:layout_width="match_parent"
@@ -162,10 +163,13 @@
                     app:boxStrokeColor="@color/BorderButtonColorPrimary"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtInputDateDesde"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="none"
                         >
                     </com.google.android.material.textfield.TextInputEditText>
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -184,6 +188,7 @@
                     app:boxStrokeColor="@color/BorderButtonColorPrimary"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtInputDateFin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
