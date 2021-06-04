@@ -231,7 +231,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
             case R.id.id_views_invitados:
                 Intent mIntentInvitados = new Intent(getContext(), InvitadosActivity.class);
-                mIntentInvitados.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                mIntentInvitados.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(mIntentInvitados);
                 break;
         }

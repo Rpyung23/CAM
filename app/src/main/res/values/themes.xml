@@ -61,4 +61,11 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="Not_or_Enabled_ColorPrimary" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="backgroundTint">@color/color_primary_enabled_or_not</item>
+        <item name="android:textColor">@color/color_primary_enabled_or_not_text</item>
+        <item name="iconTint">@color/color_primary_enabled_or_not_text</item>
+</style>
+
+
 </resources>

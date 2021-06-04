@@ -1,10 +1,13 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_invitado;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,6 +32,8 @@ public class InvitadosActivity extends cActivityInicioSocio
     private String mStringDosNames = "María Martínez Cruz,Juan Mendoza Alcázar";
     private String mStringTresNames = "Javier Mendoza Martínez,María Martínez Cruz,Juan Mendoza Alcázar";
     private cAdapterListInvitadosNow mAdapterListInvitadosNow;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -88,7 +93,18 @@ public class InvitadosActivity extends cActivityInicioSocio
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public void onBackPressed()
     {

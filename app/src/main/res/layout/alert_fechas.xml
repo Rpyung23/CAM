@@ -148,6 +148,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
+                <!--
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tvInputLayoutDesde"
                     android:layout_width="match_parent"
@@ -172,7 +173,10 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                -->
 
+
+                <!--
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tvInputLayoutHasta"
                     android:layout_width="match_parent"
@@ -195,10 +199,60 @@
                         >
                     </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
+                -->
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtInputDateFin"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewLabel"
+                    android:hint="  Desde"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/round_textview"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawableTint="@color/ClubColorPrimary"
+                    app:drawableTint="@color/ClubColorPrimary"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:inputType="date"
+                    android:textSize="@dimen/textsize_17sp"
+
+
+                    >
+                </androidx.appcompat.widget.AppCompatTextView>
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtInputDateDesde"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInputDateFin"
+                    android:hint="  Hasta"
+
+                    android:gravity="center_vertical"
+                    android:background="@drawable/round_textview"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawableTint="@color/ClubColorPrimary"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:inputType="date"
+                    android:textSize="@dimen/textsize_17sp"
+
+
+                    >
+                </androidx.appcompat.widget.AppCompatTextView>
+
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCancel"
+                    android:id="@+id/btnCancelFechas"
                     android:layout_marginTop="@dimen/margin"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/alto_botones_default"
@@ -211,15 +265,15 @@
                     android:fontFamily="@font/roboto_medium"
                     android:textStyle="bold"
                     app:strokeColor="@color/red"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInputLayoutHasta"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInputDateDesde"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     >
                 </com.google.android.material.button.MaterialButton>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAdd"
-                    android:layout_marginTop="@dimen/margin"
+                    android:id="@+id/btnAddFechas"
+
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/alto_botones_default"
                     android:backgroundTint="@color/btn_add_invitado"
@@ -228,7 +282,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:textStyle="bold"
                     android:text="@string/add"
-                    app:layout_constraintTop_toBottomOf="@+id/btnCancel"
+                    app:layout_constraintTop_toBottomOf="@+id/btnCancelFechas"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

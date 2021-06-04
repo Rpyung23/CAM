@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_15"
-        app:cardElevation="10dp"
+        app:cardElevation="2dp"
         app:cardCornerRadius="10dp"
         >
 
@@ -490,9 +490,9 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/process_solicitud_invitado"
-                    android:enabled="false"
                     app:iconGravity="textStart"
-
+                    style="@style/Not_or_Enabled_ColorPrimary"
+                    android:enabled="false"
                     android:fontFamily="@font/roboto_regular"
                     app:icon="@drawable/ic_baseline_save_24"
                     >

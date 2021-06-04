@@ -33,9 +33,27 @@
             </meta-data>
         </activity>
         <activity android:screenOrientation="portrait"
-            android:name=".views.views_socios.view_invitado.SolicitudInvitadosActivity" />
+            android:name=".views.views_socios.view_invitado.SolicitudInvitadosActivity"
+            android:parentActivityName=".views.views_socios.view_invitado.InvitadosActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.views_socios.view_invitado.InvitadosActivity"
+                >
+            </meta-data>
+        </activity>
+
+
         <activity android:screenOrientation="portrait"
-            android:name=".views.views_socios.view_invitado.InvitadosActivity" />
+            android:name=".views.views_socios.view_invitado.InvitadosActivity"
+            android:parentActivityName=".views.views_socios.InicioSociosActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.views_socios.InicioSociosActivity"
+                >
+            </meta-data>
+        </activity>
         <activity
             android:screenOrientation="portrait"
             android:name=".views.LogOutActivity"

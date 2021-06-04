@@ -4,8 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <corners
-        android:radius="10dp"
+        android:radius="5dp"
         >
     </corners>
-
+    <stroke
+        android:width="@dimen/mtrl_textinput_box_stroke_width_default"
+        android:color="#60000000"
+        >
+    </stroke>
 </shape>

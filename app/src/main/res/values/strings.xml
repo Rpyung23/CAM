@@ -160,5 +160,6 @@
     <string name="process_solicitud_invitado">PROCESAR LA SOLICITUD</string>
     <string name="upload_photo_galeria">SUBIR UN ARCHIVO</string>
     <string name="take_photo">TOMAR FOTO</string>
+    <string name="datos_vacios">Datos vacios</string>
 
 </resources>

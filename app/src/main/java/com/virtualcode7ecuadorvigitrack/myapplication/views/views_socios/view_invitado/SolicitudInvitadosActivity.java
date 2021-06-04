@@ -1,5 +1,7 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_invitado;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -7,14 +9,19 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
@@ -26,10 +33,14 @@ import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSo
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.HideKeys;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import in.balakrishnan.easycam.CameraBundleBuilder;
+import in.balakrishnan.easycam.CameraControllerActivity;
 
 public class SolicitudInvitadosActivity extends cActivityInicioSocio
         implements DialogInterface.OnDismissListener, View.OnClickListener,
@@ -44,9 +55,18 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     private MaterialDatePicker.Builder mBuilderMaterialDate;
     private MaterialDatePicker mMaterialDatePickerDate;
 
-    private TextInputEditText mTextInputEditTextDateInicio;
-    private TextInputEditText mTextInputEditTextDateFin;
+    private TextView mTextInputEditTextDateInicio;
+    private TextView mTextInputEditTextDateFin;
     private boolean bandera = true;
+
+    private Timestamp mTimestampInicio = null;
+    private Timestamp mTimestampFin = null;
+    private ImageView mImageViewCheckFechas;
+
+    private MaterialButton mMaterialButtonAddFechas;
+    private MaterialButton mMaterialButtonCancelFechas;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +77,14 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         mMaterialCardViewFechasSolicitud = findViewById(R.id.cardViewAddFechasSolicitud);
         mMaterialCardViewAddInvitados = findViewById(R.id.cardAddInvitados);
 
+
+        mImageViewCheckFechas = findViewById(R.id.img_check_date);
+
+
         initMaterialDatePicker();
+
+        mTimestampInicio = new Timestamp(0);
+        mTimestampFin = new Timestamp(0);
 
         mMaterialCardViewFechasSolicitud.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +107,7 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
                 startActivity(mIntent);
             }
         });
+
     }
 
     private void initMaterialDatePicker()
@@ -87,9 +115,10 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         CalendarConstraints.Builder mBuilderContraints = new CalendarConstraints.Builder();
         mBuilderContraints.setValidator(DateValidatorPointForward.now());
         mBuilderMaterialDate = MaterialDatePicker.Builder.datePicker();
+
         mBuilderMaterialDate.setCalendarConstraints(mBuilderContraints.build());
         mMaterialDatePickerDate = mBuilderMaterialDate.build();
-
+        mMaterialDatePickerDate.addOnPositiveButtonClickListener(this::onPositiveButtonClick);
 
     }
 
@@ -99,6 +128,8 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         mImageViewCloseAlert = mView.findViewById(R.id.imgcloseTitle);
         mTextInputEditTextDateInicio = mView.findViewById(R.id.txtInputDateDesde);
         mTextInputEditTextDateFin = mView.findViewById(R.id.txtInputDateFin);
+        mMaterialButtonAddFechas = mView.findViewById(R.id.btnAddFechas);
+        mMaterialButtonCancelFechas = mView.findViewById(R.id.btnCancelFechas);
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(SolicitudInvitadosActivity.this);
         mBuilder.setView(mView);
         mAlertDialogFechas = mBuilder.create();
@@ -106,6 +137,9 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
                 .setBackgroundDrawable(new ColorDrawable(getResources()
                         .getColor(R.color.trnsparente)));
 
+
+        mMaterialButtonAddFechas.setOnClickListener(this::onClick);
+        mMaterialButtonCancelFechas.setOnClickListener(this::onClick);
         mTextInputEditTextDateInicio.setOnClickListener(this::onClick);
         mTextInputEditTextDateFin.setOnClickListener(this::onClick);
         mImageViewCloseAlert.setOnClickListener(this::onClick);
@@ -113,34 +147,6 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         mAlertDialogFechas.setOnDismissListener(this::onDismiss);
         mAlertDialogFechas.show();
 
-        /*mTextInputEditTextDateFin.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus)
-            {
-                if (v.getId() == R.id.txtInputDateFin){
-                    mTextInputEditTextDateFin.setFocusable(false);
-                    bandera = false;
-                    if (hasFocus){
-                        showMaterialPicker();
-                    }
-                }
-            }
-        });
-
-        mTextInputEditTextDateInicio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus)
-            {
-                if (v.getId() == R.id.txtInputDateDesde){
-                    mTextInputEditTextDateFin.setFocusable(false);
-                    bandera = true;
-                    if (hasFocus){
-                        showMaterialPicker();
-                    }
-                }
-
-            }
-        });*/
     }
 
     @Override
@@ -155,7 +161,7 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         if (mAlertDialogFechas == null){
             return;
         }
-
+        comparateFechas();
 
     }
 
@@ -164,7 +170,7 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     {
         switch (v.getId()){
             case R.id.imgcloseTitle:
-                closeAlertFechas();
+                closeAlertFechas(false);
                 break;
             case R.id.txtInputDateDesde:
                 bandera = true;
@@ -174,19 +180,52 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
                 bandera = false;
                 showMaterialPicker();
                 break;
+            case R.id.btnAddFechas:
+                if(mTextInputEditTextDateInicio.getText().toString().isEmpty()
+                        &&mTextInputEditTextDateFin.getText().toString().isEmpty())
+                {
+                    mTextInputEditTextDateInicio.setError(getResources().getString(R.string.datos_vacios));
+                    mTextInputEditTextDateFin.setError(getResources().getString(R.string.datos_vacios));
+                }else{
+                    if (!mTextInputEditTextDateInicio.getText().toString().isEmpty())
+                    {
+                        if (!mTextInputEditTextDateFin.getText().toString().isEmpty())
+                        {
+                            closeAlertFechas(true);
+                        }else{
+
+                            mTextInputEditTextDateFin.setError(getResources().getString(R.string.datos_vacios));
+                        }
+                    }else{
+                        mTextInputEditTextDateInicio.setError(getResources().getString(R.string.datos_vacios));
+                    }
+                }
+                break;
+            case R.id.btnCancelFechas:
+                closeAlertFechas(false);
+                mAlertDialogFechas = null;
+                break;
+
         }
     }
 
+
+
     private void showMaterialPicker()
     {
-        mMaterialDatePickerDate.show(this.getSupportFragmentManager(),TAG_DATE_SHOW);
-
-        mMaterialDatePickerDate.addOnPositiveButtonClickListener(this::onPositiveButtonClick);
+        if (!mMaterialDatePickerDate.isVisible()){
+            mMaterialDatePickerDate.show(this.getSupportFragmentManager(),TAG_DATE_SHOW);
+        }
     }
 
-    private void closeAlertFechas()
+    private void closeAlertFechas(boolean ban)
     {
-        if (mAlertDialogFechas!=null){
+        if (ban){
+            if (mAlertDialogFechas!=null){
+                mAlertDialogFechas.cancel();
+                mAlertDialogFechas.hide();
+            }
+        }else{
             mAlertDialogFechas.cancel();
             mAlertDialogFechas.hide();
         }
@@ -198,22 +237,78 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         if (mAlertDialogFechas == null){
             return;
         }
+
+        comparateFechas();
+
+    }
+
+    private void comparateFechas()
+    {
+        if (mTimestampInicio.getTime()>0 && mTimestampFin.getTime()>0){
+            Long mTo = Math.abs(mTimestampFin.getTime() - mTimestampInicio.getTime());
+            Log.e("range_date",mTimestampFin.getTime() +" - "+ mTimestampInicio.getTime());
+            Log.e("range_date",mTo.toString());
+            if (mTo>=1296000000){
+                //Toast.makeText(this, "RANGO DE 15 dias", Toast.LENGTH_SHORT).show();
+                visibleCheckImageFechas(true);
+            }else{
+                visibleCheckImageFechas(false);
+            }
+        }
+    }
+
+    private void visibleCheckImageFechas(boolean status)
+    {
+        if (status) {
+            mImageViewCheckFechas.setVisibility(View.VISIBLE);
+            mMaterialCardViewFechasSolicitud.setCardBackgroundColor(Color.parseColor("#F3F3F3"));
+        } else {
+            mImageViewCheckFechas.setVisibility(View.GONE);
+            mMaterialCardViewFechasSolicitud.setCardBackgroundColor(R.color.white);
+        }
     }
 
 
     @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
     public void onPositiveButtonClick(Object selection)
     {
-        Log.e("date",selection.toString());
+
 
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        mSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("American/Mexico"));
         String fecha = mSimpleDateFormat.format(selection);
 
         if (bandera){
             //mTextInputEditTextDateInicio.setText(selection.toString());
-            mTextInputEditTextDateInicio.setText(fecha);
+            mTextInputEditTextDateInicio.setError(null);
+            mTextInputEditTextDateInicio.setText(" "+fecha);
+            mTimestampInicio.setTime((Long) selection);
         }else{
-            mTextInputEditTextDateFin.setText(fecha);
+            mTextInputEditTextDateFin.setError(null);
+            mTextInputEditTextDateFin.setText(" "+fecha);
+            mTimestampFin.setTime((Long)selection);
         }
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
 }
