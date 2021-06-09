@@ -161,5 +161,9 @@
     <string name="upload_photo_galeria">SUBIR UN ARCHIVO</string>
     <string name="take_photo">TOMAR FOTO</string>
     <string name="datos_vacios">Datos vacios</string>
+    <string name="solicitud_enviada_title">Su solicitud ha sido enviada satisfactoriamente.</string>
+    <string name="solicitud_enviada_body">En breve se te dará respuesta de la solicitud enviada. Puedes seguir el estatus en tu aplicación, en el área de invitados.</string>
+    <string name="permisos_store">Se requieren permisos de almacenamiento interno.</string>
+    <string name="title_permisos_store">Permisos</string>
 
 </resources>

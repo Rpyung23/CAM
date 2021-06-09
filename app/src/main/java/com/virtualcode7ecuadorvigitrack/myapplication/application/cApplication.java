@@ -128,7 +128,7 @@ public class cApplication extends Application
 
         Boolean ipAddr = null;
         try {
-            ipAddr = InetAddress.getByName("www.google.com").isReachable(1000);
+            ipAddr = InetAddress.getByName("www.google.com").isReachable(500);
         } catch (IOException e) {
             e.printStackTrace();
             ipAddr = false;

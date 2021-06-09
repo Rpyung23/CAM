@@ -121,6 +121,7 @@
     <dimen name="margin_top_container_noticia">-170dp</dimen>
     <dimen name="margin_top_container_evento">-170dp</dimen>
     <dimen name="alto_botones_default">60dp</dimen>
+    <dimen name="radius_alert_solicitud_check_invitados">10dp</dimen>
 
 
 </resources>

@@ -44,7 +44,7 @@
             android:layout_width="@dimen/alto_ancho_img_check_list_invitaciones"
             android:layout_height="@dimen/alto_ancho_img_check_list_invitaciones"
             android:src="@drawable/ic_check_box"
-            android:scaleType="centerCrop"
+
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

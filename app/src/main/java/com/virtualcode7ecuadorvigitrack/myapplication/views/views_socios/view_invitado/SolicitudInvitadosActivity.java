@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     private MaterialButton mMaterialButtonAddFechas;
     private MaterialButton mMaterialButtonCancelFechas;
 
+    private MaterialButton mMaterialButtonProceSolicitud;
 
 
     @Override
@@ -76,6 +78,7 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
 
         mMaterialCardViewFechasSolicitud = findViewById(R.id.cardViewAddFechasSolicitud);
         mMaterialCardViewAddInvitados = findViewById(R.id.cardAddInvitados);
+        mMaterialButtonProceSolicitud = findViewById(R.id.btnSaveSolicitud);
 
 
         mImageViewCheckFechas = findViewById(R.id.img_check_date);
@@ -107,6 +110,8 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
                 startActivity(mIntent);
             }
         });
+
+        mMaterialButtonProceSolicitud.setOnClickListener(this::onClick);
 
     }
 
@@ -204,6 +209,9 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
             case R.id.btnCancelFechas:
                 closeAlertFechas(false);
                 mAlertDialogFechas = null;
+                break;
+            case R.id.btnSaveSolicitud:
+                createAlertSolicitudEnviada();
                 break;
 
         }
@@ -309,6 +317,22 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         }
     }
 
+
+    private void createAlertSolicitudEnviada(){
+
+        View mView = LayoutInflater.from(SolicitudInvitadosActivity.this)
+                .inflate(R.layout.view_solicitud_enviada,null);
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SolicitudInvitadosActivity.this);
+        mBuilder.setView(mView);
+        AlertDialog mAlertDialog = mBuilder.create();
+        mAlertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+        mAlertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        mAlertDialog.show();
+
+
+
+    }
 
 
 }

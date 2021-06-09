@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/radius_alert_solicitud_check_invitados"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="0dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_15"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/idImgSolicitudCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_check_circle_24"
+                android:tint="@color/btn_solicitud_invitados_alert_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+            </androidx.appcompat.widget.AppCompatImageView>
+
+
+            <TextView
+                android:id="@+id/txtSolicitudTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="@string/solicitud_enviada_title"
+                android:textSize="@dimen/textsize_25"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="#00549C"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/idImgSolicitudCheck"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/txtSolicitudBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solicitud_enviada_body"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/black"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/txtSolicitudTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+            </TextView>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="@dimen/margin_10"
+                app:layout_constraintTop_toBottomOf="@+id/txtSolicitudBody"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:backgroundTint="@color/btn_solicitud_invitados_alert_button"
+                app:icon="@drawable/ic_baseline_check_24"
+                app:iconTint="@color/white"
+                app:iconGravity="textStart"
+                android:text="@string/accept_button"
+                >
+            </com.google.android.material.button.MaterialButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
