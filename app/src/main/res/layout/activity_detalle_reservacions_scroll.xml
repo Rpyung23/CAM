@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.views_socios.view_reservas.DetalleReservacionsScrollActivity"
+    android:orientation="vertical"
+    android:background="@color/color_gris"
+    >
+    <include
+        layout="@layout/toolbar_top"
+        >
+    </include>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/drawable_fondo_profile"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalle de pago"
+            android:fontFamily="@font/roboto_bold"
+
+            android:layout_margin="@dimen/margin_15"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_17sp"
+            >
+        </TextView>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/id_viewpager2_recibos_reservaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </androidx.viewpager2.widget.ViewPager2>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/id_views_card_pdf"
+            layout="@layout/card_ver_pdf">
+        </include>
+
+        <include
+            android:id="@+id/id_views_card_soli_factura"
+            layout="@layout/card_soli_factura">
+        </include>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

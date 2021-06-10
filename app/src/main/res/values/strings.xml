@@ -132,6 +132,7 @@
     <string name="delete_notification">Eliminar</string>
     <string name="see_in_app">Ver en app</string>
     <string name="realize_invitacion">Realiza tu invitación ahora</string>
+    <string name="realize_reserva">Realiza tu reservación ahora</string>
     <string name="list_invitaciones">Lista de invitaciones actuales y próximos</string>
     <string name="solicitud_invitados">Solicitud de invitados</string>
     <string name="add_date">Agregar fecha</string>
@@ -165,5 +166,10 @@
     <string name="solicitud_enviada_body">En breve se te dará respuesta de la solicitud enviada. Puedes seguir el estatus en tu aplicación, en el área de invitados.</string>
     <string name="permisos_store">Se requieren permisos de almacenamiento interno.</string>
     <string name="title_permisos_store">Permisos</string>
+
+    <string name="list_reservas">Historial de reservaciones 2021</string>
+    <string name="type_habitaciones">Tipo de habitación:</string>
+    <string name="reservas_mayus">RESERVACIONES</string>
+    <string name="forma_pay">Forma de pago:</string>
 
 </resources>

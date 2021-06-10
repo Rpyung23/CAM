@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.views_socios.view_reservas.ReservasActivity"
+    android:orientation="vertical"
+    android:background="#262E3286"
+    >
+
+    <include
+        layout="@layout/toolbar_top">
+    </include>
+
+    <TextView
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/realize_reserva"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/black"
+        >
+    </TextView>
+
+    <include
+        android:id="@+id/id_views_solicitar_reserva"
+        layout="@layout/card_realizar_reservas">
+    </include>
+
+    <TextView
+        android:id="@+id/idtxtTitleListReservas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/list_reservas"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/margin_15"
+        >
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReservasActuales"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_list_reservas_"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

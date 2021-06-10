@@ -14,7 +14,8 @@ import com.virtualcode7ecuadorvigitrack.myapplication.models.cReciver;
 
 import java.util.ArrayList;
 
-public class cAdapterReciboScroll extends RecyclerView.Adapter<cAdapterReciboScroll.cViewHolderRecivosScroll>
+public class cAdapterReciboScroll extends
+        RecyclerView.Adapter<cAdapterReciboScroll.cViewHolderRecivosScroll>
 {
 
     private Context mContext;

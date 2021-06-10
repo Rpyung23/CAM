@@ -40,8 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import in.balakrishnan.easycam.CameraBundleBuilder;
-import in.balakrishnan.easycam.CameraControllerActivity;
+
 
 public class SolicitudInvitadosActivity extends cActivityInicioSocio
         implements DialogInterface.OnDismissListener, View.OnClickListener,

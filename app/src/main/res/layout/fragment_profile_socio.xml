@@ -241,7 +241,6 @@
                 </include>
 
                 <include
-                    android:visibility="gone"
                     android:id="@+id/id_views_reservaciones"
                     layout="@layout/card_reservaciones">
                 </include>

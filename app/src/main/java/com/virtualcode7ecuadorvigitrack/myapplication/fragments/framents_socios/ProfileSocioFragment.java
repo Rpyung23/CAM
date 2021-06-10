@@ -37,6 +37,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_invitado.InvitadosActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.RecivosCuentaActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.StatusCuentaSociosActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas.ReservasActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -112,7 +113,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mTextViewCovid = mView.findViewById(R.id.id_consultar_alert_dialog);
         mImageViewSemaforo = mView.findViewById(R.id.id_circle_covid_semaforo);
         mViewInvitados = mView.findViewById(R.id.id_views_invitados);
-
+        mViewReservaciones = mView.findViewById(R.id.id_views_reservaciones);
 
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
 
@@ -123,6 +124,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mViewStatusCuenta.setOnClickListener(this);
         mViewRecivos.setOnClickListener(this);
         mViewInvitados.setOnClickListener(this);
+        mViewReservaciones.setOnClickListener(this);
 
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
         mSharedPreferencesMembresia = new cSharedPreferencesMembresia(getContext());
@@ -231,8 +233,14 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
             case R.id.id_views_invitados:
                 Intent mIntentInvitados = new Intent(getContext(), InvitadosActivity.class);
-                mIntentInvitados.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                mIntentInvitados.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mIntentInvitados);
+                break;
+
+            case R.id.id_views_reservaciones:
+                Intent mIntentReservas = new Intent(getContext(), ReservasActivity.class);
+                mIntentReservas.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(mIntentReservas);
                 break;
         }
     }
@@ -481,9 +489,6 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         pDialog.setContentText(error);
         pDialog.show();
     }
-
-
-
 
     private void sweetAlertInfo(String mensaje)
     {
