@@ -22,27 +22,30 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".views.views_socios.view_reservas.DetalleReservacionsScrollActivity"
-            android:parentActivityName=".views.views_socios.InicioSociosActivity"
+        <activity android:name=".views.views_socios.view_reservas.SolicitudReservaActivity"
+            android:parentActivityName=".views.views_socios.view_reservas.ReservasActivity"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.views_socios.InicioSociosActivity"
+                android:value=".views.views_socios.view_reservas.ReservasActivity"
                 >
             </meta-data>
         </activity>
-
+        <activity
+            android:name=".views.views_socios.view_reservas.DetalleReservacionsScrollActivity"
+            android:parentActivityName=".views.views_socios.InicioSociosActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.views_socios.InicioSociosActivity">
+            </meta-data>
+        </activity>
         <activity
             android:name=".views.views_socios.view_reservas.ReservasActivity"
-            android:parentActivityName=".views.views_socios.InicioSociosActivity"
-            >
+            android:parentActivityName=".views.views_socios.InicioSociosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.views_socios.InicioSociosActivity"
-                >
-            </meta-data>
+                android:value=".views.views_socios.InicioSociosActivity"></meta-data>
         </activity>
-
         <activity
             android:name=".views.views_socios.view_invitado.AddInvitadoActivity"
             android:parentActivityName=".views.views_socios.view_invitado.SolicitudInvitadosActivity"

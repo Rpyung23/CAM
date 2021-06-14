@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -234,6 +235,9 @@ public class AddInvitadoActivity extends cActivityInicioSocio implements View.On
                 if (resultCode == RESULT_OK)
                 {
 
+                    Log.e("Uri","DATA : "+data.getData());
+                    Log.e("Uri","DATA-Decoded : "+getRealPathFromUri(data.getData()));
+                    Log.e("Uri","PATH : "+data.getData().getPath());
                     insertPhotoinImageView(data.getData());
                 }else{
                     Toasty.error(AddInvitadoActivity.this
@@ -244,31 +248,7 @@ public class AddInvitadoActivity extends cActivityInicioSocio implements View.On
             case CODE_TAKE_PHOTO_CAMERA:
                 if (resultCode == RESULT_OK)
                 {
-                    /*assert data != null;
-
-                    list = data.getStringArrayExtra("resultData");
-                    Log.e("camera","tam : "+list.length);
-                    Log.e("camera","data : "+data.getData());
-                    for (int i=0;i<list.length;i++){
-                        Log.e("camera","list : "+list[i]);
-                    }
-
-                    mAlertDialog = new cAlertDialogProgress().showAlertProgress(AddInvitadoActivity.this,
-                            "Agregando fotografia...",false);
-                    mAlertDialog.show();
-
-                    mThread = new Handler();
-                    mThread.postDelayed(mRunnableBitmapPhoto,1000);*/
-
-                    /**Obtener imagen en miniatura**/
-
-                    /*Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    mImageViewDni.setImageBitmap(imageBitmap);*/
-
-
                     savePhotoGalerry();
-
 
                 }else{
                     Toasty.warning(AddInvitadoActivity.this,
@@ -277,6 +257,31 @@ public class AddInvitadoActivity extends cActivityInicioSocio implements View.On
                 }
                 break;
         }
+
+    }
+
+    private String getRealPathFromUri(Uri data)
+    {
+        Cursor cursor = null;
+        int column_index = 0;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = getApplicationContext().getContentResolver()
+                    .query(data, proj, null, null, null);
+
+            column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }catch (Exception mException)
+        {
+            Log.e("Uri",mException.getMessage());
+            if (cursor != null)
+            {
+                cursor.close();
+            }
+            return null;
+        }
+
 
     }
 
@@ -300,8 +305,13 @@ public class AddInvitadoActivity extends cActivityInicioSocio implements View.On
             MediaStore.Images.Media.insertImage(getContentResolver(),
                     currentPhotoPath, mFilePhoto.getName(), null);
 
+            Uri mUri = Uri.fromFile(mFilePhoto);
+
             this.sendBroadcast(new Intent(
-                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(mFilePhoto)));
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mUri));
+
+            insertPhotoinImageView(mUri);
+
         } catch (FileNotFoundException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }

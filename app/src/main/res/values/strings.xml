@@ -171,5 +171,13 @@
     <string name="type_habitaciones">Tipo de habitación:</string>
     <string name="reservas_mayus">RESERVACIONES</string>
     <string name="forma_pay">Forma de pago:</string>
+    <string name="invitado_duplicado">El invitado de la solicitud esta duplicado.</string>
+    <string name="solicitud_reservas">Solicitud de reservaciones</string>
+    <string name="lbl_bienvenido">Bienvenido</string>
+    <string name="add_reserva">Agregar reservación</string>
+    <string name="for_socio">Para socio</string>
+    <string name="for_invitado">Para invitado</string>
+    <string name="type_reserva">¿Qué tipo de reservación desea realizar?</string>
+    <string name="save_and_next">Guardar y siguiente</string>
 
 </resources>

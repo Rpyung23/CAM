@@ -122,6 +122,12 @@
     <dimen name="margin_top_container_evento">-170dp</dimen>
     <dimen name="alto_botones_default">60dp</dimen>
     <dimen name="radius_alert_solicitud_check_invitados">10dp</dimen>
+    <dimen name="preview_img_socio_reservas">70dp</dimen>
+    <dimen name="circle_timeline_active">84dp</dimen>
+    <dimen name="circle_timeline_inactive">68dp</dimen>
+    <dimen name="margin_left_item_inactive">-1dp</dimen>
+    <dimen name="margin_left_linetime_focus">-11dp</dimen>
+    <dimen name="marker_timeline_inactive">30dp</dimen>
 
 
 </resources>

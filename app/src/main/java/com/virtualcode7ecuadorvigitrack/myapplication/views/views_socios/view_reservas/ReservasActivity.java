@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
@@ -25,6 +26,7 @@ public class ReservasActivity extends AppCompatActivity implements cOnClickHisto
     private cAdapterReservaciones mAdapterReservaciones;
     private List<cReservaciones> mReservacionesList;
     private RecyclerView mRecyclerViewReservaciones;
+    private View mViewReservaSolicitud;
 
     private TextView mTextViewTitulo;
     @Override
@@ -34,6 +36,7 @@ public class ReservasActivity extends AppCompatActivity implements cOnClickHisto
         cToolbar.show(this,"",true,3);
         mTextViewTitulo = findViewById(R.id.id_detalles_toolbar_top);
         mRecyclerViewReservaciones = findViewById(R.id.rvReservasActuales);
+        mViewReservaSolicitud = findViewById(R.id.id_views_solicitar_reserva);
         mTextViewTitulo.setText(getApplicationContext()
                 .getResources().getString(R.string.reservas_mayus));
 
@@ -75,6 +78,20 @@ public class ReservasActivity extends AppCompatActivity implements cOnClickHisto
         mIntent.putExtra("positionCurrent",positionCurrent);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(mIntent);
+    }
+
+    @Override
+    protected void onPostResume() {
+        mViewReservaSolicitud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mIntent = new Intent(ReservasActivity.this,SolicitudReservaActivity.class);
+                mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(mIntent);
+            }
+        });
+        super.onPostResume();
     }
 
     @Override

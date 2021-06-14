@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.views_socios.view_reservas.SolicitudReservaActivity"
+    android:background="@color/color_gris"
+    >
+
+    <include
+        layout="@layout/toolbar_color"
+        >
+    </include>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="?actionBarSize"
+        android:padding="@dimen/margin_15"
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/red"
+            app:cardCornerRadius="@dimen/margin_5"
+            app:cardElevation="2dp"
+            >
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/margin_5"
+                android:paddingLeft="@dimen/margin_5"
+                >
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/GuiLineLeftAlert"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.1"
+                    >
+                </androidx.constraintlayout.widget.Guideline>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/GuiLineRightAlert"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.9"
+                    >
+                </androidx.constraintlayout.widget.Guideline>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ImgCancel"
+                    android:layout_width="@dimen/textsize_22sp"
+                    android:layout_height="@dimen/textsize_22sp"
+                    android:src="@drawable/cancel"
+                    android:tint="@color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/GuiLineLeftAlert"
+                    >
+                </androidx.appcompat.widget.AppCompatImageView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/invitado_duplicado"
+                    android:textSize="@dimen/textsize_17sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold"
+                    android:padding="@dimen/margin_15"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/GuiLineRightAlert"
+                    app:layout_constraintStart_toEndOf="@+id/GuiLineLeftAlert"
+                    >
+                </TextView>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ImgClose"
+                    android:layout_width="@dimen/textsize_22sp"
+                    android:layout_height="@dimen/textsize_22sp"
+                    android:src="@drawable/close"
+                    android:tint="@color/white_50_opacity"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/GuiLineRightAlert"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
+                </androidx.appcompat.widget.AppCompatImageView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="2dp"
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/solicitud_reservas"
+                    android:textSize="@dimen/textsize_22sp"
+                    android:textColor="@color/ClubColorPrimary"
+                    android:fontFamily="@font/roboto_bold"
+                    >
+                </TextView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:gravity="center"
+                    >
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.9"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_bienvenido"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            >
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jorge Dorantes Montemayor"
+                            android:textSize="@dimen/textsize_17sp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/black"
+                            >
+                        </TextView>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_weight="0.1"
+                        android:layout_width="@dimen/preview_img_socio_reservas"
+                        android:layout_height="@dimen/preview_img_socio_reservas"
+                        android:src="@drawable/sede_edi_socio_cultutal"
+                        android:scaleType="centerCrop"
+                        >
+                    </androidx.appcompat.widget.AppCompatImageView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    layout="@layout/time_lines_reservas"
+                    android:layout_gravity="center_horizontal"
+                    >
+                </include>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_reserva"
+                    android:gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="@dimen/textsize_22sp"
+                    android:textColor="@color/ClubColorPrimary"
+                    >
+                </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/type_reserva"
+                    android:gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="@dimen/textsize_17sp"
+                    android:textColor="@color/text_color"
+                    >
+                </TextView>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/for_socio"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/textsize_22sp"
+                        android:textColor="@color/ClubColorPrimary"
+                        android:buttonTint="@color/ClubColorPrimary"
+                        >
+                    </androidx.appcompat.widget.AppCompatRadioButton>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/for_invitado"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="@dimen/textsize_22sp"
+                        android:textColor="@color/ClubColorPrimary"
+                        android:buttonTint="@color/ClubColorPrimary"
+                        >
+                    </androidx.appcompat.widget.AppCompatRadioButton>
+                </RadioGroup>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:backgroundTint="@color/btn_add_invitado"
+                    android:text="@string/add_reserva"
+                    app:icon="@drawable/plus_not_eve"
+                    app:iconGravity="textStart"
+                    >
+                </com.google.android.material.button.MaterialButton>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:backgroundTint="@color/color_primary_enabled_or_not"
+                    android:text="@string/save_and_next"
+                    app:icon="@drawable/ic_baseline_save_24"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/color_primary_enabled_or_not_text"
+                    android:textColor="@color/color_primary_enabled_or_not_text"
+                    >
+                </com.google.android.material.button.MaterialButton>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

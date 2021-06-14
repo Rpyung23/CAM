@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,20 +32,24 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.textfield.TextInputEditText;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.activity.cActivityInicioSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.models.cInvitados;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.HideKeys;
+import com.virtualcode7ecuadorvigitrack.myapplication.utils.cFormatFechas;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
-
-
+import com.virtualcode7ecuadorvigitrack.myapplication.adapters.invitados.*;
+import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.*;
 
 public class SolicitudInvitadosActivity extends cActivityInicioSocio
         implements DialogInterface.OnDismissListener, View.OnClickListener,
-        DialogInterface.OnCancelListener,MaterialPickerOnPositiveButtonClickListener
+        DialogInterface.OnCancelListener,MaterialPickerOnPositiveButtonClickListener ,cOnClickInvitados
 {
     private static final String TAG_DATE_SHOW = "TAG_CALENDAR_INICIO";
     private MaterialCardView mMaterialCardViewFechasSolicitud;
@@ -69,11 +74,37 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     private MaterialButton mMaterialButtonProceSolicitud;
 
 
+
+    private TextView mTextViewDesdeLabel;
+    private TextView mTextViewHastaLabel;
+    private TextView mTextViewDesde;
+    private TextView mTextViewHasta;
+    private View mViewSeparador;
+    private MaterialButton mMaterialButtonEditarSolicitud;
+
+
+    private RecyclerView mRecyclerViewListInvitados;
+
+
+
+
+    private List<cInvitados> mInvitadosList;
+    private cAdapterListInvitadosAdd mAdapterListInvitadosAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitud_invitados);
         cToolbar.show(this,getResources().getString(R.string.name_cam),true,1);
+
+
+        mTextViewDesdeLabel = findViewById(R.id.lblDesde);
+        mTextViewHastaLabel = findViewById(R.id.lblHasta);
+        mTextViewDesde = findViewById(R.id.tvFechaDesde);
+        mTextViewHasta = findViewById(R.id.tvFechaHasta);
+        mViewSeparador = findViewById(R.id.ViewEdit);
+        mMaterialButtonEditarSolicitud = findViewById(R.id.btnEdit);
+        mRecyclerViewListInvitados = findViewById(R.id.idRecyclerViewListInvitados);
 
         mMaterialCardViewFechasSolicitud = findViewById(R.id.cardViewAddFechasSolicitud);
         mMaterialCardViewAddInvitados = findViewById(R.id.cardAddInvitados);
@@ -156,7 +187,30 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     @Override
     protected void onPostResume()
     {
+        mInvitadosList = ListInvitados();
+
+        mAdapterListInvitadosAdd
+                = new cAdapterListInvitadosAdd(mInvitadosList,this
+                ,mRecyclerViewListInvitados);
+
+        mRecyclerViewListInvitados.setAdapter(mAdapterListInvitadosAdd);
+
         super.onPostResume();
+    }
+
+    private List<cInvitados> ListInvitados()
+    {
+        List<cInvitados> mInvitadosList = new ArrayList<>();
+
+        for (int i=1;i<=2;i++)
+        {
+            cInvitados mInvitados = new cInvitados();
+            mInvitados.setEdad(22);
+            mInvitados.setNombres_invitado("Jorge Dorantes Montemayor");
+            mInvitados.setCurp("DOMJ891001HDFNES00");
+            mInvitadosList.add(mInvitados);
+        }
+        return  mInvitadosList;
     }
 
     @Override
@@ -217,7 +271,6 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     }
 
 
-
     private void showMaterialPicker()
     {
         if (!mMaterialDatePickerDate.isVisible()){
@@ -269,10 +322,28 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
         if (status) {
             mImageViewCheckFechas.setVisibility(View.VISIBLE);
             mMaterialCardViewFechasSolicitud.setCardBackgroundColor(Color.parseColor("#F3F3F3"));
+
+            showDatosResumenSolicitud(View.VISIBLE);
+
+
+            mTextViewHasta.setText(cFormatFechas.Timestamp_from_String(mTimestampFin.getTime()));
+            mTextViewDesde.setText(cFormatFechas.Timestamp_from_String(mTimestampInicio.getTime()));
+
+
         } else {
             mImageViewCheckFechas.setVisibility(View.GONE);
             mMaterialCardViewFechasSolicitud.setCardBackgroundColor(R.color.white);
         }
+    }
+
+    private void showDatosResumenSolicitud(int status)
+    {
+        mTextViewDesde.setVisibility(status);
+        mTextViewHasta.setVisibility(status);
+        mTextViewDesdeLabel.setVisibility(status);
+        mTextViewHastaLabel.setVisibility(status);
+        mViewSeparador.setVisibility(status);
+        mMaterialButtonEditarSolicitud.setVisibility(status);
     }
 
 
@@ -286,18 +357,15 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     {
 
 
-        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        mSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("American/Mexico"));
-        String fecha = mSimpleDateFormat.format(selection);
 
         if (bandera){
             //mTextInputEditTextDateInicio.setText(selection.toString());
             mTextInputEditTextDateInicio.setError(null);
-            mTextInputEditTextDateInicio.setText(" "+fecha);
+            mTextInputEditTextDateInicio.setText(" "+ cFormatFechas.Timestamp_from_String((Long) selection));
             mTimestampInicio.setTime((Long) selection);
         }else{
             mTextInputEditTextDateFin.setError(null);
-            mTextInputEditTextDateFin.setText(" "+fecha);
+            mTextInputEditTextDateFin.setText(" "+ cFormatFechas.Timestamp_from_String((Long) selection));
             mTimestampFin.setTime((Long)selection);
         }
     }
@@ -334,4 +402,8 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     }
 
 
+    @Override
+    public void OnClickListener(List<cInvitados> mInvitadosList, int positionCurrent) {
+
+    }
 }
