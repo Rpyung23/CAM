@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    android:layout_marginBottom="@dimen/margin_10"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        >
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuidelineTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuidelineBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuidelineLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/idGuidelineRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <ImageView
+            android:id="@+id/idImgHabitacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bed_hotel"
+            app:tint="@color/ClubColorPrimary"
+            app:layout_constraintTop_toTopOf="@id/idGuidelineTop"
+            app:layout_constraintStart_toStartOf="@+id/idGuidelineLeft"
+
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/idTxtTipoHabitacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Habitación doble sin terraza"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ClubColorPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/idImgHabitacion"
+            app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/idGuidelineRight"
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vista al parque"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_17sp"
+            app:layout_constraintTop_toBottomOf="@+id/idTxtTipoHabitacion"
+            app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+            app:layout_constraintBottom_toTopOf="@+id/idGuidelineBottom"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/idTxtDias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x noche"
+            android:textSize="@dimen/textsize_17sp"
+            android:textColor="@color/black"
+            android:layout_marginRight="@dimen/margin"
+            app:layout_constraintTop_toTopOf="@+id/idTxtPricehabitacion"
+            app:layout_constraintBottom_toBottomOf="@+id/idTxtPricehabitacion"
+            app:layout_constraintEnd_toStartOf="@+id/idTxtPricehabitacion"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/idTxtPricehabitacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ 825.00"
+            android:fontFamily="@font/roboto_black"
+            android:textSize="@dimen/textsize_22sp"
+            android:textColor="@color/ClubColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/idGuidelineRight"
+            app:layout_constraintTop_toTopOf="@+id/idGuidelineTop"
+            >
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

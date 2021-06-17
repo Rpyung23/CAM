@@ -179,5 +179,21 @@
     <string name="for_invitado">Para invitado</string>
     <string name="type_reserva">¿Qué tipo de reservación desea realizar?</string>
     <string name="save_and_next">Guardar y siguiente</string>
+    <string name="anterior">Anterior</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="type_reserva_title">Tipo de reservación :</string>
+    <string name="socio">Socio</string>
+    <string name="num_habitaciones_personas"># Número de habitacion(es) y persona(s)</string>
+    <string name="obligatorios">* Campo obligatorio</string>
+    <string name="hotel_nuevo">Hotel nuevo</string>
+    <string name="hotel_anterior">Hotel anterior</string>
+    <string name="hotel_register_question">¿En que hotel desea hacer la reservación?</string>
+    <string name="num_habitaciones">Número de habitaciones*</string>
+    <string name="add_habitaciones">Agregar habitaciones</string>
+    <string name="elegit_type_habitacion">Elige un tipo de habitación</string>
+    <string name="nota_paquete">*No aplica en vacaciones, puentes,  fines de semana y días festivos</string>
+    <string name="add_person">Agregar persona</string>
+    <string name="add_bed">Agregar cama</string>
+    <string name="edit_reserva">EDITAR RESERVA</string>
 
 </resources>

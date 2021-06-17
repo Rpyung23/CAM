@@ -48,8 +48,6 @@ public class cAdapterTimeLine
             holder.mImageViewMarker
                     .setImageDrawable(mTimeLineList.get(position).getImgMarker());
 
-
-
             holder.mViewLine.setBackgroundColor(mTimeLineList.get(position).getColorTimeLineActive());
 
             LinearLayoutCompat.LayoutParams mLayoutParams
@@ -91,6 +89,16 @@ public class cAdapterTimeLine
             holder.mViewLine.setVisibility(View.GONE);
         }
     }
+
+    public void inactiveElements()
+    {
+        for (int i=0;i<mTimeLineList.size();i++)
+        {
+            mTimeLineList.get(i).setStatus(false);
+            mTimeLineList.get(i).setBackground(mContext.getResources().getDrawable(R.drawable.item_timeline_inactive));
+        }
+    }
+
 
     @Override
     public int getItemCount() {

@@ -15,6 +15,9 @@
     </include>
 
 
+
+
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardAddFecha"
         android:layout_width="match_parent"
@@ -24,13 +27,10 @@
         app:cardCornerRadius="10dp"
         >
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:background="@color/white"
-            >
-
+            android:fillViewport="true">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -474,6 +474,7 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/idRecyclerViewListInvitados"
                     android:layout_width="match_parent"
@@ -489,7 +490,6 @@
                     android:backgroundTint="@color/color_prmary_fondo"
                     >
                 </androidx.recyclerview.widget.RecyclerView>
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSaveSolicitud"
                     android:layout_width="match_parent"
@@ -508,8 +508,7 @@
                 </com.google.android.material.button.MaterialButton>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </com.google.android.material.card.MaterialCardView>
 

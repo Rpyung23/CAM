@@ -1,11 +1,16 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 
+import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.adapter.cAdapterTimeLine;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.cTimeLine;
@@ -19,6 +24,9 @@ public class SolicitudReservaActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private cAdapterTimeLine mAdapterTimeLine;
     private List<cTimeLine> mTimeLines;
+    private MaterialButton mMaterialButtonAddReserva;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +34,7 @@ public class SolicitudReservaActivity extends AppCompatActivity
 
         cToolbar.show(SolicitudReservaActivity.this,getResources().getString(R.string.name_cam),true,1);
 
-
+        mMaterialButtonAddReserva = findViewById(R.id.idMaterialAddReserva);
         mRecyclerView = findViewById(R.id.idRecyclerViewTimeLineSolicitudReservas);
         LinearLayoutManager manager = new LinearLayoutManager(SolicitudReservaActivity.this);
         manager.setOrientation(RecyclerView.HORIZONTAL);
@@ -65,4 +73,42 @@ public class SolicitudReservaActivity extends AppCompatActivity
 
         return mTimeLines_;
     }
+
+
+    @Override
+    protected void onResume()
+    {
+        mMaterialButtonAddReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mIntent = new Intent(SolicitudReservaActivity.this,AddReservaSocioActivity.class);
+                mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(mIntent);
+            }
+        });
+        super.onResume();
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }

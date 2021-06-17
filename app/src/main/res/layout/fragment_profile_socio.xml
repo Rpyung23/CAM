@@ -235,14 +235,15 @@
                 </include>
 
                 <include
-               
                     android:id="@+id/id_views_invitados"
-                    layout="@layout/card_invitados">
+                    layout="@layout/card_invitados"
+                    >
                 </include>
 
                 <include
                     android:id="@+id/id_views_reservaciones"
-                    layout="@layout/card_reservaciones">
+                    layout="@layout/card_reservaciones"
+                    >
                 </include>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

@@ -180,7 +180,7 @@
                 <include
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    layout="@layout/time_lines_reservas"
+                    layout="@layout/time_lines"
                     android:layout_gravity="center_horizontal"
                     >
                 </include>
@@ -215,7 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/for_socio"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto_bold"
                         android:textSize="@dimen/textsize_22sp"
                         android:textColor="@color/ClubColorPrimary"
                         android:buttonTint="@color/ClubColorPrimary"
@@ -234,6 +234,7 @@
                 </RadioGroup>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idMaterialAddReserva"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
                     app:backgroundTint="@color/btn_add_invitado"

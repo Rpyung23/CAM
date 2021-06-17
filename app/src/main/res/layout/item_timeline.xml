@@ -83,7 +83,7 @@
 
     <View
         android:id="@+id/idLineTimeLine"
-        android:layout_width="@dimen/toolbarTop_alto_70dp"
+        android:layout_width="@dimen/ancho_line_timeline"
         android:layout_height="@dimen/margin_10"
         android:background="@color/ClubColorPrimary"
         android:layout_marginLeft="@dimen/margin_left_item_inactive"

@@ -126,6 +126,9 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mViewInvitados.setOnClickListener(this);
         mViewReservaciones.setOnClickListener(this);
 
+        /*mViewReservaciones.setBackgroundColor(getContext().getColor(R.color.backgrount_beigs_op_40));
+        mViewInvitados.setBackgroundColor(getContext().getColor(R.color.backgrount_beigs_op_40));*/
+
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
         mSharedPreferencesMembresia = new cSharedPreferencesMembresia(getContext());
 

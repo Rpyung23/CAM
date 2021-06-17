@@ -71,7 +71,8 @@ public class cApplication extends Application
 
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
         {
-            bandera = checkNetwork21(getApplicationContext(),connectivityManager);
+            /*bandera = checkNetwork21(getApplicationContext(),connectivityManager);*/
+            bandera = checkNetwork(connectivityManager);
         }else{
 
             bandera = checkNetwork(connectivityManager);

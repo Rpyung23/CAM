@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.fragment_reservas_socio.AddFechasReservaFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_date"
+        android:textSize="@dimen/textsize_22sp"
+        android:textColor="@color/ClubColorPrimary"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/all_obligatorios"
+        android:textSize="@dimen/textsize_17sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin_15"
+        >
+    </TextView>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtInputDateFin"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+
+        android:hint="  Desde"
+        android:gravity="center_vertical"
+        android:background="@drawable/round_textview"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawableTint="@color/ClubColorPrimary"
+        app:drawableTint="@color/ClubColorPrimary"
+        android:paddingLeft="@dimen/margin_10"
+        android:inputType="date"
+        android:textSize="@dimen/textsize_17sp"
+
+
+        >
+    </androidx.appcompat.widget.AppCompatTextView>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtInputDateDesde"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputDateFin"
+        android:hint="  Hasta"
+
+        android:gravity="center_vertical"
+        android:background="@drawable/round_textview"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawableTint="@color/ClubColorPrimary"
+        android:paddingLeft="@dimen/margin_10"
+        android:inputType="date"
+        android:textSize="@dimen/textsize_17sp"
+
+
+        >
+    </androidx.appcompat.widget.AppCompatTextView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

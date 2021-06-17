@@ -128,6 +128,8 @@
     <dimen name="margin_left_item_inactive">-1dp</dimen>
     <dimen name="margin_left_linetime_focus">-11dp</dimen>
     <dimen name="marker_timeline_inactive">30dp</dimen>
+    <dimen name="ancho_line_timeline">30dp</dimen>
+    <dimen name="textsize_20sp">20sp</dimen>
 
 
 </resources>

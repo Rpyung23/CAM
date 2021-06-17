@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/color_prmary_fondo"
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="@dimen/margin_15"
+
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_10"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/GuideLineTop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/GuideLineRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/GuideLineLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/GuideLineBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/GuideLineCenter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            >
+        </androidx.constraintlayout.widget.Guideline>
+
+
+        <TextView
+            android:id="@+id/lblPersonExtra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Persona extra : "
+            app:layout_constraintTop_toTopOf="@+id/GuideLineTop"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineRight"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/txtPersonExtra"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:gravity="end"
+            app:layout_constraintTop_toTopOf="@+id/lblPersonExtra"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/lblPersonExtra"
+            app:layout_constraintEnd_toEndOf="@+id/GuideLineLeft"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/lblNumPersonExtra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:text="Número de persona extra : "
+            app:layout_constraintTop_toBottomOf="@+id/lblPersonExtra"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineRight"
+            android:textColor="@color/ColorIconFechas"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_black"
+            >
+        </TextView>
+
+
+
+        <TextView
+            android:id="@+id/txtNumPersonExtra"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:gravity="end"
+            app:layout_constraintTop_toTopOf="@+id/lblNumPersonExtra"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/lblNumPersonExtra"
+            app:layout_constraintEnd_toEndOf="@+id/GuideLineLeft"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </TextView>
+
+
+
+        <TextView
+            android:id="@+id/lblDesde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desde : "
+            android:layout_marginTop="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@+id/lblNumPersonExtra"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineRight"
+            android:textColor="@color/ColorIconFechas"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_black"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtDesde"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2020-10-01"
+            android:gravity="end"
+            app:layout_constraintTop_toTopOf="@+id/lblDesde"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/lblDesde"
+            app:layout_constraintEnd_toEndOf="@+id/GuideLineLeft"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </TextView>
+
+
+
+        <TextView
+            android:id="@+id/lblHasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hasta : "
+            android:layout_marginTop="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@+id/lblDesde"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineRight"
+            android:textColor="@color/ColorIconFechas"
+            android:textSize="@dimen/textsize_17sp"
+            android:fontFamily="@font/roboto_black"
+            >
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/txtHasta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2020-10-03"
+            android:gravity="end"
+            app:layout_constraintTop_toTopOf="@+id/lblHasta"
+            app:layout_constraintStart_toStartOf="@+id/GuideLineCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/lblHasta"
+            app:layout_constraintEnd_toEndOf="@+id/GuideLineLeft"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
