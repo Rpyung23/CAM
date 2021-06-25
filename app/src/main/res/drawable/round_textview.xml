@@ -9,7 +9,7 @@
     </corners>
     <stroke
         android:width="@dimen/mtrl_textinput_box_stroke_width_default"
-        android:color="#60000000"
+        android:color="@color/stroke_color_box"
         >
     </stroke>
 </shape>

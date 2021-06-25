@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/color_prmary_fondo"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="@dimen/margin_15"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_10"
+            >
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/GuideLineTopReserva"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.03"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/GuideLineRightReserva"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.02"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/GuideLineLeftReserva"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.97"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/GuideLineBottomReserva"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.97"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+
+
+
+            <TextView
+                android:id="@+id/lblDesde"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desde"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/ColorIconFechas"
+                app:layout_constraintTop_toTopOf="@id/txtDesde"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDesde"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblHasta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hasta:"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/ColorIconFechas"
+
+                app:layout_constraintTop_toTopOf="@id/txtHasta"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/txtHasta"
+
+                >
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/lblDias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Días:"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/ColorIconFechas"
+
+                app:layout_constraintTop_toTopOf="@id/txtDias"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDias"
+
+
+
+                >
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/lblNumNoche"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de noches:"
+                android:textSize="@dimen/textsize_17sp"
+                android:layout_marginTop="@dimen/margin_15"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/ColorIconFechas"
+                app:layout_constraintTop_toTopOf="@id/txtNumNoches"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/txtNumNoches"
+
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblPriceHabita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio de habitación x noche:"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textStyle="bold"
+                android:textColor="@color/ColorIconFechas"
+
+
+                app:layout_constraintTop_toTopOf="@id/txtPriceNoche"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/txtPriceNoche"
+
+
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblSubtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtotal:"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/ColorIconFechas"
+                app:layout_constraintTop_toTopOf="@id/txtSubTotal"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/txtSubTotal"
+                >
+            </TextView>
+
+
+
+
+            <TextView
+                android:id="@+id/txtDesde"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-10-01"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ClubColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@+id/GuideLineTopReserva"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+
+                >
+            </TextView>
+
+
+
+            <TextView
+                android:id="@+id/txtHasta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-10-16"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ClubColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txtDesde"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+
+                >
+            </TextView>
+
+
+
+            <TextView
+                android:id="@+id/txtDias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lunes a Jueves"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ClubColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txtHasta"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+
+                >
+            </TextView>
+
+
+
+            <TextView
+                android:id="@+id/txtNumNoches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ClubColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txtDias"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+
+                >
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/txtPriceNoche"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$910.00"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ClubColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txtNumNoches"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+
+                >
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/txtSubTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$2.730.00"
+                android:layout_marginTop="@dimen/margin_15"
+                android:textSize="@dimen/textsize_20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ClubColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txtPriceNoche"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+                >
+            </TextView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BtnEditReserva"
+                android:layout_marginTop="@dimen/margin_15"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintTop_toBottomOf="@+id/txtSubTotal"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@color/ClubColorPrimary"
+                android:text="@string/edit_reserva"
+                app:icon="@drawable/icon_content_edit"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
+                app:iconGravity="textStart"
+                >
+            </com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BtnDeleteReserva"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintTop_toBottomOf="@+id/BtnEditReserva"
+                app:layout_constraintEnd_toEndOf="@id/GuideLineLeftReserva"
+                app:layout_constraintStart_toStartOf="@id/GuideLineRightReserva"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@color/red"
+                android:text="@string/edit_reserva"
+                app:icon="@drawable/delete"
+                android:textSize="@dimen/textsize_17sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/red"
+                app:iconTint="@color/red"
+                app:iconSize="@dimen/textsize_22sp"
+                android:textStyle="bold"
+                app:iconGravity="textStart"
+                app:layout_constraintBottom_toTopOf="@id/GuideLineBottomReserva"
+                >
+            </com.google.android.material.button.MaterialButton>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

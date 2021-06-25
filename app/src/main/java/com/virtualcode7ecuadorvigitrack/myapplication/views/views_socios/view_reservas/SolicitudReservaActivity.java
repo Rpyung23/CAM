@@ -40,7 +40,7 @@ public class SolicitudReservaActivity extends AppCompatActivity
         manager.setOrientation(RecyclerView.HORIZONTAL);
 
         mTimeLines = llenarTimeLines();
-        mAdapterTimeLine = new cAdapterTimeLine(mTimeLines,SolicitudReservaActivity.this);
+        mAdapterTimeLine = new cAdapterTimeLine(mTimeLines,SolicitudReservaActivity.this,null,0,null);
         mRecyclerView.setAdapter(mAdapterTimeLine);
 
     }

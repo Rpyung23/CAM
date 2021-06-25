@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_15"
+    >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/stroke_color_box"
+        android:hint="@string/hint_add_person_extra"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            >
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <include layout="@layout/textview_outline_fechas">
+    </include>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/idAlertButtonSaveAddPerson"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_marginTop="@dimen/margin"
+        app:backgroundTint="@color/btn_add_invitado"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        app:icon="@drawable/ic_baseline_save_24"
+        app:iconTint="@color/white"
+        app:iconGravity="textStart"
+        app:iconSize="@dimen/textsize_22sp"
+        android:textSize="@dimen/textsize_22sp"
+        android:fontFamily="@font/roboto_medium"
+        android:textStyle="bold"
+        >
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/idAlertButtonCancelAddPerson"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/red"
+        android:text="@string/btn_cancelar"
+        android:textColor="@color/red"
+        app:icon="@drawable/close"
+        app:iconTint="@color/red"
+        app:iconGravity="textStart"
+        app:iconSize="@dimen/textsize_25"
+        android:textSize="@dimen/textsize_22sp"
+        android:fontFamily="@font/roboto_medium"
+        android:textStyle="bold"
+        >
+    </com.google.android.material.button.MaterialButton>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

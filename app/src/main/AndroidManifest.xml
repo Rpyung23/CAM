@@ -214,6 +214,15 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".broadcast.cBroadCastNetworkStatus"
+            android:exported="false"
+            >
+           <intent-filter>
+               <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+           </intent-filter>
+        </receiver>
+
         <service
             android:name=".fcm.cFirebaseMessagingService"
             android:exported="false">

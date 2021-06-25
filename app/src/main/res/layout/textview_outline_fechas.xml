@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtInputDateFin"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:hint="  Desde"
+        android:gravity="center_vertical"
+        android:background="@drawable/round_textview"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawableTint="@color/ClubColorPrimary"
+        app:drawableTint="@color/ClubColorPrimary"
+        android:paddingLeft="@dimen/margin_10"
+        android:inputType="date"
+        android:textSize="@dimen/textsize_17sp"
+        >
+    </androidx.appcompat.widget.AppCompatTextView>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtInputDateDesde"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:hint="  Hasta"
+
+        android:gravity="center_vertical"
+        android:background="@drawable/round_textview"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawableTint="@color/ClubColorPrimary"
+        android:paddingLeft="@dimen/margin_10"
+        android:inputType="date"
+        android:textSize="@dimen/textsize_17sp"
+
+
+        >
+    </androidx.appcompat.widget.AppCompatTextView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

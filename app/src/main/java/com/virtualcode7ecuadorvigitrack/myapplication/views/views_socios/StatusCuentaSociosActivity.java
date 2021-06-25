@@ -58,6 +58,7 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
     private cSharedPreferencesMembresia mSharedPreferencesMembresia;
 
     private androidx.appcompat.app.AlertDialog mAlertDialog;
+    private int REQUEST_CODE_PDF_COMPLETE_PAGO = 863;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -90,11 +91,12 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
         }*/
 
 
-        llenarArraysListStatusSocios();
+        //llenarArraysListStatusSocios();
     }
 
     private void llenarArraysListStatusSocios()
     {
+        mRecyclerViewStateCuenta.setEnabled(false);
 
         mStringRequestStatusCuenta = new StringRequest(Request.Method.GET,
                 getString(R.string.api_rest_membresias_movimientos)
@@ -103,6 +105,8 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
             @Override
             public void onResponse(String response)
             {
+                mRecyclerViewStateCuenta.setEnabled(true);
+
                 try {
                     JSONObject mJsonObject = new JSONObject(response);
                     if (mJsonObject.getString("codigo").equals("200"))
@@ -111,6 +115,9 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
 
                         if (mJsonArray.length()>0)
                         {
+
+                            mStatusCuentaSociosArrayList.clear();
+
                             for (int i=0;i<mJsonArray.length();i++)
                             {
                                 JSONObject mJsonObjectR = mJsonArray.getJSONObject(i);
@@ -157,6 +164,7 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
             public void onErrorResponse(VolleyError error)
             {
                 new cAlertDialogProgress().closeAlertProgress(mAlertDialogProgress);
+                mRecyclerViewStateCuenta.setEnabled(true);
                 Toasty.error(StatusCuentaSociosActivity.this,error.getMessage(),Toasty.LENGTH_LONG).show();
             }
         }){
@@ -178,6 +186,7 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
 
     private void llenarREcyclerView()
     {
+
         mAdapterStatusCuentaSocios = new cAdapterStatusCuentaSocios(mStatusCuentaSociosArrayList
                 , StatusCuentaSociosActivity.this, new View.OnClickListener() {
             @Override
@@ -197,7 +206,6 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
                 }else if(mStatusCuentaSociosArrayList
                         .get(mRecyclerViewStateCuenta.getChildAdapterPosition(view)).getMovientoEstado().equals("P"))
                     {
-
 
                         Intent mIntent = new Intent(StatusCuentaSociosActivity.this, ReciboDetalleActivity.class);
                         mIntent.putExtra("movimiento",mStatusCuentaSociosArrayList
@@ -255,7 +263,7 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
     protected void onResume() {
         super.onResume();
 
-
+        llenarArraysListStatusSocios();
         /*if (!new cSharedTokenValidation(StatusCuentaSociosActivity.this).readTokenValitation())
         {
             Intent mIntent = new Intent(getApplicationContext(), LogOutActivity.class);
@@ -265,5 +273,10 @@ public class StatusCuentaSociosActivity extends cActivityInicioSocio
 
 
     }
+
+
+
+
+
 
 }

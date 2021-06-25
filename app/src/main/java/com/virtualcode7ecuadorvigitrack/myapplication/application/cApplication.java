@@ -9,13 +9,23 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.toolbox.HttpResponse;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cEventos;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cNoticias;
 import com.virtualcode7ecuadorvigitrack.myapplication.sqlite.cSQLiteOpenHelper;
 
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,15 +79,8 @@ public class cApplication extends Application
 
         boolean bandera = false;
 
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
-        {
-            /*bandera = checkNetwork21(getApplicationContext(),connectivityManager);*/
-            bandera = checkNetwork(connectivityManager);
-        }else{
 
-            bandera = checkNetwork(connectivityManager);
-        }
-
+        bandera = checkNetwork(connectivityManager);
 
         return bandera;
     }
@@ -85,9 +88,14 @@ public class cApplication extends Application
     public boolean checkNetwork(ConnectivityManager connectivityManager){
 
         NetworkInfo mNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
-        boolean isConnected = (mNetworkInfo!=null && mNetworkInfo.isConnected()
-                && isOnlineNet()) ? true : false;
+        boolean isConnected = false;
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O){
+            isConnected = (mNetworkInfo!=null && mNetworkInfo.isConnected()
+                    && isOnlineNet7()) ? true : false;
+        }else{
+            isConnected = (mNetworkInfo!=null && mNetworkInfo.isConnected()
+                    && isOnlineNet7()) ? true : false;
+        }
         return isConnected;
     }
 
@@ -123,9 +131,7 @@ public class cApplication extends Application
 
     public static Boolean isOnlineNet()
     {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                .permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        policy();
 
         Boolean ipAddr = null;
         try {
@@ -133,11 +139,49 @@ public class cApplication extends Application
         } catch (IOException e) {
             e.printStackTrace();
             ipAddr = false;
+            Toast.makeText(mApplicationInstance, "Ping TimeOut", Toast.LENGTH_SHORT).show();
         }
         //You can replace it with your name
         return ipAddr;
     }
 
+    private static void policy()
+    {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+    }
+
+    public static Boolean isOnlineNet7()
+    {
+        policy();
+        boolean isOnline = false;
+        /*try {
+            HttpURLConnection urlc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
+            urlc.setRequestProperty("User-Agent", "Test");
+            urlc.setRequestProperty("Connection", "close");
+            urlc.setConnectTimeout(500);
+            urlc.connect();
+            if (urlc.getResponseCode() == 200)
+                isOnline =  true;
+        } catch (IOException e) {
+            Log.e("TAG", "Error checking internet connection", e);
+            isOnline =  false;
+        }
+         */
+
+        Socket mSocket = new Socket();
+        try {
+            mSocket.connect(new InetSocketAddress("8.8.8.8",53),500);
+            mSocket.close();
+            isOnline = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            isOnline = false;
+        }
+
+        return isOnline;
+   }
 
 
 /*

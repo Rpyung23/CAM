@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_15"
+    android:background="@color/trnsparente"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        >
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@color/red"
+                >
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/idGuidelineLeft"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.1"
+                    >
+                </androidx.constraintlayout.widget.Guideline>
+
+
+                <TextView
+                    android:id="@+id/idTitleDeleteReservacion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete_reservacion"
+                    android:gravity="center"
+                    android:textSize="@dimen/textsize_22sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/idGuidelineLeft"
+                    app:layout_constraintEnd_toEndOf="@+id/idGuidelineRight"
+                    android:fontFamily="@font/roboto_bold"
+                    >
+                </TextView>
+
+
+                <ImageView
+                    android:layout_width="@dimen/size_img_toolbar_medium"
+                    android:layout_height="@dimen/size_img_toolbar_medium"
+                    android:src="@drawable/delete"
+                    app:layout_constraintTop_toTopOf="@+id/idTitleDeleteReservacion"
+                    app:layout_constraintBottom_toBottomOf="@+id/idTitleDeleteReservacion"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/idGuidelineLeft"
+                    >
+                </ImageView>
+                <ImageView
+                    android:layout_width="@dimen/size_img_toolbar_medium"
+                    android:layout_height="@dimen/size_img_toolbar_medium"
+                    android:src="@drawable/close"
+                    app:layout_constraintTop_toTopOf="@+id/idTitleDeleteReservacion"
+                    app:layout_constraintBottom_toBottomOf="@+id/idTitleDeleteReservacion"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/idGuidelineRight"
+                    >
+                </ImageView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/idGuidelineRight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.9"
+                    >
+                </androidx.constraintlayout.widget.Guideline>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/margin_15"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/size_img_alerts_big"
+                    android:layout_height="@dimen/size_img_alerts_big"
+                    app:srcCompat="@drawable/warning_circle"
+                    app:tint="@color/red"
+                    android:scaleType="centerCrop"
+                    >
+                </androidx.appcompat.widget.AppCompatImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:gravity="center_vertical"
+                    android:text="@string/msm_alert_delete_reservacion"
+                    android:textSize="@dimen/textsize_22sp"
+                    android:textColor="@color/ColorIconFechas"
+                    android:fontFamily="@font/roboto_bold"
+                    >
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/sub_msm_alert_delete_reservacion"
+                    android:textSize="@dimen/textsize_17sp"
+                    android:textColor="@color/ColorIconFechas"
+                    android:fontFamily="@font/roboto_bold"
+                    >
+                </TextView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/red"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:text="@string/btn_cancelar"
+                    android:textSize="@dimen/textsize_17sp"
+                    app:icon="@drawable/close"
+                    app:iconSize="@dimen/textsize_22sp"
+                    app:iconTint="@color/red"
+                    android:textColor="@color/red"
+                    app:iconGravity="textStart"
+
+                    >
+                </com.google.android.material.button.MaterialButton>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:backgroundTint="@color/red"
+                    android:text="@string/delete"
+                    android:textSize="@dimen/textsize_17sp"
+                    app:icon="@drawable/delete"
+                    app:iconSize="@dimen/textsize_17sp"
+                    app:iconTint="@color/white"
+                    android:textColor="@color/white"
+                    app:iconGravity="textStart"
+                    >
+                </com.google.android.material.button.MaterialButton>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

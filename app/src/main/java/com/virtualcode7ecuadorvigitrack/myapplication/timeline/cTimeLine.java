@@ -6,11 +6,11 @@ public class cTimeLine
 {
     private boolean status;/**Focus actual**/
     private int color_inactive;
-    private int color_active ;
-    private int color_check;
-    private Drawable imgMarker;
+    private int color_active;
+    private int color_check;/**Los datos se llenaron completos**/
     private boolean checkCircle;
-    private int imgCircleCheck;
+    private Drawable imgMarker;
+    private Drawable imgCircleCheck;
     private int colorLineActive;
     private int colorLineInactive;
     private Drawable background;
@@ -93,11 +93,11 @@ public class cTimeLine
         this.checkCircle = checkCircle;
     }
 
-    public int getImgCircleCheck() {
+    public Drawable getImgCircleCheck() {
         return imgCircleCheck;
     }
 
-    public void setImgCircleCheck(int imgCircleCheck) {
+    public void setImgCircleCheck(Drawable imgCircleCheck) {
         this.imgCircleCheck = imgCircleCheck;
     }
 }

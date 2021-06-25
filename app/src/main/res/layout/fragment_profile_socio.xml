@@ -249,5 +249,4 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

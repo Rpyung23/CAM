@@ -29,4 +29,5 @@
     <color name="btn_solicitud_invitados_alert_button">#7ED321</color>
     <color name="ColorIconFechas">#00549C</color>
     <color name="BorderButtonColorPrimary">#00549C</color>
+    <color name="stroke_color_box">#60000000</color>
 </resources>

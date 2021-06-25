@@ -148,58 +148,6 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-                <!--
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tvInputLayoutDesde"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Desde"
-                    android:layout_marginTop="@dimen/margin"
-                    app:startIconDrawable="@drawable/ic_calendar"
-                    app:startIconTint="@color/ColorIconFechas"
-                    app:layout_constraintTop_toBottomOf="@+id/cardViewLabel"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/BorderButtonColorPrimary"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtInputDateDesde"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        >
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                -->
-
-
-                <!--
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tvInputLayoutHasta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin"
-                    android:hint="Hasta"
-                    app:startIconDrawable="@drawable/ic_calendar"
-                    app:startIconTint="@color/ColorIconFechas"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInputLayoutDesde"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/BorderButtonColorPrimary"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtInputDateFin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        >
-                    </com.google.android.material.textfield.TextInputEditText>
-                </com.google.android.material.textfield.TextInputLayout>
-                -->
 
 
 

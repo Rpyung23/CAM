@@ -195,5 +195,11 @@
     <string name="add_person">Agregar persona</string>
     <string name="add_bed">Agregar cama</string>
     <string name="edit_reserva">EDITAR RESERVA</string>
+    <string name="hint_add_person_extra">Número de personas extras*</string>
+    <string name="save">GUARDAR</string>
+    <string name="delete_reservacion">Eliminar reservación</string>
+    <string name="msm_alert_delete_reservacion">¿Estás seguro de querer eliminar esta reservación?</string>
+    <string name="sub_msm_alert_delete_reservacion">Si la eliminas, tendrás que realizar la reservación nuevamente</string>
+    <string name="delete">Eliminar</string>
 
 </resources>

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,21 +20,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.adapters.cAdapterInfoCuestionario;
 import com.virtualcode7ecuadorvigitrack.myapplication.models.cInfoCustionarioCovid;
+import com.virtualcode7ecuadorvigitrack.myapplication.models.cMembresiaSocio;
+import com.virtualcode7ecuadorvigitrack.myapplication.services.cServiceTimerToken;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferenSocio;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedPreferencesMembresia;
 import com.virtualcode7ecuadorvigitrack.myapplication.shared_preferences.cSharedTokenValidation;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cAlertDialogProgress;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.LoginPassActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_invitado.InvitadosActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.RecivosCuentaActivity;
 import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.StatusCuentaSociosActivity;
@@ -92,6 +98,10 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
 
     private RecyclerView mRecyclerViewCuestionario;
 
+
+    private MaterialCardView mMaterialCardViewReservas;
+    private MaterialCardView mMaterialCardViewInvitados;
+
     public ProfileSocioFragment() {
         // Required empty public constructor
     }
@@ -114,6 +124,7 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         mImageViewSemaforo = mView.findViewById(R.id.id_circle_covid_semaforo);
         mViewInvitados = mView.findViewById(R.id.id_views_invitados);
         mViewReservaciones = mView.findViewById(R.id.id_views_reservaciones);
+
 
         mSharedPreferenSocio = new cSharedPreferenSocio(getContext());
 
@@ -138,29 +149,22 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
         }*/
 
 
-        if (mSharedPreferencesMembresia.readMembresia().getMembresiaCuestionarioResultado()==1)
-        {
-            Picasso.with(getContext()).load(R.drawable.circle_green).into(mImageViewSemaforo);
-            //isBanderaEncuesta = true;
-        }else if(mSharedPreferencesMembresia.readMembresia().getMembresiaCuestionarioResultado()==2)
-            {
-                Picasso.with(getContext()).load(R.drawable.circle_yellow).into(mImageViewSemaforo);
-                //isBanderaEncuesta = true;
-            }else
-                {
-                    Picasso.with(getContext()).load(R.drawable.circle_red).into(mImageViewSemaforo);
-                    isBanderaEncuesta = true;
-                }
-
 
         mTextViewNameSocio.setText(mSharedPreferenSocio.leerdatosSocio().getNombre_socio());
         mTextViewNumMembre.setText(mSharedPreferenSocio.leerdatosSocio().getNum_membresia());
-        mTextViewTipoMem.setText(mSharedPreferencesMembresia.readMembresia().getMembresiaTipo());
-        mTextViewFechadesde.setText(mSharedPreferencesMembresia.readMembresia().getMembresiaFechaIngreso());
-        mTextViewSaldo.setText("$ "+mSharedPreferencesMembresia.readMembresia().getMembresiaSaldo());
+
+        readDatosMenbresia();
+
         return mView;
     }
 
+
+    @Override
+    public void onResume()
+    {
+        consumirApiRestMembresia();
+        super.onResume();
+    }
 
     private void sweetAlertErrorCuestionarioRenovar(String error)
     {
@@ -636,5 +640,108 @@ public class ProfileSocioFragment extends Fragment implements View.OnClickListen
     }
 
 
+    private void consumirApiRestMembresia()
+    {
+        Log.e("MEMBRESIA",getString(R.string.api_rest_membresia)
+                +new cSharedPreferenSocio(getContext())
+                .leerdatosSocio().getId_token_socio());
+
+        Log.e("MEMBRESIA",new cSharedPreferenSocio(getContext())
+                .leerdatosSocio().getToken());
+
+        mStringRequest = new StringRequest(Request.Method.GET, getString(R.string.api_rest_membresia)
+                +new cSharedPreferenSocio(getContext())
+                .leerdatosSocio().getId_token_socio(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response)
+            {
+                try {
+                    JSONObject mJsonObject = new JSONObject(response);
+                    if (mJsonObject.getString("codigo").equals("200"))
+                    {
+                        JSONObject mJsonObjectResult = mJsonObject.getJSONObject("resultado");
+                        cMembresiaSocio oM = new cMembresiaSocio();
+                        oM.setIdMembresia(mJsonObjectResult.getInt("idMembresia"));
+                        oM.setMembresiaToken(mJsonObjectResult.getString("membresiaToken"));
+                        oM.setMembresiaTitular(mJsonObjectResult.getString("membresiaTitular"));
+                        oM.setMembresiaPassword(mJsonObjectResult.getString("membresiaPassword"));
+                        oM.setMembresiaEmail(mJsonObjectResult.getString("membresiaEmail"));
+                        oM.setMembresiaNo(mJsonObjectResult.getString("membresiaNo"));
+                        oM.setMembresiaEstado(mJsonObjectResult.getString("membresiaEstado"));
+                        oM.setMembresiaFechaIngreso(mJsonObjectResult.getString("membresiaFechaIngreso"));
+                        oM.setMembresiaConexion(mJsonObjectResult.getString("membresiaFechaConexion"));
+                        oM.setMembresiaTokenNotification(mJsonObjectResult.getString("membresiaTokenNotificaciones"));
+                        oM.setMembresiaTipo(mJsonObjectResult.getString("membresiaTipo"));
+                        oM.setMembresiaTokenAplicacion(mJsonObjectResult.getString("membresiaTokenAplicacion"));
+                        oM.setMembresiaCelular(mJsonObjectResult.getString("membresiaCelular"));
+                        oM.setMembresiaSaldo(mJsonObjectResult.getString("membresiaSaldo"));
+                        oM.setMembresiaCuestionarioResultado(mJsonObjectResult.getInt("membresiaCuestionarioResultado"));
+
+                        if (new cSharedPreferencesMembresia(getContext()).writeMembresia(oM))
+                        {
+                            readDatosMenbresia();
+
+                        }else
+                        {
+                            Toasty.info(getContext(),"Error Shared Membresia",Toasty.LENGTH_LONG).show();
+                        }
+
+                    }else
+                    {
+                        Toasty.warning(getContext(),"No se puedo consultar su membresia",
+                                Toasty.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Toasty.error(getContext(),"TRY Membresia "+e.getMessage(),
+                            Toasty.LENGTH_LONG).show();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Toasty.error(getContext(),"Error Mem : "+error.getMessage(),Toasty.LENGTH_LONG).show();
+
+            }
+        })
+        {
+            @Override
+            public HashMap<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String,String> stringHashMap = new HashMap<>();
+                stringHashMap.put("tokenGlobal","R15wSyZka2UqSEMqeDUqUSYhcSo3d1YlbypDNHJudWo=");
+                stringHashMap.put("token",new cSharedPreferenSocio(getContext())
+                        .leerdatosSocio().getToken());
+                return stringHashMap;
+            }
+
+        };
+        mRequestQueueCuestionario = Volley.newRequestQueue(getContext());
+        mRequestQueueCuestionario.add(mStringRequest);
+    }
+
+    private void readDatosMenbresia()
+    {
+
+        if (mSharedPreferencesMembresia.readMembresia().getMembresiaCuestionarioResultado()==1)
+        {
+            Picasso.with(getContext()).load(R.drawable.circle_green).into(mImageViewSemaforo);
+            //isBanderaEncuesta = true;
+        }else if(mSharedPreferencesMembresia.readMembresia().getMembresiaCuestionarioResultado()==2)
+        {
+            Picasso.with(getContext()).load(R.drawable.circle_yellow).into(mImageViewSemaforo);
+            //isBanderaEncuesta = true;
+        }else
+        {
+            Picasso.with(getContext()).load(R.drawable.circle_red).into(mImageViewSemaforo);
+            isBanderaEncuesta = true;
+        }
+
+
+        mTextViewTipoMem.setText(mSharedPreferencesMembresia.readMembresia().getMembresiaTipo());
+        mTextViewFechadesde.setText(mSharedPreferencesMembresia.readMembresia().getMembresiaFechaIngreso());
+        mTextViewSaldo.setText("$ "+mSharedPreferencesMembresia.readMembresia().getMembresiaSaldo());
+    }
 
 }

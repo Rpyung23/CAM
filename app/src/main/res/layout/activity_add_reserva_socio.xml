@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,33 +7,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollbars="vertical"
-    tools:context=".views.views_socios.view_reservas.AddReservaSocioActivity">
+    tools:context=".views.views_socios.view_reservas.AddReservaSocioActivity"
+    >
 
 
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/trnsparente"
-        android:backgroundTint="@color/trnsparente"
-        android:theme="@style/AppBar"
-        android:fitsSystemWindows="true"
+        android:scrollbars="vertical"
         >
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            android:background="@color/trnsparente"
-            android:backgroundTint="@color/trnsparente"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleTextAppearance="@android:color/transparent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,80 +65,69 @@
                     >
                 </include>
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginLeft="@dimen/margin_15"
+                >
 
+                <FrameLayout
+                    android:id="@+id/FragmentContainerAddSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    >
+                </FrameLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ConstraintButtonNextBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="bottom"
+                    >
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/idbtnSiguiente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?actionBarSize"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/siguiente"
+                        app:icon="@drawable/ic_baseline_arrow_forward_24"
+                        app:iconGravity="textEnd"
+                        android:textSize="@dimen/textsize_17sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/btn_add_invitado"
+                        >
+                    </com.google.android.material.button.MaterialButton>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layout_marginRight="@dimen/margin_15"
-        android:layout_marginLeft="@dimen/margin_15"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/idbtnAnterior"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?actionBarSize"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/anterior"
+                        app:icon="@drawable/ic_baseline_arrow_back_24"
+                        app:iconGravity="textStart"
+                        android:textSize="@dimen/textsize_17sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#707070"
+                        >
+                    </com.google.android.material.button.MaterialButton>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/ViewPagerAddSolicitud"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        </androidx.viewpager2.widget.ViewPager2>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 
 
-
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal"
-        android:layout_marginRight="@dimen/margin_15"
-        android:layout_marginLeft="@dimen/margin_15"
-        android:layout_gravity="bottom"
-        >
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/idbtnSiguiente"
-            android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/siguiente"
-            app:icon="@drawable/ic_baseline_arrow_forward_24"
-            app:iconGravity="textEnd"
-            android:textSize="@dimen/textsize_17sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/btn_add_invitado"
-            >
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/idbtnAnterior"
-            android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/anterior"
-            app:icon="@drawable/ic_baseline_arrow_back_24"
-            app:iconGravity="textStart"
-            android:textSize="@dimen/textsize_17sp"
-            android:textStyle="bold"
-            app:backgroundTint="#707070"
-            >
-        </com.google.android.material.button.MaterialButton>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
