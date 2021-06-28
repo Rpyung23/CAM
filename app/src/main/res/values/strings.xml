@@ -201,7 +201,7 @@
     <string name="msm_alert_delete_reservacion">¿Estás seguro de querer eliminar esta reservación?</string>
     <string name="sub_msm_alert_delete_reservacion">Si la eliminas, tendrás que realizar la reservación nuevamente</string>
     <string name="delete">Eliminar</string>
-    <string name="invitado">Invitado</string>
+    <string name="invitado"> Invitado</string>
     <string name="datos_reservacion_invitados">Datos de reservación para invitado:</string>
     <string name="select_tipo_reservacion">Seleccione un tipo de reservación</string>
     <string name="title_add_person_extra">Agregar persona extra</string>

@@ -44,7 +44,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_profile"
+                    android:drawableLeft="@drawable/ic_group"
                     android:drawableTint="@color/ClubColorPrimary"
                     android:text="@string/invitado"
                     android:textSize="@dimen/textsize_22sp"

@@ -207,7 +207,7 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
             mMaterialButtonAddReserva.setEnabled(false);
             mViewResumen.setVisibility(View.VISIBLE);
         }else{
-            mViewResumen.setVisibility(View.GONE);
+            mViewResumen.setVisibility(View.GONE  );
             mMaterialButtonSaveReserva.setEnabled(false);
         }
     }
