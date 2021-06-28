@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".views.views_socios.view_reservas.invitados.AddReservasInvitadosActivity"
     android:orientation="vertical"
-    android:scrollbars="vertical"
-    tools:context=".views.views_socios.view_reservas.socio.AddReservaSocioActivity"
     >
     <include
         layout="@layout/toolbar_color"
@@ -29,7 +28,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-
                 <TextView
                     android:layout_marginTop="@dimen/margin_15"
                     android:layout_width="wrap_content"
@@ -48,23 +46,45 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_profile"
                     android:drawableTint="@color/ClubColorPrimary"
-                    android:text="@string/socio"
+                    android:text="@string/invitado"
                     android:textSize="@dimen/textsize_22sp"
                     android:gravity="center"
                     android:textColor="@color/BorderButtonColorPrimary"
                     android:fontFamily="@font/roboto_black"
                     >
                 </TextView>
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_15"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:text="@string/datos_reservacion_invitados"
+                    android:textSize="@dimen/textsize_20sp"
+                    android:textColor="@color/BorderButtonColorPrimary"
+                    android:fontFamily="@font/roboto_bold"
+                    >
+                </TextView>
+                <include
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/margin_15"
+                    layout="@layout/item_person_extra_reserva"
+                    >
+                </include>
                 <include
                     android:layout_marginRight="@dimen/margin_15"
                     android:layout_marginLeft="@dimen/margin_15"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     layout="@layout/time_lines"
                     >
                 </include>
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -83,50 +103,9 @@
                     >
                 </FrameLayout>
 
-                <!--<androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ConstraintButtonNextBack"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="bottom"
-                    >
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/idbtnSiguiente"
-                        android:layout_width="wrap_content"
-                        android:layout_height="?actionBarSize"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="@string/siguiente"
-                        app:icon="@drawable/ic_baseline_arrow_forward_24"
-                        app:iconGravity="textEnd"
-                        android:textSize="@dimen/textsize_17sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="@color/btn_add_invitado"
-                        >
-                    </com.google.android.material.button.MaterialButton>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/idbtnAnterior"
-                        android:layout_width="wrap_content"
-                        android:layout_height="?actionBarSize"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:text="@string/anterior"
-                        app:icon="@drawable/ic_baseline_arrow_back_24"
-                        app:iconGravity="textStart"
-                        android:textSize="@dimen/textsize_17sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="#707070"
-                        >
-                    </com.google.android.material.button.MaterialButton>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                -->
                 <include layout="@layout/buttons_next_prev_reservacion">
                 </include>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>

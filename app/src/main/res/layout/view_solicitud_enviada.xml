@@ -66,6 +66,7 @@
             </TextView>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/idBtnAcceprSolicitudReserva"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_marginTop="@dimen/margin_10"
@@ -77,6 +78,7 @@
                 app:icon="@drawable/ic_baseline_check_24"
                 app:iconTint="@color/white"
                 app:iconGravity="textStart"
+                android:textSize="@dimen/textsize_17sp"
                 android:text="@string/accept_button"
                 >
             </com.google.android.material.button.MaterialButton>

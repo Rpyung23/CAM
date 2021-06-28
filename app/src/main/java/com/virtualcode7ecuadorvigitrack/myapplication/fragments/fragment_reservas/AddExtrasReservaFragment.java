@@ -1,5 +1,7 @@
-package com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio;
+package com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -104,7 +106,12 @@ public class AddExtrasReservaFragment extends Fragment implements View.OnClickLi
             mMaterialButtonSavePersonExtra.setOnClickListener(this::onClick);
             mMaterialButtonCancelPersonExtra.setOnClickListener(this::onClick);
 
+
+
             mAlertDialogAddPersonExtra = mBuilder.create();
+
+            mAlertDialogAddPersonExtra.getWindow()
+                    .setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
             mAlertDialogAddPersonExtra.show();
 

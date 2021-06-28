@@ -22,20 +22,21 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".views.views_socios.view_reservas.AddReservaSocioActivity"></activity>
+        <activity android:name=".views.views_socios.view_reservas.invitados.AddReservasInvitadosActivity"></activity>
+        <activity android:name=".views.views_socios.view_reservas.socio.AddReservaSocioActivity" />
         <activity
             android:name=".views.views_socios.view_reservas.SolicitudReservaActivity"
             android:parentActivityName=".views.views_socios.view_reservas.ReservasActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.views_socios.view_reservas.ReservasActivity"></meta-data>
+                android:value=".views.views_socios.view_reservas.ReservasActivity" />
         </activity>
         <activity
             android:name=".views.views_socios.view_reservas.DetalleReservacionsScrollActivity"
             android:parentActivityName=".views.views_socios.InicioSociosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.views_socios.InicioSociosActivity"></meta-data>
+                android:value=".views.views_socios.InicioSociosActivity" />
         </activity>
         <activity
             android:name=".views.views_socios.view_reservas.ReservasActivity"
@@ -216,11 +217,10 @@
 
         <receiver
             android:name=".broadcast.cBroadCastNetworkStatus"
-            android:exported="false"
-            >
-           <intent-filter>
-               <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
-           </intent-filter>
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
         </receiver>
 
         <service

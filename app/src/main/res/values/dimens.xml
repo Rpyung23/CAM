@@ -132,6 +132,7 @@
     <dimen name="textsize_20sp">20sp</dimen>
     <dimen name="size_img_toolbar_medium">30dp</dimen>
     <dimen name="size_img_alerts_big">120dp</dimen>
+    <dimen name="alto_line_separador">3dp</dimen>
 
 
 </resources>

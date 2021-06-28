@@ -1,31 +1,55 @@
 package com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.adapter.cAdapterTimeLine;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.cTimeLine;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas.invitados.AddReservasInvitadosActivity;
+import com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas.socio.AddReservaSocioActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolicitudReservaActivity extends AppCompatActivity
+import es.dmoral.toasty.Toasty;
+
+public class SolicitudReservaActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener
 {
     private RecyclerView mRecyclerView;
     private cAdapterTimeLine mAdapterTimeLine;
     private List<cTimeLine> mTimeLines;
     private MaterialButton mMaterialButtonAddReserva;
+    private MaterialButton mMaterialButtonSaveReserva;
+    private MaterialButton mMaterialButtonProcessReserva;
+    private AppCompatRadioButton mRadioButtonSocio;
+    private AppCompatRadioButton mRadioButtonInvitados;
+    private RadioGroup mRadioGroupTypeReservacion;
+    private int REQUEST_CODE_RESERVA = 237;
+    private View mViewAlertConfirmeReserva;
+    private AlertDialog mAlertDialogConfirmeReserva;
+    private View mViewResumen;
 
+
+    private LinearLayoutCompat mLinearLayoutCompatView1;
+    private LinearLayoutCompat mLinearLayoutCompatView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +58,18 @@ public class SolicitudReservaActivity extends AppCompatActivity
 
         cToolbar.show(SolicitudReservaActivity.this,getResources().getString(R.string.name_cam),true,1);
 
+        mLinearLayoutCompatView1 = findViewById(R.id.idLinearView1);
+        mLinearLayoutCompatView2 = findViewById(R.id.idLinearView2);
+        mMaterialButtonProcessReserva = findViewById(R.id.idMaterialProcesarReservaSolicitud);
         mMaterialButtonAddReserva = findViewById(R.id.idMaterialAddReserva);
+        mViewResumen = findViewById(R.id.idViewResumen);
         mRecyclerView = findViewById(R.id.idRecyclerViewTimeLineSolicitudReservas);
+        mRadioButtonSocio = findViewById(R.id.idRadioButtonSocio);
+        mRadioButtonInvitados = findViewById(R.id.idRadioButtonInvitado);
+        mMaterialButtonSaveReserva = findViewById(R.id.idMaterialButtonSaveReservaSolicitud);
+
+        mRadioGroupTypeReservacion = findViewById(R.id.idRadioGroupTypeReservacion);
+
         LinearLayoutManager manager = new LinearLayoutManager(SolicitudReservaActivity.this);
         manager.setOrientation(RecyclerView.HORIZONTAL);
 
@@ -43,6 +77,35 @@ public class SolicitudReservaActivity extends AppCompatActivity
         mAdapterTimeLine = new cAdapterTimeLine(mTimeLines,SolicitudReservaActivity.this,null,0,null);
         mRecyclerView.setAdapter(mAdapterTimeLine);
 
+        mRadioButtonInvitados.setOnCheckedChangeListener(this::onCheckedChanged);
+        mRadioButtonSocio.setOnCheckedChangeListener(this::onCheckedChanged);
+
+        createViewAlertSaveConfirmeReserva();
+    }
+
+    private void createViewAlertSaveConfirmeReserva()
+    {
+        mViewAlertConfirmeReserva = LayoutInflater
+                .from(SolicitudReservaActivity.this).inflate(R.layout.view_solicitud_enviada,
+                        null,false);
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SolicitudReservaActivity.this);
+        mBuilder.setView(mViewAlertConfirmeReserva);
+        mBuilder.setCancelable(false);
+        MaterialButton mMaterialButtonAccept = mViewAlertConfirmeReserva
+                .findViewById(R.id.idBtnAcceprSolicitudReserva);
+        mMaterialButtonAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (mAlertDialogConfirmeReserva.isShowing()){
+                    mAlertDialogConfirmeReserva.cancel();
+                    mAlertDialogConfirmeReserva.hide();
+                    finish();
+                }
+            }
+        });
+        mAlertDialogConfirmeReserva = mBuilder.create();
     }
 
     private List<cTimeLine> llenarTimeLines()
@@ -55,9 +118,11 @@ public class SolicitudReservaActivity extends AppCompatActivity
         mTimeLine.setBackground(getResources().getDrawable(R.drawable.item_timeline));
         mTimeLine.setColor_active(getColor(R.color.ClubColorPrimary));
         mTimeLine.setColor_inactive(getColor(R.color.ClubColorPrimary_55));
+        mTimeLine.setColor_check(getColor(R.color.btn_add_invitado_55));
         mTimeLine.setColorTimeLineActive(getColor(R.color.ClubColorPrimary));
         mTimeLine.setColorTimeLineInactive(getColor(R.color.ClubColorPrimary_55));
         mTimeLine.setImgMarker(getDrawable(R.drawable.ic_apartment_white));
+        mTimeLine.setImgCircleCheck(getDrawable(R.drawable.ic_baseline_check_24));
         mTimeLines_.add(mTimeLine);
 
 
@@ -66,8 +131,10 @@ public class SolicitudReservaActivity extends AppCompatActivity
         mTimeLine2.setBackground(getResources().getDrawable(R.drawable.item_timeline_inactive));
         mTimeLine2.setColor_active(getColor(R.color.ClubColorPrimary));
         mTimeLine2.setColor_inactive(getColor(R.color.ClubColorPrimary_55));
+        mTimeLine2.setColor_check(getColor(R.color.btn_add_invitado_55));
         mTimeLine2.setColorTimeLineActive(getColor(R.color.ClubColorPrimary));
         mTimeLine2.setColorTimeLineInactive(getColor(R.color.ClubColorPrimary_55));
+        mTimeLine2.setImgCircleCheck(getDrawable(R.drawable.ic_baseline_check_24));
         mTimeLine2.setImgMarker(getDrawable(R.drawable.clipboard_check_solid));
         mTimeLines_.add(mTimeLine2);
 
@@ -82,14 +149,68 @@ public class SolicitudReservaActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent mIntent = new Intent(SolicitudReservaActivity.this,AddReservaSocioActivity.class);
-                mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(mIntent);
+                Intent mIntent = null;
+
+                if (mRadioButtonSocio.isChecked()){
+                    mIntent =  new Intent(SolicitudReservaActivity.this, AddReservaSocioActivity.class);
+                }else if (mRadioButtonInvitados.isChecked()){
+                    mIntent = new Intent(SolicitudReservaActivity.this, AddReservasInvitadosActivity.class);
+                }
+
+                if (mIntent!=null){
+                    //mIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivityForResult(mIntent,REQUEST_CODE_RESERVA);
+                }else {
+                    Toasty.info(SolicitudReservaActivity.this,getResources().getString(R.string.select_tipo_reservacion),
+                            Toasty.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        mMaterialButtonSaveReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //mAlertDialogConfirmeReserva.show();
+                mTimeLines.get(0).setCheckCircle(true);/**en color greenn y marker visto**/
+                //mTimeLines.get(0).setStatus(false);
+                mAdapterTimeLine.inactiveElements();
+
+                /**significa el focus actual**/
+                mTimeLines.get(1).setStatus(true);
+                mTimeLines.get(1).setBackground(getResources().getDrawable(R.drawable.item_timeline));
+
+                mAdapterTimeLine.notifyDataSetChanged();
+
+                mLinearLayoutCompatView1.setVisibility(View.GONE);
+                mLinearLayoutCompatView2.setVisibility(View.VISIBLE);
+            }
+        });
+        mMaterialButtonProcessReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                mAlertDialogConfirmeReserva.show();
             }
         });
         super.onResume();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data)
+    {
+        if (requestCode == REQUEST_CODE_RESERVA && resultCode == RESULT_OK)
+        {
+            mMaterialButtonSaveReserva.setEnabled(true);
+            mMaterialButtonAddReserva.setEnabled(false);
+            mViewResumen.setVisibility(View.VISIBLE);
+        }else{
+            mViewResumen.setVisibility(View.GONE);
+            mMaterialButtonSaveReserva.setEnabled(false);
+        }
+    }
 
     @Override
     public void onBackPressed()
@@ -111,4 +232,11 @@ public class SolicitudReservaActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+    {
+        if (isChecked){
+            mMaterialButtonAddReserva.setEnabled(true);
+        }
+    }
 }

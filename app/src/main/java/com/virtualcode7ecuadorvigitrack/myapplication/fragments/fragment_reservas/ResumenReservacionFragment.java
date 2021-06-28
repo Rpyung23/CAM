@@ -1,4 +1,4 @@
-package com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio;
+package com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,13 +14,13 @@ import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 
 
-public class ResumenReservacionSocioFragment extends Fragment implements View.OnClickListener
+public class ResumenReservacionFragment extends Fragment implements View.OnClickListener
 {
 
     private MaterialButton mMaterialButtonSave;
     private View mView;
 
-    public ResumenReservacionSocioFragment() {
+    public ResumenReservacionFragment() {
         // Required empty public constructor
     }
 

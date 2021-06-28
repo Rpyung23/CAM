@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -19,7 +18,7 @@ import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 import com.virtualcode7ecuadorvigitrack.myapplication.interfaces.*;
 public class ReservasActivity extends AppCompatActivity implements cOnClickHistoryReservas
 {

@@ -1,27 +1,21 @@
-package com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas;
+package com.virtualcode7ecuadorvigitrack.myapplication.views.views_socios.view_reservas.invitados;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
-
-import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio.AddExtrasReservaFragment;
-import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio.AddFechasReservaFragment;
-import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio.AddHabitacionesFragment;
-import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio.ResumenReservacionSocioFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas.AddExtrasReservaFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas.AddHabitacionesFragment;
+import com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas.ResumenReservacionFragment;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.adapter.cAdapterTimeLine;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.cTimeLine;
 import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
@@ -29,30 +23,25 @@ import com.virtualcode7ecuadorvigitrack.myapplication.utils.cToolbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddReservaSocioActivity extends AppCompatActivity
-{
+public class AddReservasInvitadosActivity extends AppCompatActivity {
+
     private List<cTimeLine> mTimeLineList;
     private cAdapterTimeLine mAdapterTimeLine;
     private RecyclerView mRecyclerViewTimeLine;
+    private int position_viewpager_fragment = 0;
     private MaterialButton mMaterialButtonSiguiente;
     private MaterialButton mMaterialButtonAnterior;
-    private int position_viewpager_fragment = 0;
     private ConstraintLayout mConstraintLayout;
     private FragmentManager mFragmentManager;
     private List<Fragment> mFragmentList = new ArrayList<>();
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_reserva_socio);
-        cToolbar.show(AddReservaSocioActivity.this,getResources().getString(R.string.name_cam),true,1);
-        mRecyclerViewTimeLine = findViewById(R.id.idRecyclerViewTimeLineSolicitudReservas);
-
-
-
+        setContentView(R.layout.activity_add_reservas_invitados);
+        cToolbar.show(AddReservasInvitadosActivity.this,getResources().getString(R.string.name_cam),true,1);
         mMaterialButtonSiguiente = findViewById(R.id.idbtnSiguiente);
         mMaterialButtonAnterior = findViewById(R.id.idbtnAnterior);
+        mRecyclerViewTimeLine = findViewById(R.id.idRecyclerViewTimeLineSolicitudReservas);
         mConstraintLayout = findViewById(R.id.ConstraintButtonNextBack);
 
         mFragmentManager = getSupportFragmentManager();
@@ -60,7 +49,7 @@ public class AddReservaSocioActivity extends AppCompatActivity
         mTimeLineList = llenarElementTimeLine();
         mFragmentList = llenarListaFragment();
 
-        mAdapterTimeLine = new cAdapterTimeLine(mTimeLineList,AddReservaSocioActivity.this
+        mAdapterTimeLine = new cAdapterTimeLine(mTimeLineList,AddReservasInvitadosActivity.this
                 ,mFragmentList
                 ,R.id.FragmentContainerAddSolicitud,mFragmentManager);
         mRecyclerViewTimeLine.setAdapter(mAdapterTimeLine);
@@ -83,36 +72,47 @@ public class AddReservaSocioActivity extends AppCompatActivity
                 if (position_viewpager_fragment>0)
                 {
                     position_viewpager_fragment= position_viewpager_fragment-1;
+                    uncheckedItemLine(position_viewpager_fragment);
                     mAdapterTimeLine.inactiveElements();
                     mTimeLineList.get(position_viewpager_fragment).setStatus(true);
                     mTimeLineList.get(position_viewpager_fragment).setBackground(getResources().getDrawable(R.drawable.item_timeline));
                     mAdapterTimeLine.notifyDataSetChanged();
+                }else if(position_viewpager_fragment == 0){
+
+                    uncheckedItemLine(position_viewpager_fragment);
                 }
 
             }
         });
     }
-
+    private void uncheckedItemLine(int position_viewpager_fragment_)
+    {
+        mTimeLineList.get(position_viewpager_fragment_).setCheckCircle(false);
+        mAdapterTimeLine.inactiveElements();
+    }
     private List<Fragment> llenarListaFragment()
     {
         List<Fragment> mList = new ArrayList<>();
 
-        mList.add(new AddFechasReservaFragment());
-        mList.add(new AddHabitacionesFragment());
+        AddHabitacionesFragment oAH =  new AddHabitacionesFragment();
+        oAH.setType_add_habitacion("invitado");
+
+        mList.add(oAH);
         mList.add(new AddExtrasReservaFragment());
-        mList.add(new ResumenReservacionSocioFragment());
+        mList.add(new ResumenReservacionFragment());
 
         return mList;
     }
 
     private void eventosRecyclerViewTimeLine()
     {
+        mTimeLineList.get(position_viewpager_fragment).setCheckCircle(true);
+
         mAdapterTimeLine.inactiveElements();
 
 
 
-
-        if (position_viewpager_fragment<4)
+        if (position_viewpager_fragment<3)
         {
             position_viewpager_fragment = position_viewpager_fragment + 1;
 
@@ -122,7 +122,7 @@ public class AddReservaSocioActivity extends AppCompatActivity
         }
 
 
-        if (position_viewpager_fragment==3){
+        if (position_viewpager_fragment==2){
             mConstraintLayout.setVisibility(View.GONE);
         }
 
@@ -139,14 +139,31 @@ public class AddReservaSocioActivity extends AppCompatActivity
 
         cTimeLine mTimeLine = new cTimeLine();
 
-        mTimeLine.setStatus(true);
-        mTimeLine.setBackground(getResources().getDrawable(R.drawable.item_timeline));
-        mTimeLine.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
-        mTimeLine.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
-        mTimeLine.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine.setImgMarker(getResources().getDrawable(R.drawable.calendar_cuadriculado));
-        mTimeLines_.add(mTimeLine);
+
+        cTimeLine mTimeLine1 = new cTimeLine();
+        mTimeLine1.setStatus(true);
+        mTimeLine1.setBackground(getResources().getDrawable(R.drawable.item_timeline));
+        mTimeLine1.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine1.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
+        mTimeLine1.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine1.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
+        mTimeLine1.setImgMarker(getResources().getDrawable(R.drawable.bed_hotel));
+        mTimeLine1.setImgCircleCheck(getResources().getDrawable(R.drawable.ic_baseline_check_24));
+        mTimeLine1.setColor_check(getColor(R.color.btn_add_invitado_55));
+        mTimeLines_.add(mTimeLine1);
+
+
+        cTimeLine mTimeLine2 = new cTimeLine();
+        mTimeLine2.setStatus(false);
+        mTimeLine2.setBackground(getResources().getDrawable(R.drawable.item_timeline_inactive));
+        mTimeLine2.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine2.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
+        mTimeLine2.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine2.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
+        mTimeLine2.setImgMarker(getResources().getDrawable(R.drawable.plus_not_eve));
+        mTimeLine2.setImgCircleCheck(getResources().getDrawable(R.drawable.ic_baseline_check_24));
+        mTimeLine2.setColor_check(getColor(R.color.btn_add_invitado_55));
+        mTimeLines_.add(mTimeLine2);
 
 
         cTimeLine mTimeLine3 = new cTimeLine();
@@ -156,30 +173,10 @@ public class AddReservaSocioActivity extends AppCompatActivity
         mTimeLine3.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
         mTimeLine3.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
         mTimeLine3.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine3.setImgMarker(getResources().getDrawable(R.drawable.bed_hotel));
+        mTimeLine3.setImgMarker(getResources().getDrawable(R.drawable.clipboard_check_solid));
+        mTimeLine3.setImgCircleCheck(getResources().getDrawable(R.drawable.ic_baseline_check_24));
+        mTimeLine3.setColor_check(getColor(R.color.btn_add_invitado_55));
         mTimeLines_.add(mTimeLine3);
-
-
-        cTimeLine mTimeLine4 = new cTimeLine();
-        mTimeLine4.setStatus(false);
-        mTimeLine4.setBackground(getResources().getDrawable(R.drawable.item_timeline_inactive));
-        mTimeLine4.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
-        mTimeLine4.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine4.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
-        mTimeLine4.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine4.setImgMarker(getResources().getDrawable(R.drawable.plus_not_eve));
-        mTimeLines_.add(mTimeLine4);
-
-
-        cTimeLine mTimeLine5 = new cTimeLine();
-        mTimeLine5.setStatus(false);
-        mTimeLine5.setBackground(getResources().getDrawable(R.drawable.item_timeline_inactive));
-        mTimeLine5.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
-        mTimeLine5.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine5.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
-        mTimeLine5.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
-        mTimeLine5.setImgMarker(getResources().getDrawable(R.drawable.clipboard_check_solid));
-        mTimeLines_.add(mTimeLine5);
 
         return mTimeLines_;
     }
@@ -204,6 +201,9 @@ public class AddReservaSocioActivity extends AppCompatActivity
         }
     }
 
-    
-
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+    }
 }

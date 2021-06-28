@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_person_add"
+        android:drawableTint="@color/ClubColorPrimary"
+        android:text="@string/type_habitaciones"
+        android:textSize="@dimen/textsize_22sp"
+        android:textColor="@color/ClubColorPrimary"
+        android:fontFamily="@font/roboto_black"
+        android:layout_marginBottom="@dimen/margin_15"
+        >
+    </TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/ClubColorPrimary"
+        >
+    </View>
+
+    <TextView
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hotel_register_question"
+        android:textSize="@dimen/textsize_17sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/margin_15"
+        >
+    </TextView>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hotel_nuevo"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </com.google.android.material.radiobutton.MaterialRadioButton>
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hotel_anterior"
+            android:textSize="@dimen/textsize_22sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/ColorIconFechas"
+            >
+        </com.google.android.material.radiobutton.MaterialRadioButton>
+    </RadioGroup>
+
+    <TextView
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/elegit_type_habitacion"
+        android:textSize="@dimen/textsize_17sp"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/margin_15"
+        >
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/item_tipo_habitacion"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

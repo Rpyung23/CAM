@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         app:cardElevation="1dp"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#DDDCDC"
+        app:cardBackgroundColor="@color/white"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,8 +30,8 @@
                 android:fontFamily="@font/roboto_regular"
                 android:textSize="@dimen/textsize_17sp"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/black"
-                android:drawableTint="@color/black"
+                android:textColor="@color/ClubColorPrimary"
+                android:drawableTint="@color/ClubColorPrimary"
                 android:drawableStart="@drawable/ic_person_add"
                 android:text="  Reservaciones (Proximamente)"
                 android:layout_marginLeft="@dimen/margin_left_card_profile_socio"
@@ -48,7 +48,7 @@
                 android:layout_gravity="center_vertical"
                 android:textSize="@dimen/textsize_17sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/ClubColorPrimary"
                 android:drawableEnd="@drawable/ic_arrow_rigth"
                 android:layout_marginRight="@dimen/margin_right_card_profile_socio"
                 android:layout_width="wrap_content"

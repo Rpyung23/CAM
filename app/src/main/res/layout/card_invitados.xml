@@ -9,9 +9,10 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#DDDCDC"
+    app:cardBackgroundColor="@color/white"
     >
 
+    <!--#DDDCDC-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,9 +23,9 @@
             android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/textsize_17sp"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/black"
+            android:textColor="@color/ClubColorPrimary"
             android:drawableStart="@drawable/ic_person_add"
-            android:drawableTint="@color/black"
+            android:drawableTint="@color/ClubColorPrimary"
             android:text="  Invitados (Proximamente)"
             android:layout_marginLeft="@dimen/margin_left_card_profile_socio"
             android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/textsize_17sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/ClubColorPrimary"
             android:drawableEnd="@drawable/ic_arrow_rigth"
             android:drawableTint="@color/black"
             android:layout_marginRight="@dimen/margin_right_card_profile_socio"

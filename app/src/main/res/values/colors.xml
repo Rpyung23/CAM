@@ -26,8 +26,10 @@
     <color name="color_gris_invitados_solicitud">#F2F2F2</color>
     <color name="color_opc_notifiation_details">#6200EE</color>
     <color name="btn_add_invitado">#88A919</color>
+    <color name="btn_add_invitado_55">#8c88A919</color>
     <color name="btn_solicitud_invitados_alert_button">#7ED321</color>
     <color name="ColorIconFechas">#00549C</color>
     <color name="BorderButtonColorPrimary">#00549C</color>
     <color name="stroke_color_box">#60000000</color>
+
 </resources>

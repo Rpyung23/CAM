@@ -1,4 +1,4 @@
-package com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas_socio;
+package com.virtualcode7ecuadorvigitrack.myapplication.fragments.fragment_reservas;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.virtualcode7ecuadorvigitrack.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddHabitacionesFragment#newInstance} factory method to
+ * Use the {@link AddFechasReservaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddHabitacionesFragment extends Fragment {
+public class AddFechasReservaFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class AddHabitacionesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AddHabitacionesFragment() {
+    public AddFechasReservaFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class AddHabitacionesFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddHabitacionesFragment.
+     * @return A new instance of fragment AddFechasReservaFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddHabitacionesFragment newInstance(String param1, String param2) {
-        AddHabitacionesFragment fragment = new AddHabitacionesFragment();
+    public static AddFechasReservaFragment newInstance(String param1, String param2) {
+        AddFechasReservaFragment fragment = new AddFechasReservaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class AddHabitacionesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_habitaciones, container, false);
+        return inflater.inflate(R.layout.fragment_add_fechas_reserva, container, false);
     }
 }

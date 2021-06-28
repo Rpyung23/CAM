@@ -31,6 +31,7 @@ public class cAdapterTimeLine
     private int fragmentContainer;
     private FragmentManager mFragmentManagerM;
 
+
     public cAdapterTimeLine(List<cTimeLine> mTimeLineList, Context mContext,
                             List<Fragment> mFragmentList, int fragmentContainer,
                             FragmentManager mFragmentManagerM)
@@ -41,6 +42,9 @@ public class cAdapterTimeLine
         this.fragmentContainer = fragmentContainer;
         this.mFragmentManagerM = mFragmentManagerM;
     }
+
+
+
 
     @Override
     public cViewHolderTimeLine onCreateViewHolder(ViewGroup parent,
@@ -58,10 +62,12 @@ public class cAdapterTimeLine
 
         if (mTimeLineList.get(position).isCheckCircle())/**Los datos fueron llenados con exito**/
         {
-            holder.mLinearLayoutCompatCircle.setBackground(mTimeLineList.get(position).getBackground());
+            holder.mLinearLayoutCompatCircle
+                    .setBackground(mTimeLineList.get(position).getBackground());
 
 
-            holder.mViewLine.setBackgroundColor(mTimeLineList.get(position).getColor_check());
+            holder.mViewLine.setBackgroundColor(mTimeLineList.get(position)
+                    .getColor_check());
 
 
             /**El tamaño es el mismo q si estuviera desactivado solo cambia color
@@ -117,14 +123,18 @@ public class cAdapterTimeLine
 
             }else if (!mTimeLineList.get(position).isStatus())
             {
-                holder.mLinearLayoutCompatCircle.setBackground(mTimeLineList.get(position).getBackground());
+                holder.mLinearLayoutCompatCircle
+                        .setBackground(mTimeLineList.get(position).getBackground());
                 holder.mImageViewMarker
                         .setImageDrawable(mTimeLineList.get(position).getImgMarker());
 
-                holder.mViewLine.setBackgroundColor(mTimeLineList.get(position).getColorTimeLineInactive());
+                holder.mViewLine.setBackgroundColor(mTimeLineList.get(position)
+                        .getColorTimeLineInactive());
 
                 LinearLayoutCompat.LayoutParams mLayoutParams
-                        = (LinearLayoutCompat.LayoutParams) holder.mLinearLayoutCompatCircle.getLayoutParams();
+                        = (LinearLayoutCompat.LayoutParams) holder.mLinearLayoutCompatCircle
+                        .getLayoutParams();
+
                 mLayoutParams.width = (int) mContext.getResources()
                         .getDimension(R.dimen.circle_timeline_inactive);
                 mLayoutParams.height = (int) mContext.getResources()
@@ -137,7 +147,6 @@ public class cAdapterTimeLine
                         .getDimension(R.dimen.marker_timeline_inactive);
                 holder.mImageViewMarker.getLayoutParams().width = (int)mContext.getResources()
                         .getDimension(R.dimen.marker_timeline_inactive);
-
 
                 holder.mLinearLayoutCompatCircle.setLayoutParams(mLayoutParams);
             }
@@ -154,6 +163,16 @@ public class cAdapterTimeLine
         {
             mTimeLineList.get(i).setStatus(false);
             mTimeLineList.get(i).setBackground(mContext.getResources().getDrawable(R.drawable.item_timeline_inactive));
+            checkedElements(i);
+        }
+    }
+
+    public void checkedElements(int i)
+    {
+        if ( mTimeLineList.get(i).isCheckCircle()){
+            mTimeLineList.get(i).setStatus(false);
+            mTimeLineList.get(i).setBackground(mContext.getResources().getDrawable(R.drawable.item_timeline_checked));
+
         }
     }
 
@@ -188,7 +207,7 @@ public class cAdapterTimeLine
             fragmentTransaction
                     .show(fragmentList.get(pos))
                     .addToBackStack(Tag)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_NONE)
                     .commit();
         }else
         {
@@ -196,7 +215,7 @@ public class cAdapterTimeLine
             fragmentTransaction
                     .add(fragmentContainer,oF,Tag)
                     .addToBackStack(Tag)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_NONE)
                     .commit();
         }
     }
