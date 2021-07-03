@@ -330,7 +330,7 @@
                 app:layout_constraintStart_toStartOf="@id/GuideLineRightExtra"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:strokeColor="@color/red"
-                android:text="@string/edit_reserva"
+                android:text="@string/delete_reserva"
                 app:icon="@drawable/delete"
                 android:textSize="@dimen/textsize_17sp"
                 android:fontFamily="@font/roboto_medium"

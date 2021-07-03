@@ -48,21 +48,27 @@
         android:orientation="vertical"
         >
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/idCheckHotelNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hotel_nuevo"
             android:textSize="@dimen/textsize_22sp"
             android:fontFamily="@font/roboto_black"
             android:textColor="@color/ColorIconFechas"
+            app:buttonTint="@color/ClubColorPrimary"
+            android:shadowColor="@color/ClubColorPrimary"
             >
         </com.google.android.material.radiobutton.MaterialRadioButton>
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/idCheckHotelAnterior"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hotel_anterior"
             android:textSize="@dimen/textsize_22sp"
             android:fontFamily="@font/roboto_black"
             android:textColor="@color/ColorIconFechas"
+            app:buttonTint="@color/ClubColorPrimary"
+            android:shadowColor="@color/ClubColorPrimary"
             >
         </com.google.android.material.radiobutton.MaterialRadioButton>
     </RadioGroup>
@@ -79,6 +85,7 @@
     </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRyclerViewTypeHabitacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

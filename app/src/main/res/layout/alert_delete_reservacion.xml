@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/margin_15"
     android:background="@color/trnsparente"
     >
 
@@ -66,6 +66,7 @@
                     >
                 </ImageView>
                 <ImageView
+                    android:id="@+id/idButtonAlertCloseReservacion"
                     android:layout_width="@dimen/size_img_toolbar_medium"
                     android:layout_height="@dimen/size_img_toolbar_medium"
                     android:src="@drawable/close"
@@ -128,6 +129,7 @@
                 </TextView>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idButtonAlertCancelReservacion"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -145,6 +147,7 @@
                 </com.google.android.material.button.MaterialButton>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idButtonAlertDeleteReservacion"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
                     app:backgroundTint="@color/red"

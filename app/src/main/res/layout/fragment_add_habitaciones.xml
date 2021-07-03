@@ -116,11 +116,12 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRecyclerViewPaquete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
-                tools:listitem="@layout/item_t ipo_paquete"
+                tools:listitem="@layout/item_tipo_paquete"
                 >
             </androidx.recyclerview.widget.RecyclerView>
 

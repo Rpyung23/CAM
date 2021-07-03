@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +16,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+import com.squareup.picasso.Picasso;
 import com.virtualcode7ecuadorvigitrack.myapplication.R;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.adapter.cAdapterTimeLine;
 import com.virtualcode7ecuadorvigitrack.myapplication.timeline.cTimeLine;
@@ -45,6 +50,12 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
     private int REQUEST_CODE_RESERVA = 237;
     private View mViewAlertConfirmeReserva;
     private AlertDialog mAlertDialogConfirmeReserva;
+    private MaterialCardView mMaterialCardViewAlert;
+    private TextView mTextViewTitleAlert;
+    private ImageView mImageViewCancelAlertTitle;
+    private ImageView mImageViewCompatCloseAlertTitle;
+
+
     private View mViewResumen;
 
 
@@ -60,6 +71,13 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
 
         mLinearLayoutCompatView1 = findViewById(R.id.idLinearView1);
         mLinearLayoutCompatView2 = findViewById(R.id.idLinearView2);
+
+        mMaterialCardViewAlert = findViewById(R.id.idcardTitleAlert);
+        mTextViewTitleAlert = findViewById(R.id.idTextCardTitleAlert);
+        mImageViewCancelAlertTitle = findViewById(R.id.ImgCancel);
+        mImageViewCompatCloseAlertTitle = findViewById(R.id.ImgClose);
+
+
         mMaterialButtonProcessReserva = findViewById(R.id.idMaterialProcesarReservaSolicitud);
         mMaterialButtonAddReserva = findViewById(R.id.idMaterialAddReserva);
         mViewResumen = findViewById(R.id.idViewResumen);
@@ -80,6 +98,13 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
         mRadioButtonInvitados.setOnCheckedChangeListener(this::onCheckedChanged);
         mRadioButtonSocio.setOnCheckedChangeListener(this::onCheckedChanged);
 
+        mImageViewCompatCloseAlertTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                mMaterialCardViewAlert.setVisibility(View.GONE);
+            }
+        });
         createViewAlertSaveConfirmeReserva();
     }
 
@@ -116,11 +141,11 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
 
         mTimeLine.setStatus(true);
         mTimeLine.setBackground(getResources().getDrawable(R.drawable.item_timeline));
-        mTimeLine.setColor_active(getColor(R.color.ClubColorPrimary));
-        mTimeLine.setColor_inactive(getColor(R.color.ClubColorPrimary_55));
-        mTimeLine.setColor_check(getColor(R.color.btn_add_invitado_55));
-        mTimeLine.setColorTimeLineActive(getColor(R.color.ClubColorPrimary));
-        mTimeLine.setColorTimeLineInactive(getColor(R.color.ClubColorPrimary_55));
+        mTimeLine.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
+        mTimeLine.setColor_check(getResources().getColor(R.color.btn_add_invitado_55));
+        mTimeLine.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
         mTimeLine.setImgMarker(getDrawable(R.drawable.ic_apartment_white));
         mTimeLine.setImgCircleCheck(getDrawable(R.drawable.ic_baseline_check_24));
         mTimeLines_.add(mTimeLine);
@@ -129,11 +154,11 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
         cTimeLine mTimeLine2 = new cTimeLine();
         mTimeLine2.setStatus(false);
         mTimeLine2.setBackground(getResources().getDrawable(R.drawable.item_timeline_inactive));
-        mTimeLine2.setColor_active(getColor(R.color.ClubColorPrimary));
-        mTimeLine2.setColor_inactive(getColor(R.color.ClubColorPrimary_55));
-        mTimeLine2.setColor_check(getColor(R.color.btn_add_invitado_55));
-        mTimeLine2.setColorTimeLineActive(getColor(R.color.ClubColorPrimary));
-        mTimeLine2.setColorTimeLineInactive(getColor(R.color.ClubColorPrimary_55));
+        mTimeLine2.setColor_active(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine2.setColor_inactive(getResources().getColor(R.color.ClubColorPrimary_55));
+        mTimeLine2.setColor_check(getResources().getColor(R.color.btn_add_invitado_55));
+        mTimeLine2.setColorTimeLineActive(getResources().getColor(R.color.ClubColorPrimary));
+        mTimeLine2.setColorTimeLineInactive(getResources().getColor(R.color.ClubColorPrimary_55));
         mTimeLine2.setImgCircleCheck(getDrawable(R.drawable.ic_baseline_check_24));
         mTimeLine2.setImgMarker(getDrawable(R.drawable.clipboard_check_solid));
         mTimeLines_.add(mTimeLine2);
@@ -201,13 +226,23 @@ public class SolicitudReservaActivity extends AppCompatActivity implements Compo
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data)
     {
-        if (requestCode == REQUEST_CODE_RESERVA && resultCode == RESULT_OK)
-        {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_RESERVA && resultCode == RESULT_OK) {
             mMaterialButtonSaveReserva.setEnabled(true);
             mMaterialButtonAddReserva.setEnabled(false);
             mViewResumen.setVisibility(View.VISIBLE);
-        }else{
-            mViewResumen.setVisibility(View.GONE  );
+
+            mMaterialCardViewAlert.setCardBackgroundColor(getResources().getColor(R.color.btn_add_invitado));
+            mTextViewTitleAlert.setText(getResources().getString(R.string.reserva_ok));
+
+            Picasso.with(SolicitudReservaActivity.this)
+                    .load(R.drawable.check_circle)
+                    .into(mImageViewCancelAlertTitle);
+            mMaterialCardViewAlert.setVisibility(View.VISIBLE);
+            //mImageViewCancelAlertTitle.getDrawable().setTint(getResources().getColor(R.color.white));
+
+        } else {
+            mViewResumen.setVisibility(View.GONE);
             mMaterialButtonSaveReserva.setEnabled(false);
         }
     }

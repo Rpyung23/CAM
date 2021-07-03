@@ -1,14 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/margin_10"
+    android:id="@+id/idCardViewPaquete"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="2dp"
-    android:layout_marginBottom="@dimen/margin_10"
     >
+
+    <!--<com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            >
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/idGuidelineTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/idGuidelineBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.9"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/idGuidelineLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/idGuidelineRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95"
+                >
+            </androidx.constraintlayout.widget.Guideline>
+
+            <ImageView
+                android:id="@+id/idImgHabitacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/type_paquetes"
+                app:tint="@color/ClubColorPrimary"
+                app:layout_constraintTop_toTopOf="@id/idGuidelineTop"
+                app:layout_constraintStart_toStartOf="@+id/idGuidelineLeft"
+
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/idTxtNamePaquete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nombre del paquete"
+                android:textSize="@dimen/textsize_22sp"
+                android:fontFamily="@font/roboto_black"
+                android:textColor="@color/ClubColorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/idImgHabitacion"
+                app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+                app:layout_constraintEnd_toEndOf="@+id/idGuidelineRight"
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripción del paquete"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_17sp"
+                app:layout_constraintTop_toBottomOf="@+id/idTxtNamePaquete"
+                app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
+                app:layout_constraintBottom_toTopOf="@+id/idGuidelineBottom"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/idTxtDias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x 3 noche"
+                android:textSize="@dimen/textsize_17sp"
+                android:textColor="@color/black"
+                android:layout_marginRight="@dimen/margin"
+                app:layout_constraintTop_toTopOf="@+id/idTxtPricePaquete"
+                app:layout_constraintBottom_toBottomOf="@+id/idTxtPricePaquete"
+                app:layout_constraintEnd_toStartOf="@+id/idTxtPricePaquete"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/idTxtPricePaquete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 825.00"
+                android:fontFamily="@font/roboto_black"
+                android:textSize="@dimen/textsize_22sp"
+                android:textColor="@color/ClubColorPrimary"
+                app:layout_constraintEnd_toStartOf="@+id/idGuidelineRight"
+                app:layout_constraintTop_toTopOf="@+id/idGuidelineTop"
+                >
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>-->
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,7 +180,7 @@
         </androidx.constraintlayout.widget.Guideline>
 
         <ImageView
-            android:id="@+id/idImgHabitacion"
+            android:id="@+id/idImgPaquete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/type_paquetes"
@@ -74,13 +199,14 @@
             android:textSize="@dimen/textsize_22sp"
             android:fontFamily="@font/roboto_black"
             android:textColor="@color/ClubColorPrimary"
-            app:layout_constraintTop_toBottomOf="@+id/idImgHabitacion"
+            app:layout_constraintTop_toBottomOf="@+id/idImgPaquete"
             app:layout_constraintStart_toStartOf="@id/idGuidelineLeft"
             app:layout_constraintEnd_toEndOf="@+id/idGuidelineRight"
             >
         </TextView>
 
         <TextView
+            android:id="@+id/idTxtSubTipoPaquete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descripción del paquete"
@@ -120,5 +246,7 @@
         </TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </com.google.android.material.card.MaterialCardView>

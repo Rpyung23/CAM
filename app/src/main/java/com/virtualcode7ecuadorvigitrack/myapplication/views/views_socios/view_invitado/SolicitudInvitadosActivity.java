@@ -85,7 +85,7 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
 
     private RecyclerView mRecyclerViewListInvitados;
 
-
+    private AlertDialog mAlertDialogOkInvitado;
 
 
     private List<cInvitados> mInvitadosList;
@@ -355,9 +355,6 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
     @Override
     public void onPositiveButtonClick(Object selection)
     {
-
-
-
         if (bandera){
             //mTextInputEditTextDateInicio.setText(selection.toString());
             mTextInputEditTextDateInicio.setError(null);
@@ -387,15 +384,31 @@ public class SolicitudInvitadosActivity extends cActivityInicioSocio
 
     private void createAlertSolicitudEnviada(){
 
+
+
         View mView = LayoutInflater.from(SolicitudInvitadosActivity.this)
                 .inflate(R.layout.view_solicitud_enviada,null);
 
+        MaterialButton mMaterialButtonAccept = mView.findViewById(R.id.idBtnAcceprSolicitudReserva);
+
+        mMaterialButtonAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(mAlertDialogOkInvitado!= null && mAlertDialogOkInvitado.isShowing()){
+                    mAlertDialogOkInvitado.cancel();
+                    mAlertDialogOkInvitado.hide();
+                    finish();
+                }
+            }
+        });
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(SolicitudInvitadosActivity.this);
         mBuilder.setView(mView);
-        AlertDialog mAlertDialog = mBuilder.create();
-        mAlertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
-        mAlertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        mAlertDialog.show();
+        mAlertDialogOkInvitado = mBuilder.create();
+        mAlertDialogOkInvitado.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+        mAlertDialogOkInvitado.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        mAlertDialogOkInvitado.show();
 
 
 

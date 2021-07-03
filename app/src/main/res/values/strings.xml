@@ -207,5 +207,7 @@
     <string name="title_add_person_extra">Agregar persona extra</string>
     <string name="question_send_solicitud">¿Estás seguro de querer enviar esta solicitud de reservación?</string>
     <string name="confirme_solicitud">Confirmar solicitud</string>
+    <string name="delete_reserva">Eliminar reserva</string>
+    <string name="reserva_ok">Tu reservación se ha creado  con exito.</string>
 
 </resources>
